@@ -48,13 +48,26 @@ PayU provides dedicated hardware suited to different counter setups, checkout vo
 Terminals deployed at checkout counters to handle card, wallet, and UPI transactions. Choose these when your business accepts debit/credit cards and requires printed charge slips:
 
 - **Android POS**: A high-performance smart terminal featuring a full touchscreen display, built-in thermal receipt printer, and multi-mode payment acceptance (EMV chip, NFC contactless tap, magnetic stripe, and Dynamic UPI QR).
+
+
+<Image src="https://files.readme.io/40d710b85ec264236706fae868e57272a5cbfa92942e11ac0b2d16c66c46c076-android-pos.png" width="350px" />
+
+
 - **All-in-One POS**: A compact countertop terminal with an integrated customer-facing Dynamic QR screen, chip and contactless card reader, and built-in voice confirmation for completed payments.
+
+  <Image src="https://files.readme.io/f10a1c2d363c69aa6ffca53b34f8a3f3c3f09c8e0396cff8f4eb03b56b07db80-all-in-one-post.png" width="350px" />
 
 ### Static QR Devices
 Lightweight, rapid-deployment solutions dedicated to UPI acceptance. Cheaper to deploy and quick to set up:
 
 - **Smart QR Soundbox**: A physical Static QR standee equipped with an integrated cellular speaker that instantly announces successful payment amounts in the cashier's preferred language.
+
+  <Image src="https://files.readme.io/10c55e34c7a6bef00b4322bf2927e637d305bcfe5099695b20f75a2dab6eae96-static-qr-device.png" width="350px" />
+
+
 - **Static QR Standee**: A printed QR standee placed at the counter. The customer scans the QR code, enters the bill amount in their preferred UPI app, and payment alerts reach the cashier via the PayU Merchant App.
+
+  <Image src="https://files.readme.io/c1e7e66410c8584748706e9a48f6d64534a8446da98dd63e23f67889ab2c09d7-static-qr-standee.png" width="350px" />
 
 ### Device Feature Matrix
 
