@@ -459,7 +459,7 @@ After your customer makes the payment:
 
 ## What If My Customer Wants the Money Back?
 
-It depends on&#x20;
+It depends on:
 
 - Whether you want to return the money yourself. Use PayU refunds to initiate.
   <Cards>
