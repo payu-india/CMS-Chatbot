@@ -63,13 +63,13 @@ Requests to PayU's v2 Payments API must be signed using the PayU V2 HMAC authori
 | :--- | :--- |
 | gstParams | _Object_<br>Container object holding GST invoice parameters, GSTIN, and tax component breakdowns. |
 
-#### Nested Object: `paymentMethod`
+#### paymentMethod  JSON Object Fields Description
 
 Defines the payment instrument and routing channel for POS terminal execution.
 
-#### Mandatory Parameters
+#### Mandatory Fields
 
-| Parameter | Description |
+| Field | Description |
 | :--- | :--- |
 | name | _String_<br>Payment method name. Must be hardcoded to `POS` for in-store terminal transactions. |
 | bankCode | _String_<br>Bank code identifier. Must be hardcoded to `POS` for in-store terminal transactions. |
@@ -83,13 +83,13 @@ Defines the payment instrument and routing channel for POS terminal execution.
 
 ---
 
-#### Nested Object: `additionalInfo`
+#### additionalInfo JSON Object Fields Description
 
 Directs the transaction flow engine inside PayU's payment gateway.
 
-#### Mandatory Parameters
+#### Mandatory Fields
 
-| Parameter | Description |
+| Field | Description |
 | :--- | :--- |
 | txnFlow | _String_<br>Transaction flow mode. Must be set to `seamless` for in-store POS transactions. |
 | txnS2sFlow | _String_<br>Server-to-server flow configuration identifier. Must be set to `"4"` for in-store POS transactions. |
@@ -109,14 +109,14 @@ Encapsulates order details, product information, user-defined fields, and price 
 
 **Mandatory Fields**
 
-| Parameter | Description |
+| Field | Description |
 | :--- | :--- |
 | paymentChargeSpecification | _Object_<br>Financial charge container defining the payable transaction price. |
 | paymentChargeSpecification.price | _Number_ or _String_<br>Gross transaction amount in INR. Must match the top-level `amount` value (e.g. `10.00`). |
 
 **Optional Fields**
 
-| Parameter | Description |
+| Field | Description |
 | :--- | :--- |
 | productInfo | _String_<br>Concise description or title of the product, service, or retail department (e.g. `POS Payment`). |
 | userDefinedFields | _Object_<br>Container object holding custom merchant tracking metadata. |
@@ -146,7 +146,7 @@ Defines callback actions for web redirects. While customer web browser redirecti
 
 **Mandatory Fields**
 
-| Parameter | Description |
+| Field | Description |
 | :--- | :--- |
 | successAction | _String_<br>HTTPS URL placeholder for success redirection. Provide your application URL (e.g. `https://yoursite.com/success`). |
 
@@ -173,7 +173,7 @@ Specifies the target POS hardware terminal, enforced payment mode on the screen,
 
 **Mandatory Fields**
 
-| Parameter | Description |
+| Field | Description |
 | :--- | :--- |
 | posDeviceId | _String_<br>The unique terminal hardware identifier mapped to your merchant account in PayU's terminal management system (e.g. `"134"`). |
 
