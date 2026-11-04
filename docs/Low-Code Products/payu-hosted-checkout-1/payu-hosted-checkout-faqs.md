@@ -243,9 +243,7 @@ next:
 </Accordion>
 
 <Accordion title="Can I generate the hash in the browser or mobile app?" icon="fab fa-adn">
-  No. Generating the hash client-side would expose your merchant salt to anyone who inspects the source code. The salt is a secret credential — if it is exposed, attackers can forge payment requests.
-
-  Always generate the hash on your server.
+  No. Generating the hash client-side would expose your merchant salt to anyone who inspects the source code. The salt is a secret credential. If it is exposed, attackers can forge payment requests. Hence, generate the hash on your server.
 </Accordion>
 
 ***
