@@ -19,7 +19,7 @@ The API generates a secure session returning `encryptedOrderId` and `accessToken
 
 ---
 
-## Endpoint & Environments
+## Environment
 
 ```http
 POST /v1/checkout/l1
@@ -73,15 +73,15 @@ Content-Type: application/json
 | orderId | _String_<br>A unique alphanumeric identifier for the merchant transaction/order. Special characters allowed: `-`, `_`. Maximum length: 50 characters. |
 | currency | _String_<br>Three-letter ISO 4217 currency code. Pass `INR` for domestic checkouts. |
 | paymentSource | _String_<br>Identifier indicating the client integration channel. For Cards Element, pass `CARD_ELEMENT` or `MERCHANT_HOSTED`. |
-| order | _Object_<br>Container object encapsulating order financial values, line items, and promotional offer settings. |
-| callBackActions | _Object_<br>Container defining customer redirect return URLs and asynchronous server notification endpoints. |
+| order | _Object_<br>Container object encapsulating order financial values, line items, and promotional offer settings. For more information, refer to [order JSON field descriptions](#order-json-object-field-descriptions)|
+| callBackActions | _Object_<br>Container defining customer redirect return URLs and asynchronous server notification endpoints. [callBackActions JSON field descriptions](#callbbackactions-json-object-field-descriptions) |
 
 ### Optional Parameters
 
 | Parameter | Description |
 | :--- | :--- |
 | productinfo | _String_<br>A concise description or title of the product, service, or shopping cart being purchased. Maximum length: 100 characters. |
-| customer | _Object_<br>Container object holding customer identity, contact information, billing/shipping addresses, and fraud screening metadata. |
+| customer | _Object_<br>Container object holding customer identity, contact information, billing/shipping addresses, and fraud screening metadata. [customer JSON field descriptions](#customer-json-object-field-descriptions) |
 | merchantCacheExpiry | _Integer_<br>Session time-to-live duration in seconds for which the order cache and access token remain valid. Default is `1200` (20 minutes). |
 | additionalPaymentParams | _Object_<br>Optional container for extended payment parameters, such as standing instructions (`si_details`) for recurring card mandate registration. |
 | udf1 | _String_<br>User Defined Field 1 for custom merchant tracking or internal reconciliation. Maximum length: 255 characters. |
@@ -92,7 +92,7 @@ Content-Type: application/json
 
 ---
 
-### Nested Object: order
+### order JSON Object Field Descriptions
 
 #### Mandatory Parameters
 
@@ -110,7 +110,7 @@ Content-Type: application/json
 
 ---
 
-#### Nested Object: customer
+#### customer JSON Object Field Descriptions
 
 **Mandatory Parameters**
 
@@ -130,7 +130,7 @@ Content-Type: application/json
 
 ---
 
-#### Nested Object: callBackActions
+#### callBackActions JSON Object Field Descriptions
 
 **Mandatory Parameters**
 
