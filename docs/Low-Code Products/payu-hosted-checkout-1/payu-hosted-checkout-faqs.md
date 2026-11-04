@@ -1,8 +1,8 @@
 ---
 title: FAQs (Frequently Asked Questions)
 excerpt: >-
-  Frequently asked questions about PayU Hosted Checkout: setup, hash  
-  generation, checkout experience, callbacks, webhooks, and production go-live.
+  Frequently asked questions about PayU Hosted Checkout: setup, hash generation,
+  checkout experience, callbacks, webhooks, and production go-live.
 deprecated: false
 hidden: true
 metadata:
@@ -55,15 +55,15 @@ next:
 <Accordion title="What is PayU Hosted Checkout?" icon="fab fa-adn">
   PayU Hosted Checkout is a payment integration method where:
 
-  - You redirect customers from your website to a **PayU-hosted payment page**
+  - You redirect customers from your website to a PayU-hosted payment page
   - PayU handles the entire payment experience, including security and processing
   - After the payment is completed, customers are redirected back to your website
 
-  This is the **simplest and fastest way** to start accepting payments without building or managing your own payment UI.
+  This is the simplest and fastest way to start accepting payments without building or managing your own payment UI.
 </Accordion>
 
 <Accordion title="What are the minimum prerequisites to integrate PayU Hosted Checkout?" icon="fab fa-adn">
-  These are the prerequisites to integrate PayU Hosted Checkout:
+  These are required to integrate PayU Hosted Checkout:
 
   - [PayU merchant account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard)
   - [Merchant test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt) for testing your integration
