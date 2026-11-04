@@ -1,5 +1,5 @@
 ---
-title: PACB Import - UPI Recurring Transaction Integration
+title: UPI Recurring Transaction Integration
 deprecated: false
 hidden: true
 metadata:
