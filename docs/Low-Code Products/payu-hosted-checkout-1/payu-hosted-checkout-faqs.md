@@ -196,7 +196,7 @@ next:
 </Accordion>
 
 <Accordion title="What is the PayU Hosted Checkout forward hash formula?" icon="fab fa-adn">
-  ```text
+  ```text Hash Formula
   sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
   ```
 
@@ -206,11 +206,19 @@ next:
   gtKFFx|TXN001|100.00|Order123|Aarav|aarav@example.com|||||||||||eCwWELxi
   ```
 
-  Important:
+  <Callout icon="far fa-circle-check" theme="success">
+    ### **Important:**
 
-  - Include pipe separators even if UDF fields are empty.
-  - One missing pipe produces an invalid hash.
-  - Generate the hash on your server only — never in the browser.
+    - [x] Include pipe separators even if UDF fields are empty.
+
+
+    - [x] One missing pipe produces an invalid hash.
+
+
+    - [x] Generate the hash on your server only and never in the browser.
+
+
+  </Callout>
 </Accordion>
 
 <Accordion title="How do I troubleshoot an invalid hash error?" icon="fab fa-adn">
