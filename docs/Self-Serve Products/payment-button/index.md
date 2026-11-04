@@ -95,20 +95,19 @@ next:
 
 ***
 
-## Is Payment Button Right for Me?
+## Is a Payment Button Right for Me?
 
-A Payment Button is a good choice if: <br />
-
-* **You have a website or blog** and want to start accepting payments quickly.
-* **You want customers to pay directly from your page** — no payment link to share separately.
-* **You sell a single product, service, or collect donations** from your website.
-* **You use a website builder** like WordPress, Wix, or Squarespace and can add content to your pages.<br />
-
-Consider another PayU solution if:<br />
-
-* You do not have a website and want to send a payment request using a link → <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">**Payment Links**</Anchor>
-* You need a full online store with a shopping cart → <Anchor target="_blank" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted">**PayU Hosted Checkout**</Anchor>
-* You want to build a custom checkout page that matches your website exactly → <Anchor target="_blank" href="doc:merchant-hosted-checkout">**Merchant Hosted Checkout**</Anchor>
+| I want to…                                                  |                                            Works?                                            |
+| ----------------------------------------------------------- | :------------------------------------------------------------------------------------------: |
+| Accept payments on my website without writing code          |                                               ✅                                              |
+| Add a "Buy Now", "Pay Now", or "Donate" button to a webpage |                                               ✅                                              |
+| Let customers enter their own donation or payment amount    |                                    ✅ (Collect Amount mode)                                   |
+| Sell a single product or service directly from my page      |                                               ✅                                              |
+| Accept payments without a website                           |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-overview)           |
+| Share a payment request over WhatsApp or SMS                |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-overview)           |
+| Set up recurring auto-debit or subscriptions                |           ⚠️ Use [Recurring Payments](https://docs.payu.in/docs/recurring-payments)          |
+| Build a full online store with a shopping cart              |            ⚠️ Use [eCommerce Plugins](https://docs.payu.in/docs/ecommerce-plugins)           |
+| Full server-side control over the checkout flow             | ⚠️ Use [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) |
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
