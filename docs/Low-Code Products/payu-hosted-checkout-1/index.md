@@ -36,19 +36,19 @@ next:
 </Accordion>
 
 <Accordion title="PCI-DSS scope reduced to near zero">
-  Card numbers and other sensitive paymentdata are entered directly on PayU's infrastructure, not on your website or your server. The most demanding parts of PCI-DSS compliance such as handling, storing, and transmitting raw card data are PayU's responsibility.<br />
+  Card numbers and other sensitive payment data are entered directly on PayU's infrastructure, not on your website or your server. The most demanding parts of PCI-DSS compliance such as handling, storing, and transmitting raw card data are PayU's responsibility.<br />
 
   Your integration deals with transaction parameters and response verification. Your application never receives or handles raw card data.
 </Accordion>
 
-<Accordion title="Go live quickly, stay low-effort" icon="fa-rocket">
+<Accordion title="Go live quickly, stay low-effort">
   PayU Hosted Checkout can be integrated in hours, not days. The essentials are: generate a SHA-512 hash on your server, POST a form to PayU's endpoint, and verify the response when it returns. There is no payment UI to build or maintain, and no ongoing infrastructure to manage as payment methods evolve.
 </Accordion>
 
-<Accordion title="Mobile-optimised and branded out of the box" icon="fa-mobile-screen">
-  The PayU checkout page adapts to mobile screens automatically. UPI deep-linking for Google Pay, PhonePe, and Paytm works on mobile web without extra configuration on your side.
+<Accordion title="Mobile-optimised and branded out of the box">
+  The PayU checkout page adapts to mobile screens automatically. UPI deep-linking for Google Pay, PhonePe, and Paytm works on mobile web without extra configuration on your side.<br />
 
-  You can customise the checkout experience — add your logo, set a colour scheme, and choose the checkout language (Hindi, Kannada, Tamil, Telugu, Gujarati, Marathi, or English) — from the PayU Dashboard. See [Customise PayU Hosted Checkout](./customise-payu-hosted-checkout).
+  You can customise the checkout experience by adding your logo, setting a colour scheme, and choosing the checkout language (Hindi, Kannada, Tamil, Telugu, Gujarati, Marathi, or English) from the PayU Dashboard. See <Anchor target="_blank" href="https://docs.payu.in/docs/customise-payu-hosted-checkout">Customise PayU Hosted Checkout</Anchor>.
 </Accordion>
 
 <Callout icon="📘" theme="info">
