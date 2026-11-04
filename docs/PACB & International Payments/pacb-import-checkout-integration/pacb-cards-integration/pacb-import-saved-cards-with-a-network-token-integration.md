@@ -1,5 +1,5 @@
 ---
-title: PACB-Import-Saved Cards with a Network Token Integration
+title: Saved Cards with a Network Token Integration
 deprecated: false
 hidden: true
 metadata:
