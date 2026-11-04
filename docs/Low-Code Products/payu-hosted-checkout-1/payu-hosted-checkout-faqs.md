@@ -257,7 +257,13 @@ next:
   - The redirect to `surl` / `furl` will not arrive
   - A webhook notification will still arrive (if configured)
 
-  Always use webhooks, the Verify Payment API, or the PayU Dashboard — not only the browser redirect — to confirm payment status.
+  <Callout icon="far fa-circle-info" theme="info">
+    ### **Tips:**
+
+    Always use <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">webhooks</Anchor>, the <Anchor target="_blank" href="https://docs.payu.in/reference/verify_payment_api">Verify Payment API</Anchor>, or the PayU Dashboard to confirm payment status.
+  </Callout>
+
+
 </Accordion>
 
 ***
