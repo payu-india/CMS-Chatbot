@@ -119,6 +119,30 @@ next:
 
 ***
 
+## Common Use Cases
+
+<Cards>
+  <Card title="Event Organisers">
+    Embed a **Register Now** button on your event page. Set the exact ticket price, cap registrations with a max-transaction limit if seats are limited, and disable the button the moment they sell out — all from your Dashboard, without touching the page code again.
+  </Card>
+
+  <Card title="NGOs and Fundraisers">
+    Turn on **Collect Amount** mode and let supporters decide how much they want to give — ₹100 or ₹10,000 goes through the same button. Every donation appears in your Dashboard in real time, so your finance team can track inflows without waiting for a bank statement.
+  </Card>
+
+  <Card title="Small Businesses">
+    One landing page. One product. One **Buy Now** button. Change the price from the Dashboard whenever you need to, no page edit, no developer call. No cart, no plugin, no monthly platform fee on top of your payment costs.
+  </Card>
+
+  <Card title="Educational Institutes">
+    Create separate payment buttons for tuition, hostel, exam registration, and extracurricular fees, each button tracks its own payments independently in the Dashboard. Students pay from the fee page; you see every entry categorised by button name without manual reconciliation.
+  </Card>
+
+  <Card title="Freelancers and Individuals">
+    Add a **Pay for Session** or **Book Now** button to your portfolio page, personal website, or bio link. Clients click, choose their payment method, and pay in one step, no bank transfer details to share, no invoice follow-up, no missed payments because the link expired.
+  </Card>
+</Cards>
+
 ## What Will I Need?
 
 You don't need a developer or any coding experience to get started.<br />
