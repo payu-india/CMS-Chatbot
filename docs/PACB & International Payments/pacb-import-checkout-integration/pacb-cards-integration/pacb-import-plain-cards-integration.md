@@ -1,5 +1,5 @@
 ---
-title: PACB Import-Plain Cards Integration
+title: Plain Cards Integration
 deprecated: false
 hidden: true
 metadata:
