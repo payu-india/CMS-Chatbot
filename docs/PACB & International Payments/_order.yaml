@@ -1,7 +1,6 @@
 - pacb-import-introduction
 - pacb-import-quickstart-integration
 - pacb-import-checkout-integration
-- pacb-netbanking-integration
 - pacb-saved-cards-with-a-payu-token-integration
 - pacb-import-saved-cards-with-a-network-token-integration
 - pacb-import-plain-cards-integration
