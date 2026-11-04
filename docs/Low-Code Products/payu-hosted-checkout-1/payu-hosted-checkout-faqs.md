@@ -270,11 +270,13 @@ next:
 
 {/* NEW CONTENT: added from support case and AI chatbot analysis — UPI test VPA is the single highest-frequency question across both data sources (972 hits) */}
 
-<Accordion title="What UPI VPA should I use to test UPI payments in the sandbox? (New)" icon="fab fa-adn">
+<Accordion title="What UPI VPA should I use to test UPI payments in the sandbox?" icon="fab fa-adn">
   Use `anything@payu` or `999999999@payu` as the UPI VPA (Virtual Payment Address) in the test environment (`https://test.payu.in/_payment`).
 
   <Callout icon="⚠️" theme="warn">
-    These test VPAs only work with the `_payment` endpoint in the test environment. They do **not** work with the Validate VPA API, which requires a real registered VPA.
+    ### **Warning!**
+
+    These test VPAs only work with the `_payment` endpoint in the test environment. They do not work with the Validate VPA API, which requires a real registered VPA.
   </Callout>
 
   **Why does scanning the UPI QR code fail in the test environment?**
@@ -284,6 +286,10 @@ next:
   1. On the PayU test checkout page, select **UPI**.
   2. Choose the **Enter UPI ID** option.
   3. Type `anything@payu` and proceed.
+</Accordion>
+
+<Accordion title="" icon="fa-info-circle">
+
 </Accordion>
 
 {/* NEW CONTENT: added from support case analysis — EMI testing questions appear across 179 conversation hits */}
