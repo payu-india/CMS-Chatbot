@@ -257,21 +257,9 @@ It depends on:<br />
     </Card>
   </Cards>
 
-## Why Use PayU Hosted Checkout?
+## Use AI to Help You
 
-These are the PayU Hosted checkout integration benefits:
-
-<Accordion title="Key Benefits" icon="fa-rocket">
-  - **Ready-to-use payment page:** PayU hosts the checkout experience, so you do not need to build your own payment page.
-
-  - **Multiple payment methods**: Accept cards, UPI, NetBanking and wallets through one integration.
-
-  - **Secure payment handling**: PayU handles sensitive payment information on the hosted payment page.
-
-  - **Customization options**: Add your branding and configure supported payment options from the PayU Dashboard.
-
-  - **Faster implementation:** Start with a ready-made checkout instead of building a payment experience from scratch.
-</Accordion>
+Ask your AI coding assistant using a prompt to get targeted help with your PayU Hosted Checkout integration. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/integrate-payu-hosted-checkout-with-ai">Integrate PayU Hosted Checkout with AI</Anchor> page for more details.
 
 ***
 
