@@ -2,3 +2,4 @@
 - pacb-netbanking-integration
 - pacb-import-plain-cards-integration
 - pacb-saved-cards-with-a-payu-token-integration
+- pacb-import-saved-cards-with-a-network-token-integration
