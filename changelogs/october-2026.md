@@ -1,7 +1,7 @@
 ---
 title: October 2026
 author: Raghuram Pandurangan
-hidden: true
+hidden: false
 published_at: '2026-11-05T05:40:55.837Z'
 ---
 Discover PayU payment capabilities, API enhancements, and integration changes for October 2026. This changelog is for merchants and developers integrating PayU APIs. Availability can depend on merchant activation, payment-method support, or eligibility described in the relevant entry.
@@ -12,8 +12,6 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
   <Columns layout="auto">
     <Column>
       <div style={{ borderLeft: '3px solid #208B75', paddingLeft: '16px' }}>
-
-        **Date:** October 22, 2026  
         **Product:** Developer Tools & SDKs  
         **Feature/API:** PayU Hosted Checkout AI Skill (MCP-Powered)  
         **Impact:** Low  
@@ -64,8 +62,6 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
   <Columns layout="auto">
     <Column>
       <div style={{ borderLeft: '3px solid #208B75', paddingLeft: '16px' }}>
-
-        **Date:** October 14, 2026  
         **Product:** Partner Platform / KYC  
         **Feature/API:** Generate DigiLocker Link for UBO  
         **Impact:** Medium  
