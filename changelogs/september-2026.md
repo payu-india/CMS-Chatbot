@@ -12,9 +12,7 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
   <Columns layout="auto">
     <Column>
       <div style={{ borderLeft: '3px solid #208B75', paddingLeft: '16px' }}>
-
-        **Date:** September 28, 2026  
-        **Product:** Net Banking  
+        **Product:** Net Banking Connect 
         **Feature/API:** Banking Connect (IBMB / NBBL)  
         **Impact:** Medium  
         **Breaking Change:** No  
@@ -67,8 +65,6 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
   <Columns layout="auto">
     <Column>
       <div style={{ borderLeft: '3px solid #208B75', paddingLeft: '16px' }}>
-
-        **Date:** September 18, 2026  
         **Product:** Partner Platform / Onboarding  
         **Feature/API:** Offline Merchant Onboarding API  
         **Impact:** Medium  
