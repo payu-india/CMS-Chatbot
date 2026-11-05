@@ -57,6 +57,20 @@ When customers are redirected to PayU Hosted Checkout:
 * **Header & Accent Elements**: Festive embellishments frame the merchant logo and payable amount.
 * **Expanded Order Amount & Offers View**: A consistent festive visual language is maintained even when customers expand order details, enter promo codes, or view bank offers.
 
+#### Sample Checkout pages
+
+**Checkout Pro**
+
+![](https://files.readme.io/55975e75cd45dd93fd2cf5c04761006642e47666f6868d192bf92534be30efe1-image-20261030-060839.png)
+
+<br />
+
+**Enforced MWeb + Web**
+
+![](https://files.readme.io/4c953202a14c4274ae6998b2a57711aa168b1365f5ad29225ba01e55b2d8f282-image-20261029-072730.png)
+
+<br />
+
 ### 2. Enforced Payment Flows (Web & MWeb)
 
 For merchants who route customers directly into an enforced payment option (such as Enforced Card, Net Banking, or UPI):
