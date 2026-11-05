@@ -33,7 +33,7 @@ metadata:
   A single `bolt.launch()` call opens a checkout that supports Credit Cards, Debit Cards, UPI, Net Banking, Wallets, EMI, and BNPL. There are no separate integrations per payment type. Payment methods can be enabled, disabled, or pre-selected per transaction using optional parameters.
 </Accordion>
 
-<Accordion title="PCI-DSS scope handled by PayU" icon="fa-shield-halved">
+<Accordion title="PCI-DSS scope handled by PayU">
   Payment details are entered inside the PayU-served modal. Your website and servers never receive or handle raw card data. PCI-DSS compliance for card data handling is PayU's responsibility, not yours.
 </Accordion>
 
