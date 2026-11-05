@@ -6,7 +6,22 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: Checkout Plus — Overview | PayU Developer Docs
+  description: >-
+    PayU Checkout Plus: open a payment modal on your website using the Bolt
+    JavaScript SDK. Redirection-less checkout, built-in retry, all Indian
+    payment methods. Wraps PayU Hosted Checkout in an inline modal.
+  keywords:
+    - payu checkout plus overview
+    - payu bolt sdk integration
+    - payu redirectionless checkout
+    - payu inline payment modal india
+    - payu checkout plus bolt launch
+    - payu payment modal website india
+    - payu checkout plus upi cards netbanking
   robots: index
+next:
+  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}
