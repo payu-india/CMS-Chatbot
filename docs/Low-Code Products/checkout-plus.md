@@ -101,6 +101,41 @@ Before you integrate, make sure you have:
 - A **JavaScript-enabled website** — the Bolt SDK requires a browser environment.
 - An **HTTPS-enabled, publicly reachable callback endpoint** for `surl` and `furl`.
 
+<HTMLBlock>{`
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Follow the guided steps to set up and test your first payment.">
+                    Set Up and Test Your First Payment →
+                </button>
+`}</HTMLBlock>
+
 ***
 
 ## How do I Integrate Checkout Plus?
