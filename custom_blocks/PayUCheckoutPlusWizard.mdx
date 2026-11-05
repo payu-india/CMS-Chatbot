@@ -1,0 +1,1304 @@
+---
+name: PayUCheckoutPlusWizard
+---
+---
+name: PayUCheckoutPlusWizard
+---
+// PayUCheckoutPlusWizard — ReadMe Custom Component (Checkout Plus Integration Guide)
+// Popup walkthrough + rule-based Help tab.
+// Doc page: <PayUCheckoutPlusWizard />
+
+import { useState, useEffect, useRef } from 'react';
+
+export const PayUCheckoutPlusWizard = function PayUCheckoutPlusWizard() {
+
+  // ─── Constants ───────────────────────────────────────────────────────────────
+  var PAYU_GREEN      = '#0f766e';
+  var PAYU_GREEN_DARK = '#115e59';
+  var PAYU_GREEN_LIGHT= '#ecfdf5';
+  var RED_REQ         = '#dc2626';
+
+  var LAB_KEY        = 'payu-checkout-plus-wizard-v1';
+  var LAB_UPDATE_EVENT  = 'payu-checkout-plus-wizard-update';
+  var LAB_CONTEXT_EVENT = 'payu-checkout-plus-wizard-context';
+  var LAB_GLOBAL_STATE  = '__payuCheckoutPlusWizardState';
+  var WIZARD_FORM_GLOBAL= '__payuCheckoutPlusWizardForm';
+
+  var UAT_SDK_URL  = 'https://jssdk-uat.payu.in/bolt/bolt.min.js';
+  var PROD_SDK_URL = 'https://jssdk.payu.in/bolt/bolt.min.js';
+
+  var DEFAULT_PARAMS = {
+    key: '', txnid: 'ORDER_12345', amount: '10.00', productinfo: 'Test Product',
+    firstname: 'Mansi', email: 'mansi@example.com', phone: '9999999999',
+    surl: 'https://your-domain.com/payment/success',
+    furl: 'https://your-domain.com/payment/failure',
+    udf1: '', udf2: '', udf3: '', udf4: '', udf5: ''
+  };
+
+  var MANDATORY_KEYS = ['txnid','amount','productinfo','firstname','email','phone','surl','furl'];
+
+  var STEPS = [
+    { id:'welcome',  title:'Welcome',                 tagline:'',                                                             stepLabel:'Start' },
+    { id:'prereq',   title:'Before you start',        tagline:'Check you have these items ready.',                            stepLabel:'1' },
+    { id:'params',   title:'Payment details',         tagline:'Add your test key and configure the transaction parameters.',  stepLabel:'2' },
+    { id:'hash',     title:'Generate the hash',       tagline:'Compute the SHA-512 hash on your backend.',                   stepLabel:'3' },
+    { id:'launch',   title:'Call bolt.launch()',      tagline:'Copy the integration snippet and open the modal.',             stepLabel:'4' },
+    { id:'response', title:'Handle responses',        tagline:'Implement responseHandler() and catchException().',            stepLabel:'5' },
+    { id:'test',     title:'Test scenarios',          tagline:'Tick each scenario once you have tested it in sandbox.',       stepLabel:'6' },
+    { id:'golive',   title:'Go live',                 tagline:'Final checks before production traffic.',                     stepLabel:'7' }
+  ];
+
+  var PREREQ = [
+    { id:'acct',   label:'I have a PayU merchant account and test key + salt from PayU Dashboard → Developer Settings → Test Keys' },
+    { id:'https',  label:'I have HTTPS success and failure URLs that are publicly reachable from PayU\'s servers' },
+    { id:'server', label:'I have a backend server that can compute SHA-512 hashes (the salt must never go in frontend code)' },
+    { id:'hosted', label:'I understand PayU Hosted Checkout — Checkout Plus wraps the same engine in a JavaScript modal' }
+  ];
+
+  var MANDATORY_FIELDS = [
+    { k:'txnid',       l:'txnid',       hint:'Unique per transaction — never reuse.' },
+    { k:'amount',      l:'amount',      hint:'Decimal rupee string, e.g. 10.00' },
+    { k:'productinfo', l:'productinfo', hint:'Short product description.' },
+    { k:'firstname',   l:'firstname',   hint:'Customer first name.' },
+    { k:'email',       l:'email',       hint:'Customer email address.' },
+    { k:'phone',       l:'phone',       hint:'10-digit mobile number.' },
+    { k:'surl',        l:'surl',        hint:'HTTPS success callback URL.' },
+    { k:'furl',        l:'furl',        hint:'HTTPS failure callback URL.' }
+  ];
+
+  var OPTIONAL_FIELDS = [
+    { k:'udf1', l:'udf1' }, { k:'udf2', l:'udf2' }, { k:'udf3', l:'udf3' },
+    { k:'udf4', l:'udf4' }, { k:'udf5', l:'udf5' }
+  ];
+
+  var TEST_SCENARIOS = [
+    'Modal opens when I click the pay button (UAT SDK loaded correctly)',
+    'Successful payment — responseHandler fires with txnStatus === "SUCCESS"',
+    'txnid in response matches the one I passed to bolt.launch()',
+    'Amount in response matches the amount I passed',
+    'Backend Verify Payment API confirms status === "success" before I mark order paid',
+    'Failed payment — responseHandler fires with txnStatus === "FAILED"',
+    'Cancel — responseHandler fires with txnStatus === "CANCEL" when modal is closed',
+    'catchException fires when a required field is missing (tested with empty hash)',
+    'New txnid generated for each payment attempt — duplicates are rejected by PayU'
+  ];
+
+  var GO_LIVE_CHECKS = [
+    'Switch Bolt SDK to production URL: https://jssdk.payu.in/bolt/bolt.min.js',
+    'Replace test merchant key with live key from PayU Dashboard → Live Keys',
+    'Replace test salt with live salt on your backend (never in frontend code)',
+    'surl and furl are HTTPS, publicly reachable, and return 2xx',
+    'Server-side Verify Payment API called after every SUCCESS before confirming order',
+    'Reverse hash verification implemented at surl/furl: sha512(SALT|status||||||udf5|…|key)',
+    'bolt.launch() called from button click only — not on page load',
+    'Payment button disabled after first click until responseHandler or catchException fires',
+    'catchException implemented, logged, and shows customer a retry message',
+    'Viewport meta tag present on every checkout page'
+  ];
+
+  var WELCOME_OUTCOMES = [
+    'Understand the Bolt SDK modal flow and how it differs from a form POST',
+    'Configure and hash-sign a test transaction interactively',
+    'Copy a ready-to-use bolt.launch() integration snippet for your page',
+    'Know exactly what to check in responseHandler() and catchException()',
+    'Complete a pre-launch sandbox checklist and go-live requirements'
+  ];
+
+  var STEP_NEXT_ACTIONS = {
+    welcome:  'Hit **Next** when you are ready.',
+    prereq:   'Tick all four boxes, then **Continue**.',
+    params:   'Add your test key, review the fields, check the test-only box, then **Save payment details**.',
+    hash:     'Enter your test salt → **Show hash string** → **Generate hash**. All three steps.',
+    launch:   'Copy the integration snippet and tick the confirmation box, then **Continue**.',
+    response: 'Read the response-handling pattern, then **Continue**.',
+    test:     'Tick every scenario once you have tested it in sandbox.',
+    golive:   'Complete the go-live checklist, then run the smoke test.'
+  };
+
+  var BLOCKER_MESSAGES = {
+    PREREQ_INCOMPLETE:  'Tick all four prerequisite boxes first.',
+    PARAMS_NOT_SAVED:   'Fill in the fields, tick the test-credentials box, then hit **Save payment details**.',
+    SALT_REQUIRED:      'Enter your test salt — we never fill it in automatically.',
+    PIPE_NOT_SHOWN:     'Click **Show hash string** before generating the hash.',
+    HASH_NOT_GENERATED: 'Click **Generate hash** after reviewing the string.',
+    LAUNCH_ACK:         'Tick the confirmation box before continuing.',
+    TEST_INCOMPLETE:    'Tick every scenario on the checklist.'
+  };
+
+  // ─── Styles (reused from reference wizard) ───────────────────────────────────
+  var launcherCardStyle = {
+    margin:'24px 0', padding:'20px 24px', borderRadius:'12px',
+    border:'1px solid #99f6e4', background:'linear-gradient(135deg,#f0fdfa 0%,#fff 50%)',
+    boxShadow:'0 1px 3px rgba(15,118,110,0.08)'
+  };
+  var modalOverlayStyle = {
+    position:'fixed', inset:0, zIndex:99999, background:'rgba(15,23,42,0.55)',
+    display:'flex', alignItems:'center', justifyContent:'center', padding:'16px', boxSizing:'border-box'
+  };
+  var modalPanelStyle = {
+    width:'100%', maxWidth:'720px', maxHeight:'min(92vh,900px)', overflow:'hidden',
+    display:'flex', flexDirection:'column', borderRadius:'14px',
+    background:'#fff', boxShadow:'0 25px 50px -12px rgba(0,0,0,0.35)',
+    fontFamily:'system-ui,-apple-system,Segoe UI,Roboto,sans-serif'
+  };
+  var modalHeaderStyle = {
+    flexShrink:0, padding:'16px 20px', background:'linear-gradient(135deg,#0f766e 0%,#115e59 100%)',
+    color:'#fff', borderRadius:'14px 14px 0 0'
+  };
+  var modalBodyStyle   = { flex:1, overflow:'auto', padding:'20px', minHeight:0, background:'#fafafa' };
+  var modalFooterStyle = {
+    flexShrink:0, padding:'14px 20px', borderTop:'1px solid #e5e7eb', background:'#fff',
+    borderRadius:'0 0 14px 14px'
+  };
+  var modalTabRowStyle = { display:'flex', gap:'8px', marginTop:'12px' };
+  var modalTabBtnStyle = {
+    flex:1, cursor:'pointer', border:'none', borderRadius:'8px', padding:'10px 12px',
+    fontSize:'13px', fontWeight:600, minHeight:'44px', boxSizing:'border-box',
+    background:'rgba(255,255,255,0.2)', color:'rgba(255,255,255,0.9)'
+  };
+  var modalTabBtnActiveStyle = Object.assign({},modalTabBtnStyle,{background:'#fff',color:PAYU_GREEN_DARK});
+  var stepPillRowStyle = { display:'flex', flexWrap:'wrap', gap:'6px', marginTop:'10px' };
+  var stepPillStyle      = { borderRadius:'9999px', padding:'4px 10px', fontSize:'11px', fontWeight:600, background:'rgba(255,255,255,0.2)', color:'rgba(255,255,255,0.85)' };
+  var stepPillActiveStyle= Object.assign({},stepPillStyle,{background:'#fff',color:PAYU_GREEN_DARK});
+  var taglineStyle = {
+    margin:'0 0 16px', padding:'10px 14px', borderLeft:'4px solid '+PAYU_GREEN,
+    background:'#fff', borderRadius:'0 8px 8px 0', fontSize:'15px', fontWeight:600, lineHeight:1.45, color:'#1f2937'
+  };
+  var contentCardStyle = { background:'#fff', borderRadius:'10px', border:'1px solid #e5e7eb', padding:'16px', marginTop:'4px' };
+  var fieldStackStyle  = { display:'flex', flexDirection:'column', gap:'16px' };
+  var btnRowStyle      = { display:'flex', flexWrap:'wrap', gap:'8px', marginTop:'20px', alignItems:'center' };
+  var navRowStyle      = { display:'flex', justifyContent:'space-between', gap:'12px', marginTop:'20px', paddingTop:'16px', borderTop:'1px solid #e5e7eb', alignItems:'center' };
+  var labelStyle       = { display:'block', marginBottom:'8px', fontSize:'14px', fontWeight:700, color:PAYU_GREEN };
+  var reqStarStyle     = { color:RED_REQ, fontWeight:700 };
+  var errTextStyle     = { margin:'0 0 12px', fontSize:'14px', lineHeight:1.5, color:RED_REQ };
+  var okTextStyle      = { margin:'0 0 12px', fontSize:'14px', lineHeight:1.5, color:PAYU_GREEN };
+  var hintTextStyle    = { margin:'0 0 16px', fontSize:'14px', lineHeight:1.5, color:'#b45309' };
+  var mutedTextStyle   = { margin:'12px 0 0', fontSize:'12px', lineHeight:1.5, color:'#6b7280' };
+  var bodyTextStyle    = { margin:'0 0 12px', fontSize:'14px', lineHeight:1.6, color:'#4b5563' };
+  var infoBoxStyle     = { margin:'0 0 16px', padding:'12px 14px', borderRadius:'8px', background:PAYU_GREEN_LIGHT, border:'1px solid rgba(15,118,110,0.2)', fontSize:'14px', lineHeight:1.6, color:'#374151' };
+  var warnBoxStyle     = { margin:'0 0 16px', padding:'12px 14px', borderRadius:'8px', background:'#fffbeb', border:'1px solid #fde68a', fontSize:'14px', lineHeight:1.6, color:'#92400e' };
+  var cardCheckStyle   = { display:'flex', gap:'10px', alignItems:'flex-start', padding:'12px 14px', borderRadius:'8px', border:'1px solid #e5e7eb', background:'#f9fafb', cursor:'pointer', fontSize:'14px', minHeight:'44px', boxSizing:'border-box' };
+  var checkboxInputStyle = { width:'20px', height:'20px', marginTop:'2px', flexShrink:0, cursor:'pointer' };
+  var codeBlockStyle   = { display:'block', wordBreak:'break-all', borderRadius:'6px', background:'#f3f4f6', padding:'8px 12px', fontSize:'12px', fontFamily:'monospace', color:'#1f2937', marginBottom:'12px' };
+  var codeBlockPreStyle= Object.assign({},codeBlockStyle,{whiteSpace:'pre-wrap'});
+  var inputStyle       = { boxSizing:'border-box', width:'100%', minWidth:0, borderRadius:'6px', border:'1px solid #d1d5db', background:'#fff', padding:'8px 12px', fontSize:'14px', color:'#111827' };
+  var btnPrimaryStyle  = { cursor:'pointer', borderRadius:'6px', border:'none', background:PAYU_GREEN, color:'#fff', padding:'10px 16px', fontSize:'14px', fontWeight:600, minHeight:'44px', boxSizing:'border-box', lineHeight:1.25 };
+  var btnSecondaryStyle= { cursor:'pointer', borderRadius:'6px', border:'1px solid '+PAYU_GREEN, background:'#fff', color:PAYU_GREEN, padding:'10px 16px', fontSize:'14px', fontWeight:600, minHeight:'44px', boxSizing:'border-box', lineHeight:1.25 };
+  var btnGhostStyle    = { cursor:'pointer', borderRadius:'6px', border:'1px dashed #99f6e4', background:'#fff', color:PAYU_GREEN, padding:'10px 16px', fontSize:'14px', fontWeight:600, width:'100%', textAlign:'left', minHeight:'44px', boxSizing:'border-box', lineHeight:1.25 };
+  var actionBarRowStyle= { display:'flex', flexWrap:'wrap', gap:'10px', alignItems:'center', marginTop:'16px' };
+  var fieldInlineErrStyle = { margin:'4px 0 0', fontSize:'12px', lineHeight:1.4, color:RED_REQ, minHeight:'18px' };
+  var statusRowStyle   = { display:'flex', flexWrap:'wrap', gap:'8px', marginBottom:'16px' };
+  var statusOkStyle    = { borderRadius:'9999px', background:'#f0fdfa', color:'#115e59', padding:'4px 10px', fontSize:'12px', fontWeight:600 };
+  var statusPendingStyle = { borderRadius:'9999px', background:'#f3f4f6', color:'#4b5563', padding:'4px 10px', fontSize:'12px', fontWeight:600 };
+  var helpInsightCardStyle = { marginBottom:'12px', padding:'12px 14px', borderRadius:'8px', border:'1px solid #e5e7eb', background:'#fff' };
+  var helpInsightTitleStyle= { margin:'0 0 6px', fontSize:'14px', fontWeight:700, color:'#111827' };
+  var helpInsightBodyStyle = { margin:0, fontSize:'14px', lineHeight:1.6, color:'#4b5563' };
+
+  // ─── Utilities ────────────────────────────────────────────────────────────────
+  function empty(s) { return s == null ? '' : String(s).trim(); }
+  function isBlank(s) { return empty(s) === ''; }
+
+  function escapeJsString(s) {
+    return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  }
+
+  function sha512Hex(msg) {
+    var enc = new TextEncoder();
+    return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function(buf) {
+      return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+    });
+  }
+
+  function buildHashString(params, saltVal) {
+    var p = params;
+    return (
+      empty(p.key)+'|'+empty(p.txnid)+'|'+empty(p.amount)+'|'+empty(p.productinfo)+'|'+
+      empty(p.firstname)+'|'+empty(p.email)+'|'+empty(p.udf1)+'|'+empty(p.udf2)+'|'+
+      empty(p.udf3)+'|'+empty(p.udf4)+'|'+empty(p.udf5)+'||||||'+empty(saltVal)
+    );
+  }
+
+  function validateFields(data) {
+    var errors = {};
+    var p = data || {};
+    if (isBlank(p.key)) errors.key = 'Add your test merchant key from the PayU dashboard.';
+    var i;
+    for (i=0; i<MANDATORY_KEYS.length; i++) {
+      if (isBlank(p[MANDATORY_KEYS[i]])) errors[MANDATORY_KEYS[i]] = MANDATORY_KEYS[i]+' is required.';
+    }
+    if (!isBlank(p.amount) && !/^\d+(\.\d{1,2})?$/.test(empty(p.amount))) {
+      errors.amount = 'Use a decimal string like 10.00';
+    }
+    if (!isBlank(p.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(p.email))) {
+      errors.email = 'Not a valid email address.';
+    }
+    if (!isBlank(p.phone) && !/^\d{10}$/.test(empty(p.phone).replace(/\s/g,''))) {
+      errors.phone = 'Phone should be 10 digits.';
+    }
+    if (!isBlank(p.txnid) && empty(p.txnid).length > 25) {
+      errors.txnid = 'txnid should be under 25 characters.';
+    }
+    return errors;
+  }
+
+  function mergeParams(params) {
+    var merged = Object.assign({}, DEFAULT_PARAMS);
+    var p = params || {};
+    var k;
+    for (k in merged) {
+      if (!Object.prototype.hasOwnProperty.call(merged,k)) continue;
+      if (k==='key') { merged.key = isBlank(p.key) ? '' : String(p.key); continue; }
+      if (!isBlank(p[k])) merged[k] = String(p[k]);
+    }
+    return merged;
+  }
+
+  function buildBackendNodeSnippet(params, saltPlaceholder) {
+    var p = params;
+    var s = saltPlaceholder || 'process.env.PAYU_SALT';
+    return [
+      "const crypto = require('crypto');",
+      '',
+      '// Keep your salt in an environment variable — never in frontend code.',
+      'const key  = process.env.PAYU_KEY;',
+      'const salt = process.env.PAYU_SALT;',
+      '',
+      'const pipeString = [',
+      '  key,',
+      "  '"+escapeJsString(p.txnid)+"',",
+      "  '"+escapeJsString(p.amount)+"',",
+      "  '"+escapeJsString(p.productinfo)+"',",
+      "  '"+escapeJsString(p.firstname)+"',",
+      "  '"+escapeJsString(p.email)+"',",
+      "  '"+escapeJsString(p.udf1||'')+"',",
+      "  '"+escapeJsString(p.udf2||'')+"',",
+      "  '"+escapeJsString(p.udf3||'')+"',",
+      "  '"+escapeJsString(p.udf4||'')+"',",
+      "  '"+escapeJsString(p.udf5||'')+"',",
+      "].join('|') + '||||||' + salt;",
+      '',
+      "const hash = crypto.createHash('sha512').update(pipeString).digest('hex');",
+      '',
+      '// Return hash to your frontend — never return the salt.',
+      'res.json({ hash });'
+    ].join('\n');
+  }
+
+  function buildBoltLaunchSnippet(params, hashPlaceholder) {
+    var p = params;
+    var hash = hashPlaceholder || 'HASH_FROM_YOUR_BACKEND';
+    return [
+      '<!-- Add to <head> of your checkout page (UAT) -->',
+      '<meta name="viewport" content="width=device-width, initial-scale=1">',
+      '<script src="https://jssdk-uat.payu.in/bolt/bolt.min.js"></script>',
+      '',
+      '<button id="payButton" type="button">Pay ₹'+escapeJsString(p.amount||'10.00')+'</button>',
+      '',
+      '<script>',
+      "  document.getElementById('payButton').addEventListener('click', async function () {",
+      '    // Disable button to prevent duplicate launches',
+      "    this.disabled = true;",
+      '',
+      '    // Fetch the hash from your backend',
+      '    const txnid = \''+escapeJsString(p.txnid)+'\'; // Generate fresh per transaction',
+      "    const res = await fetch('/api/generate-payment-hash', {",
+      "      method: 'POST',",
+      "      headers: { 'Content-Type': 'application/json' },",
+      '      body: JSON.stringify({',
+      "        txnid: txnid, amount: '"+escapeJsString(p.amount||'10.00')+"',",
+      "        productinfo: '"+escapeJsString(p.productinfo)+"',",
+      "        firstname: '"+escapeJsString(p.firstname)+"', email: '"+escapeJsString(p.email)+"'",
+      '      })',
+      '    });',
+      '    const { hash } = await res.json();',
+      '',
+      '    var data = {',
+      "      key:         '"+escapeJsString(p.key||'YOUR_TEST_KEY')+"',",
+      '      hash:        hash,',
+      '      txnid:       txnid,',
+      "      amount:      '"+escapeJsString(p.amount||'10.00')+"',",
+      "      firstname:   '"+escapeJsString(p.firstname)+"',",
+      "      email:       '"+escapeJsString(p.email)+"',",
+      "      phone:       '"+escapeJsString(p.phone)+"',",
+      "      productinfo: '"+escapeJsString(p.productinfo)+"',",
+      "      surl:        '"+escapeJsString(p.surl)+"',",
+      "      furl:        '"+escapeJsString(p.furl)+"'",
+      '    };',
+      '',
+      '    var handlers = {',
+      '      responseHandler: function (BOLT) {',
+      "        var btn = document.getElementById('payButton');",
+      '        btn.disabled = false; // Re-enable for retry',
+      "        var status = BOLT.response.txnStatus;",
+      "        if (status === 'SUCCESS') {",
+      '          // Verify server-side before confirming order',
+      "          console.log('Payment successful', BOLT.response);",
+      '          verifyPaymentServerSide(BOLT.response.txnid);',
+      '        } else if (status === \'FAILED\') {',
+      "          console.log('Payment failed', BOLT.response.error_Message);",
+      "          alert('Payment failed. Please try a different payment method.');",
+      "        } else if (status === 'CANCEL') {",
+      "          console.log('Payment cancelled');",
+      '          // Customer is still on your page — restore checkout',
+      '        }',
+      '      },',
+      '      catchException: function (BOLT) {',
+      "        document.getElementById('payButton').disabled = false;",
+      "        console.error('Bolt SDK error:', BOLT);",
+      "        alert('A payment error occurred. Please try again.');",
+      '      }',
+      '    };',
+      '',
+      '    bolt.launch(data, handlers);',
+      '  });',
+      '',
+      '  function verifyPaymentServerSide(txnid) {',
+      "    fetch('/api/verify-payment', {",
+      "      method: 'POST',",
+      "      headers: { 'Content-Type': 'application/json' },",
+      '      body: JSON.stringify({ txnid: txnid })',
+      '    })',
+      '    .then(r => r.json())',
+      '    .then(result => {',
+      "      if (result.verified) window.location.href = '/order/confirmed';",
+      "      else alert('Verification failed. Contact support.');",
+      '    });',
+      '  }',
+      '</script>'
+    ].join('\n');
+  }
+
+  // ─── Storage ──────────────────────────────────────────────────────────────────
+  function labWindow() {
+    if (typeof window === 'undefined') return null;
+    try { if (window.top && window.top !== window) return window.top; } catch(e) {}
+    return window;
+  }
+
+  function defaultProgress() {
+    return { paramsSaved:false, pipeShown:false, hashGenerated:false, launchAck:false };
+  }
+
+  function wizardFresh() {
+    return { params:Object.assign({},DEFAULT_PARAMS), salt:'', hashHex:'', pipeString:'', progress:defaultProgress(), wizardStep:0 };
+  }
+
+  function hydrateStored(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    var params = mergeParams(raw.params || {});
+    params.key = '';
+    return { params:params, salt:'', hashHex:'', pipeString:'', progress:defaultProgress(), wizardStep:0 };
+  }
+
+  function labRead() {
+    try {
+      var lw = labWindow();
+      if (!lw) return null;
+      if (lw[LAB_GLOBAL_STATE]) return Object.assign({}, lw[LAB_GLOBAL_STATE]);
+      if (lw.localStorage) {
+        var raw = lw.localStorage.getItem(LAB_KEY);
+        if (raw) return hydrateStored(JSON.parse(raw));
+      }
+      return null;
+    } catch(e) { return null; }
+  }
+
+  function labWrite(data) {
+    try {
+      if (typeof window === 'undefined') return false;
+      var snapshot = Object.assign({}, data, { updatedAt:Date.now() });
+      var lw = labWindow();
+      if (lw) lw[LAB_GLOBAL_STATE] = snapshot;
+      var persisted = { params:mergeParams(snapshot.params), updatedAt:snapshot.updatedAt };
+      persisted.params.key = '';
+      var payload = JSON.stringify(persisted);
+      if (lw && lw.localStorage) lw.localStorage.setItem(LAB_KEY, payload);
+      var evt = new CustomEvent(LAB_UPDATE_EVENT, { detail:snapshot });
+      if (typeof window !== 'undefined') window.dispatchEvent(evt);
+      return true;
+    } catch(e2) { return false; }
+  }
+
+  function labEnsure() {
+    var existing = labRead();
+    if (existing) {
+      if (!existing.progress) { var r = wizardFresh(); labWrite(r); return r; }
+      existing.params = mergeParams(existing.params);
+      return existing;
+    }
+    return wizardFresh();
+  }
+
+  // ─── Body scroll lock ─────────────────────────────────────────────────────────
+  var LOCK_ATTR = 'data-payu-cp-wizard-lock';
+  function lockScroll() {
+    if (typeof document === 'undefined') return;
+    var c = parseInt(document.body.getAttribute(LOCK_ATTR)||'0',10)+1;
+    document.body.setAttribute(LOCK_ATTR,String(c));
+    if (c===1) document.body.style.overflow='hidden';
+  }
+  function unlockScroll() {
+    if (typeof document === 'undefined') return;
+    var c = parseInt(document.body.getAttribute(LOCK_ATTR)||'0',10);
+    if (c<=1) { document.body.removeAttribute(LOCK_ATTR); document.body.style.overflow=''; }
+    else document.body.setAttribute(LOCK_ATTR,String(c-1));
+  }
+  var FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  function getFocusable(el) {
+    if (!el) return [];
+    return Array.prototype.filter.call(el.querySelectorAll(FOCUSABLE), function(n){ return n.getAttribute('aria-hidden')!=='true'; });
+  }
+
+  function copyText(text, setCopyMsg) {
+    var v = String(text||'');
+    if (!v) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(v).then(function(){ setCopyMsg('Copied.'); setTimeout(function(){ setCopyMsg(''); },2000); });
+    }
+  }
+
+  // ─── State ───────────────────────────────────────────────────────────────────
+  var _step        = useState(0);      var step=_step[0];        var setStep=_step[1];
+  var _modal       = useState(false);  var modalOpen=_modal[0];  var setModalOpen=_modal[1];
+  var _tab         = useState('lab');  var modalTab=_tab[0];     var setModalTab=_tab[1];
+  var _lab         = useState(function(){ return labEnsure(); }); var lab=_lab[0]; var setLab=_lab[1];
+  var _key         = useState('');     var merchantKey=_key[0];  var setMerchantKey=_key[1];
+  var _form        = useState(function(){ var d=labRead(); return d&&d.params ? mergeParams(d.params) : Object.assign({},DEFAULT_PARAMS); }); var formValues=_form[0]; var setFormValues=_form[1];
+  var _salt        = useState('');     var salt=_salt[0];        var setSalt=_salt[1];
+  var _pipe        = useState('');     var pipeString=_pipe[0];  var setPipeString=_pipe[1];
+  var _hex         = useState('');     var hashHex=_hex[0];      var setHashHex=_hex[1];
+  var _stage       = useState(0);      var hashStage=_stage[0];  var setHashStage=_stage[1];
+  var _busy        = useState(false);  var busy=_busy[0];        var setBusy=_busy[1];
+  var _err         = useState('');     var err=_err[0];          var setErr=_err[1];
+  var _msg         = useState('');     var msg=_msg[0];          var setMsg=_msg[1];
+  var _copyMsg     = useState('');     var copyMsg=_copyMsg[0];  var setCopyMsg=_copyMsg[1];
+  var _prereq      = useState({});     var prereq=_prereq[0];    var setPrereq=_prereq[1];
+  var _labAck      = useState(false);  var labAck=_labAck[0];    var setLabAck=_labAck[1];
+  var _launchAck   = useState(false);  var launchAck=_launchAck[0]; var setLaunchAck=_launchAck[1];
+  var _fErr        = useState({});     var fieldErrors=_fErr[0]; var setFieldErrors=_fErr[1];
+  var _fTouch      = useState({});     var fieldTouched=_fTouch[0]; var setFieldTouched=_fTouch[1];
+  var _saveAtt     = useState(false);  var saveAttempted=_saveAtt[0]; var setSaveAttempted=_saveAtt[1];
+  var _showUdf     = useState(false);  var showUdf=_showUdf[0];  var setShowUdf=_showUdf[1];
+  var _showBack    = useState(false);  var showBack=_showBack[0];var setShowBack=_showBack[1];
+  var _showLaunch  = useState(false);  var showLaunch=_showLaunch[0]; var setShowLaunch=_showLaunch[1];
+  var _testDone    = useState({});     var testDone=_testDone[0];var setTestDone=_testDone[1];
+  var _goDone      = useState({});     var goDone=_goDone[0];    var setGoDone=_goDone[1];
+
+  var launcherBtnRef = useRef(null);
+  var closeBtnRef    = useRef(null);
+  var modalPanelRef  = useRef(null);
+  var keyRef         = useRef('');
+  var formRef        = useRef(Object.assign({},DEFAULT_PARAMS));
+
+  // ─── Focus trap / keyboard ────────────────────────────────────────────────────
+  useEffect(function() {
+    if (!modalOpen || typeof document === 'undefined') return;
+    var raf = 0;
+    function onKey(e) {
+      if (e.key==='Escape') { closeModal(); return; }
+      if (e.key!=='Tab' || !modalPanelRef.current) return;
+      var els = getFocusable(modalPanelRef.current);
+      if (!els.length) return;
+      var first=els[0], last=els[els.length-1];
+      if (e.shiftKey) {
+        if (document.activeElement===first || !modalPanelRef.current.contains(document.activeElement)) { e.preventDefault(); last.focus(); }
+      } else if (document.activeElement===last || !modalPanelRef.current.contains(document.activeElement)) {
+        e.preventDefault(); first.focus();
+      }
+    }
+    lockScroll();
+    document.addEventListener('keydown', onKey);
+    raf = requestAnimationFrame(function(){ if(closeBtnRef.current) closeBtnRef.current.focus(); });
+    return function() {
+      cancelAnimationFrame(raf);
+      document.removeEventListener('keydown', onKey);
+      unlockScroll();
+      if (launcherBtnRef.current) launcherBtnRef.current.focus();
+    };
+  }, [modalOpen]);
+
+  // ─── Modal open/close ─────────────────────────────────────────────────────────
+  function openModal() {
+    var fresh = wizardFresh();
+    labWrite(fresh);
+    setLab(fresh);
+    setMerchantKey(''); keyRef.current='';
+    setFormValues(Object.assign({},DEFAULT_PARAMS)); formRef.current=Object.assign({},DEFAULT_PARAMS);
+    setSalt(''); setPipeString(''); setHashHex(''); setHashStage(0);
+    setPrereq({}); setLabAck(false); setLaunchAck(false);
+    setFieldErrors({}); setFieldTouched({}); setSaveAttempted(false);
+    setTestDone({}); setGoDone({}); setErr(''); setMsg(''); setCopyMsg('');
+    setShowUdf(false); setShowBack(false); setShowLaunch(false);
+    setStep(0); setModalTab('lab');
+    setModalOpen(true);
+  }
+
+  function closeModal() { setModalOpen(false); setModalTab('lab'); }
+  function onOverlayClick(e) { if(e.target===e.currentTarget) closeModal(); }
+  function stopBubble(e) { if(e&&e.stopPropagation) e.stopPropagation(); if(e&&e.nativeEvent&&e.nativeEvent.stopImmediatePropagation) e.nativeEvent.stopImmediatePropagation(); }
+  function labClick(fn) { return function(e){ stopBubble(e); fn(e); }; }
+
+  // ─── Progress / validation ────────────────────────────────────────────────────
+  function wizardProgress() { return (lab&&lab.progress) ? lab.progress : defaultProgress(); }
+
+  function prereqDone(map) { for(var i=0;i<PREREQ.length;i++) if(!map[PREREQ[i].id]) return false; return true; }
+  function allChecked(map, list) { for(var i=0;i<list.length;i++) if(!map[i]) return false; return true; }
+
+  function canAdvance() {
+    var p = wizardProgress();
+    if(step===0) return true;
+    if(step===1) return prereqDone(prereq);
+    if(step===2) return p.paramsSaved && labAck;
+    if(step===3) return p.hashGenerated && hashHex.length===128;
+    if(step===4) return launchAck;
+    if(step===5) return true;
+    if(step===6) return allChecked(testDone,TEST_SCENARIOS);
+    return true;
+  }
+
+  function continueHint() {
+    if(canAdvance()) return '';
+    if(step===1) return 'Tick all four prerequisite boxes.';
+    if(step===2) return 'Fill in the fields, tick the test-credentials box, then save.';
+    if(step===3) return 'Enter salt → Show hash string → Generate hash. All three steps.';
+    if(step===4) return 'Tick the confirmation box after copying the snippet.';
+    if(step===6) return 'Tick every scenario on the checklist.';
+    return '';
+  }
+
+  // ─── Field helpers ────────────────────────────────────────────────────────────
+  function readKey() { return !isBlank(merchantKey) ? merchantKey : (keyRef.current||''); }
+  function readField(k) { var v=formRef.current[k]; return !isBlank(v) ? v : (formValues[k]||''); }
+  function buildParamsFromState() {
+    var d = Object.assign({},DEFAULT_PARAMS);
+    d.key = readKey();
+    var i;
+    for(i=0;i<MANDATORY_KEYS.length;i++) d[MANDATORY_KEYS[i]]=readField(MANDATORY_KEYS[i]);
+    for(i=0;i<OPTIONAL_FIELDS.length;i++) d[OPTIONAL_FIELDS[i].k]=readField(OPTIONAL_FIELDS[i].k);
+    return d;
+  }
+  function fieldValue(k) { return k==='key' ? merchantKey : (formValues[k]==null?'':formValues[k]); }
+  function showFieldError(k) { return (fieldTouched[k]||saveAttempted) && fieldErrors[k]; }
+  function renderFieldError(k) {
+    var text = showFieldError(k) ? fieldErrors[k] : '';
+    return <p id={'cpe-err-'+k} style={fieldInlineErrStyle} role={text?'alert':undefined}>{text||' '}</p>;
+  }
+
+  function invalidateAfterEdit() {
+    var d = labEnsure();
+    d.progress.paramsSaved=false; d.progress.pipeShown=false; d.progress.hashGenerated=false;
+    d.salt=''; d.hashHex=''; d.pipeString='';
+    d.params=buildParamsFromState();
+    labWrite(d); setLab(d);
+    setSalt(''); setPipeString(''); setHashHex(''); setHashStage(0);
+  }
+
+  function updateField(k) {
+    return function(e) {
+      var v=e.target.value;
+      setFormValues(function(prev){ var n=Object.assign({},prev); n[k]=v; formRef.current=n; return n; });
+      invalidateAfterEdit();
+      if(fieldTouched[k]||saveAttempted) {
+        var d=buildParamsFromState(); d[k]=v;
+        var all=validateFields(d);
+        setFieldErrors(function(prev){ var n=Object.assign({},prev); if(all[k]) n[k]=all[k]; else delete n[k]; return n; });
+      }
+    };
+  }
+
+  function updateKey(e) {
+    var v=e.target.value;
+    setMerchantKey(v); keyRef.current=v;
+    setFormValues(function(prev){ var n=Object.assign({},prev); n.key=v; formRef.current=n; return n; });
+    invalidateAfterEdit();
+    if(fieldTouched.key||saveAttempted) {
+      var d=buildParamsFromState(); d.key=v;
+      var all=validateFields(d);
+      setFieldErrors(function(prev){ var n=Object.assign({},prev); if(all.key) n.key=all.key; else delete n.key; return n; });
+    }
+  }
+
+  function onBlur(k) {
+    setFieldTouched(function(prev){ var n=Object.assign({},prev); n[k]=true; return n; });
+    var d=buildParamsFromState();
+    var all=validateFields(d);
+    setFieldErrors(function(prev){ var n=Object.assign({},prev); if(all[k]) n[k]=all[k]; else delete n[k]; return n; });
+  }
+
+  // ─── Actions ──────────────────────────────────────────────────────────────────
+  function saveParams() {
+    var d=buildParamsFromState();
+    formRef.current=d;
+    var errors=validateFields(d);
+    if(Object.keys(errors).length) { setFieldErrors(errors); setSaveAttempted(true); return; }
+    if(!labAck) { setErr('Tick the box to confirm you are using test credentials.'); return; }
+    var ld=labEnsure();
+    ld.params=d;
+    ld.progress.paramsSaved=true;
+    ld.progress.pipeShown=false; ld.progress.hashGenerated=false;
+    ld.salt=''; ld.hashHex=''; ld.pipeString='';
+    if(!labWrite(ld)) { setErr('Could not save — allow browser storage and try again.'); return; }
+    setLab(ld);
+    setSalt(''); setPipeString(''); setHashHex(''); setHashStage(0);
+    setFieldErrors({}); setSaveAttempted(false);
+    setMsg('Saved. Next: generate the hash.'); setErr('');
+  }
+
+  function newTxnid() {
+    var id=('ORDER_'+Date.now().toString(36)).slice(0,20).toUpperCase();
+    setFormValues(function(prev){ var n=Object.assign({},prev); n.txnid=id; formRef.current=n; return n; });
+    invalidateAfterEdit();
+    setMsg(''); setErr('');
+  }
+
+  function showPipe() {
+    var p=wizardProgress();
+    if(!p.paramsSaved) { setErr('Save payment details first.'); return; }
+    if(isBlank(salt)) { setErr('Enter your test salt first.'); return; }
+    var params=mergeParams(lab.params);
+    var pipe=buildHashString(params,salt);
+    var ld=labEnsure(); ld.salt=salt; ld.pipeString=pipe; ld.progress.pipeShown=true;
+    labWrite(ld); setLab(ld);
+    setPipeString(pipe); setHashStage(1);
+    setMsg('Good — now click Generate hash.'); setErr('');
+  }
+
+  function generateHash() {
+    var p=wizardProgress();
+    if(!p.paramsSaved) { setErr('Save payment details first.'); return; }
+    if(hashStage<1||!p.pipeShown) { setErr('Click Show hash string before generating.'); return; }
+    if(isBlank(salt)) { setErr('Salt is required.'); return; }
+    var params=mergeParams(lab.params);
+    var pipe=buildHashString(params,salt);
+    setBusy(true); setErr('');
+    sha512Hex(pipe).then(function(h) {
+      var ld=labEnsure(); ld.salt=salt; ld.pipeString=pipe; ld.hashHex=h; ld.progress.hashGenerated=true;
+      labWrite(ld); setLab(ld);
+      setPipeString(pipe); setHashHex(h); setHashStage(2);
+      setMsg('Hash generated — copy the bolt.launch() snippet next.'); setBusy(false); setErr('');
+    }).catch(function(){ setErr('SHA-512 unavailable in this context.'); setBusy(false); });
+  }
+
+  function goToStep(n) {
+    if(n>step && !canAdvance()) return;
+    setStep(n); setErr(''); setMsg('');
+  }
+
+  function restartLab() {
+    openModal();
+  }
+
+  // ─── Render helpers ───────────────────────────────────────────────────────────
+  function wizardBtnStyle(variant, disabled) {
+    var base = variant==='primary' ? btnPrimaryStyle : btnSecondaryStyle;
+    if(!disabled) return Object.assign({},base);
+    if(variant==='primary') return Object.assign({},base,{background:'#94a3b8',color:'#f8fafc',cursor:'not-allowed'});
+    return Object.assign({},base,{borderColor:'#cbd5e1',background:'#f1f5f9',color:'#94a3b8',cursor:'not-allowed'});
+  }
+
+  function Btn(props) {
+    var dis = !!props.disabled;
+    return <button type="button" disabled={dis} onClick={dis?undefined:props.onClick} style={wizardBtnStyle(props.variant||'primary',dis)}>{props.label}</button>;
+  }
+
+  function FieldLabel(props) {
+    return <label style={labelStyle}><span>{props.name}</span>{props.required?<span style={reqStarStyle} aria-hidden="true"> *</span>:null}</label>;
+  }
+
+  function LabStatus() {
+    var p=wizardProgress();
+    var items=[
+      {label:'Params saved', ok:p.paramsSaved},
+      {label:'Hash generated', ok:p.hashGenerated},
+      {label:'Snippet copied', ok:launchAck}
+    ];
+    return (
+      <div style={statusRowStyle}>
+        {items.map(function(it,i){ return <span key={i} style={it.ok?statusOkStyle:statusPendingStyle}>{it.ok?'✓ ':'○ '}{it.label}</span>; })}
+      </div>
+    );
+  }
+
+  // ─── Step renderers ──────────────────────────────────────────────────────────
+
+  function renderWelcome() {
+    return (
+      <div>
+        <p style={{fontSize:'16px',lineHeight:1.65,color:'#374151',margin:'0 0 20px'}}>
+          This wizard walks you through a complete PayU Checkout Plus integration — from prerequisites to a working <code style={{fontSize:'13px'}}>bolt.launch()</code> snippet you can paste into your page. The hash formula is the same as PayU Hosted Checkout; the delivery mechanism is different: a JavaScript modal instead of a browser redirect.
+        </p>
+        <div style={infoBoxStyle}>
+          <strong style={{display:'block',marginBottom:'10px',color:PAYU_GREEN_DARK}}>By the end you will have</strong>
+          <ul style={{margin:0,paddingLeft:'20px',lineHeight:1.85}}>
+            {WELCOME_OUTCOMES.map(function(o){ return <li key={o}>{o}</li>; })}
+          </ul>
+        </div>
+        <div style={infoBoxStyle}>
+          <strong style={{display:'block',marginBottom:'10px',color:PAYU_GREEN_DARK}}>The three moving parts</strong>
+          <ol style={{margin:0,paddingLeft:'20px',lineHeight:1.85}}>
+            <li><strong>Bolt SDK</strong> — loaded from PayU's CDN, renders the modal on your page</li>
+            <li><strong>Your backend</strong> — computes the SHA-512 hash; salt never goes to the browser</li>
+            <li><strong>Your frontend</strong> — calls <code style={{fontSize:'13px'}}>bolt.launch(data, handlers)</code> and handles the result</li>
+          </ol>
+        </div>
+        <p style={hintTextStyle} role="note">Hit <strong>Next</strong> to begin. Each step unlocks after you complete the one before.</p>
+      </div>
+    );
+  }
+
+  function renderPrereq() {
+    return (
+      <div>
+        <div style={{display:'grid',gap:'8px'}}>
+          {PREREQ.map(function(item){
+            return (
+              <label key={item.id} style={cardCheckStyle}>
+                <input type="checkbox" checked={!!prereq[item.id]}
+                  onChange={function(e){ var n=Object.assign({},prereq); n[item.id]=e.target.checked; setPrereq(n); }}
+                  style={checkboxInputStyle} />
+                <span>{item.label}</span>
+              </label>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function renderParams() {
+    return (
+      <div>
+        <div style={warnBoxStyle}>
+          <strong>Test credentials only.</strong> Never enter a production key or salt here — this wizard runs entirely in your browser.
+        </div>
+        <div style={fieldStackStyle}>
+          <div>
+            <FieldLabel name="key (merchant key)" required={true} />
+            <input type="text" value={merchantKey} onChange={updateKey} onBlur={function(){ onBlur('key'); }}
+              style={inputStyle} placeholder="Your test merchant key" aria-describedby="cpe-err-key"
+              aria-invalid={showFieldError('key')?'true':undefined} />
+            {renderFieldError('key')}
+          </div>
+          {MANDATORY_FIELDS.map(function(row){
+            return (
+              <div key={row.k}>
+                <FieldLabel name={row.l} required={true} />
+                <input type={row.k==='email'?'email':'text'} value={fieldValue(row.k)} onChange={updateField(row.k)} onBlur={function(){ onBlur(row.k); }}
+                  style={inputStyle} placeholder={row.hint} aria-describedby={'cpe-err-'+row.k}
+                  aria-invalid={showFieldError(row.k)?'true':undefined} />
+                {renderFieldError(row.k)}
+              </div>
+            );
+          })}
+          <button type="button" onClick={labClick(function(){ setShowUdf(!showUdf); })} style={btnGhostStyle}>
+            {showUdf?'Hide optional UDF fields (udf1–udf5)':'Show optional UDF fields (udf1–udf5)'}
+          </button>
+          {showUdf ? (
+            <div style={{display:'flex',flexDirection:'column',gap:'16px',marginTop:'8px'}}>
+              {OPTIONAL_FIELDS.map(function(row){
+                return (
+                  <div key={row.k}>
+                    <FieldLabel name={row.l} required={false} />
+                    <input type="text" value={fieldValue(row.k)} onChange={updateField(row.k)} style={inputStyle} placeholder="Optional" />
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
+        </div>
+        <label style={Object.assign({},cardCheckStyle,{marginTop:'12px'})}>
+          <input type="checkbox" checked={labAck} onChange={function(e){ setLabAck(e.target.checked); }} style={checkboxInputStyle} />
+          <span>I am using test credentials only — not production keys or salt.</span>
+        </label>
+        <div style={actionBarRowStyle}>
+          <Btn label="Save payment details" onClick={labClick(saveParams)} />
+          <Btn variant="secondary" label="New transaction ID" onClick={labClick(newTxnid)} />
+        </div>
+        {wizardProgress().paramsSaved ? <p style={okTextStyle}>Saved. Next: generate the hash.</p> : null}
+      </div>
+    );
+  }
+
+  function renderHash() {
+    var p=wizardProgress();
+    var savedParams = p.paramsSaved && lab && lab.params ? mergeParams(lab.params) : DEFAULT_PARAMS;
+    return (
+      <div>
+        <div style={warnBoxStyle}>
+          <strong>Production reminder:</strong> This wizard shows the hash formula so you understand it. In your actual integration, generate the hash on your backend server — never in frontend JavaScript. The salt must not appear in browser code.
+        </div>
+        <div style={infoBoxStyle}>
+          <strong>Hash formula</strong>
+          <ol style={{margin:'8px 0 0',paddingLeft:'20px',lineHeight:1.7}}>
+            <li>{p.pipeShown?'✓':'○'} Enter your test salt</li>
+            <li>{p.pipeShown?'✓':'○'} Click Show hash string</li>
+            <li>{p.hashGenerated?'✓':'○'} Click Generate hash</li>
+          </ol>
+        </div>
+        <code style={codeBlockStyle}>
+          sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+        </code>
+        <p style={mutedTextStyle}>The six empty pipes after udf5 are required even if all UDF fields are blank.</p>
+        <div style={fieldStackStyle}>
+          <div>
+            <FieldLabel name="salt (test)" required={true} />
+            <input type="password" value={salt} onChange={function(e){
+              setSalt(e.target.value); setHashHex(''); setPipeString(''); setHashStage(0);
+              var ld=labEnsure(); ld.salt=e.target.value; ld.progress.pipeShown=false; ld.progress.hashGenerated=false; ld.hashHex=''; ld.pipeString='';
+              labWrite(ld); setLab(ld);
+            }} style={inputStyle} autoComplete="off" placeholder="Your test salt" />
+          </div>
+        </div>
+        <div style={actionBarRowStyle}>
+          <Btn variant="secondary" label="Show hash string" onClick={labClick(showPipe)} disabled={isBlank(salt)||busy} />
+          <Btn label={busy?'Working…':'Generate hash'} onClick={labClick(generateHash)} disabled={hashStage<1||busy||isBlank(salt)} />
+          {hashHex ? <Btn variant="secondary" label="Copy hash" onClick={labClick(function(){ copyText(hashHex,setCopyMsg); })} /> : null}
+        </div>
+        {pipeString && hashStage>=1 ? <pre style={codeBlockPreStyle}>{pipeString}</pre> : null}
+        {hashHex && p.hashGenerated ? (
+          <div style={Object.assign({},infoBoxStyle,{border:'1px solid '+PAYU_GREEN,marginTop:'12px'})}>
+            <p style={{margin:'0 0 6px',fontSize:'12px',fontWeight:700,color:PAYU_GREEN}}>hash (for this test session)</p>
+            <code style={{fontSize:'11px',wordBreak:'break-all'}}>{hashHex}</code>
+          </div>
+        ) : null}
+        {p.hashGenerated ? (
+          <div style={{marginTop:'16px'}}>
+            <p style={{margin:'0 0 10px',fontSize:'14px',fontWeight:700,color:PAYU_GREEN_DARK}}>Node.js backend example</p>
+            <pre style={codeBlockPreStyle}>{buildBackendNodeSnippet(savedParams)}</pre>
+            <Btn variant="secondary" label="Copy Node.js snippet" onClick={labClick(function(){ copyText(buildBackendNodeSnippet(savedParams),setCopyMsg); })} />
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
+  function renderLaunch() {
+    var p=wizardProgress();
+    var savedParams = p.paramsSaved && lab && lab.params ? mergeParams(lab.params) : DEFAULT_PARAMS;
+    var snippet = buildBoltLaunchSnippet(savedParams);
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Copy this snippet into your checkout page. Replace <code style={{fontSize:'12px'}}>YOUR_TEST_KEY</code> with your actual test key and wire up the backend hash endpoint. The UAT SDK URL is already included.
+        </p>
+        <div style={infoBoxStyle}>
+          <strong>What the snippet does</strong>
+          <ol style={{margin:'8px 0 0',paddingLeft:'20px',lineHeight:1.85}}>
+            <li>Loads the UAT Bolt SDK in <code style={{fontSize:'12px'}}>&lt;head&gt;</code></li>
+            <li>On button click, fetches the hash from <code style={{fontSize:'12px'}}>/api/generate-payment-hash</code></li>
+            <li>Calls <code style={{fontSize:'12px'}}>bolt.launch(data, handlers)</code> to open the modal</li>
+            <li>Handles SUCCESS, FAILED, and CANCEL in <code style={{fontSize:'12px'}}>responseHandler()</code></li>
+            <li>Handles SDK errors in <code style={{fontSize:'12px'}}>catchException()</code></li>
+            <li>Disables the button after click to prevent duplicate launches</li>
+          </ol>
+        </div>
+        <pre style={codeBlockPreStyle}>{snippet}</pre>
+        <div style={actionBarRowStyle}>
+          <Btn label="Copy snippet" onClick={labClick(function(){ copyText(snippet,setCopyMsg); })} />
+          {showLaunch ? null : <Btn variant="secondary" label="Show full bolt.launch() call only" onClick={labClick(function(){ setShowLaunch(true); })} />}
+        </div>
+        {showLaunch ? (
+          <div style={{marginTop:'16px'}}>
+            <p style={{margin:'0 0 8px',fontSize:'13px',fontWeight:700,color:PAYU_GREEN_DARK}}>Minimal bolt.launch() call</p>
+            <pre style={codeBlockPreStyle}>{[
+              "bolt.launch({",
+              "  key:         '"+escapeJsString(savedParams.key||'YOUR_TEST_KEY')+"',",
+              "  hash:        hash,  // from your backend",
+              "  txnid:       '"+escapeJsString(savedParams.txnid)+"',",
+              "  amount:      '"+escapeJsString(savedParams.amount)+"',",
+              "  firstname:   '"+escapeJsString(savedParams.firstname)+"',",
+              "  email:       '"+escapeJsString(savedParams.email)+"',",
+              "  phone:       '"+escapeJsString(savedParams.phone)+"',",
+              "  productinfo: '"+escapeJsString(savedParams.productinfo)+"',",
+              "  surl:        '"+escapeJsString(savedParams.surl)+"',",
+              "  furl:        '"+escapeJsString(savedParams.furl)+"'",
+              "}, { responseHandler: handleResponse, catchException: handleError });"
+            ].join('\n')}</pre>
+          </div>
+        ) : null}
+        <label style={Object.assign({},cardCheckStyle,{marginTop:'16px'})}>
+          <input type="checkbox" checked={launchAck} onChange={function(e){ setLaunchAck(e.target.checked); }} style={checkboxInputStyle} />
+          <span>I have copied the snippet and understand that <strong>bolt.launch() must only be called from a button click</strong> — not on page load.</span>
+        </label>
+      </div>
+    );
+  }
+
+  function renderResponse() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          The Bolt SDK calls your <code style={{fontSize:'12px'}}>responseHandler()</code> when the modal closes. Read the outcome from <code style={{fontSize:'12px'}}>BOLT.response.txnStatus</code>.
+        </p>
+        <div style={{background:'#fff',borderRadius:'10px',border:'1px solid #e5e7eb',padding:'16px',marginBottom:'16px'}}>
+          <p style={{margin:'0 0 10px',fontSize:'14px',fontWeight:700,color:PAYU_GREEN_DARK}}>txnStatus values</p>
+          {[
+            { status:'SUCCESS', meaning:'Payment completed',          action:'Verify server-side via Verify Payment API, then confirm order' },
+            { status:'FAILED',  meaning:'Payment failed at bank/3DS', action:'Show error, offer retry with new txnid' },
+            { status:'CANCEL',  meaning:'Customer closed the modal',  action:'Restore checkout — no transaction created' }
+          ].map(function(row){
+            return (
+              <div key={row.status} style={{display:'flex',gap:'10px',padding:'10px 0',borderBottom:'1px solid #f3f4f6',alignItems:'flex-start'}}>
+                <code style={{flexShrink:0,fontSize:'12px',fontWeight:700,background:'#f3f4f6',padding:'2px 8px',borderRadius:'4px',color:PAYU_GREEN_DARK}}>{row.status}</code>
+                <div>
+                  <p style={{margin:'0 0 4px',fontSize:'13px',fontWeight:600,color:'#111827'}}>{row.meaning}</p>
+                  <p style={{margin:0,fontSize:'13px',color:'#6b7280'}}>{row.action}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={warnBoxStyle}>
+          <strong>Always verify server-side after SUCCESS.</strong> The <code style={{fontSize:'12px'}}>txnStatus</code> in the browser can be modified by a malicious user. Call the <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank" rel="noopener noreferrer" style={{color:PAYU_GREEN_DARK}}>Verify Payment API</a> from your backend before marking an order as paid.
+        </div>
+        <p style={{margin:'0 0 8px',fontSize:'14px',fontWeight:700,color:PAYU_GREEN_DARK}}>catchException()</p>
+        <p style={bodyTextStyle}>
+          Called for SDK-level errors: missing required parameter, invalid hash, network failure before the modal opens. Always implement it — log the full <code style={{fontSize:'12px'}}>BOLT</code> object and show the customer a retry message.
+        </p>
+        <pre style={codeBlockPreStyle}>{[
+          "var handlers = {",
+          "  responseHandler: function (BOLT) {",
+          "    var status = BOLT.response.txnStatus;",
+          "    if (status === 'SUCCESS') {",
+          "      verifyPaymentServerSide(BOLT.response.txnid);",
+          "    } else if (status === 'FAILED') {",
+          "      showError(BOLT.response.error_Message || 'Payment failed.');",
+          "    } else if (status === 'CANCEL') {",
+          "      restoreCheckout();",
+          "    } else {",
+          "      console.warn('Unknown txnStatus:', status, BOLT.response);",
+          "    }",
+          "  },",
+          "  catchException: function (BOLT) {",
+          "    console.error('Bolt exception:', BOLT);",
+          "    showError('A payment error occurred. Please try again.');",
+          "  }",
+          "};"
+        ].join('\n')}</pre>
+        <Btn variant="secondary" label="Copy response handler" onClick={labClick(function(){
+          copyText([
+            "var handlers = {",
+            "  responseHandler: function (BOLT) {",
+            "    var status = BOLT.response.txnStatus;",
+            "    if (status === 'SUCCESS') { verifyPaymentServerSide(BOLT.response.txnid); }",
+            "    else if (status === 'FAILED') { showError(BOLT.response.error_Message || 'Payment failed.'); }",
+            "    else if (status === 'CANCEL') { restoreCheckout(); }",
+            "    else { console.warn('Unknown txnStatus:', status, BOLT.response); }",
+            "  },",
+            "  catchException: function (BOLT) {",
+            "    console.error('Bolt exception:', BOLT);",
+            "    showError('A payment error occurred. Please try again.');",
+            "  }",
+            "};"
+          ].join('\n'), setCopyMsg);
+        })} />
+        <div style={Object.assign({},infoBoxStyle,{marginTop:'16px'})}>
+          <strong>Response hash verification</strong><br/>
+          At your <code style={{fontSize:'12px'}}>surl</code> and <code style={{fontSize:'12px'}}>furl</code> endpoints, verify the response hash with:<br/>
+          <code style={{fontSize:'12px',wordBreak:'break-all'}}>sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)</code><br/>
+          Note: UDF fields are in <em>reverse order</em> in the response hash.
+        </div>
+      </div>
+    );
+  }
+
+  function renderTest() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>Tick each scenario once you have verified it in the UAT sandbox.</p>
+        <div style={infoBoxStyle}>
+          <strong>Test credentials</strong><br/>
+          UAT SDK: <code style={{fontSize:'12px'}}>https://jssdk-uat.payu.in/bolt/bolt.min.js</code><br/>
+          Test card: <code style={{fontSize:'12px'}}>5123456789012346</code> · Expiry: 05/30 · CVV: 123 · OTP: 123456<br/>
+          Test UPI: <code style={{fontSize:'12px'}}>anything@payu</code> or <code style={{fontSize:'12px'}}>999999999@payu</code><br/>
+          Net Banking: user/pass/OTP = <code style={{fontSize:'12px'}}>payu / payu / 123456</code>
+        </div>
+        <div style={{display:'grid',gap:'8px'}}>
+          {TEST_SCENARIOS.map(function(label,idx){
+            return (
+              <label key={idx} style={cardCheckStyle}>
+                <input type="checkbox" checked={!!testDone[idx]}
+                  onChange={function(e){ var n=Object.assign({},testDone); n[idx]=e.target.checked; setTestDone(n); }}
+                  style={checkboxInputStyle} />
+                <span>{label}</span>
+              </label>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function renderGolive() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Complete every item before switching from UAT to production. Production SDK: <code style={{fontSize:'12px'}}>{PROD_SDK_URL}</code>
+        </p>
+        <div style={{display:'grid',gap:'8px',marginBottom:'16px'}}>
+          {GO_LIVE_CHECKS.map(function(label,idx){
+            return (
+              <label key={idx} style={cardCheckStyle}>
+                <input type="checkbox" checked={!!goDone[idx]}
+                  onChange={function(e){ var n=Object.assign({},goDone); n[idx]=e.target.checked; setGoDone(n); }}
+                  style={checkboxInputStyle} />
+                <span style={{fontSize:'13px'}}>{label}</span>
+              </label>
+            );
+          })}
+        </div>
+        <div style={infoBoxStyle}>
+          <strong>Smoke test before full traffic</strong>
+          <ol style={{margin:'8px 0 0',paddingLeft:'20px',lineHeight:1.85}}>
+            <li>Use a real card with a small amount (₹1.00 or minimum your account supports)</li>
+            <li>Confirm <code style={{fontSize:'12px'}}>responseHandler</code> fires with <code style={{fontSize:'12px'}}>SUCCESS</code></li>
+            <li>Confirm Verify Payment API returns <code style={{fontSize:'12px'}}>success</code></li>
+            <li>Confirm order is fulfilled correctly</li>
+            <li>Initiate a refund from PayU Dashboard to verify the transaction is refundable</li>
+          </ol>
+        </div>
+        <div style={actionBarRowStyle}>
+          <Btn label="Start over" onClick={labClick(restartLab)} />
+        </div>
+      </div>
+    );
+  }
+
+  // ─── Help panel ───────────────────────────────────────────────────────────────
+  function renderInsightBody(text) {
+    var parts=String(text||'').split('**');
+    return parts.map(function(part,idx){ if(!part) return null; return idx%2===1?<strong key={idx}>{part}</strong>:<span key={idx}>{part}</span>; });
+  }
+
+  function helpBorder(sev) { if(sev==='error') return '1px solid #fecaca'; if(sev==='warning') return '1px solid #fde68a'; if(sev==='success') return '1px solid rgba(15,118,110,0.35)'; return '1px solid #e5e7eb'; }
+  function helpBg(sev) { if(sev==='error') return '#fef2f2'; if(sev==='warning') return '#fffbeb'; if(sev==='success') return PAYU_GREEN_LIGHT; return '#fff'; }
+
+  function buildInsights() {
+    var stepId = STEPS[step] ? STEPS[step].id : 'welcome';
+    var insights = [];
+    insights.push({ id:'next', title:'Do this next', body:STEP_NEXT_ACTIONS[stepId]||'Follow the current step.', sev:'info' });
+    if(!canAdvance()) {
+      var hint=continueHint();
+      if(hint) insights.push({ id:'blocker', title:'Cannot continue yet', body:hint, sev:'warning' });
+    }
+    if(stepId==='hash' && wizardProgress().hashGenerated) {
+      insights.push({ id:'server', title:'Production reminder', body:'Generate the hash on your **backend server**, not in the browser. Never include the merchant salt in frontend JavaScript.', sev:'info' });
+    }
+    if(stepId==='response') {
+      insights.push({ id:'verify', title:'Server-side verification is required', body:'After every SUCCESS in responseHandler(), call the Verify Payment API from your backend before fulfilling the order. The txnStatus in the browser can be spoofed.', sev:'warning' });
+    }
+    if(stepId==='golive') {
+      insights.push({ id:'smoke', title:'Run a smoke test', body:'After completing the checklist, make one real end-to-end payment with a small amount before opening to full traffic.', sev:'info' });
+    }
+    return insights;
+  }
+
+  function renderHelpPanel() {
+    var insights=buildInsights();
+    var stepId = STEPS[step] ? STEPS[step].id : 'welcome';
+    return (
+      <div>
+        <p style={bodyTextStyle}>Context-aware guidance based on your current step. Runs locally — nothing is sent anywhere.</p>
+        <div style={infoBoxStyle}>
+          <strong style={{display:'block',marginBottom:'6px',color:PAYU_GREEN_DARK}}>Where you are</strong>
+          <p style={{margin:0,fontSize:'13px',lineHeight:1.6}}>Step {step+1}: {STEPS[step]?STEPS[step].title:'Welcome'} — {canAdvance()?'ready to continue':'one more action needed'}</p>
+        </div>
+        <div aria-live="polite">
+          {insights.map(function(ins){
+            return (
+              <div key={ins.id} style={Object.assign({},helpInsightCardStyle,{border:helpBorder(ins.sev),background:helpBg(ins.sev)})}>
+                <p style={helpInsightTitleStyle}>{ins.title}</p>
+                <p style={helpInsightBodyStyle}>{renderInsightBody(ins.body)}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div style={actionBarRowStyle}>
+          <Btn variant="secondary" label="Common errors" onClick={labClick(function(){ setModalTab('errors'); })} />
+          <Btn label="Back to lab" onClick={labClick(function(){ setModalTab('lab'); })} />
+        </div>
+      </div>
+    );
+  }
+
+  function renderErrorsPanel() {
+    var ERRORS = [
+      { title:'Modal does not open', cause:'SDK script not loaded, or wrong URL for environment', fix:'Check Network tab for bolt.min.js returning 200. Use jssdk-uat.payu.in for test, jssdk.payu.in for production.' },
+      { title:'catchException fires immediately', cause:'Missing required field, invalid hash, or duplicate txnid', fix:'Log all data fields before bolt.launch(). Check hash formula includes all 10 UDF pipes. Generate new txnid per attempt.' },
+      { title:'Hash invalid error', cause:'Wrong salt; missing UDF pipes; hash computed in browser', fix:'Log raw hash input string on backend. Verify pipe count. Ensure test key + test salt are from the same environment.' },
+      { title:'Duplicate txnid error', cause:'Same txnid reused across payment attempts', fix:'Generate a new unique txnid (UUID or timestamp-based) for every bolt.launch() call, including retries.' },
+      { title:'surl/furl not receiving POST', cause:'URL not publicly reachable; non-HTTPS in production; returns non-2xx', fix:'POST manually from an external network to confirm reachability. Use HTTPS only in production.' },
+      { title:'Response hash mismatch at surl', cause:'UDF fields in forward order instead of reverse', fix:'Reverse hash UDFs go: udf5,udf4,udf3,udf2,udf1 — not udf1,udf2,udf3,udf4,udf5. Log raw input string and compare character by character.' }
+    ];
+    return (
+      <div>
+        <p style={bodyTextStyle}>Diagnose issues by symptom. Check your browser console first — the Bolt SDK logs errors there.</p>
+        {ERRORS.map(function(e){
+          return (
+            <div key={e.title} style={{marginBottom:'12px',padding:'12px 14px',borderRadius:'8px',border:'1px solid #fde68a',background:'#fffbeb'}}>
+              <p style={{margin:'0 0 6px',fontSize:'14px',fontWeight:700,color:'#92400e'}}>{e.title}</p>
+              <p style={{margin:'0 0 4px',fontSize:'13px',color:'#4b5563'}}><strong>Cause:</strong> {e.cause}</p>
+              <p style={{margin:0,fontSize:'13px',color:'#4b5563'}}><strong>Fix:</strong> {e.fix}</p>
+            </div>
+          );
+        })}
+        <div style={actionBarRowStyle}>
+          <Btn label="Back to lab" onClick={labClick(function(){ setModalTab('lab'); })} />
+        </div>
+        <p style={mutedTextStyle}>
+          For persistent issues: provide <code style={{fontSize:'11px'}}>mihpayid</code> and <code style={{fontSize:'11px'}}>txnid</code> to PayU support via the merchant dashboard.
+        </p>
+      </div>
+    );
+  }
+
+  // ─── Wizard body/footer ────────────────────────────────────────────────────────
+  function renderWizardBody() {
+    var inner = null;
+    if(step===0) inner=renderWelcome();
+    else if(step===1) inner=renderPrereq();
+    else if(step===2) inner=renderParams();
+    else if(step===3) inner=renderHash();
+    else if(step===4) inner=renderLaunch();
+    else if(step===5) inner=renderResponse();
+    else if(step===6) inner=renderTest();
+    else if(step===7) inner=renderGolive();
+
+    var p=wizardProgress();
+    return (
+      <div>
+        {step>0 && STEPS[step].tagline ? <p style={taglineStyle}>{STEPS[step].tagline}</p> : null}
+        {step>0 ? <LabStatus /> : null}
+        <div aria-live="polite" aria-atomic="true">
+          {err ? <p style={errTextStyle}>{err}</p> : null}
+          {msg ? <p style={okTextStyle}>{msg}</p> : null}
+          {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
+        </div>
+        <div style={step===0?{marginTop:'4px'}:contentCardStyle}>{inner}</div>
+      </div>
+    );
+  }
+
+  function renderWizardFooter() {
+    var canFwd=canAdvance();
+    return (
+      <div>
+        <div style={navRowStyle}>
+          {step>0 ? <Btn variant="secondary" label="Back" onClick={labClick(function(){ goToStep(step-1); })} /> : <span/>}
+          {step<STEPS.length-1 ? (
+            <Btn label={step===0?'Next':'Continue'} onClick={labClick(function(){ if(!canAdvance()) return; goToStep(step+1); })} disabled={!canFwd} />
+          ) : null}
+        </div>
+        {!canFwd && continueHint() ? <p style={{margin:'10px 0 0',fontSize:'14px',lineHeight:1.5,color:'#b45309'}}>{continueHint()}</p> : null}
+      </div>
+    );
+  }
+
+  // ─── Step pills / tabs / progress ────────────────────────────────────────────
+  function renderStepPills() {
+    return (
+      <div style={stepPillRowStyle} aria-hidden="true">
+        {STEPS.map(function(s,idx){
+          var active=idx===step, done=idx<step;
+          return <span key={s.id} style={active?stepPillActiveStyle:stepPillStyle}>{s.stepLabel}{done&&!active?' ✓':''}</span>;
+        })}
+      </div>
+    );
+  }
+
+  function renderTabs() {
+    var tabs=[{id:'lab',label:'Lab'},{id:'help',label:'Help'},{id:'errors',label:'Errors'}];
+    return (
+      <div style={modalTabRowStyle} role="tablist" aria-label="Wizard tabs">
+        {tabs.map(function(t){
+          return (
+            <button key={t.id} type="button" role="tab" aria-selected={modalTab===t.id}
+              onClick={labClick(function(){ setModalTab(t.id); })}
+              style={modalTab===t.id?modalTabBtnActiveStyle:modalTabBtnStyle}>
+              {t.label}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+
+  var current = STEPS[step];
+  var pct = Math.round(((step+1)/STEPS.length)*100);
+
+  // ─── Launcher card ─────────────────────────────────────────────────────────────
+  return (
+    <div className="min-w-0" style={{fontFamily:'system-ui,-apple-system,Segoe UI,Roboto,sans-serif'}}>
+      <div style={launcherCardStyle} role="region" aria-label="Checkout Plus integration walkthrough">
+        <div style={{display:'flex',flexWrap:'wrap',alignItems:'flex-start',gap:'16px',justifyContent:'space-between'}}>
+          <div style={{flex:'1 1 280px',minWidth:0}}>
+            <div style={{fontSize:'11px',fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:PAYU_GREEN,marginBottom:'6px'}}>
+              Checkout Plus
+            </div>
+            <h3 style={{margin:'0 0 8px',fontSize:'1.25rem',fontWeight:700,color:'#111827'}}>
+              Integration wizard
+            </h3>
+            <p style={{margin:'0 0 12px',fontSize:'14px',lineHeight:1.6,color:'#4b5563'}}>
+              Step-by-step guide to integrating the Bolt SDK, generating the hash, calling <code style={{fontSize:'13px'}}>bolt.launch()</code>, and handling responses — with a full integration snippet to copy.
+            </p>
+            <ul style={{margin:0,paddingLeft:'18px',fontSize:'13px',lineHeight:1.7,color:'#374151'}}>
+              <li>Hash formula and backend snippet included</li>
+              <li>Ready-to-paste bolt.launch() code</li>
+              <li>Test scenarios and go-live checklist</li>
+              <li>Help and troubleshooting tabs</li>
+            </ul>
+          </div>
+          <div style={{flexShrink:0,alignSelf:'center'}}>
+            <button type="button" ref={launcherBtnRef} onClick={labClick(openModal)}
+              style={Object.assign({},wizardBtnStyle('primary',false),{padding:'12px 24px',fontSize:'15px'})}>
+              Open wizard
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {modalOpen ? (
+        <div style={modalOverlayStyle} onClick={onOverlayClick} role="dialog" aria-modal="true" aria-label="Checkout Plus integration walkthrough">
+          <div ref={modalPanelRef} style={modalPanelStyle} onClick={stopBubble}>
+            {/* Header */}
+            <div style={modalHeaderStyle}>
+              <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:'12px'}}>
+                <div style={{minWidth:0}}>
+                  <div style={{fontSize:'11px',fontWeight:600,textTransform:'uppercase',letterSpacing:'0.1em',opacity:0.85,marginBottom:'4px'}}>
+                    PayU Checkout Plus
+                  </div>
+                  <h2 style={{margin:0,fontSize:'1.2rem',fontWeight:700,lineHeight:1.3}}>{current.title}</h2>
+                  {step>0 ? <p style={{margin:'6px 0 0',fontSize:'13px',opacity:0.9}}>Step {current.stepLabel} of 7</p> : null}
+                </div>
+                <button type="button" ref={closeBtnRef} onClick={labClick(closeModal)} aria-label="Close wizard"
+                  style={{flexShrink:0,cursor:'pointer',border:'none',background:'rgba(255,255,255,0.2)',color:'#fff',borderRadius:'8px',width:'44px',height:'44px',fontSize:'18px',lineHeight:1}}>
+                  ×
+                </button>
+              </div>
+              {renderStepPills()}
+              {renderTabs()}
+              <div style={{marginTop:'12px',height:'4px',background:'rgba(255,255,255,0.25)',borderRadius:'4px',overflow:'hidden'}}>
+                <div style={{height:'100%',width:pct+'%',background:'#fff',transition:'width 0.25s ease'}} />
+              </div>
+            </div>
+            {/* Body */}
+            <div style={modalBodyStyle}>
+              {modalTab==='help'   ? renderHelpPanel()   :
+               modalTab==='errors' ? renderErrorsPanel() :
+               renderWizardBody()}
+            </div>
+            {/* Footer */}
+            <div style={modalFooterStyle}>
+              {modalTab==='lab' ? renderWizardFooter() : null}
+              <p style={Object.assign({},mutedTextStyle,{marginTop:modalTab==='lab'?'8px':0,marginBottom:0})}>
+                {modalTab==='lab' ? 'No sensitive data persisted · Esc to close' : 'Esc to close'}
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+<PayUCheckoutPlusWizard />
