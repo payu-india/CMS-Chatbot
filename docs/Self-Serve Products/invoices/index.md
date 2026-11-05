@@ -31,17 +31,27 @@ next:
   fontWeight="bold"
 />
 
-PayU Invoices let you create and send professional billing documents to your customers including GST calculations built in, line items for each product or service, and a pay-now button included.<br />
+## How Does Invoices Simplify My Business?
 
-You can use Invoices to:<br />
+<Accordion title="Professional GST-compliant invoices in minutes">
+  Create an itemised invoice with your business name, customer details, line items, and applicable GST from the Dashboard. PayU calculates CGST, SGST, IGST, and cess automatically based on the GST rate and state you set. No accounting software or spreadsheet needed.
+</Accordion>
 
-* Create itemized invoices with multiple products or services
-* Add GST automatically including inter-state and intra-state tax, cess, and HSN/SAC codes
-* Set a due date so customers know when payment is expected
-* Enable partial payments so customers can pay in installments
-* Send invoices directly to customers by email or SMS from the Dashboard
-* Track which invoices are paid, pending, or overdue in one place
-* Download invoice and transaction records as CSV or Excel
+<Accordion title="Customers pay the moment they receive the invoice">
+  Every invoice includes a pay-now button linked to PayU's secure checkout page. Your customer receives the invoice by email or SMS, clicks the button, and pays using UPI, card, or any other enabled payment method.
+</Accordion>
+
+<Accordion title="Set a due date">
+  Add a due date to every invoice so your customer sees exactly when payment is expected. Overdue invoices are flagged automatically in your Dashboard, so you can follow up without manually tracking them.
+</Accordion>
+
+<Accordion title="Collect a deposit, settle the balance later">
+  Enable partial payments on any invoice. Your customer can pay a portion upfront and return to pay the balance when they are ready. You set the minimum first payment — keeping the billing process on your terms.
+</Accordion>
+
+<Accordion title="Items catalog: add once, reuse forever">
+  Build a catalog of your products and services with name, rate, unit, and GST details. When creating an invoice, select items from the catalog instead of re-entering details every time. Changes to an item in the catalog apply to all future invoices automatically.
+</Accordion>
 
 <HTMLBlock>{`
   <style>
