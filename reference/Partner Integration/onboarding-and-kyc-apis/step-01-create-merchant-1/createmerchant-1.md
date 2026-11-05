@@ -2,13 +2,19 @@
 api:
   file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
   operationId: CreateMerchant-1
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
   robots: index
 ---
-The **Create Merchant** API with offline onboarding paramters creates a new merchant shell account on PayU (Step 01 of 16).
+The **Create Merchant** API with the **merchant\[onboarding_type]&#x20;**&#x20;parameter passed with the values as `online` to onboard merchant offline on PayU Partner Platform (Step 01 of 16). Also, includes other optional parameters to specify the latittude, longitude, business entity sub type and if a POS merchant as described in the [Request Parameters](#request-parameters) table.
+
+<Callout icon="far fa-book" theme="warn">
+  ### Reference:
+
+  For the regular onboarding, refer to [Create Merchant API](ref:createmerchant)
+</Callout>
 
 <Callout icon="📘" theme="info">
   ### Notes:
@@ -274,3 +280,5 @@ The **Create Merchant** API with offline onboarding paramters creates a new merc
 | Hindu Undivided Family (HUF) | Hindu Undivided Family        |
 | Local Authority              | Local Authority               |
 | Artificial Juridical Person  | Artificial Juridical Person   |
+
+## Request Parameters
