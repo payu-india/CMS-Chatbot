@@ -8,7 +8,7 @@ link:
 metadata:
   robots: index
 ---
-The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01 of 16).
+The **Create Merchant** API with offline onboarding paramters creates a new merchant shell account on PayU (Step 01 of 16).
 
 <Callout icon="📘" theme="info">
   ### Notes:
