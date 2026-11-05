@@ -13,7 +13,7 @@ The **Create Merchant** API with the **merchant\[onboarding_type]&#x20;**&#x20;p
 <Callout icon="far fa-book" theme="warn">
   ### Reference:
 
-  For the regular onboarding, refer to [Create Merchant API](ref:createmerchant)
+  For the regular onboarding, refer to [Create Merchant API.](ref:createmerchant)
 </Callout>
 
 <Callout icon="📘" theme="info">
