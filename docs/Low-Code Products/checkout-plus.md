@@ -207,14 +207,14 @@ Once payments are live, two areas become relevant depending on your business:
 Use an AI coding assistant with the PayU Developer MCP to search these docs, scaffold your Bolt SDK integration, and debug `responseHandler()` without leaving your editor. The prompts below work well as starting points.
 
 <Callout icon="💬" theme="info">
-  **Example prompts for AI coding assistants**
+  ### **Example Prompts for AI Coding Assistants**
 
-  - "How do I add the Bolt SDK to my website for PayU Checkout Plus?"
-  - "What parameters do I pass to bolt.launch() for a PayU payment?"
-  - "How do I generate a SHA-512 hash for Checkout Plus on the backend?"
-  - "What is the difference between Checkout Plus and PayU Hosted Checkout?"
-  - "Why is my responseHandler not being called after the payment modal closes?"
-  - "How do I handle a CANCEL status in the Checkout Plus responseHandler?"
+  - `How do I add the Bolt SDK to my website for PayU Checkout Plus?`
+  - `What parameters do I pass to bolt.launch() for a PayU payment?`
+  - `How do I generate a SHA-512 hash for Checkout Plus on the backend?`
+  - `What is the difference between Checkout Plus and PayU Hosted Checkout?`
+  - `Why is my responseHandler not being called after the payment modal closes?`
+  - `How do I handle a CANCEL status in the Checkout Plus responseHandler?`
 </Callout>
 
 <Cards columns="2">
