@@ -21,11 +21,11 @@ metadata:
 
 ## How Does Checkout Plus Simplify My Business?
 
-<Accordion title="Payment modal opens on your website — customers never leave" icon="fa-window-restore">
-  Checkout Plus opens PayU's payment experience as a modal on your website, served from PayU's infrastructure. The customer's browser stays on your page throughout the payment — there is no redirect away. The underlying payment engine is [PayU Hosted Checkout](../prebuilt-checkout-payu-hosted), presented inline through the Bolt JavaScript SDK.
+<Accordion title="Payment modal opens on your website">
+  Checkout Plus opens PayU's payment experience as a modal on your website, served from PayU's infrastructure. The customer's browser stays on your page throughout the payment. The underlying payment engine is <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor>, presented inline through the Bolt JavaScript SDK.
 </Accordion>
 
-<Accordion title="Built-in retry keeps customers in the payment flow" icon="fa-rotate-right">
+<Accordion title="Built-in retry keeps customers in the payment flow">
   If a payment fails at the bank or during 3DS authentication, the modal resets to the payment form automatically — without cancelling the order or navigating away. The customer can select a different card or payment method and try again immediately, without restarting the checkout process from scratch.
 </Accordion>
 
