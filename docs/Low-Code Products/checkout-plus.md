@@ -53,8 +53,12 @@ metadata:
 | Accept payments natively inside a mobile app                      |                           ⚠️ Use [PayU Mobile SDK](../../mobile-sdks) instead                           |
 | Open PayU checkout in a mobile app WebView                        |                    ⚠️ See [WebView Integration](./integrate/webview-for-mobile-apps)                    |
 
-<Callout icon="🤔" theme="info">
-  **Not sure which PayU solution is right for you?** See [Start Here](https://docs.payu.in/docs/start-here) for a guided comparison of all PayU integration options.
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### **Not Sure Which PayU Solution is Right For You?**
+
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.<br />
+
+  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
 </Callout>
 
 ***
