@@ -1,7 +1,7 @@
 ---
 title: September 2026
 author: Raghuram Pandurangan
-hidden: true
+hidden: false
 published_at: '2026-11-05T05:39:54.874Z'
 ---
 Discover PayU payment capabilities, API enhancements, and integration changes for September 2026. This changelog is for merchants and developers integrating PayU APIs. Availability can depend on merchant activation, payment-method support, or eligibility described in the relevant entry.
