@@ -17,10 +17,6 @@ metadata:
   fontWeight="bold"
  />
 
-# Checkout Plus
-
-Open PayU's payment modal on your website. Customers select a payment method, authenticate, and pay — without the browser ever redirecting away from your page.
-
 ***
 
 ## How Does Checkout Plus Simplify My Business?
