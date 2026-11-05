@@ -6,7 +6,7 @@ published_at: '2026-11-05T05:39:54.874Z'
 ---
 Discover PayU payment capabilities, API enhancements, and integration changes for September 2026. This changelog is for merchants and developers integrating PayU APIs. Availability can depend on merchant activation, payment-method support, or eligibility described in the relevant entry.
 
-## Net Banking
+## Banking Connect
 
 <Accordion title="Banking Connect (IBMB / NBBL) for Net Banking" icon="fa-sparkles">
   <Columns layout="auto">
