@@ -6,7 +6,7 @@ hidden: false
 link:
   new_tab: false
 metadata:
-  robots: index
+  robots: noindex
 ---
 The **Create Merchant** API with the **merchant\[onboarding_type]&#x20;**&#x20;parameter passed with the values as `online` to onboard merchant offline on PayU Partner Platform (Step 01 of 16). Also, includes other optional parameters to specify the latittude, longitude, business entity sub type and if a POS merchant as described in the [Request Parameters](#request-parameters) table.
 
