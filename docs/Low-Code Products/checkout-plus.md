@@ -66,23 +66,23 @@ metadata:
 ## Common Use Cases
 
 <Cards columns="3">
-  <Card title="E-commerce & Online Retail" icon="fa-bag-shopping">
+  <Card title="E-commerce and Online Retail" icon="fa-bag-shopping">
     Keep customers on the product or cart page throughout payment. The modal opens without navigating away, reducing drop-off at checkout.
   </Card>
 
-  <Card title="EdTech & Online Courses" icon="fa-graduation-cap">
+  <Card title="EdTech and Online Courses" icon="fa-graduation-cap">
     Collect course and certification fees without redirecting learners away from the platform. Supports all major payment methods including EMI for higher-value courses.
   </Card>
 
-  <Card title="SaaS & Subscription Platforms" icon="fa-layer-group">
+  <Card title="SaaS and Subscription Platforms" icon="fa-layer-group">
     In-context payment on the plan selection or checkout page. For recurring auto-debit after the initial payment, combine with [Recurring Payments](https://docs.payu.in/docs/recurring-payments).
   </Card>
 
-  <Card title="Travel & Hospitality" icon="fa-plane">
+  <Card title="Travel and Hospitality" icon="fa-plane">
     Booking payment while keeping the customer on the itinerary or reservation page. Built-in retry handles bank-side failures without losing the booking context.
   </Card>
 
-  <Card title="Healthcare & Diagnostics" icon="fa-stethoscope">
+  <Card title="Healthcare and Diagnostics" icon="fa-stethoscope">
     Consultation fees and test payments collected while patients remain on the portal. Supports wallets and UPI for low-friction, quick transactions.
   </Card>
 </Cards>
@@ -93,12 +93,12 @@ metadata:
 
 Before you integrate, make sure you have:
 
-- A **PayU merchant account**. [Register here](https://onboarding.payu.in/) if you don't have one.
-- **PayU Hosted Checkout** already integrated or ready to set up — Checkout Plus wraps it in a modal. See [PayU Hosted Checkout](../prebuilt-checkout-payu-hosted).
-- Your **test merchant key and salt** for sandbox testing — from PayU Dashboard → Developer Settings → Test Keys.
-- Your **live merchant key and salt** for production — from PayU Dashboard → Developer Settings → Live Keys.
+- A <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">**PayU merchant account**</Anchor>
+- [**PayU Hosted Checkout**](https://docs.payu.in/docs/payu-hosted-checkout-1) already integrated or ready to set up. Checkout Plus wraps it in a modal.
+- Your **test merchant key and salt&#x20;**&#x69;n the test mode for sandbox testing from **PayU Dashboard** → **Developer** → **API Keys**.
+- Your **live merchant key and salt&#x20;**&#x69;n the live mode for production from **PayU Dashboard** → **Developer** → **API Keys**.
 - A **backend server** capable of generating a SHA-512 hash (Node.js, Python, PHP, Java, or any server-side language).
-- A **JavaScript-enabled website** — the Bolt SDK requires a browser environment.
+- A **JavaScript-enabled website**, the Bolt SDK requires a browser environment.
 - An **HTTPS-enabled, publicly reachable callback endpoint** for `surl` and `furl`.
 
 <HTMLBlock>{`
