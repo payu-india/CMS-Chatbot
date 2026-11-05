@@ -1581,7 +1581,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants-1:
     post:
-      summary: Offline Onboarding Merchant API
+      summary: Offline Merchant Onboarding API
       operationId: CreateMerchant-1
       tags:
         - Step 01 — Create Merchant
