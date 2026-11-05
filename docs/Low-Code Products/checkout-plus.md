@@ -142,13 +142,9 @@ Before you integrate, make sure you have:
 
 Checkout Plus uses the same security model as PayU Hosted Checkout, with one important difference in how the hash reaches the browser.
 
-**Hash generation is always server-side.** Your backend computes the SHA-512 hash using your merchant salt and returns only the computed hash to the frontend. The salt must never appear in JavaScript code, HTML source, or any client-facing output.
-
-**Card data is collected inside the PayU modal.** Payment details are entered directly on PayU's infrastructure. Your website and servers never receive or process raw card data.
-
-**Verify the response after payment.** When `responseHandler()` fires with a `SUCCESS` status, verify the transaction from your backend using the [Verify Payment API](https://docs.payu.in/reference/verify_payment_api) before marking the order as paid. The `txnStatus` returned to the browser can be spoofed by a malicious user — server-side verification cannot.
-
-See [Build Integration → Security](./integrate/build-integration) for the full list of security requirements.
+- **Hash generation is always server-side:&#x20;**&#x59;our backend computes the SHA-512 hash using your merchant salt and returns only the computed hash to the frontend. The salt must never appear in JavaScript code, HTML source, or any client-facing output.
+- **Card data is collected inside the PayU modal:** Payment details are entered directly on PayU's infrastructure. Your website and servers never receive or process raw card data.
+- **Verify the response after payment:&#x20;**&#x57;hen `responseHandler()` fires with a `SUCCESS` status, verify the transaction from your backend using the [Verify Payment API](https://docs.payu.in/reference/verify_payment_api) before marking the order as paid. The `txnStatus` returned to the browser can be spoofed by a malicious user whereas server-side verification cannot.
 
 ***
 
