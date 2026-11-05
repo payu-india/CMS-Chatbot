@@ -26,14 +26,14 @@ metadata:
 </Accordion>
 
 <Accordion title="Built-in retry keeps customers in the payment flow">
-  If a payment fails at the bank or during <Glossary>3DS authentication</Glossary>, the modal resets to the payment form automatically — without cancelling the order or navigating away. The customer can select a different card or payment method and try again immediately, without restarting the checkout process from scratch.
+  If a payment fails at the bank or during <Glossary>3D Secure (3DS) Authentication</Glossary> the modal resets to the payment form automatically without cancelling the order or navigating away. The customer can select a different card or payment method and try again immediately, without restarting the checkout process from scratch.
 </Accordion>
 
-<Accordion title="All major Indian payment methods — one bolt.launch() call" icon="fa-credit-card">
+<Accordion title="Supports all major Indian payment methods" icon="fa-credit-card">
   A single `bolt.launch()` call opens a checkout that supports Credit Cards, Debit Cards, UPI, Net Banking, Wallets, EMI, and BNPL. There are no separate integrations per payment type. Payment methods can be enabled, disabled, or pre-selected per transaction using optional parameters.
 </Accordion>
 
-<Accordion title="PCI-DSS scope — handled by PayU" icon="fa-shield-halved">
+<Accordion title="PCI-DSS scope handled by PayU" icon="fa-shield-halved">
   Payment details are entered inside the PayU-served modal. Your website and servers never receive or handle raw card data. PCI-DSS compliance for card data handling is PayU's responsibility, not yours.
 </Accordion>
 
