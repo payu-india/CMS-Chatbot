@@ -8,6 +8,12 @@ link:
 ---
 The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01 of 16).
 
+<Callout icon="far fa-book" theme="warn">
+  ### Reference:
+
+  For the offline merchant onboarding, refer to [Offline Merchant Onboarding API.](ref:partner-offline-merchant-onboarding-api)
+</Callout>
+
 <Callout icon="📘" theme="info">
   ### Notes:
 
@@ -272,3 +278,5 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
 | Hindu Undivided Family (HUF) | Hindu Undivided Family        |
 | Local Authority              | Local Authority               |
 | Artificial Juridical Person  | Artificial Juridical Person   |
+
+## Request Parameters
