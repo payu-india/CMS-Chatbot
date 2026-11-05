@@ -12,11 +12,46 @@ next:
 ---
 The following codes must be used as the value for the <Glossary>bankcode</Glossary> parameter with <Glossary>TPV</Glossary> integration:
 
-<SearchableTableRemote
-  tableKey="https://cdn.jsdelivr.net/gh/palgunams21/payu-docs-assets@main/data/bank-codes-tpv.json"
-  placeholder="Search"
-  maxHeight="500px"
-/>
+| Bank                                    | bankcode   |
+| :-------------------------------------- | :--------- |
+| AU Small Finance Bank                   | `AUNBTPV`  |
+| Axis Bank                               | `AXNBTPV`  |
+| Dhanlaxmi Bank - TPV                    | `DLSNBTPV` |
+| ICICI Corporate Netbanking TPV          | `ICICTPV`  |
+| Karur Vysya Bank TPV                    | `KVBNBTPV` |
+| SVC Corporate Bank TPV                  | `SVCCBTPV` |
+| Bandhan Bank                            | `BANDTPV`  |
+| Bank of Baroda                          | `BBRNBTPV` |
+| Bank of India                           | `BOINBTPV` |
+| Canara Bank                             | `CBNBTPV`  |
+| Central Bank of India                   | `CBITPV`   |
+| City Union Bank                         | `CUBNBTPV` |
+| DCB Bank                                | `DCBNBTPV` |
+| Dhanalakshmi Bank                       | `DLSNBTPV` |
+| Federal Bank                            | `FEDNBTPV` |
+| HDFC Bank                               | `HDFNBTPV` |
+| ICICI Bank                              | `ICINBTPV` |
+| IDBI Bank                               | `IDBITPV`  |
+| IDFC First Bank                         | `IDFNBTPV` |
+| Indian Bank                             | `INDBTPV`  |
+| Indian Overseas Bank                    | `IOBNBTPV` |
+| Indusind Bank                           | `INIBTPV`  |
+| Karnataka Bank                          | `KRKBTPV`  |
+| Karur Vysya Bank                        | `KVBNBTPV` |
+| Kotak Mahindra Bank                     | `KTKNBTPV` |
+| Punjab & Sindh Bank                     | `PSBNBTPV` |
+| Punjab National Bank                    | `PNBNBTPV` |
+| RBL                                     | `RBLTPV`   |
+| Saraswat Co-operative Bank Ltd.         | `SRSWTTPV` |
+| Shamrao Vithal Co-operative Bank        | `SVCTPV`   |
+| South Indian Bank                       | `SIBNBTPV` |
+| Standard Chartered Bank                 | `SCBNBTPV` |
+| State Bank of India                     | `SBINBTPV` |
+| Tamilnad Mercantile Bank                | `TMBTPV`   |
+| UCO Bank                                | `UCONBTPV` |
+| Yes Bank                                | `YESNBTPV` |
+| SVC Co-operative Bank Limited           | `SVCTPV`   |
+| SVC Co-operative Corporate Bank Limited | `SVCCBTPV` |
 
 ## Merged Banks and Supported Bank Codes
 
