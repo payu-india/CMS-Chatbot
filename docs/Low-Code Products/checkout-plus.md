@@ -176,29 +176,19 @@ Checkout Plus uses the same security model as PayU Hosted Checkout, with one imp
 
 ## Post-Payment Actions
 
-Once payments are live, two areas become relevant depending on your business:
+<Tabs>
+  <Tab title="Refunds">
+    Use PayU refunds to initiate. Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API
+  </Tab>
 
-**Refunds** — Initiate full or partial refunds from the PayU Dashboard or via the Refund API. PayU also supports instant refunds for eligible transactions.
+  <Tab title="Settlements">
+    You are waiting for the amount to reach your account. PayU settlements can help you find out when the amount will be settled.
+  </Tab>
 
-**Settlements** — PayU settles collected funds to your registered bank account on a regular cycle. View settlement records, download TDR reports, and track UTR details from the Settlements Dashboard.
-
-<Cards columns="2">
-  <Card title="Refunds" href="https://docs.payu.in/docs/introduction-refunds" icon="fa-rotate-left">
-    Initiate full or partial refunds from the PayU Dashboard or via the Refund API. Includes instant refunds, status tracking, and webhook notifications.
-  </Card>
-
-  <Card title="Refund APIs" href="https://docs.payu.in/docs/refund-apis-doc" icon="fa-rectangle-api">
-    API reference for initiating refunds, checking refund status, and retrieving all refunds against a transaction ID.
-  </Card>
-
-  <Card title="Settlements Dashboard" href="https://docs.payu.in/docs/settlements-dashboard" icon="fa-building-columns">
-    View and export settlement records, download monthly TDR reports, filter by date and UTR, and configure priority settlements.
-  </Card>
-
-  <Card title="Webhooks for Refunds" href="https://docs.payu.in/docs/webhooks-for-refunds" icon="fa-plug">
-    Receive automated server-to-server notifications when a refund status changes.
-  </Card>
-</Cards>
+  <Tab title="Disputes and Chargebacks">
+    Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard.
+  </Tab>
+</Tabs>
 
 ***
 
