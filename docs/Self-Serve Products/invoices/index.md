@@ -91,19 +91,18 @@ next:
 
 ## Is Invoicing Right for Me?
 
-An Invoice is a good choice if you:<br />
-
-* **Bill customers for services or multiple products** and need an itemized breakdown.
-* **Need GST-compliant invoices** for your business records or to share with customers.
-* **Want to send formal payment requests** with your invoice number, due date, and line items.
-* **Run a service business** such as consulting, freelancing, events, logistics, or any work-based billing.<br />
-
-Consider another PayU solution if you:<br />
-
-* Need a simple payment request without line items → <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">**Payment Links**</Anchor>
-* Want a buy or donate button on your website → <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">**Payment Buttons**</Anchor>
-* Want customers to pay on your website → PayU Hosted Checkout
-* You need a fully custom checkout experience → <Anchor target="_blank" href="doc:merchant-hosted-checkout">**Merchant Hosted Checkout**</Anchor>
+| I want to…                                                           |                                            Works?                                            |
+| -------------------------------------------------------------------- | :------------------------------------------------------------------------------------------: |
+| Send a formal itemized invoice to a client or customer               |                                               ✅                                              |
+| Include GST automatically with the correct CGST, SGST, or IGST split |                                               ✅                                              |
+| Set a due date and let customers pay directly from the invoice       |                                               ✅                                              |
+| Collect a partial payment and let the customer pay the balance later |                                               ✅                                              |
+| Track which invoices are paid, pending, or overdue                   |                                               ✅                                              |
+| Send a simple payment request without line items                     |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-overview)           |
+| Add a pay button to my website                                       |          ⚠️ Use [Payment Buttons](https://docs.payu.in/docs/payment-button-overview)         |
+| Collect payments from many customers at once                         |         ⚠️ Use [Bulk Payment Links](https://docs.payu.in/docs/payment-links-overview)        |
+| Set up recurring auto-debit or subscriptions                         |           ⚠️ Use [Recurring Payments](https://docs.payu.in/docs/recurring-payments)          |
+| Full custom checkout experience                                      | ⚠️ Use [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) |
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution Is Right For You?**
@@ -115,7 +114,33 @@ Consider another PayU solution if you:<br />
 
 ***
 
-## What Will I Need?
+## Common Use Cases
+
+<Cards>
+  <Card title="Freelance Services" icon="fa-laptop-code">
+    Add your services to the items catalog once — design, copywriting, development, strategy — and pull them into any invoice in seconds. Each line item carries its own GST rate, so the final tax amount is always calculated correctly. No spreadsheet, no manual tax lookup, no re-entering the same details invoice after invoice.
+  </Card>
+
+  <Card title="Consulting Agencies" icon="fa-building">
+    Bill corporate clients with the detail their finance teams require: your GSTIN, their GSTIN, invoice number, due date, and every deliverable as a separate line item. The invoice lands in their inbox with a pay-now button. When they pay, your Dashboard updates instantly — the status moves from **Sent** to **Paid** without any manual reconciliation.
+  </Card>
+
+  <Card title="SMEs and Traders" icon="fa-boxes-stacked">
+    Raise invoices for goods with HSN codes assigned per line item. PayU automatically splits the tax into CGST and SGST for intra-state sales, or IGST for inter-state — based on the states your and your customer's GSTINs are registered in. Every invoice is GST-compliant and downloadable the moment it is created.
+  </Card>
+
+  <Card title="Training Institutes" icon="fa-graduation-cap">
+    Send a course or batch fee invoice with a due date and partial payment enabled. Set the minimum first payment — say, 40% at enrollment — and let students settle the balance by the due date. Each payment updates the invoice status in real time, so your accounts team always knows exactly what has been collected and what is outstanding.
+  </Card>
+
+  <Card title="CAs and Tax Professionals" icon="fa-calculator">
+    Issue invoices for audit, filing, or retainer services with your firm's GSTIN and the client's GSTIN on record. The client downloads the invoice as a PDF for their books. You export all invoice data as CSV at month-end for your own accounting — no double entry, no data re-keying.
+  </Card>
+</Cards>
+
+***
+
+## What All I Need to Get Started?
 
 You don't need a developer or any coding experience to get started.<br />
 
@@ -158,6 +183,23 @@ Here is how it works:
     **Need detailed steps?** See [Create an Invoice →](doc:create-an-invoice)
   </Column>
 </Columns>
+
+***
+
+## Is My Invoice Secure?
+
+Yes. When a customer clicks the pay-now button in the invoice, they are taken to PayU's PCI-DSS compliant hosted payment page. Your customer's card and UPI details are entered directly on PayU's infrastructure. Your system never receives or processes sensitive payment data. You do not need to configure anything for this.<br />
+
+You control payment exposure through two settings available at invoice creation:<br />
+
+* **Due date**: the invoice stops accepting payments after the date you set.
+* **Partial payment minimum**: if partial payments are enabled, you set the minimum first payment amount, preventing under-payments.
+
+<Cards>
+  <Card title="For Developers" icon="fad fa-key">
+    Invoices use the same OAuth2 API as Payment Links. The `invoiceNumber` field in the Dashboard maps to `id` in the API. Webhook events for invoices are `INVOICE_PAID_HTTP_V2`, `INVOICE_FAILED_HTTP_V2`, and `INVOICE_DUE_HTTP`.&#x20;
+  </Card>
+</Cards>
 
 ***
 
