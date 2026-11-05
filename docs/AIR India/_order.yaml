@@ -1,5 +1,4 @@
 - air-india-integration-apis
-- payment-options-api
 - capture-transaction-api
 - cancel-pre-authorized-transaction-api
 - refund-initiation-api
