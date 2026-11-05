@@ -285,3 +285,13 @@ next:
 
   For a single specific invoice, open it from the Invoices list — you can then print or save it as a PDF from your browser using **Print → Save as PDF**. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#how-do-i-download-my-invoice-records">How Do I Download My Invoice Records?</Anchor> for steps to download invoice records.
 </Accordion>
+
+***
+
+6. #### When will I receive the money in my bank account?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  PayU settles successful payments to your registered bank account within **T+1 or T+2 business days** where T is the date the payment was received. Most transactions settle the next business day.<br />
+
+  You can view the settlement status, track each UTR, and download reports from the **Settlements** section of your PayU Dashboard.
+</Accordion>
