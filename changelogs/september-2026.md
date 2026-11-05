@@ -60,3 +60,57 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
 
   - [Banking Connect - IBMB or NBBL](https://docs.payu.in/docs/banking-connect-ibmb-or-nbbl)
 </Accordion>
+
+## Partner Integration Enhancements
+
+<Accordion title="Offline Merchant Onboarding API" icon="fa-code">
+  <Columns layout="auto">
+    <Column>
+      <div style={{ borderLeft: '3px solid #208B75', paddingLeft: '16px' }}>
+
+        **Date:** September 18, 2026  
+        **Product:** Partner Platform / Onboarding  
+        **Feature/API:** Offline Merchant Onboarding API  
+        **Impact:** Medium  
+        **Breaking Change:** No  
+        **Action Required:** Optional, for partners onboarding offline merchants
+      </div>
+    </Column>
+  </Columns>
+
+  **Summary**
+
+  PayU has extended its Partner Onboarding APIs to support physical, brick-and-mortar merchants without an active website or mobile app. Partners can now programmatically register offline merchants, specify whether a POS terminal is needed, and submit physical verification data—including store photos and geolocation coordinates—directly via API wrappers.
+
+  **Why this matters**
+
+  Previously, the Partner Onboarding flow was optimized primarily for online merchants (`PayuBiz`), requiring website and app URLs for compliance checks. Partners serving offline retail networks, ERP ecosystems, and field sales channels can now onboard physical merchants end-to-end without redirection to web dashboards or manual operational workarounds.
+
+  **Who is affected**
+
+  - Platform partners, aggregators, and ERPs referring offline retail merchants.
+  - Developers integrating PayU Partner Onboarding APIs (`POST /api/v3/merchants` or `POST /api/v1/merchants`).
+  - Operations and risk teams handling physical store onboarding and verification.
+
+  **What's new**
+
+  - **Onboarding Mode Parameter:** Include `onboarding_type: "offline"` in the Create Merchant request payload. If omitted, the request defaults to standard `online` onboarding.
+  - **POS Indicator Parameter:** When `onboarding_type` is set to `offline`, the `pos_merchant` boolean parameter is required (`true` if a POS terminal is needed, `false` otherwise). Omitting this parameter for offline merchants returns an HTTP 422 error.
+  - **Shop Photo Upload API:** Submit physical store imagery using `POST /api/v3/merchants/{mid}/shop_photos` to capture storefront and interior evidence.
+  - **Geolocation Capture API:** Record the establishment's physical coordinates using `POST /api/v3/merchants/{mid}/geo_location`.
+  - **Bank Statement Upload API:** Upload bank statements for POS offline merchants via `POST /api/v3/merchants/{mid}/bank_statements` (applicable when `pos_merchant: true`).
+  - **Partner Classification Verification:** The onboarding pipeline automatically respects partner classification: Registered Entity (RE) partners can leverage Customer Point of Visit (CPV) verification as an alternative to VKYC, whereas Non-RE partners follow standard mandatory VKYC requirements.
+  - **Full Backward Compatibility:** Existing partner integrations creating online merchants without `onboarding_type` or `pos_merchant` continue operating without any changes.
+
+  **Action required**
+
+  Partners integrating offline merchant onboarding should update their Create Merchant payload to supply `onboarding_type: "offline"` and `pos_merchant: true | false`, and integrate the shop photo, geolocation, and bank statement endpoints into their submission sequence as applicable.
+
+  **Need to migrate**
+
+  No. This is a backward-compatible enhancement. Existing partner onboarding integrations for online merchants do not require modification.
+
+  **Related documentation**
+
+  - [Partner Offline Merchant Onboarding API](https://docs.payu.in/update/reference/partner-offline-merchant-onboarding-api)
+</Accordion>
