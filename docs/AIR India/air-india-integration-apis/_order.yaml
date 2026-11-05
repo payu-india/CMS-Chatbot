@@ -6,3 +6,4 @@
 - calculate-emi-api
 - fetch-order-status-api
 - payment-options-api
+- capture-transaction-api
