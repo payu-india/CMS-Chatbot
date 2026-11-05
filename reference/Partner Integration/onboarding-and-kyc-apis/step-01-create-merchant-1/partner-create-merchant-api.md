@@ -21,7 +21,7 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   - **Entity applicability:** All entities.
   - Store `mid` and `uuid` from the response. The saved response for this collection item does not contain `product_account_uuid`.
 
-  For request parameters with Try IT experience, refer to [Request Parameters](#request-parameters)
+  For request parameters with Try IT experience, refer to [Request Parameters.](#request-parameters)
 </Callout>
 
 **HTTP Method**: POST
