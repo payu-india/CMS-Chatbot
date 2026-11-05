@@ -224,7 +224,7 @@ You can also confirm transaction status programmatically using the [Verify Payme
 
 ## **Handle Retries After a Failed Payment**
 
-If the status is `failure` or `userCancelled` and the customer wants to try again, do not reuse the same `txnid`. Every payment attempt — including retries — must use a unique transaction ID. Generate a new `txnid`, build a fresh payment request with the new hash, and redirect the customer again. Your `furl` handler should present a clear "Try Again" option that triggers this flow rather than asking the customer to navigate back manually.
+If the status is `failure` or `userCancelled` and the customer wants to try again, do not reuse the same `txnid`. Every payment attempt, including retries must use a unique transaction ID. Generate a new `txnid`, build a fresh payment request with the new hash, and redirect the customer again. Your `furl` handler should present a clear **Try Again** option that triggers this flow rather than asking the customer to navigate back manually.
 
 ***
 
