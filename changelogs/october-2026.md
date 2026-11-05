@@ -4,6 +4,8 @@ author: Raghuram Pandurangan
 hidden: true
 published_at: '2026-11-05T05:40:55.837Z'
 ---
+Discover PayU payment capabilities, API enhancements, and integration changes for October 2026. This changelog is for merchants and developers integrating PayU APIs. Availability can depend on merchant activation, payment-method support, or eligibility described in the relevant entry.
+
 ## Developer Tools & AI
 
 <Accordion title="Integrate PayU Hosted Checkout with AI (MCP Skill)" icon="fa-code">
