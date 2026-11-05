@@ -454,6 +454,14 @@ You can filter the <Glossary>payment links</Glossary> list using the following o
 
 ***
 
+## Split the Settlement Across Multiple Accounts
+
+If your business operates as a **marketplace, aggregator, or platform**, collecting payments on behalf of vendors, service providers, or partners, PayU can automatically <Anchor target="_blank" href="https://docs.payu.in/docs/split-settlments">split the settlement</Anchor> from each Payment Link transaction into multiple bank accounts.
+
+You define the split rules: by absolute amount or by percentage, applied either at the time of the transaction or after collection. Each sub-merchant receives their portion directly; you retain your platform fee.
+
+***
+
 ## Next Steps
 
 <Cards>
