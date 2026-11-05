@@ -11,7 +11,7 @@ metadata:
 <Banner
   isInline={true}
   message="Integration effort: Developer required"
-  color="#FFF3E0"
+  color="#F5C27A"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
