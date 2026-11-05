@@ -15,12 +15,12 @@ next:
 ---
 <Banner
   isInline={true}
-  message="Integration effort: Some technical setup required"
-  color="#FFC107"
-  textColor="#000000"
+  message="Integration effort: Developer required"
+  color="#E9A23B"
+  textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
-/>
+ />
 
 ## How Does PayU Hosted Checkout Simplify My Business?
 
