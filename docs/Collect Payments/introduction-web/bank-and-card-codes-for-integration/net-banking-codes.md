@@ -39,6 +39,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Capital Small Finance Bank Retail           | `CSFBR`    |
 | Catholic Syrian Bank                        | `CSBN`     |
 | Central Bank Of India                       | `CBIB`     |
+| Central Bank Of India Retail                | `CBIRB`    |
 | City Union Bank                             | `CUBB`     |
 | Cosmos Bank                                 | `CSMSNB`   |
 | DCB Bank                                    | `DCBB`     |
@@ -55,6 +56,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | IDBI Bank                                   | `IDBB`     |
 | IDBI Corp Netbanking                        | `IDBICORP` |
 | IDFC FIRST Bank                             | `IDFCNB`   |
+| INDI CORP                                   | `INDSCBNB` |
 | Indian Bank                                 | `INDB`     |
 | Indian Bank (Erstwhile Allahabad Bank)      | `ALLB`     |
 | Indian Overseas Bank                        | `INOB`     |
@@ -87,6 +89,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Tamilnad Mercantile Bank                    | `TMBB`     |
 | UCO Bank                                    | `UCOB`     |
 | UCO Corporate                               | `UCOCNB`   |
+| Ujjivan Bank                                | `UJJNB`    |
 | Union Bank - Retail Netbanking              | `UBIB`     |
 | Union Bank - Corporate Netbanking           | `UBIBC`    |
 | Yes Bank                                    | `YESB`     |
