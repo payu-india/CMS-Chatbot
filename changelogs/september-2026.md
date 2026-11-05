@@ -35,7 +35,7 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
 
   - Merchants offering Net Banking on their checkout pages.
   - Developers managing web checkout or mobile app integrations.
-  - Operations and finance teams handling Net Banking settlements and reconciliation.
+  - Operations and finance teams handling Net Banking settlements and reconciliation.<br />
 
   **What's new**<br />
 
@@ -46,11 +46,11 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
   - **Uncapped High-Value Payments:** Full Net Banking limits are preserved for large ticket-size transactions.
   - **Phased Rollout:** PayU can enable banks individually or configure traffic splits to evaluate conversion metrics before a full rollout.
   - **Currently Live Banks:** HDFC Bank, ICICI Bank, Axis Bank, and YES Bank.
-  - **Upcoming Banks:** SBI, IDBI Bank, Bank of Baroda, IDFC FIRST Bank, Canara Bank, Kotak Mahindra Bank, CSB Bank, Federal Bank, and AU Small Finance Bank.
+  - **Upcoming Banks:** SBI, IDBI Bank, Bank of Baroda, IDFC FIRST Bank, Canara Bank, Kotak Mahindra Bank, CSB Bank, Federal Bank, and AU Small Finance Bank.<br />
 
   **Action required**<br />
 
-  Contact your PayU Key Account Manager (KAM) or PayU Support to enable Banking Connect on your Merchant ID (MID). No code changes are required for existing web integrations.
+  Contact your PayU Key Account Manager (KAM) or PayU Support to enable Banking Connect on your Merchant ID (MID). No code changes are required for existing web integrations.<br />
 
   **Need to migrate**<br />
 
