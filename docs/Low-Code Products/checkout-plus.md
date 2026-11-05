@@ -26,7 +26,7 @@ metadata:
 </Accordion>
 
 <Accordion title="Built-in retry keeps customers in the payment flow">
-  If a payment fails at the bank or during 3DS authentication, the modal resets to the payment form automatically — without cancelling the order or navigating away. The customer can select a different card or payment method and try again immediately, without restarting the checkout process from scratch.
+  If a payment fails at the bank or during <Glossary>3DS authentication</Glossary>, the modal resets to the payment form automatically — without cancelling the order or navigating away. The customer can select a different card or payment method and try again immediately, without restarting the checkout process from scratch.
 </Accordion>
 
 <Accordion title="All major Indian payment methods — one bolt.launch() call" icon="fa-credit-card">
