@@ -143,63 +143,6 @@ Before you integrate, make sure you have:
 
 ***
 
-## How do I Integrate Checkout Plus?
-
-<Accordion title="Step 1: Set up PayU Hosted Checkout" icon="fa-circle-1">
-  Checkout Plus wraps the PayU Hosted Checkout experience in a modal. Before adding the Checkout Plus SDK to your website, you must have a working PayU Hosted Checkout integration — including account creation, credentials, and hash generation.
-
-  If you haven't done this yet, start with [PayU Hosted Checkout](../prebuilt-checkout-payu-hosted).
-</Accordion>
-
-<Accordion title="Step 2: Add the Bolt JavaScript SDK to your website" icon="fa-circle-2">
-  Add the viewport meta tag and the Bolt SDK script in the `<head>` of your checkout page.
-
-  **Test (UAT) environment:**
-
-  ```html
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://jssdk-uat.payu.in/bolt/bolt.min.js"></script>
-  ```
-
-  **Production environment:**
-
-  ```html
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://jssdk.payu.in/bolt/bolt.min.js"></script>
-  ```
-</Accordion>
-
-<Accordion title="Step 3: Generate the hash and call bolt.launch()" icon="fa-circle-3">
-  When the customer clicks your payment button, your backend generates the transaction hash and returns it to the frontend. Your page then calls `bolt.launch(data, handlers)` with the transaction parameters and response handlers.
-
-  ```javascript
-  bolt.launch(data, handlers);
-  ```
-
-  - `data` — transaction parameters including your merchant key, hash, amount, and customer details
-  - `handlers` — object containing `responseHandler()` and `catchException()` functions
-
-  The Bolt SDK opens the PayU payment modal on your page. The customer selects a payment method and completes payment inside the modal.
-</Accordion>
-
-<Accordion title="Step 4: Handle the payment result in responseHandler()" icon="fa-circle-4">
-  After the customer completes, fails, or cancels payment, the Bolt SDK calls your `responseHandler()` function with the result. The response includes `BOLT.response.txnStatus` with one of three values:
-
-  | `txnStatus` | What happened                                  |
-  | ----------- | ---------------------------------------------- |
-  | `SUCCESS`   | Payment was completed successfully             |
-  | `FAILED`    | Payment failed at the bank or payment provider |
-  | `CANCEL`    | Customer closed or cancelled the payment modal |
-
-  Update your order state based on the status. For `FAILED` and `CANCEL`, keep the customer on the checkout page and allow retry.
-</Accordion>
-
-<Callout icon="📘" theme="info">
-  For the complete implementation guide including all parameters, hash formula, code samples, and response handling — see [Build Integration](./integrate/build-integration).
-</Callout>
-
-***
-
 ## Is My Integration Secure?
 
 Checkout Plus uses the same security model as PayU Hosted Checkout, with one important difference in how the hash reaches the browser.
