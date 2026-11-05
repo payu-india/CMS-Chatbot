@@ -54,7 +54,7 @@ Discover PayU payment capabilities, API enhancements, and integration changes fo
 
   **Need to migrate**<br />
 
-  No. Existing Net Banking payment requests remain fully backward-compatible. Banking Connect routing is applied seamlessly at the PayU gateway layer once activated.
+  No. Existing Net Banking payment requests remain fully backward-compatible. Banking Connect routing is applied seamlessly at the PayU gateway layer once activated.<br />
 
   **Related documentation**<br />
 
