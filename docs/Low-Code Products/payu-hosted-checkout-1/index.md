@@ -151,7 +151,7 @@ Before you integrate, make sure you have:<br />
                 }
                 </style>
 
-                <button onclick="window.open('https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link', '_blank')" 
+                <button onclick="window.open('https://docs.payu.in/docs/payu-hosted-checkout-quick-start', '_blank')" 
                         class="tooltip-btn" 
                         data-tooltip="Follow the guided steps to set up and test your first payment.">
                     Set Up and Test Your First Payment →
