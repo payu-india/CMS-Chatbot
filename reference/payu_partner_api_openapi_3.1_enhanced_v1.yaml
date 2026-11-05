@@ -333,38 +333,6 @@ paths:
                   description: >-
                     `string` — Entity type; determines CKYC method and later
                     steps
-                merchant[onboarding_type]:
-                  type: string
-                  default: online
-                  enum:
-                    - online
-                    - offline
-                  description: >-
-                    Post the value as "online" for online merchants. For offline
-                    or merchants using QR, post "offline"
-                merchant[pos_merchant]:
-                  type: boolean
-                  default: 'false'
-                  description: >-
-                    Post the values as "true" if you select the values as
-                    "offline: for the "merchant[onboarding_type]" propeery.
-                merchant[latitude]:
-                  type: string
-                  default: ''
-                  description: Merchant geographical latitude co-ordinate.
-                merchant[longitude]:
-                  type: string
-                  default: ''
-                  description: Merchant geographical longitude co-ordinate.
-                merchant[business_entity_sub_type]:
-                  type: string
-                  enum:
-                    - company_owned
-                    - partner_retail
-                    - franchise_owned_franchise_operated
-                    - franchise_owned_company_operated
-                  description: Post the value for Offline onboarding.
-                  default: company_owned
               required:
                 - merchant[display_name]
                 - merchant[email]
