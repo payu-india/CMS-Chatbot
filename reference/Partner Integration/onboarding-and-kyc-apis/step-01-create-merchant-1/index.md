@@ -2,7 +2,10 @@
 title: Step 01 — Create Merchant
 hidden: false
 ---
-Creates a new merchant account on PayU. Returns `mid` and `uuid` identifiers used in all subsequent steps.
+Creates a new merchant account on PayU. Returns `mid` and `uuid` identifiers used in all subsequent steps.  You can create a merchant with regualar onbarding or offline onboarding using **Create Merchant&#x20;**&#x41;PI as described in the following sections:
+
+- [Create Merchant API](ref:partner-create-merchant-api)
+- [Offline Merchant Onboarding API](ref:partner-offline-merchant-onboarding-api)
 
 ## Prerequisite Steps
 
