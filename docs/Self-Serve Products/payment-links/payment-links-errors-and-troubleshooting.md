@@ -156,6 +156,20 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 
 ***
 
+## Can My Customer Retry a Failed Payment?
+
+<Accordion title="Retrying after a failed payment attempt" icon="far fa-retweet">
+  Yes. The Payment Link stays **Active** after a failed payment. Ask them to click the same URL again and try a different payment method, or retry the same one.
+
+  There is no limit on how many attempts a customer can make on an Active link. Each attempt is a separate transaction, if one fails, the customer is not charged and can try again immediately.
+
+  **If the customer is worried they were charged on a failed attempt:** Payments are only captured on success. A failed attempt may show as a temporary hold on a card, but the bank releases it automatically within 2–7 business days. No amount is credited to your account until a payment succeeds.
+
+  **If you see duplicate entries after a retry:** Check the **Transactions** tab. Only the successful transaction will carry a `success` status. Failed attempts show as `failure`.
+</Accordion>
+
+***
+
 ## Why Did My Bulk Upload Fail?
 
 <Accordion title="CSV Upload Errors" icon="far fa-file-csv">
