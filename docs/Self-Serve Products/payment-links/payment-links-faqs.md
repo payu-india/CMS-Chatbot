@@ -470,6 +470,18 @@ next:
 
 ***
 
+8. #### When will I receive the money in my bank account?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  PayU settles successful payments to your registered bank account within **T+1 or T+2 business days** where T is the date the payment was received. Most transactions settle the next business day.<br />
+
+  You can view the settlement status, track each UTR, and download reports from the **Settlements** section of your PayU Dashboard. Filter by transaction ID or date range to check whether a specific payment has been settled.<br />
+
+  If international payments are enabled on your account, the settlement cycle may be T+1 to T+3 depending on the currency corridor. Contact your PayU account manager for your specific timeline.
+</Accordion>
+
+***
+
 ## API Usage
 
 1. #### Do I need a special API key for Payment Links?
