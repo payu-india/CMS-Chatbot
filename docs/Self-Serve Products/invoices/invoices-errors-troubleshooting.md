@@ -111,6 +111,20 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 
 ***
 
+## Can My Customer Retry If Their Payment Failed?
+
+<Accordion title="Retrying After a Failed Payment" icon="far fa-rotate-right">
+  Yes. A failed payment does not affect the invoice, the status stays **Sent** and the pay-now button in the invoice email or SMS remains active. Your customer can click it again at any time to retry with the same or a different payment method.
+
+  There is no limit on retries. Each attempt is independent, if one fails, the customer is not charged and the invoice is unaffected.
+
+  **If the customer is concerned they were double-charged:** Payments are only captured on success. A failed attempt may appear as a temporary hold on a credit or debit card, but the bank releases it within 2–7 business days. No amount reaches your account until a payment succeeds.
+
+  **If the invoice due date has passed:** The pay button may no longer be active. Check the invoice status in your Dashboard, if it shows **Overdue**, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to check whether payment can still be accepted, or cancel the invoice and create a new one with an updated due date.
+</Accordion>
+
+***
+
 ## Why Is the Invoice Still Showing as Unpaid After Payment?
 
 <Accordion title="Payment Was Made but Status Has Not Updated" icon="far fa-clock">
