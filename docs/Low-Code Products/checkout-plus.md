@@ -204,6 +204,8 @@ Once payments are live, two areas become relevant depending on your business:
 
 ## Use AI to Help You
 
+Use an AI coding assistant with the PayU Developer MCP to search these docs, scaffold your Bolt SDK integration, and debug `responseHandler()` without leaving your editor. The prompts below work well as starting points.
+
 <Callout icon="💬" theme="info">
   **Example prompts for AI coding assistants**
 
