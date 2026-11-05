@@ -706,6 +706,8 @@ Begin integration now.
 
 ***
 
+<br />
+
 ## Next Steps
 
 <Cards>
