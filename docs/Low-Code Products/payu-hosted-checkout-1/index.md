@@ -235,26 +235,21 @@ Learn how to verify payment status and handle webhooks in the technical integrat
 
 ## What If My Customer Wants the Money Back?
 
-It depends on:<br />
+<Tabs>
+  <Tab title="Refunds">
+    Use PayU refunds to initiate. Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API
+  </Tab>
 
-- Whether you want to return the money yourself. Use PayU refunds to initiate.
-  <Cards>
-    <Card title="Refunds" href="doc:introduction-refunds" icon="fad fa-arrow-rotate-left" target="_blank">
-      Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API.
-    </Card>
-  </Cards>
-- You are waiting for the amount to reach your account. PayU settlements can help you find out when the amount will be settled.
-  <Cards>
-    <Card title="Settlements" href="doc:split-settlments" icon="fad fa-building-columns" target="_blank">
-      Understand how PayU settles funds to your bank account, view settlement reports, and split funds across multiple beneficiaries.
-    </Card>
-  </Cards>
-- Your customer has raised a complaint with their bank.
-  <Cards>
-    <Card title="Disputes and Chargebacks" href="doc:chargeback" icon="fad fa-shield-halved" target="_blank">
-      Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard
-    </Card>
-  </Cards>
+  <Tab title="Settlements">
+    You are waiting for the amount to reach your account. PayU settlements can help you find out when the amount will be settled.
+  </Tab>
+
+  <Tab title="Disputes and Chargebacks">
+    Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard.
+  </Tab>
+</Tabs>
+
+***
 
 ## Use AI to Help You
 
