@@ -30,7 +30,6 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Axis Corporate Netbanking                   | `AXISCNB`  |
 | Bandhan Bank                                | `BANDNB`   |
 | Bank of Baroda                              | `BBRB`     |
-| Bank of India                               | `BOIB`     |
 | Bank of India - Corporate                   | `BOICONB`  |
 | Bank of India - Retail                      | `BOINB`    |
 | Bank of Maharashtra                         | `BOMB`     |
@@ -40,7 +39,6 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Capital Small Finance Bank Retail           | `CSFBR`    |
 | Catholic Syrian Bank                        | `CSBN`     |
 | Central Bank Of India                       | `CBIB`     |
-| Central Bank Of India Retail                | `CBIRB`    |
 | City Union Bank                             | `CUBB`     |
 | Cosmos Bank                                 | `CSMSNB`   |
 | DCB Bank                                    | `DCBB`     |
