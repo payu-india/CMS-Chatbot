@@ -28,7 +28,7 @@ This feature operates purely at the UI/UX presentation layer on top of your exis
 <Callout icon="far fa-circle-info" theme="info">
   ### Festive Animation cannot be customized
 
-  If you enable the Festive Checkout Experience, the animations on the checkout page displayed cannot be customized. It is displayed as mentioned in the sample screens under the [Supported Checkout Experiences & Platforms](#supported-checkout-experiences-_-platforms)
+  If you enable the Festive Checkout Experience, the animations on the checkout page displayed cannot be customized. It is displayed similar to the screenshots under [Sample Checkout pages.](#sample-checkout-pages)
 </Callout>
 
 | Benefit                             | Description                                                                                                                                          |
