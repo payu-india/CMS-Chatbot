@@ -147,7 +147,7 @@ Follow the steps below to integrate the PayU POS V2 API into your Billing/POS sy
       from datetime import datetime, timezone
 
       def initiate_pos_payment():
-          url = "<YOUR_API_ENDPOINT_URL>"
+          url = "https://apitest.payu.in/v2/payments"
           headers = {
               "Content-Type": "application/json",
               "date": datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT"),
@@ -187,7 +187,7 @@ Follow the steps below to integrate the PayU POS V2 API into your Billing/POS sy
       ```
       ```javascript
       async function initiatePosPayment() {
-          const url = "<YOUR_API_ENDPOINT_URL>";
+          const url = "https://apitest.payu.in/v2/payments";
           const headers = {
               "Content-Type": "application/json",
               "date": new Date().toUTCString(),
@@ -241,7 +241,7 @@ Follow the steps below to integrate the PayU POS V2 API into your Billing/POS sy
       public class PayUPosPayment {
           public static void main(String[] args) {
               try {
-                  URL url = new URL("<YOUR_API_ENDPOINT_URL>");
+                  URL url = new URL("https://apitest.payu.in/v2/payments");
                   HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                   conn.setRequestMethod("POST");
                   conn.setRequestProperty("Content-Type", "application/json");
@@ -273,7 +273,7 @@ Follow the steps below to integrate the PayU POS V2 API into your Billing/POS sy
       ```
       ```php
       <?php
-      $url = "<YOUR_API_ENDPOINT_URL>";
+      $url = "https://apitest.payu.in/v2/payments";
       $payload = [
           "accountId" => "smsplus",
           "txnId" => "POS_TXN_987654321",
