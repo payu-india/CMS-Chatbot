@@ -184,4 +184,4 @@ Before initiating in-store transactions via API, verify the following prerequisi
 ## Next Steps
 
 1. Integration POS using **v2/payments** API. For more information, refer to [Omni POS Integration.](doc:omni-pos-integration)
-2. Verify the Transaction Status ( \\<awaiting info> ).&#x20;
+2. Verify the Transaction Status ( awaiting info ).&#x20;
