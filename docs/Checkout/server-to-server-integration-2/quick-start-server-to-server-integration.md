@@ -10,8 +10,6 @@ metadata:
 
 This guide walks you through the minimal, essential steps to integrate PayU Server-to-Server (S2S) payment gateway, including mandatory request parameters with clear demarcation between generic payment parameters and S2S-specific routing fields, sample requests, and sample responses.
 
----
-
 ## Prerequisites
 
 Before initiating transactions, ensure you have:
@@ -23,18 +21,18 @@ Before initiating transactions, ensure you have:
 
 ---
 
-### API Endpoints
+#### Environment
 
 All S2S transactions are initiated via a server-side `POST` request with `application/x-www-form-urlencoded` encoding.
 
-| Environment | Base URL | Endpoint | Full URL |
-| :--- | :--- | :--- | :--- |
-| **Test / Sandbox** | `<redacted URL>` | `/_payment` | `<redacted URL>` |
-| **Production** | `<redacted URL>` | `/_payment` | `<redacted URL>` |
+| Environment        | Base URL                                                                                        |
+| :----------------- | :---------------------------------------------------------------------------------------------- |
+| **Test / Sandbox** | [https://test.payu.in/\_payment](https://test.payu.in/_payment "https://test.payu.in/_payment") |
+| **Production**     | [https://secure.payu.in/\_payment](https://test.payu.in/_payment "https://test.payu.in/_payment") |
 
 ---
 
-## 1. Understand the Request Parameters
+## 1. Prepare the Request Parameters & Hashing
 
 To clearly demarcate how an S2S request is constructed, parameters are organized into two distinct categories:
 1. **Core Payment Parameters**: Standard transaction details common across PayU integrations.
@@ -78,8 +76,6 @@ These parameters tell PayU's payment engine how to process the transaction direc
 
 ---
 
-### Hash Calculation
-
 PayU verifies transaction integrity using a SHA-512 checksum. Calculate the hash strictly on your server:
 
 ### Hash Formula
@@ -94,12 +90,12 @@ hash = SHA-512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|
 
 ---
 
-## 5. Post the Request
+## 2. Post the Request
 
 ### Sample 1: Cards Classic S2S Request (with ACS Template)
 
 ```bash
-curl -X POST <redacted URL> \
+curl -X POST `https://test.payu.in/_payment`  \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=gtKFFx" \
   -d "txnid=TXN_CARD_1001" \
@@ -127,7 +123,7 @@ curl -X POST <redacted URL> \
 ### Sample 2: UPI Intent S2S Request
 
 ```bash
-curl -X POST <redacted URL> \
+curl -X POST `https://test.payu.in/_payment` \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=gtKFFx" \
   -d "txnid=TXN_UPI_2001" \
@@ -146,7 +142,7 @@ curl -X POST <redacted URL> \
 
 ---
 
-## 6. Parse the Response
+## 3. Handle the Response
 
 ### Response 1: Cards S2S with 3DS Challenge (`acsTemplate`)
 
