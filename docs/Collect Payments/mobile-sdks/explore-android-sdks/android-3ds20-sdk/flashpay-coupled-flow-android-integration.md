@@ -122,7 +122,6 @@ implementation 'in.payu:threeds-sdk:3.1.0'
   config.bgGradientColor = "#FF5733"   // hex color string
   config.hideInitialLoader = true // pass true to hide the initital loader
   config.merchantAutoInvokeBiometricTime = 10.0  // 
-  config.bgGradientColor = "#FF5733"  // hex: #RRGGBB or #AARRGGBB
   ```
 
   #### ACS content configurations
@@ -240,13 +239,13 @@ implementation 'in.payu:threeds-sdk:3.1.0'
   <Accordion title="Logo Customization" icon="fad fa-l">
     <br />
 
-    ```text
+    ```kotlin kotlin
     val logoCustomization = LogoCustomization(
-        merchant             = R.drawable.your_merchant_logo,      // shown on auth selection screen
-        mfaBiometric         = R.drawable.your_fingerprint_icon,   // biometric option icon
-        mfaMessaging         = R.drawable.your_otp_icon,           // OTP option icon
-        mfaTick              = R.drawable.your_tick_icon,          // tick/check icon
-        mfaBiometricEnabled  = R.drawable.your_biometric_enabled,  // biometric-enabled state icon
+        merchant = R.drawable.your_merchant_logo, // shown on auth selection screen
+        mfaBiometric = R.drawable.your_fingerprint_icon, // biometric option icon
+        mfaMessaging = R.drawable.your_otp_icon,   // OTP option icon
+        mfaTick = R.drawable.your_tick_icon,      // tick/check icon
+        mfaBiometricEnabled = R.drawable.your_biometric_enabled,  // biometric-enabled state icon
     )
     ```
   </Accordion>
@@ -658,7 +657,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
     Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
     <Accordion title="ALTID  with PayU" icon="fa-code">
-      To make payments using a previously saved card, you need to pass both the network token and the card token..
+      To make payments using ALTID, you need to pass below details :-
 
       ```kotlin
       mPaymentParams.altId = altId
