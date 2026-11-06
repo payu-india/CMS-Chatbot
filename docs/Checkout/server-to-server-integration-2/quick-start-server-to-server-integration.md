@@ -6,8 +6,6 @@ icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
 ---
-# Quick Start: PayU Server-to-Server (S2S)
-
 This guide walks you through the minimal, essential steps to integrate PayU Server-to-Server (S2S) payment gateway, including mandatory request parameters with clear demarcation between generic payment parameters and S2S-specific routing fields, sample requests, and sample responses.
 
 ## Prerequisites
