@@ -88,8 +88,8 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | UCO Bank                                    | `UCOB`     |
 | UCO Corporate                               | `UCOCNB`   |
 | Ujjivan Bank                                | `UJJNB`    |
-| Union Bank - Retail Netbanking              | `UBIB`     |
-| Union Bank - Corporate Netbanking           | `UBIBC`    |
+| Union Bank of India - Retail Netbanking     | `UBIB`     |
+| Union Bank of India - Corporate Netbanking  | `UBIBC`    |
 | Yes Bank                                    | `YESB`     |
 
 <br />
