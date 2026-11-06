@@ -12,10 +12,10 @@ This part of the document provides technical specifications and implementation c
 
 ## Environment
 
-| Environment        | Base URL         | Transaction Initiation Endpoint | Post-Service Endpoint |
-| :----------------- | :--------------- | :------------------------------ | :-------------------- |
-| **Test / Sandbox** | `<redacted URL>` | `<redacted URL>`                | `<redacted URL>`      |
-| **Production**     | `<redacted URL>` | `<redacted URL>`                | `<redacted URL>`      |
+| Environment        |  URL                                                                                                  |
+| :----------------- | :---------------------------------------------------------------------------------------------------- |
+| **Test / Sandbox** | [https://test.payu.in/\_payment](https://test.payu.in/_payment "https://test.payu.in/_payment")       |
+| **Production**     | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment "https://secure.payu.in/_payment") |
 
 ***
 
@@ -32,8 +32,6 @@ hash = SHA-512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|
 ***
 
 ## Multi-Language Integration Implementations
-
-### 1. Node.js Implementation
 
 ```javascript
 const crypto = require('crypto');
@@ -139,11 +137,6 @@ async function initiateUpiIntentS2S() {
 
 module.exports = { generatePayUHash, verifyReverseHash, initiateCardsS2S, initiateUpiIntentS2S };
 ```
-
-***
-
-### 2. Java Implementation
-
 ```java
 package com.payu.s2s;
 
@@ -287,11 +280,6 @@ public class PayUS2SService {
     }
 }
 ```
-
-***
-
-### 3. Python Implementation
-
 ```python
 import hashlib
 import base64
@@ -407,11 +395,6 @@ if __name__ == "__main__":
     result = initiate_cards_s2s()
     print("Initiate Cards S2S Result:", result)
 ```
-
-***
-
-### 4. PHP Implementation
-
 ```php
 <?php
 
