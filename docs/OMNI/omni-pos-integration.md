@@ -46,12 +46,11 @@ An omni-channel Point of Sale (POS) integration using PayU's `v2/payments` API. 
 
 Follow the steps below to integrate the PayU POS V2 API into your Billing/POS system:
 
-<Callout icon="📘" theme="info">
-  ### **Base Endpoints**
+**Environment**
 
-  - **UAT / Sandbox**: `<redacted URL>`
-  - **Production**: `<redacted URL>`
-</Callout>
+- **UAT / Sandbox**: [https://apitest.payu.in/v2/payments](https://apitest.payu.in/v2/payments "https://apitest.payu.in/v2/payments")
+
+- **Production**: [https://api.payu.in/v2/payments](https://api.payu.in/v2/payments "https://api.payu.in/v2/payments")
 
 <Accordion title="Step 1.1: Request Parameters and Sample Request" icon="fa-shield-halved">
   All requests to `v2/payments` require specific headers for authentication and integrity:
@@ -92,13 +91,13 @@ Follow the steps below to integrate the PayU POS V2 API into your Billing/POS sy
       - Notes: use empty strings for missing fields, compute server-side, lowercase hex
 
       <Accordion title="Sample Code for Hashing" icon="far fa-code">
-        <HashingSample />
+          <HashingSample />
       </Accordion>
     </Tab>
 
     <Tab title="Sample Request">
       ```curl
-      curl --location '<YOUR_API_ENDPOINT_URL>' \
+      curl --location 'https://apitest.payu.in/v2/payments' \
       --header 'Content-Type: application/json' \
       --header 'date: Wed, 07 Oct 2026 08:30:00 GMT' \
       --header 'authorization: {{authorization}}' \
