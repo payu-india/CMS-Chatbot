@@ -31,7 +31,7 @@ hash = SHA-512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|
 
 ***
 
-## Multi-Language Integration Implementations
+## Sample Code for Hashing  
 
 ```javascript
 const crypto = require('crypto');
