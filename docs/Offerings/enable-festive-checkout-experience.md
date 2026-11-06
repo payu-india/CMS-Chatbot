@@ -1,5 +1,5 @@
 ---
-title: Enable Festive Checkout Experience
+title: Festive Checkout Experience
 deprecated: false
 hidden: true
 metadata:
@@ -16,9 +16,9 @@ This feature operates purely at the UI/UX presentation layer on top of your exis
 </Callout>
 
 <Callout icon="📞" theme="warn">
-  ### **How to activate?**
+  ### **How to deactivate?**
 
-  Festive Elements are enabled at the Merchant ID (MID) profile level by PayU. To activate festive themes for your checkout or inquire about upcoming seasonal campaigns, please contact your **Key Account Manager (KAM)** or write to **PayU Support** ([care@payu.in](mailto:care@payu.in)). No code updates or API revisions are required on your website or application.
+  Festive Elements are enabled by default to all merchants and can be deactived at the Merchant ID (MID) profile level by PayU. To deactivate festive themes for your checkout,  contact your **Key Account Manager (KAM)** or write to **PayU Support** ([integration-support@payu.in](mailto:integration-support@payu.in)). No code updates or API revisions are required on your website or application.
 </Callout>
 
 ***
