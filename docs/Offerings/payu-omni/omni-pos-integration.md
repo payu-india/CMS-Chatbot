@@ -2,7 +2,9 @@
 title: Omni POS Integration
 deprecated: false
 hidden: true
-icon: far fa-arrow-left-from-dotted-line
+link:
+  new_tab: true
+  url: https://docs.payu.in/v2/docs/omni-pos-integration
 metadata:
   robots: index
 ---
