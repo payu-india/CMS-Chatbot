@@ -64,7 +64,7 @@ When customers are redirected to PayU Hosted Checkout:
 
 #### Sample Checkout pages
 <Callout icon="far fa-circle-info" theme="info">
-The festive assests would change with changing festivals, the sample screenshot are just for reference.
+The festive assests will change with changing festivals, the sample screenshot here are only for reference.
 </Callout>
 **Checkout Pro**
 
