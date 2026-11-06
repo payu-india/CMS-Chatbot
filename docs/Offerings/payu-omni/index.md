@@ -183,16 +183,5 @@ Before initiating in-store transactions via API, verify the following prerequisi
 
 ## Next Steps
 
-<Cards columns="3">
-  <Card title="1. Setup Authentication" href="/reference/authentication">
-    Generate API credentials and build your HMAC-SHA256 signature generator.
-  </Card>
-
-  <Card title="2. Integrate Sale API" href="/merchant/sale">
-    Trigger your first in-store payment push to a test POS device.
-  </Card>
-
-  <Card title="3. Add Status Check" href="/merchant/status-enquiry">
-    Implement the Status Enquiry API to automate bill closure and reconciliation.
-  </Card>
-</Cards>
+1. Integration POS using **v2/payments** API. For more information, refer to [Omni POS Integration.](doc:omni-pos-integration)
+2. Verify the Transaction Status (\\<awaiting info>).&#x20;
