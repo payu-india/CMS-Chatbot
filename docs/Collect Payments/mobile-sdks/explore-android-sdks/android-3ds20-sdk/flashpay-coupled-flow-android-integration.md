@@ -119,6 +119,10 @@ implementation 'in.payu:threeds-sdk:3.1.0'
   config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeout
   config.merchantName = "merchant name" // pass merchant name with customised OTP Flow
   config.amount = "txn amount" // pass transaction amount with customised OTP Flow
+  config.bgGradientColor = "#FF5733"   // hex color string
+  config.hideInitialLoader = true // pass true to hide the initital loader
+  config.merchantAutoInvokeBiometricTime = 10.0  // 
+  config.bgGradientColor = "#FF5733"  // hex: #RRGGBB or #AARRGGBB
   ```
 
   #### ACS content configurations
@@ -137,21 +141,24 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
   #### Configuration properties
 
-  | Property                    | Description                                                                                                                                                                                    |
-  | :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | `isProduction`              | `Boolean` Set environment where you want to test: `true` for the Production environment `false` for the Test environment                                                                       |
-  | `autoRead`                  | `Boolean` Set the values as `true` to allow auto-read OTP and fill in the OTP field. By default, the value is `false`.                                                                         |
-  | `autoSubmit`                | `Boolean` Set the values as `true` to submit the OTP automatically without any user interaction. By default, the value is `false`.                                                             |
-  | `enableMFAViaBiometric`     | `Boolean` If set `true`, users will receive an option to enable biometric authentication during payment via OTP. The biometric registration process starts after the payment success callback. |
-  | `enableCustomizedOtpUIFlow` | `Boolean` To customise UI with your content please pass as true                                                                                                                                |
-  | `enableTxnTimeoutTimer`     | `Boolean` pass as true to show timer for page timeout                                                                                                                                          |
+  | Property                          | Description                                                                                                                                                                                            |
+  | :-------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `isProduction`                    | `Boolean` Set environment where you want to test: `true` for the Production environment `false` for the Test environment                                                                               |
+  | `autoRead`                        | `Boolean` Set the values as `true` to allow auto-read OTP and fill in the OTP field. By default, the value is `false`.                                                                                 |
+  | `autoSubmit`                      | `Boolean` Set the values as `true` to submit the OTP automatically without any user interaction. By default, the value is `false`.                                                                     |
+  | `enableMFAViaBiometric`           | `Boolean` If set `true`, users will receive an option to enable biometric authentication during payment via OTP. The biometric registration process starts after the payment success callback.         |
+  | `enableCustomizedOtpUIFlow`       | `Boolean` To customise UI with your content please pass as true                                                                                                                                        |
+  | `enableTxnTimeoutTimer`           | `Boolean` pass as true to show timer for page timeout                                                                                                                                                  |
+  | `hideInitialLoader`               | `Boolean` pass as true, SDK skips its own initial loader — merchant must show/hide their own.<br />Required pairing: implement onStatusUpdate (see §6) to know when to dismiss merchant's loader.      |
+  | `merchantAutoInvokeBiometricTime` | `Double`  Automatically triggers biometric authentication (fingerprint/Face ID) after a specified idle time on the authentication selection screen, eliminating the need for the user to tap manually. |
+  | `bgGradientColor`                 | `String` We will apply the bgGradientColor value as the background color of our registration biometric screen.                                                                                         |
 
   #### Configuration Notes
 
   * **setDefaultProgressLoader**: Customize via `config.setDefaultProgressLoader(true, "HexColor")`. This replaces the full-page loader with a default small loader.
 </Accordion>
 
-<Accordion title="UI Customations" icon="fa-cog">
+<Accordion title="UI customization" icon="fa-cog">
   <Accordion title="Button Customization" icon="fa-square">
     ```kotlin
     var buttonCustomisation = ButtonCustomisation.Builder()
@@ -220,11 +227,27 @@ implementation 'in.payu:threeds-sdk:3.1.0'
   </Accordion>
 
   <Accordion title="Font Customization" icon="fa-font">
+    <br />
+
     ```kotlin
     val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
         .setHeaderFontFamily("Header Font family path") // example: assets/fonts/lato-italic.ttf
         .setSubTextFontFamily("Sub text font family path") // example: assets/fonts/lato-italic.ttf
         .build()
+    ```
+  </Accordion>
+
+  <Accordion title="Logo Customization" icon="fad fa-l">
+    <br />
+
+    ```text
+    val logoCustomization = LogoCustomization(
+        merchant             = R.drawable.your_merchant_logo,      // shown on auth selection screen
+        mfaBiometric         = R.drawable.your_fingerprint_icon,   // biometric option icon
+        mfaMessaging         = R.drawable.your_otp_icon,           // OTP option icon
+        mfaTick              = R.drawable.your_tick_icon,          // tick/check icon
+        mfaBiometricEnabled  = R.drawable.your_biometric_enabled,  // biometric-enabled state icon
+    )
     ```
   </Accordion>
 
@@ -237,6 +260,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
         .setLabelCustomisation(labelCustomisation)
         .setFontFamilyCustomisation(fontFamilyCustomisation)
         .setBottomSheetCustomisation(bottomSheetCustomisation)
+        .setLogoCustomization(logoCustomization)
         .build()
     ```
   </Accordion>
@@ -271,8 +295,10 @@ implementation 'in.payu:threeds-sdk:3.1.0'
           mPaymentParams.nameOnCard = "<cardholderName>"
           mPaymentParams.expiryMonth = "<expiryMonth>"// MM
           mPaymentParams.expiryYear = "<expiryYear>"// YYYY
-  				mPaymentParams.cvv = "<cvv>"
-        	mPaymentParams.isPreAuthTxn = "<Boolean>" //Optional - Set this as true for pre auth transactions
+          mPaymentParams.cvv = "<cvv>"
+          mPaymentParams.forcePgId = "<pg_id_from_merchant>"  // optional - payment routing to specific gateway
+          mPaymentParams.altId = altId  // posts as "alt_id" in payment POST
+          mPaymentParams.isPreAuthTxn = "<Boolean>" //Optional - Set this as true for pre auth transactions
           mPaymentParams.partnerWebhookSuccess = "<Webhook Success  URL>"
           mPaymentParams.partnerWebhookFailure = "<Webhook Failure  URL>"
 
@@ -324,7 +350,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
         <td>
           100.0
 
-          <br />
+
         </td>
       </tr>
 
@@ -340,7 +366,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
         <td>
           "ProductInfo"
 
-          <br />
+
         </td>
       </tr>
 
@@ -356,7 +382,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
         <td>
           "Firstname"
 
-          <br />
+
         </td>
       </tr>
 
@@ -403,7 +429,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
         <td>
           The Surl that you have configured
 
-          <br />
+
         </td>
       </tr>
 
@@ -422,7 +448,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
         <td>
           The Furl that you have configured
 
-          <br />
+
         </td>
       </tr>
 
@@ -484,8 +510,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
       <tr>
         <td>
-          udf1\
-          optional\`
+          udf1<br />optional\`
         </td>
 
         <td>
@@ -499,8 +524,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
       <tr>
         <td>
-          udf2\
-          `optional`
+          udf2<br />`optional`
         </td>
 
         <td>
@@ -514,8 +538,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
       <tr>
         <td>
-          udf3\
-          `optional`
+          udf3<br />`optional`
         </td>
 
         <td>
@@ -529,8 +552,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
       <tr>
         <td>
-          udf4\
-          `optional`
+          udf4<br />`optional`
         </td>
 
         <td>
@@ -544,8 +566,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
       <tr>
         <td>
-          udf5\
-          `optional`
+          udf5<br />`optional`
         </td>
 
         <td>
@@ -598,6 +619,20 @@ implementation 'in.payu:threeds-sdk:3.1.0'
           The Failure URL that you have configured
         </td>
       </tr>
+
+      <tr>
+        <td>
+          forcePgId<br />`optional`
+        </td>
+
+        <td>
+          `String` Forces payment routing to specific gateway by sending `force_pgid`, bypassing PayU's default PG selection logic.
+        </td>
+
+        <td>
+
+        </td>
+      </tr>
     </tbody>
   </Table>
 
@@ -621,6 +656,25 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
   <Accordion title="Card Tokenization" icon="fa-code">
     Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
+
+    <Accordion title="ALTID  with PayU" icon="fa-code">
+      To make payments using a previously saved card, you need to pass both the network token and the card token..
+
+      ```kotlin
+      mPaymentParams.altId = altId
+      mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
+      mPaymentParams.expiryYear = "XXXX"            // Card expiry Year (YYYYY)
+      mPaymentParams.cvv = "<cvv>"
+      private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
+          var token = TokenizedCardAdditionalParam()
+          token.last4Digits = "XXXX"                // Last 4 digits of the card
+          token.tavv = "XXXXXXXXXXXXXX"             // Transaction authorization verification value
+          token.tokenRefNo = "XXXXXXXXXXXXXX"       // Reference number for tokenized card
+          token.trid = "XXXXXXXXXXXXXX"             // optional - Transaction ID for this payment
+          return token
+      }
+      ```
+    </Accordion>
 
     <Accordion title="Card Tokenization with PayU" icon="fa-code">
       To make payments using a previously saved card, you need to pass both the network token and the card token..
@@ -655,14 +709,14 @@ implementation 'in.payu:threeds-sdk:3.1.0'
   </Accordion>
 
   <Callout icon="📘" theme="info">
-    **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
+    **Saved Card Payments**: Requires both `networkToken` and `cardToken` `altId`under `mPaymentParams` for saved card-related transactions.
   </Callout>
 
   <br />
 
   | Parameters      | Description                                                                                                                                                                                                                                                                                                                          | Example  |
   | :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-  | userCredentials | `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\_user\_cards API. The format of the value is  *merchant key:user ID*                                                                                          | a:b      |
+  | userCredentials | `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API. The format of the value is  _merchant key:user ID_                                                                                            | a:b      |
   | storeCard       | `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:                                                                                                                                                                                                             | 1        |
   | networkToken    | `String` A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . | abcdefgh |
   | cardToken       | `String` A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   | abcdefgh |
@@ -713,18 +767,35 @@ implementation 'in.payu:threeds-sdk:3.1.0'
   fun onPaymentCancel(isTxnInitiated: Boolean)
   fun onError(errorCode: Int, errorMessage: String)
   fun generateHash(map: HashMap<String, String>, hashGenerationListener: PayUHashGeneratedListener)
-  fun mfaRegistrationStatus(response: Any?)
+  fun mfaRegistrationStatus(response: Any?) 
+  fun onStatusUpdate(response: JSONObject)
   ```
 
   <Accordion title="Callback Method Descriptions" icon="fa-list">
-    | Method                  | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
-    | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                                                                                                |
-    | `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                                                                                                          |
-    | `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                                                                                                   |
-    | `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                                                                                                       |
-    | `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor label="[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)" target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">hash-generation</Anchor> |
-    | `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                                                                                                           |
+    | Method                  | Description                                                                                                                                                                                                                                                                                                               |
+    | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                       |
+    | `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                 |
+    | `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                          |
+    | `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                              |
+    | `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">hash-generation</Anchor> |
+    | `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                  |
+  </Accordion>
+
+  <Accordion title="onStatusUpdate Callback" icon="far fa-a">
+    Implement PayU3DS2StatusUpdateCallback in your Activity/Fragment. Only fires when hideInitialLoader = true (plus MFA registration/txn events).
+
+    ```text kotlin
+    override fun onStatusUpdate(response: JSONObject) {
+            when {
+                response.optBoolean("dismissMerchantLoader") -> {
+                    // ACS page loaded — hide your custom loader now
+                    yourCustomLoader.hide()
+                }
+                // handle MFA events if needed
+            }
+        }
+    ```
   </Accordion>
 
   <Accordion title="Hash Generation" icon="fa-key">
