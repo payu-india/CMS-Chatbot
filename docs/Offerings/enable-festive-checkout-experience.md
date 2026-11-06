@@ -16,7 +16,7 @@ This feature operates purely at the UI/UX presentation layer on top of your exis
 </Callout>
 
 <Callout icon="📞" theme="warn">
-  ### **Account Activation Notice**
+  ### **How to activate?**
 
   Festive Elements are enabled at the Merchant ID (MID) profile level by PayU. To activate festive themes for your checkout or inquire about upcoming seasonal campaigns, please contact your **Key Account Manager (KAM)** or write to **PayU Support** ([care@payu.in](mailto:care@payu.in)). No code updates or API revisions are required on your website or application.
 </Callout>
@@ -24,6 +24,12 @@ This feature operates purely at the UI/UX presentation layer on top of your exis
 ***
 
 ## Key Merchant Benefits
+
+<Callout icon="far fa-circle-info" theme="info">
+  ### Festive Animation cannot be customized
+
+  If you enable the Festive Checkout Experience, the animations on the checkout page displayed cannot be customized. It is displayed as mentioned in the sample screens under the [Supported Checkout Experiences & Platforms](#supported-checkout-experiences-_-platforms)
+</Callout>
 
 | Benefit                             | Description                                                                                                                                          |
 | :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
