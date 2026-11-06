@@ -170,4 +170,8 @@ Communicate with the PayU Payments APIs using **Model Context Protocol** to coll
 
 https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/overview
 
-<br />
+# 📞 Contact PayU
+
+If you facing issues while integration or looking to enable PayU offerings, contact [PayU Support](integration@payu.in)
+
+## Contact PayU
