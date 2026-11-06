@@ -178,7 +178,7 @@ Before initiating in-store transactions via API, verify the following prerequisi
 <Callout icon="far fa-book" theme="warn">
   ## Partner Integration Offering
 
-  Omni POS Integration can be integrated on Partner platform. For more information, refer [Collect Payment with PayU Omni.](doc:collect-payment-with-payu-omni)
+  Omni POS Integration can be integrated on Partner platform. For more information, refer [Partner QR Integration APIs.](ref:partner-qr-integration-apis)
 </Callout>
 
 ## Next Steps
