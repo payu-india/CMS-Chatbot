@@ -5,9 +5,8 @@ hidden: true
 metadata:
   robots: index
 ---
-During peak festive and holiday seasons, the checkout journey plays a pivotal role in consumer sentiment and purchase completion. **Festive Elements on PayU Hosted Checkout** is a theme enhancement on PayU Hosted Checkout (Checkout Pro) that introduces vibrant, occasion-specific visual elements to elevate customer delight and celebrate the spirit of the festivities.
+During peak festive and holiday seasons, the checkout journey plays a pivotal role in consumer sentiment and purchase completion. **Festive Elements on PayU Hosted Checkout** is a theme enhancement on PayU Hosted Checkout (Checkout Pro) that introduces vibrant, occasion-specific visual elements to elevate customer delight and celebrate the spirit of the festivities. 
 
-This feature operates purely at the UI/UX presentation layer on top of your existing integration. Payment options, promotional offers, order summaries, bank authentications, and transaction security remain completely unaffected.
 
 <Callout icon="🎉" theme="default">
   ### **Festive Checkout Experience**
@@ -64,7 +63,9 @@ When customers are redirected to PayU Hosted Checkout:
 * **Expanded Order Amount & Offers View**: A consistent festive visual language is maintained even when customers expand order details, enter promo codes, or view bank offers.
 
 #### Sample Checkout pages
-
+<Callout icon="far fa-circle-info" theme="info">
+The festive assests would change with changing festivals, the sample screenshot are just for reference.
+</Callout>
 **Checkout Pro**
 
 ![](https://files.readme.io/55975e75cd45dd93fd2cf5c04761006642e47666f6868d192bf92534be30efe1-image-20261030-060839.png)
