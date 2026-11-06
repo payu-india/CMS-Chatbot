@@ -172,6 +172,6 @@ https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/ov
 
 # 📞 Contact PayU
 
-If you facing issues while integration or looking to enable PayU offerings, contact [PayU Support](integration@payu.in)
+If you facing issues while integration or looking to enable PayU offerings, contact [PayU Support](integration@payu.in). Remember to include the logs or errors and complete steps to reproduce the issue you are facing.
 
 ## Contact PayU
