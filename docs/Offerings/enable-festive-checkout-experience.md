@@ -9,7 +9,7 @@ During peak festive and holiday seasons, the checkout journey plays a pivotal ro
 
 This feature operates purely at the UI/UX presentation layer on top of your existing integration. Payment options, promotional offers, order summaries, bank authentications, and transaction security remain completely unaffected.
 
-<Callout icon="🎉" theme="info">
+<Callout icon="🎉" theme="default">
   ### **Festive Checkout Experience**
 
   Festive theming creates an engaging and celebratory payment environment, reinforcing brand warmth and consumer confidence during high-velocity holiday shopping seasons.
@@ -26,7 +26,7 @@ This feature operates purely at the UI/UX presentation layer on top of your exis
 ## Key Merchant Benefits
 
 <Callout icon="far fa-circle-info" theme="info">
-  ### Festive Animation cannot be customized
+  ### Festive Animation cannot be customized:
 
   If you enable the Festive Checkout Experience, the animations on the checkout page displayed cannot be customized. It is displayed similar to the screenshots under [Sample Checkout pages.](#sample-checkout-pages)
 </Callout>
