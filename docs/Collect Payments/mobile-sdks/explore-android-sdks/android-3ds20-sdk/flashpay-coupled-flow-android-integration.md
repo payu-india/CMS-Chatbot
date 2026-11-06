@@ -37,10 +37,23 @@ PayU SDK offers the following methods to integrate with 3DS 2.0:
 - **SDK Integration**: Min SDK Version is v21 Compile SDK Version is v31 or later
 - **Maven Dependency URL** Use the following code snippet in your app’s build.gradle file:
 
+```text
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url 'https://payu-intrepos.github.io/payu-android-package-manager/'
+        }
+    }
+}
+```
+
 Add the following dependency in your app-level gradle file:
 
 ```groovy
-implementation 'in.payu:threeds-sdk:2.0.0'
+implementation 'in.payu:threeds-sdk:3.1.0'
 ```
 
 - Use our SDK for a complete transaction:
@@ -826,5 +839,3 @@ implementation 'in.payu:threeds-sdk:2.0.0'
 
   **Note**: This integration guide covers the complete setup process for FlashPay Android SDK. Ensure proper implementation of all callback methods and error handling for a seamless user experience.
 </Callout>
-
-<br />
