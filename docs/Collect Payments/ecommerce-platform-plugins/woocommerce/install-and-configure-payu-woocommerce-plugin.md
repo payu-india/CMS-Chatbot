@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This section describes the procedure to install and configure the PayU WooCommerce plugin by either using the WordPress Plugin or manually. Also, how to configure international payments.  If you encounter any issues while integration, refer to [Troubleshooting WooCommerce Integration](doc:troubleshooting-woocommerce-integration).
+This section describes the procedure to install and configure the PayU WooCommerce plugin by either using the WordPress Plugin or manually. Also, how to configure international payments.  If you encounter any issues while integration, refer to [FAQs](doc:troubleshooting-woocommerce-integration).
 
 ## Install plugin
 
@@ -187,5 +187,3 @@ If you are accepting multiple currencies, ensure you configure the following:
   2. Enter your merchant key in the **PayU Key for Currency 2** field. If you had selected **Sandbox** in Step 8 of of [Configure WooCommerce Settings](##configure-woocommerce-settings), enter your Test environment key as key.
   3. Enter your Salt in the **PayU Salt for Currency 2** field. If you had selected **Sandbox** in Step 8 of [Configure WooCommerce Settings](##configure-woocommerce-settings), enter your Test environment Salt as Salt.
   4. If you want add more currencies, repeat the above Steps i to iii.
-
-<br />
