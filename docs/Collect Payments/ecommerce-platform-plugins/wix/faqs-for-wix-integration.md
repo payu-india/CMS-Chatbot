@@ -51,7 +51,7 @@ This page answers frequently asked questions about integrating PayU with Wix, in
 </Accordion>
 
 <Accordion title="5. Who do I contact for Wix integration enablement or support?" icon="fa-info-circle">
-  Contact your PayU Key Account Manager (KAM) for account enablement and payment-mode configuration. For technical issues during integration, use [PayU Support](https://help.payu.in) or refer to [Troubleshooting Wix Integration](doc:troubleshooting-wix-integration).
+  Contact your PayU Key Account Manager (KAM) for account enablement and payment-mode configuration. For technical issues during integration, use [PayU Support](https://help.payu.in).
 </Accordion>
 
 ## Integrate with Wix
@@ -83,7 +83,7 @@ This page answers frequently asked questions about integrating PayU with Wix, in
 ## Troubleshooting
 
 <Accordion title="1. PayU is not appearing or not working on my Wix store" icon="fa-info-circle">
-  Check that your merchant API key and salt are configured correctly. Log in to [Merchant Dashboard](http://onboarding.payu.in/) and verify the values match what you entered in Wix. For more information, refer to [Troubleshooting Wix Integration](doc:troubleshooting-wix-integration) and [Integrate with Wix](doc:integrate-with-wix).
+  Check that your merchant API key and salt are configured correctly. Log in to [Merchant Dashboard](http://onboarding.payu.in/) and verify the values match what you entered in Wix. For more information, refer to [Integrate with Wix](doc:integrate-with-wix).
 </Accordion>
 
 <Accordion title="2. What should I do if I see a connection error after entering key and salt?" icon="fa-info-circle">
