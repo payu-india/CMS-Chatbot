@@ -15,6 +15,8 @@ Configuring PayU Plugin for Zoho One involves the following steps:
 1. [Configure PayU plugin](#configure-payU-plugin)
 2. [Verify the Zoho One integration](#verify-the-zoho-one-integration)
 
+<br />
+
 ## Configure PayU plugin
 
 To configure PayU Plugin for Zoho One:
