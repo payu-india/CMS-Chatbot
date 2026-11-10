@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This section describes the procedure to install and configure the PayU Magento plugin.  If you encounter any issues while integration, refer to [Troubleshooting Magento integration](doc:troubleshooting-magento-integration).
+This section describes the procedure to install and configure the PayU Magento plugin.  If you encounter any issues while integration, refer to [FAQs](doc:troubleshooting-magento-integration).
 
 ## Install plugin
 
@@ -212,5 +212,3 @@ The configuration for the PayU plugin is complete and your customers can make pa
 
   PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>..
 </Callout>
-
-<br />
