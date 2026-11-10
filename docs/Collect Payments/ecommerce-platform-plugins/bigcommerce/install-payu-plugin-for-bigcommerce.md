@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-You can install the PayU plugin on the BigCommerce platform quickly, and no further configuration is required.  If you encounter any issues while integration, refer to [Troubleshooting BigCommerce Integration](doc:troubleshooting-bigcommerce-integration).
+You can install the PayU plugin on the BigCommerce platform quickly, and no further configuration is required.  If you encounter any issues while integration, refer to [FAQs](doc:faqs-bigcommerce-integration).
 
 ## Procedure
 
