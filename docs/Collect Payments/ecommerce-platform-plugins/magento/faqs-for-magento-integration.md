@@ -75,8 +75,4 @@ This page includes the answers for frequently asked questions about integrating 
   ```plaintext
   php bin/magento setup:di:compile
   ```
-
-  > 📘 Note:
-  >
-  > For any other issues you face with Magento v2.4, refer to [Magento Troubleshooting](https://support.magento.com/hc/en-us/categories/115000200533-Troubleshooting).
 </Accordion>
