@@ -25,7 +25,7 @@ next:
 </Accordion>
 
 <Accordion title="4. Where can I find setup and troubleshooting help for Shopmatic?" icon="fa-info-circle">
-  For enablement steps, refer to [Enable PayU for Shopmatic](doc:enable-payu-for-shopmatic). If the plugin is not working, verify your API key and Salt configuration and refer to [Troubleshooting Shopmatic Integration](doc:troubleshooting-shopmatic-integration).
+  For enablement steps, refer to [Enable PayU for Shopmatic](doc:enable-payu-for-shopmatic). If the plugin is not working, verify your API key and Salt configuration and refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
 </Accordion>
 
 <Accordion title="5. The PayU Plugin that I installed is not working?" icon="fa-info-circle">
