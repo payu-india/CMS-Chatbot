@@ -12,6 +12,8 @@ next:
 ---
 After you set up your account in Fynd, you can integrate PayU India as the payment platform for your customers.
 
+<br />
+
 The integration with Fynd involves the following steps:
 
 1. [Configure PayU India PG](#configure-payU-india-pg)
