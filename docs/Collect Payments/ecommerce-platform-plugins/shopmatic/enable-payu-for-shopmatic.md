@@ -12,6 +12,8 @@ next:
 ---
 This section describes how to enable PayU PG on your Shopmatic web-store. If you encounter any issues while integration, refer to [FAQs](doc:troubleshooting-shopmatic-integration).
 
+<br />
+
 To enable PayU for Shopmatic:
 
 1. Log in to your Shopmatic account.
