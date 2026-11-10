@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This section describes how to enable PayU PG on your Shopmatic web-store. If you encounter any issues while integration, refer to [Troubleshooting Shopmatic Integration](doc:troubleshooting-shopmatic-integration).
+This section describes how to enable PayU PG on your Shopmatic web-store. If you encounter any issues while integration, refer to [FAQs](doc:troubleshooting-shopmatic-integration).
 
 To enable PayU for Shopmatic:
 
