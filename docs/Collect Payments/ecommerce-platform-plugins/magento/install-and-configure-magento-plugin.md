@@ -186,7 +186,7 @@ To configure the Magento v2.4 environment for PayU:
       </td>
 
       <td>
-        Enter your Salt for the Production environment. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+        Enter your Salt for the Production environment. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
       </td>
     </tr>
   </tbody>
