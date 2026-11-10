@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-After you set up your account in Wix, you can integrate PayU India as the payment platform for your customers. If you face any issues while integration, refer to [Troubleshooting Wix Integration](doc:troubleshooting-wix-integration).
+After you set up your account in Wix, you can integrate PayU India as the payment platform for your customers. If you face any issues while integration, refer to [FAQs](doc:troubleshooting-wix-integration).
 
 The following video explains how to integrate Wix with PayU as the payment gateway:
 
