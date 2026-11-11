@@ -1,9 +1,20 @@
 ---
 title: Merchant Hosted Checkout
+excerpt: >-
+  Build a fully custom payment form on your website and post payment data
+  directly to PayU. You own the UI, the flow, and the customer experience.
 deprecated: false
 hidden: true
 metadata:
+  title: Merchant Hosted Checkout — Overview | PayU Developer Docs
+  description: >-
+    PayU Merchant Hosted Checkout: build your own payment form, collect card and
+    payment details directly, and post to PayU's _payment API. Full UI control,
+    PCI-DSS required for card handling, supports cards, UPI, netbanking,
+    wallets, EMI, and BNPL.
   robots: index
+next:
+  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}
