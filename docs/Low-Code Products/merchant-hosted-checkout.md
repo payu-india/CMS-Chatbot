@@ -12,6 +12,12 @@ metadata:
     payment details directly, and post to PayU's _payment API. Full UI control,
     PCI-DSS required for card handling, supports cards, UPI, netbanking,
     wallets, EMI, and BNPL.
+  keywords:
+    - payu merchant hosted checkout integration
+    - payu custom checkout build your own payment form
+    - payu seamless integration cards upi net banking
+    - payu _payment api merchant hosted
+    - payu pci-dss merchant checkout india
   robots: index
 next:
   description: Explore related information and resources.
