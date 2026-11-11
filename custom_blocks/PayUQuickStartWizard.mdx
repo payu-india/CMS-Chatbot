@@ -2,7 +2,7 @@
 name: PayUQuickStartWizard
 ---
 // PayUQuickStartWizard - ReadMe CMS Custom Component
-// Version: 4.0 (Audited against PayU Developer Docs repository)
+// Version: 5.0 (PM flow: business-type Q1, 13 products, secondary recommendation cards)
 // Minimum-question integration path recommender for PayU Quick Start Guide
 // Doc page: add PayUQuickStartWizard to your MDX page to use this component
 
@@ -217,6 +217,22 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       docsUrl: 'https://docs.payu.in/docs/payouts-integration',
       webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'Bank transfer (IMPS/NEFT/RTGS), UPI, and wallets'
+    },
+    payment_button: {
+      key: 'payment_button',
+      name: 'Payment Button',
+      category: 'No-code solution',
+      tier: 1,
+      effortLabel: 'No coding required',
+      requiresEnablement: false,
+      description: 'Embed a customisable "Pay Now", "Buy Now", or "Donate" button directly on any webpage or blog. Generate the HTML snippet from your PayU Dashboard and paste it onto your page — no developer needed.',
+      prerequisites: [
+        'A registered PayU merchant account',
+        'A webpage where you can paste an HTML snippet'
+      ],
+      docsUrl: 'https://docs.payu.in/docs/payment-button-overview',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
+      paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     }
   };
 
@@ -291,25 +307,15 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     setAnswers(newAnswers);
 
     if (questionKey === 'Q1') {
-      if (answerKey === 'website') {
-        setCurrentQuestion('Q2');
-      } else if (answerKey === 'mobile') {
-        showResult('mobile_sdks', newAnswers);
-      } else if (answerKey === 'payment_link') {
-        showResult('payment_links', newAnswers);
-      } else if (answerKey === 'in_person') {
-        showResult('upi_qr', newAnswers);
-      } else if (answerKey === 'recurring') {
-        showResult('recurring_payments', newAnswers);
-      } else if (answerKey === 'platform') {
-        showResult('split_settlement', newAnswers);
-      } else if (answerKey === 'payout') {
-        showResult('payouts', newAnswers);
-      } else if (answerKey === 'not_sure') {
+      if (answerKey === 'not_sure') {
         setCurrentQuestion('Q1_fallback');
+      } else {
+        setCurrentQuestion('Q2');
       }
     } else if (questionKey === 'Q1_fallback') {
       if (answerKey === 'website') {
+        newAnswers['Q1'] = 'sell_online';
+        setAnswers(newAnswers);
         setCurrentQuestion('Q2');
       } else if (answerKey === 'social' || answerKey === 'nothing') {
         showResult('payment_links', newAnswers);
@@ -319,34 +325,76 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
         window.open('https://docs.payu.in/docs/what-can-you-do-next', '_blank');
       }
     } else if (questionKey === 'Q2') {
-      if (answerKey === 'platform') {
-        setCurrentQuestion('Q2_platform');
-      } else if (answerKey === 'custom') {
-        setCurrentQuestion('Q3');
-      } else if (answerKey === 'no_website') {
-        showResult('payment_links', newAnswers);
+      var Q1 = newAnswers.Q1;
+      if (Q1 === 'sell_online') {
+        if (answerKey === 'website') { setCurrentQuestion('Q3'); }
+        else if (answerKey === 'mobile_app') { setCurrentQuestion('Q3'); }
+        else if (answerKey === 'no_website') { showResult('payment_links', newAnswers); }
+        else if (answerKey === 'platform') { setCurrentQuestion('Q3'); }
+      } else if (Q1 === 'services') {
+        if (answerKey === 'website') { setCurrentQuestion('Q3'); }
+        else if (answerKey === 'link') { showResult('payment_links', newAnswers); }
+        else if (answerKey === 'mobile_app') { showResult('mobile_sdks', newAnswers); }
+        else if (answerKey === 'in_person') { showResult('upi_qr', newAnswers); }
+      } else if (Q1 === 'classes') {
+        if (answerKey === 'one_time') { setCurrentQuestion('Q3'); }
+        else if (answerKey === 'recurring') { showResult('recurring_payments', newAnswers); }
+        else if (answerKey === 'app') { showResult('mobile_sdks', newAnswers); }
+      } else if (Q1 === 'donations') {
+        if (answerKey === 'website') { setCurrentQuestion('Q3'); }
+        else if (answerKey === 'custom_amount') { showResult('payment_button', newAnswers, 'payment_links'); }
+        else if (answerKey === 'share') { showResult('payment_links', newAnswers); }
+        else if (answerKey === 'recurring') { showResult('recurring_payments', newAnswers); }
+      } else if (Q1 === 'social') {
+        if (answerKey === 'link') { showResult('payment_links', newAnswers); }
+        else if (answerKey === 'website') { showResult('hosted_checkout', newAnswers, 'payment_links'); }
+        else if (answerKey === 'recurring') { showResult('recurring_payments', newAnswers); }
+      } else if (Q1 === 'physical') {
+        if (answerKey === 'in_person') { showResult('upi_qr', newAnswers); }
+        else if (answerKey === 'link') { showResult('payment_links', newAnswers); }
+        else if (answerKey === 'online') { showResult('hosted_checkout', newAnswers, 'payment_button'); }
+      } else if (Q1 === 'marketplace') {
+        if (answerKey === 'collect_pay') { showResult('split_settlement', newAnswers); }
+        else if (answerKey === 'pay_sellers') { showResult('payouts', newAnswers); }
+        else if (answerKey === 'both') { showResult('split_settlement', newAnswers, 'payouts'); }
+      } else if (Q1 === 'disbursements') {
+        if (answerKey === 'vendors' || answerKey === 'employees' || answerKey === 'partners') {
+          showResult('payouts', newAnswers);
+        } else if (answerKey === 'both_payments') {
+          showResult('hosted_checkout', newAnswers, 'payouts');
+        }
+      } else if (Q1 === 'multichannel') {
+        if (answerKey === 'web_app') { showResult('hosted_checkout', newAnswers, 'mobile_sdks'); }
+        else if (answerKey === 'web_links') { showResult('hosted_checkout', newAnswers, 'payment_links'); }
+        else if (answerKey === 'collect_payout') { showResult('hosted_checkout', newAnswers, 'payouts'); }
       }
-    } else if (questionKey === 'Q2_platform') {
-      var pluginMap = {
-        shopify: 'plugin_shopify',
-        woocommerce: 'plugin_woocommerce',
-        magento: 'plugin_magento',
-        other: 'plugin_other'
-      };
-      showResult(pluginMap[answerKey] || 'plugin_other', newAnswers);
     } else if (questionKey === 'Q3') {
-      if (answerKey === 'simple' || answerKey === 'not_sure') {
-        showResult('hosted_checkout', newAnswers);
-      } else if (answerKey === 'exact_match') {
-        showResult('merchant_hosted', newAnswers);
+      var Q1 = newAnswers.Q1;
+      var Q2 = newAnswers.Q2;
+      if ((Q1 === 'sell_online' || Q1 === 'services') && Q2 === 'website') {
+        if (answerKey === 'ready_made') { showResult('hosted_checkout', newAnswers); }
+        else if (answerKey === 'custom') { showResult('merchant_hosted', newAnswers); }
+      } else if (Q1 === 'sell_online' && Q2 === 'mobile_app') {
+        if (answerKey === 'ready_made') { showResult('mobile_sdks', newAnswers); }
+        else if (answerKey === 'custom') { showResult('merchant_hosted', newAnswers); }
+      } else if (Q1 === 'sell_online' && Q2 === 'platform') {
+        var pluginMap = { shopify: 'plugin_shopify', woocommerce: 'plugin_woocommerce', magento: 'plugin_magento', other_platform: 'plugin_other' };
+        showResult(pluginMap[answerKey] || 'plugin_other', newAnswers);
+      } else if (Q1 === 'classes' && Q2 === 'one_time') {
+        if (answerKey === 'website_checkout') { showResult('hosted_checkout', newAnswers); }
+        else if (answerKey === 'payment_link') { showResult('payment_links', newAnswers); }
+      } else if (Q1 === 'donations' && Q2 === 'website') {
+        if (answerKey === 'no_code') { showResult('payment_button', newAnswers); }
+        else if (answerKey === 'full_checkout') { showResult('hosted_checkout', newAnswers); }
       }
     }
   }
 
-  function showResult(productKey, currentAnswers) {
+  function showResult(productKey, currentAnswers, secondaryProductKey) {
     var product = products[productKey];
+    var secondaryProduct = secondaryProductKey ? products[secondaryProductKey] : null;
     if (product) {
-      setResult({ product: product, answers: currentAnswers });
+      setResult({ product: product, secondaryProduct: secondaryProduct, answers: currentAnswers });
     }
   }
 
@@ -366,7 +414,6 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     var prevQuestion = null;
     if (currentQuestion === 'Q1_fallback') prevQuestion = 'Q1';
     else if (currentQuestion === 'Q2') prevQuestion = answers.Q1 === 'not_sure' ? 'Q1_fallback' : 'Q1';
-    else if (currentQuestion === 'Q2_platform') prevQuestion = 'Q2';
     else if (currentQuestion === 'Q3') prevQuestion = 'Q2';
     if (prevQuestion) {
       setCurrentQuestion(prevQuestion);
@@ -402,22 +449,25 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
   }
 
   function getRelatedProducts(productKey) {
-    var save_cards =   { name: 'Save Cards (Tokenization)', desc: 'Let repeat customers pay faster by saving their card securely.', url: 'https://docs.payu.in/docs/introduction-save-cards' };
+    var save_cards =    { name: 'Save Cards (Tokenization)', desc: 'Let repeat customers pay faster by saving their card securely.', url: 'https://docs.payu.in/docs/introduction-save-cards' };
     var affordability = { name: 'Affordability & EMI', desc: 'Offer no-cost EMI, BNPL, and instant discounts at checkout.', url: 'https://docs.payu.in/docs/introduction-to-affordability' };
-    var recurring =    { name: 'Recurring Payments', desc: 'Charge customers automatically on a recurring schedule.', url: 'https://docs.payu.in/docs/introduction-recurring-payments-integration' };
-    var split =        { name: 'Split Settlements', desc: 'Automatically split payments between your platform and sellers.', url: 'https://docs.payu.in/docs/split-settlments' };
-    var payouts_item = { name: 'Payouts', desc: 'Send money out to vendors, employees, or partners via API.', url: 'https://docs.payu.in/docs/payouts-integration' };
-    var auth_capture = { name: 'Auth & Capture', desc: 'Pre-authorise a payment and capture it only when the order ships.', url: 'https://docs.payu.in/docs/auth-and-capture-pre-authorize-card-payments' };
-    var cross_border = { name: 'Cross-Border Payments', desc: 'Accept payments from international customers in foreign currencies.', url: 'https://docs.payu.in/docs/introduction-cross-border-payments-import' };
+    var recurring =     { name: 'Recurring Payments', desc: 'Charge customers automatically on a recurring schedule.', url: 'https://docs.payu.in/docs/introduction-recurring-payments-integration' };
+    var split =         { name: 'Split Settlements', desc: 'Automatically split payments between your platform and sellers.', url: 'https://docs.payu.in/docs/split-settlments' };
+    var payouts_item =  { name: 'Payouts', desc: 'Send money out to vendors, employees, or partners via API.', url: 'https://docs.payu.in/docs/payouts-integration' };
+    var auth_capture =  { name: 'Auth & Capture', desc: 'Pre-authorise a payment and capture it only when the order ships.', url: 'https://docs.payu.in/docs/auth-and-capture-pre-authorize-card-payments' };
+    var cross_border =  { name: 'Cross-Border Payments', desc: 'Accept payments from international customers in foreign currencies.', url: 'https://docs.payu.in/docs/introduction-cross-border-payments-import' };
+    var pay_button =    { name: 'Payment Button', desc: 'Embed a no-code pay button on any webpage or blog.', url: 'https://docs.payu.in/docs/payment-button-overview' };
+    var pay_links =     { name: 'Payment Links', desc: 'Create and share payment links without a website.', url: 'https://docs.payu.in/docs/payment-links-dashboard' };
 
-    if (productKey === 'hosted_checkout')   return [save_cards, affordability, recurring, split, auth_capture, cross_border];
-    if (productKey === 'merchant_hosted')   return [save_cards, affordability, recurring, split, auth_capture, cross_border];
-    if (productKey === 'mobile_sdks')       return [save_cards, affordability, recurring];
-    if (productKey === 'payment_links')     return [recurring, payouts_item];
-    if (productKey === 'upi_qr')            return [save_cards, affordability];
+    if (productKey === 'hosted_checkout')    return [save_cards, affordability, recurring, split, auth_capture, cross_border];
+    if (productKey === 'merchant_hosted')    return [save_cards, affordability, recurring, split, auth_capture, cross_border];
+    if (productKey === 'mobile_sdks')        return [save_cards, affordability, recurring];
+    if (productKey === 'payment_links')      return [recurring, payouts_item];
+    if (productKey === 'upi_qr')             return [save_cards, affordability];
     if (productKey === 'recurring_payments') return [split, payouts_item, save_cards];
-    if (productKey === 'split_settlement')  return [payouts_item, recurring, save_cards];
-    if (productKey === 'payouts')           return [split, recurring];
+    if (productKey === 'split_settlement')   return [payouts_item, recurring, save_cards];
+    if (productKey === 'payouts')            return [split, recurring];
+    if (productKey === 'payment_button')     return [pay_links, recurring];
     if (productKey.indexOf('plugin_') === 0) return [save_cards, affordability, recurring];
     return [];
   }
@@ -429,6 +479,13 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
   }
 
   function buildAIPrompt(product, step) {
+    if (product.key === 'payment_button') {
+      if (step === 1) {
+        return 'I want to add a PayU Payment Button to my website or blog to collect payments or donations without coding.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nThis is a no-code Dashboard task. Walk me through:\n1. Prerequisites (PayU merchant account and Dashboard access)\n2. How to create a Payment Button in the PayU Dashboard — setting the amount, button text, and appearance\n3. How to copy the HTML/JavaScript embed code from the Dashboard\n4. Where and how to paste the code onto my webpage or blog\n5. How to test that the button works before sharing with customers\n\nRules:\n- This is a Dashboard configuration task — no custom API or payment code is required\n- Do not ask me to write any backend code unless the documentation specifically requires it\n- I will enter my Merchant Key and Salt via the Dashboard interface — do not ask me to paste them here\n- If something is not in the documentation, say so rather than guessing';
+      }
+      return null;
+    }
+
     if (product.key === 'payment_links') {
       if (step === 1) {
         return 'I want to use PayU Payment Links to collect payments.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nThere are two approaches:\n\nOPTION A - No-code (Dashboard):\n1. Go to your PayU Dashboard, find Payment Links\n2. Fill in amount, customer name, expiry, and description\n3. Share the generated link via WhatsApp, SMS, or email\nNo developer or code needed for this option.\n\nOPTION B - API integration (create links programmatically):\nBefore writing any code, read the documentation above carefully. Then:\n1. Authenticate using your Merchant Key and Salt (I will provide these separately - never hardcode them)\n2. Use only the endpoints, request fields, and response fields documented on that page\n3. Do not apply the standard PayU payment-form hash flow to Payment Links - Payment Links have their own API\n\nRules:\n- Never guess at endpoints or parameters not in the documentation\n- Ask me my programming language and framework before writing any code\n- If something is not in the documentation, say so rather than inventing it';
@@ -525,6 +582,9 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
   }
 
   function getPromptHints(productKey, step) {
+    if (productKey === 'payment_button') {
+      if (step === 1) return 'Have ready: your PayU Dashboard login and the page where you want to embed the button.';
+    }
     if (productKey === 'payment_links') {
       if (step === 1) return 'Have ready: whether you want the no-code Dashboard option or the API integration, and your programming language if using the API.';
     }
@@ -560,37 +620,52 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
   }
 
   function renderWhyText(product, userAnswers) {
+    var Q1 = userAnswers.Q1;
     var Q2 = userAnswers.Q2;
-    var Q3 = userAnswers.Q3;
+    if (product.key === 'payment_button') {
+      return 'You want to collect payments or donations on your website without building a full checkout. The PayU Payment Button lets you embed a "Pay Now" or "Donate" button on any page using a simple HTML snippet — no developer needed.';
+    }
     if (product.key === 'payment_links') {
-      if (Q2 === 'no_website') {
-        return 'You wanted to accept payments but don\'t have a website yet. Payment Links let you start collecting money now by sharing a link via SMS, email, or WhatsApp — no website required. You can build your site later.';
+      if (Q2 === 'no_website' || Q1 === 'social') {
+        return 'You want to collect payments without a full website checkout. Payment Links let you share a secure payment URL with customers via WhatsApp, SMS, email, or social media — and they can pay directly from the link. No website or code required.';
       }
-      return 'You wanted to send payment links without needing a website. Payment Links let you share a secure payment URL with customers via any channel — SMS, email, WhatsApp, social media — and they can pay directly from the link.';
+      return 'You want to share a payment request with customers. Payment Links let you collect payments via a link — no website needed, and customers can pay from any device.';
     }
     if (product.key === 'upi_qr') {
-      return 'You wanted to accept payments in person at your shop, counter, or kiosk. UPI QR codes let customers scan and pay instantly using any UPI app on their phone.';
+      return 'You want to accept payments in person at your shop, counter, or kiosk. UPI QR codes let customers scan and pay instantly using any UPI app on their phone — no card terminal or hardware required.';
     }
     if (product.key === 'recurring_payments') {
-      return 'You wanted to set up recurring or subscription billing. PayU Recurring Payments let customers authorise once, and subsequent charges happen automatically on the schedule you define.';
+      return 'You want to set up recurring or subscription billing. PayU Recurring Payments let customers authorise once, and subsequent charges happen automatically on the schedule you define — no repeated checkout required.';
     }
     if (product.key === 'split_settlement') {
       return 'You run a platform or marketplace where multiple sellers get paid. PayU Split Settlements automatically divide transaction amounts between your platform and sellers according to rules you configure.';
     }
     if (product.key === 'hosted_checkout') {
-      if (Q3 === 'not_sure') {
-        return 'You have a custom-built website and weren\'t sure about the payment page design. PayU Hosted Checkout is the recommended starting point — it\'s a secure, pre-built payment page that works immediately. You can add full design control later if needed.';
+      if (Q1 === 'social') {
+        return 'You sell through social media or messaging but also have a website. PayU Hosted Checkout gives your website a secure, ready-to-use payment page — customers click through from your social channels and pay directly.';
       }
-      return 'You wanted a website checkout without needing the payment page to match your site design exactly. PayU Hosted Checkout provides a secure, pre-built payment page so you can start accepting payments quickly.';
+      if (Q1 === 'physical') {
+        return 'You sell in person but also want to accept payments online. PayU Hosted Checkout provides a secure, ready-to-use payment page for your website so customers can pay from anywhere.';
+      }
+      if (Q1 === 'multichannel') {
+        return 'You operate across multiple channels and need a reliable online payment experience. PayU Hosted Checkout is the recommended starting point — a secure, pre-built payment page your customers can use from any device.';
+      }
+      if (Q1 === 'disbursements') {
+        return 'You want to collect payments in addition to making payouts. PayU Hosted Checkout provides a secure, ready-to-use payment page for your website so you can start receiving money as well as sending it.';
+      }
+      return 'You want a website checkout without needing the payment page to match your site exactly. PayU Hosted Checkout provides a secure, pre-built payment page so you can start accepting payments quickly — no payment UI to design.';
     }
     if (product.key === 'merchant_hosted') {
-      return 'You wanted a website checkout where the payment page matches your site design exactly. Merchant Hosted Checkout gives you full control over the payment interface while PayU handles the payment processing in the background.';
+      return 'You want a website checkout where the payment experience matches your brand exactly. Merchant Hosted Checkout (also known as S2S / API integration) gives you full control over the payment interface while PayU handles the processing in the background.';
     }
     if (product.key === 'mobile_sdks') {
-      return 'You want to accept payments inside your mobile app. PayU Mobile SDKs embed a full payment flow into Android, iOS, React Native, Flutter, or Cordova apps — customers pay without ever leaving your app.';
+      return 'You want to accept payments inside your mobile app. PayU Mobile SDKs embed a complete payment flow into Android, iOS, React Native, Flutter, or Cordova apps — customers pay without ever leaving your app.';
     }
     if (product.key === 'payouts') {
-      return 'You need to send money out to vendors, employees, or partners. PayU Payouts let you disburse funds to any bank account, UPI address, or wallet via API — built for marketplaces, gig platforms, and payroll workflows.';
+      if (Q1 === 'marketplace') {
+        return 'You run a platform and want to pay sellers or partners. PayU Payouts let you disburse funds to any bank account, UPI address, or wallet via API — built for marketplaces and multi-vendor platforms.';
+      }
+      return 'You need to send money out to vendors, employees, or partners. PayU Payouts let you disburse funds to any bank account, UPI address, or wallet via API — built for gig platforms, marketplaces, and payroll workflows.';
     }
     if (product.key.indexOf('plugin_') === 0) {
       var platformNames = {
@@ -600,7 +675,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
         plugin_other: 'your eCommerce platform'
       };
       var platform = platformNames[product.key] || 'your platform';
-      return 'Your website is on ' + platform + '. The PayU plugin integrates directly with ' + platform + ' — no custom coding required. Install it from your platform\'s admin panel and configure your payment settings.';
+      return 'Your store is on ' + platform + '. The PayU plugin integrates directly with ' + platform + ' — no custom coding required. Install it from your platform\'s admin panel and configure your PayU credentials in the settings.';
     }
     return 'Based on your answers, ' + product.name + ' is the best fit for your use case.';
   }
@@ -609,11 +684,15 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     var Q1 = userAnswers.Q1;
     var Q1_fallback = userAnswers.Q1_fallback;
     var q1Map = {
-      website: 'Accept payments on a website',
-      payment_link: 'Send payment links without a website',
-      in_person: 'Accept payments in person',
-      recurring: 'Set up recurring or subscription billing',
-      platform: 'Run a platform where multiple sellers get paid'
+      sell_online: 'Sell products online',
+      services: 'Offer services, bookings or appointments',
+      classes: 'Run classes, courses or memberships',
+      donations: 'Collect donations, fees or contributions',
+      social: 'Sell through WhatsApp or social media',
+      physical: 'Sell in person or from a physical store',
+      marketplace: 'Run a platform where multiple sellers get paid',
+      disbursements: 'Make payments to vendors, employees or partners',
+      multichannel: 'Operate across multiple channels'
     };
     var fallbackMap = {
       website: 'Accept payments on a website',
@@ -626,7 +705,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
 
   function getProgressValue() {
     if (currentQuestion === 'Q1' || currentQuestion === 'Q1_fallback') return 1;
-    if (currentQuestion === 'Q2' || currentQuestion === 'Q2_platform') return 2;
+    if (currentQuestion === 'Q2') return 2;
     if (currentQuestion === 'Q3') return 3;
     return 1;
   }
@@ -723,16 +802,18 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       var questionOptions = [];
 
       if (currentQuestion === 'Q1') {
-        questionTitle = 'What do you want to do?';
+        questionTitle = 'What best describes your business?';
         questionOptions = [
-          { id: 'website', label: 'Accept payments on a website' },
-          { id: 'mobile', label: 'Accept payments in a mobile app' },
-          { id: 'payment_link', label: 'Send a payment link — no website needed' },
-          { id: 'in_person', label: 'Accept payments in person' },
-          { id: 'recurring', label: 'Set up recurring or subscription billing' },
-          { id: 'platform', label: 'I run a platform where multiple sellers get paid' },
-          { id: 'payout', label: 'Send money out to vendors, employees, or partners' },
-          { id: 'not_sure', label: 'Not sure' }
+          { id: 'sell_online', label: 'I sell products online' },
+          { id: 'services', label: 'I offer services, bookings or appointments' },
+          { id: 'classes', label: 'I run classes, courses or memberships' },
+          { id: 'donations', label: 'I collect donations, fees or contributions' },
+          { id: 'social', label: 'I sell through WhatsApp or social media' },
+          { id: 'physical', label: 'I sell in person or have a physical store' },
+          { id: 'marketplace', label: 'I run a platform where multiple sellers get paid' },
+          { id: 'disbursements', label: 'I make payments to vendors, employees or partners' },
+          { id: 'multichannel', label: 'I operate across multiple channels' },
+          { id: 'not_sure', label: "I'm not sure" }
         ];
       } else if (currentQuestion === 'Q1_fallback') {
         questionTitle = 'What are you using today to sell?';
@@ -744,27 +825,103 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
           { id: 'still_unsure', label: 'Browse PayU documentation' }
         ];
       } else if (currentQuestion === 'Q2') {
-        questionTitle = 'Is your website on a platform like Shopify or WooCommerce, or is it custom-built?';
-        questionOptions = [
-          { id: 'platform', label: 'It\'s on a store platform (Shopify, WooCommerce, Magento, etc.)' },
-          { id: 'custom', label: 'It\'s custom-built / coded' },
-          { id: 'no_website', label: 'I don\'t have a website yet' }
-        ];
-      } else if (currentQuestion === 'Q2_platform') {
-        questionTitle = 'Which platform?';
-        questionOptions = [
-          { id: 'shopify', label: 'Shopify' },
-          { id: 'woocommerce', label: 'WooCommerce' },
-          { id: 'magento', label: 'Magento' },
-          { id: 'other', label: 'Something else' }
-        ];
+        questionTitle = 'What are you looking to set up?';
+        var Q1ans = answers.Q1;
+        if (Q1ans === 'sell_online') {
+          questionOptions = [
+            { id: 'website', label: 'Accept payments on my website' },
+            { id: 'mobile_app', label: 'Accept payments in my mobile app' },
+            { id: 'no_website', label: 'Collect payments without a website' },
+            { id: 'platform', label: 'I sell through Shopify, WooCommerce, or another platform' }
+          ];
+        } else if (Q1ans === 'services') {
+          questionOptions = [
+            { id: 'website', label: 'Customers pay on my website' },
+            { id: 'link', label: 'Customers pay through a link I share' },
+            { id: 'mobile_app', label: 'Customers pay inside my mobile app' },
+            { id: 'in_person', label: 'Collect payments in person' }
+          ];
+        } else if (Q1ans === 'classes') {
+          questionOptions = [
+            { id: 'one_time', label: 'One-time payments (class bookings, single purchases)' },
+            { id: 'recurring', label: 'Recurring or subscription payments' },
+            { id: 'app', label: 'Customers pay through my mobile app' }
+          ];
+        } else if (Q1ans === 'donations') {
+          questionOptions = [
+            { id: 'website', label: 'Collect donations or fees on my website' },
+            { id: 'custom_amount', label: 'Let contributors enter their own amount' },
+            { id: 'share', label: 'Share a payment request link' },
+            { id: 'recurring', label: 'Recurring donations or membership payments' }
+          ];
+        } else if (Q1ans === 'social') {
+          questionOptions = [
+            { id: 'link', label: 'Send customers a payment request' },
+            { id: 'website', label: 'I also have a website' },
+            { id: 'recurring', label: 'Collect recurring payments' }
+          ];
+        } else if (Q1ans === 'physical') {
+          questionOptions = [
+            { id: 'in_person', label: 'Accept payments in person' },
+            { id: 'link', label: 'Send customers a payment request' },
+            { id: 'online', label: 'Also accept payments online' }
+          ];
+        } else if (Q1ans === 'marketplace') {
+          questionOptions = [
+            { id: 'collect_pay', label: 'Collect customer payments and pay my sellers' },
+            { id: 'pay_sellers', label: 'Pay sellers or partners' },
+            { id: 'both', label: 'Collect payments and manage payouts' }
+          ];
+        } else if (Q1ans === 'disbursements') {
+          questionOptions = [
+            { id: 'vendors', label: 'Send money to vendors' },
+            { id: 'employees', label: 'Pay employees' },
+            { id: 'partners', label: 'Pay partners' },
+            { id: 'both_payments', label: 'Collect payments and make payouts' }
+          ];
+        } else if (Q1ans === 'multichannel') {
+          questionOptions = [
+            { id: 'web_app', label: 'Accept payments on my website and in my app' },
+            { id: 'web_links', label: 'Accept payments on my website and through links' },
+            { id: 'collect_payout', label: 'Collect payments and make payouts' }
+          ];
+        }
       } else if (currentQuestion === 'Q3') {
-        questionTitle = 'Does the payment page need to look exactly like the rest of your website, or is a simple, secure PayU page fine?';
-        questionOptions = [
-          { id: 'simple', label: 'A simple, secure PayU page is fine' },
-          { id: 'exact_match', label: 'It needs to match my website exactly' },
-          { id: 'not_sure', label: 'Not sure' }
-        ];
+        var Q1a = answers.Q1;
+        var Q2a = answers.Q2;
+        if ((Q1a === 'sell_online' || Q1a === 'services') && Q2a === 'website') {
+          questionTitle = 'How do you want your payment experience to work?';
+          questionOptions = [
+            { id: 'ready_made', label: 'I want a ready-to-use PayU checkout' },
+            { id: 'custom', label: 'I want to build and control my own checkout' }
+          ];
+        } else if (Q1a === 'sell_online' && Q2a === 'mobile_app') {
+          questionTitle = 'How do you want the payment experience to work in your app?';
+          questionOptions = [
+            { id: 'ready_made', label: "Use PayU's ready-made payment experience" },
+            { id: 'custom', label: 'Build my own custom payment experience (API / S2S)' }
+          ];
+        } else if (Q1a === 'sell_online' && Q2a === 'platform') {
+          questionTitle = 'Which platform is your store on?';
+          questionOptions = [
+            { id: 'shopify', label: 'Shopify' },
+            { id: 'woocommerce', label: 'WooCommerce' },
+            { id: 'magento', label: 'Magento' },
+            { id: 'other_platform', label: 'Something else' }
+          ];
+        } else if (Q1a === 'classes' && Q2a === 'one_time') {
+          questionTitle = 'How will your customers pay?';
+          questionOptions = [
+            { id: 'website_checkout', label: 'On my website with a ready-made checkout' },
+            { id: 'payment_link', label: 'Via a shareable payment link' }
+          ];
+        } else if (Q1a === 'donations' && Q2a === 'website') {
+          questionTitle = 'What type of integration do you prefer?';
+          questionOptions = [
+            { id: 'no_code', label: 'Simple no-code embed button on my page' },
+            { id: 'full_checkout', label: 'Full payment checkout experience' }
+          ];
+        }
       }
 
       return (
@@ -792,9 +949,9 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
                 );
               })}
             </div>
-            {currentQuestion === 'Q3' && (
+            {currentQuestion === 'Q3' && answers.Q2 === 'website' && (answers.Q1 === 'sell_online' || answers.Q1 === 'services') && (
               <p style={{ marginTop: '12px', fontSize: '12px', color: '#6b7280', fontStyle: 'italic' }}>
-                Most merchants start with a simple, secure PayU page — you can add full design control later.
+                Most merchants start with a ready-to-use PayU checkout — you can add full design control later.
               </p>
             )}
           </div>
@@ -831,6 +988,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       );
     } else {
       var product = result.product;
+      var secondaryProduct = result.secondaryProduct;
       var whyText = renderWhyText(product, result.answers);
       var tierInfo = getTierIndicator(product.tier, product.effortLabel);
       var hasStep2 = productHasStep2(product.key);
@@ -867,6 +1025,22 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
               )}
             </div>
           </div>
+
+          {secondaryProduct && (
+            <div style={{ border: '1px solid #d1d5db', borderRadius: '12px', overflow: 'hidden', marginBottom: '16px' }}>
+              <div style={{ background: '#f3f4f6', color: '#374151', fontSize: '12px', fontWeight: 600, padding: '8px 14px' }}>
+                Also consider pairing with
+              </div>
+              <div style={{ padding: '16px' }}>
+                <h3 style={{ margin: 0, fontSize: '1rem', color: '#1e3a5f' }}>{secondaryProduct.name}</h3>
+                <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#6b7280' }}>{secondaryProduct.category}</p>
+                <p style={{ margin: '10px 0 0', fontSize: '13px', color: '#374151' }}>{secondaryProduct.description}</p>
+                <a href={secondaryProduct.docsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '10px', fontSize: '13px', fontWeight: 600, color: '#00A651' }}>
+                  View documentation &#x2192;
+                </a>
+              </div>
+            </div>
+          )}
 
           <div style={{ marginBottom: '16px' }}>
             <h4 style={{ fontSize: '14px', fontWeight: '600', color: '#1e3a5f', marginBottom: '8px' }}>What you'll need</h4>
