@@ -78,7 +78,7 @@ The PayU error mappings documentation page provides a reference guide for variou
 >
 > For integration purposes, always implement error handling that accounts for both these complementary systems to provide the best user experience and troubleshooting capabilities.
 
-### Field Error code structure
+#### **Field Error code structure**
 
 To understand the error codes, you need to read the Error Code Object sent in the Response structure or stored in the database.
 
