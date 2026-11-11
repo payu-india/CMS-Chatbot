@@ -1,5 +1,5 @@
 ---
-title: Cards Integration - Merchant Hosted
+title: Merchant Hosted - Cards
 deprecated: false
 hidden: true
 metadata:
