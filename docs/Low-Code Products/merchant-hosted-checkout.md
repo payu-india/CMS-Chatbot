@@ -33,7 +33,7 @@ next:
 
 ***
 
-## What Can I Build with Merchant Hosted Checkout?
+## How Does Merchant Hosted Checkout Simplify My Business?
 
 <Accordion title="Complete control over the payment UI and customer experience" icon="fa-paintbrush">
   You design and build the entire payment form. PayU does not inject any UI elements into your page. Card number fields, UPI input, net banking dropdowns, wallet selectors — all built by you, styled to match your brand, integrated into your existing checkout flow.
