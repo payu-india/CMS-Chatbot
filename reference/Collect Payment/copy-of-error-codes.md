@@ -58,7 +58,7 @@ Below is the consolidated list of all error codes.
 
 This section contains error codes associated with cards.
 
-## Error References on Field7 and Field8
+### Error References on Field7 and Field8
 
 The PayU error mappings documentation page provides a reference guide for various error codes in the PayU payment system. The page includes:
 
@@ -90,7 +90,7 @@ To understand the error codes, you need to read the Error Code Object sent in th
 4. **Error Code**: Represents PayU's error code mapped to the specific issue. It acts as a unique identifier for the error.
 5. **Error Message**: This contains PayU's error interpretation, which elaborates on or describes the error in a user-friendly manner to assist in troubleshooting.
 
-## Issuer Decline Error Codes
+### Issuer Decline Error Codes
 
 The following table helps you identify specific reasons for payment failures and provides standardized error codes and messages. This will facilitate troubleshooting and help you communicate with your customers when transactions are declined.
 
@@ -99,10 +99,6 @@ The following table helps you identify specific reasons for payment failures and
   placeholder="Search"
   maxHeight="500px"
 />
-
-## Cards
-
-The following are the errors associated with cards along with their reasons and descriptions.
 
 ### Field7 for Card payments
 
@@ -148,7 +144,7 @@ The following are the errors associated with cards along with their reasons and 
   maxHeight="500px"
 />
 
-## ML-Powered Error Details
+### ML-Powered Error Details
 
 Issuing banks, card networks and payment gateways report transaction failures in widely varying formats, and a single failure reason may be returned as many different raw messages. PayU applies a machine learning model to each raw failure response and maps it to a single standard error code, accompanied by a message for the end customer and a detailed explanation for the merchant.
 
@@ -185,7 +181,7 @@ On PayU Hosted Checkout, PayU displays `userMessage` on the failure screen autom
   Every failure response contains a complete `error_details` object. Where PayU is unable to classify an error, the response contains a generic `userMessage`, with `newErrorCode` set to `NA` and the category set to `Unknown`. No additional fallback logic is required in your integration.
 </Callout>
 
-### Sample Response
+#### **Sample Response**
 
 The following sample illustrates the `error_details` object for a failed domestic card transaction:
 
@@ -205,7 +201,7 @@ The following sample illustrates the `error_details` object for a failed domesti
 }
 ```
 
-### Field Reference
+#### **Field Reference**
 
 The following table describes each field in the `error_details` object and its intended audience:
 
@@ -223,7 +219,7 @@ The following table describes each field in the `error_details` object and its i
 
 > **Important:** Only `userMessage` is intended for end customers. All other fields are intended for merchant use only and must not be displayed to customers.
 
-### Error Code Reference
+#### **Error Code Reference**
 
 Every failed payment response includes a `newErrorCode`, for example, `EN3126`.
 
@@ -330,97 +326,7 @@ The following lists set out the `userMessage` values that PayU returns to end cu
 
 ***
 
-## Error References on Field7 and Field8
-
-The PayU error mappings documentation page provides a reference guide for various error codes in the PayU payment system. The page includes:
-
-* [Field Error code structure](#field-error-code-structure): Explains how error codes are formatted and what different components mean
-* **Field7 Error Code Mapping** — Contains error codes like ALT_ID_PROV_ERROR, 3DS_METHOD_POSITIVE, etc., with their descriptions, platform layers, and API layers for the following payment modes:
-  * [Field7 for Card payments](#field7-for-card-payments)
-  * [Field 7 for Net Banking/Wallet payments](#netbanking-and-wallets)
-
-> :blue_book: **Standard error codes vs Field 7 error codes**
->
-> The Field7 error codes documented in this section are part of PayU's comprehensive error handling system. These codes provide detailed transaction state information that complements the standard [Error Codes](#standard-error-codes) used across PayU's payment platform.
->
-> While standard error codes (e.g. E501, E502, etc.) indicate specific failure reasons, Field7 values track the transaction state and provide visibility into exactly where in the payment flow an error or status change occurred. For complete error handling, developers should check both:
->
-> 1. **Field7 Values**: To determine the transaction state and processing stage
-> 2. **Error Codes**: To identify specific failure reasons when applicable
->
-> For integration purposes, always implement error handling that accounts for both these complementary systems to provide the best user experience and troubleshooting capabilities.
-
-### Field Error code structure
-
-To understand the error codes, you need to read the Error Code Object sent in the Response structure or stored in the database.
-
-1. **Field7 – Execution Leg**: This field is used to understand at which execution stage (or leg) the transaction got declined. It is essentially a forward leg or process leg of an API that identifies the point of transaction failure. Refer to following sub-sections for understanding this field values:
-   * [Field7 for Card payments](#field7-for-card-payments)
-   * [Field 7 for Net Banking/Wallet payments](#netbanking-and-wallets)
-2. **Field8 – Bank or Wallet's Reason**: This field captures the actual reason for the transaction failure as provided by the bank. It gives direct feedback or error information from the bank's end.
-3. **Field9 – PayU's Error Translation**: This field contains the PayU-translated version of the error recorded in Field8. It provides a simplified and standardized interpretation of the error for easier understanding and debugging.
-4. **Error Code**: Represents PayU's error code mapped to the specific issue. It acts as a unique identifier for the error.
-5. **Error Message**: This contains PayU's error interpretation, which elaborates on or describes the error in a user-friendly manner to assist in troubleshooting.
-
-## Issuer Decline Error Codes
-
-The following table helps you identify specific reasons for payment failures and provides standardized error codes and messages. This will facilitate troubleshooting and help you communicate with your customers when transactions are declined.
-
-<SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/issuer-decline-error-codes.json"
-  placeholder="Search"
-  maxHeight="500px"
-/>
-
-## Cards
-
-The following are the errors associated with cards along with their reasons and descriptions.
-
-### Field7 for Card payments
-
-<SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/field7-card-payments.json"
-  placeholder="Search"
-  maxHeight="500px"
-/>
-
-### AuthN Errors
-
-<SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-n-error-codes.json"
-  placeholder="Search"
-  maxHeight="500px"
-/>
-
-<Callout icon="⬇️" theme="default">
-  ### **Download Template**
-
-  [Download AuthN Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthN_error_list.csv)
-</Callout>
-
-### AuthZ Errors
-
-<SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-z-error-codes.json"
-  placeholder="Search"
-  maxHeight="500px"
-/>
-
-<Callout icon="⬇️" theme="default">
-  ### **Download Template**
-
-  [Download AuthZ Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthZ_error_list.csv)
-</Callout>
-
-### Alt ID Errors
-
-<SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/alt-id-error-codes.json"
-  placeholder="Search"
-  maxHeight="500px"
-/>
-
-## NetBanking and Wallets
+## NetBanking and Wallets Error Codes
 
 The following are the errors associated with NetBanking and wallets along with their reasons and descriptions.
 
