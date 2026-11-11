@@ -56,6 +56,8 @@ Below is the consolidated list of all error codes.
 
 ## Cards
 
+This section contains error codes associated with cards.
+
 ## Error References on Field7 and Field8
 
 The PayU error mappings documentation page provides a reference guide for various error codes in the PayU payment system. The page includes:
