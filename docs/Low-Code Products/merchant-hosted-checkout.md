@@ -14,10 +14,6 @@ metadata:
   fontWeight="bold"
  />
 
-# Merchant Hosted Checkout
-
-Build a fully custom payment experience on your website. Your checkout form collects payment details directly — your server posts them to PayU's `_payment` API. You control every pixel of the payment UI, every field on the form, and every step of the flow.
-
 ***
 
 ## What Can I Build with Merchant Hosted Checkout?
