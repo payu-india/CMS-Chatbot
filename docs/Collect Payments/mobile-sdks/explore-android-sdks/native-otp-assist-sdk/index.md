@@ -63,5 +63,6 @@ Native OTP flow is supported for most debit and credit cards issued by top banks
 
 ## Compatibility
 
-* Min SDK Version: 21
-* Compile SDK Version: 31 or later
+* Min SDK Version: 24 and above
+* Compile SDK Version: 36
+* Target SDK Version: 36
