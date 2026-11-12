@@ -52,6 +52,7 @@ Implementation details of the following are documented separately, and available
 
 ## Compatibility
 
-* Min SDK Version: 21
-* Compile SDK Version: 31 and above
+* Min SDK Version: 24 and above
+* Compile SDK Version: 36
+* Target SDK Version: 36
 * Kotlin version: 1.6.10
