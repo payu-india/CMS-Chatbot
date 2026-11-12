@@ -46,6 +46,10 @@ PayU offers various Android SDKs that each serve a unique use case. Here is a br
 
 * **3DS 2.0 SDK**: The 3DS 2.0 SDK probides you the ability to collect additional transaction data such as device location, user's location, and merchant's transaction history. It allows you to protect you and your customers from the threat of payment fraud.
 
+* **PayU UPI Bolt SDK:** Enables seamless in-app UPI payments without third-party redirects, offering features like registration, profile management, balance checks, UPI PIN setup, and transaction history.
+
+  The PayU UPI Bolt UI SDK provides a ready-to-use interface for faster integration, lower development costs, and flexible adoption of features as needed.
+
 ## Choose your integration
 
 <Callout icon="✅" theme="okay">
