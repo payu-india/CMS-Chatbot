@@ -424,6 +424,7 @@ paths:
                   value:
                     status: 0
                     message: Duplicate Order ID
+      x-internal: true
 components:
   schemas:
     siparameterdetail:
