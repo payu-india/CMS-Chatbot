@@ -136,6 +136,12 @@ The following are the errors associated with cards along with their reasons and 
   maxHeight="500px"
 />
 
+<Callout icon="📘" theme="info">
+  ### **ML-Powered Error Details**
+
+  For domestic card transactions, PayU now returns an `error_details` object alongside the standard `field9` and `error_Message` fields. It includes a standardised error code, a customer-facing message, a detailed merchant explanation, and the raw gateway response — all mapped automatically by a machine learning model. See <Anchor target="_blank" href="https://docs.payu.in/reference/ml-powered-error-details">ML-Powered Error Details</Anchor> for the full reference.
+</Callout>
+
 ## NetBanking and Wallets
 
 The following are the errors associated with NetBanking and wallets along with their reasons and descriptions.
