@@ -54,7 +54,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the PayU UPI SDK (available at Maven Central) to `<<glossary:build.gradle>>`:
 
 ```gradle
-implementation 'in.payu:upisdk:1.8.15'
+implementation 'in.payu:upisdk:1.9.0'
 ```
 
 <Callout icon="🚧" theme="warn">
