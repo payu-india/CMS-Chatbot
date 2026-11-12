@@ -73,9 +73,9 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 <Accordion title="Integration" icon="fa-code">
   PayU SDK offers the following methods to integrate with 3DS 2.0:
 
-  * **SDK Integration**:
-    Min SDK Version is v21
-    Compile SDK Version is v31 or later
+  * **SDK Integration**
+    * Min SDK Version is v24
+    * Compile SDK Version is v36 or later
   * **Maven Dependency URL**
     Use the following code snippet in your app’s build.gradle file:
 
