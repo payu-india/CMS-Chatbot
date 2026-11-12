@@ -19,6 +19,27 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integration Steps
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Integration Steps - Android Customer Browser
+  description: >-
+    Step-by-step guide to integrate Android Custom Browser SDK with PayU. Covers
+    build.gradle, test credentials, and go-live checklist.
+  keywords:
+    - Integration Steps - Android Customer Browser
+    - Android Customer Browser Integration Steps
+    - Integrate Android Customer Browser
+    - ' Android Customer Browser Integration Steps'
+    - ' Custom Browser Android Integration Steps'
+    - Custom Browser Mobile SDK - Android Integration Steps
+  robots: index
+next:
+  description: ''
+---
 The Android Customer Browser integration involves the following steps:
 
 <Cards columns={3}>
@@ -57,7 +78,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Add the following dependency in your application's `build.gradle`:
 
   ```gradle
-  implementation 'in.payu:payu-custom-browser:7.16.6'
+  implementation 'in.payu:payu-custom-browser:7.17.0'
   ```
 
   <Callout icon="❗️" theme="error">
@@ -86,8 +107,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   > ❗️ **Compatibility Requirements:**
   >
-  > 1. **Android SDK** — Version 21 and above
-  > 2. **Compile SDK** — version 31 and above
+  > 1. **Minimum SDK** — Version 24 and above
+  > 2. **Compile SDK** — Version 36
+  > 3. **Target SDK** — Version 36
 </Accordion>
 
 <Accordion title="2.3: Add SMS Permission (For OTP Assist)" icon="fa-code">
@@ -113,7 +135,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Add the following dependency in your application's `build.gradle`:
 
   ```gradle
-  implementation 'in.payu:upisdk:1.8.8'
+  implementation 'in.payu:upisdk:1.9.0'
   ```
 </Accordion>
 
