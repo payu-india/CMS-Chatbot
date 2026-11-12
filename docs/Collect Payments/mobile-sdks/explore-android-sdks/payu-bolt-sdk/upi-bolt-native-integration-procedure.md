@@ -17,6 +17,25 @@ metadata:
 next:
   description: ''
 ---
+---
+title: UPI Bolt UI SDK Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: UPI Bolt UI SDK integration
+  description: >-
+    Integrate UPI Bolt UI SDK on Android with native flow. Steps for PayUBolt
+    SDK setup and UPI intent/collect.
+  keywords:
+    - UPI Bolt UI SDK integration
+    - PayUBolt Android
+    - UPI native integration Android
+    - PayU Bolt SDK
+  robots: index
+next:
+  description: ''
+---
 UPI Bolt UI SDK allows you to manage the checkout options on their checkout screen. You use **PayU UPI Bolt UI SDK** for customer registration, payment and profile management. This integration involves the following steps:
 
 1. [Add permissions to Manifest file](#step-1-add-permissions-to-manifest-file)
@@ -29,8 +48,9 @@ For hash generation logic and Listener/Callback integration, the [Hash generatio
 
 ## Prerequisites
 
-- Minimum Android SDK Version - 23 and above.
-- Compile SDK Version - 31 and above.
+- Minimum Android SDK Version - 24 and above.
+- Compile SDK Version - 36.
+- Target SDK Version - 36.
 - The following .aar (Android archive) files provided by PayU during onboarding:
   1. NPCI Secure Component
   2. AXIS Olive
@@ -39,7 +59,7 @@ For hash generation logic and Listener/Callback integration, the [Hash generatio
 
 Update the manifest file to include the following so that permissions are provided for SDK:
 
-```
+```xml
 // To send SMS for device binding
 <uses-permission android:name="android.permission.SEND_SMS"/>
 // To check current network state
@@ -59,14 +79,14 @@ Update the manifest file to include the following so that permissions are provid
 
 To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your app’s `build.gradle`.
 
-```
-implementation 'in.payu:payu-upi-bolt-ui-sdk:1.3.0' // PayU Bolt SDK
+```groovy
+implementation 'in.payu:payu-upi-bolt-ui-sdk:1.4.2' // PayU Bolt SDK
 implementation 'in.payu:payu-upi-bolt-core-sdk:1.3.0'
 ```
 
 Add the .aar files provided by PayU during onboarding. in the **libs** directory of your android module and add these in module level **build.gradle**. For the list of files, refer to[ Prerequisites](#prerequisites).
 
-```
+```groovy
 api(files("$projectDir/libs/SecureComponent-release-prod_05062024_9d3904ab.aar")) // NPCI .aar
 ```
 
@@ -117,8 +137,8 @@ The following fields are needed as a request for this API:
 
 `reset`: This method is used to deinitailise the bolt object. 
 
-```
-`PayUUPIBoltUI.reset()`
+```kotlin
+PayUUPIBoltUI.reset()
 ```
 
 ## Step 4: Check for UPI Bolt SDK availability
@@ -258,7 +278,7 @@ The following fields are needed as a request for this API:
 
 ## Generate Payment Params
 
-```Text Kotlin
+```kotlin
 val paymentParams = PayUUPIBoltPaymentParams.Builder()
     .amount(<amount>)
     .productInfo(<productInfo>)
