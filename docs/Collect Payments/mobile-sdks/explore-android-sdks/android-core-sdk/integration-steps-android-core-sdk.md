@@ -52,7 +52,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   PayU has moved to Maven Central, Please update your existing dependency using the following configuration:
 
   ```Text build.gradle
-  api 'in.payu:payu-sdk:7.12.3'
+  api 'in.payu:payu-sdk:7.13.0'
   ```
 </Callout>
 
