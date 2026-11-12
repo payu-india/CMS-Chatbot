@@ -5,12 +5,20 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU's error handling operates at two complementary levels. The standard error codes and `error_message` fields provide a baseline view of why a transaction failed. In addition, PayU applies a machine learning model to raw gateway failure responses and returns an `error_details` object alongside the standard fields — giving you a standardised error code, a curated customer message, and a detailed merchant explanation, without any changes to your existing integration.
+### ML-Powered Error Details
 
-Keep the following in mind when handling payment responses:
+Issuing banks, card networks and payment gateways report transaction failures in widely varying formats, and a single failure reason may be returned as many different raw messages. PayU applies a machine learning model to each raw failure response and maps it to a single standard error code, accompanied by a message for the end customer and a detailed explanation for the merchant.
 
-* The **PayU Error Code** column in the error code tables corresponds to the value returned in the **error** parameter of the payment response.
-* The **error_message / message** column corresponds to the value returned in the **error_message / message** parameter of the payment response.
+When a transaction fails, PayU includes an `error_details` object in the transaction response. This object contains:
+
+* A standard PayU error code
+* A message intended for the end customer
+* A detailed technical message intended for the merchant
+* The raw error returned by the gateway
+
+The `error_details` object is returned **in addition to** the existing response fields. PayU continues to return `field9` and `error_Message`, so existing integrations require no changes.
+
+On PayU Hosted Checkout, PayU displays `userMessage` on the failure screen automatically.
 
 <Callout icon="📘" theme="info">
   ### **Note:**
@@ -37,27 +45,6 @@ Keep the following in mind when handling payment responses:
 ## Cards
 
 This section contains error codes associated with cards.
-
-### ML-Powered Error Details
-
-Issuing banks, card networks and payment gateways report transaction failures in widely varying formats, and a single failure reason may be returned as many different raw messages. PayU applies a machine learning model to each raw failure response and maps it to a single standard error code, accompanied by a message for the end customer and a detailed explanation for the merchant.
-
-When a transaction fails, PayU includes an `error_details` object in the transaction response. This object contains:
-
-* A standard PayU error code
-* A message intended for the end customer
-* A detailed technical message intended for the merchant
-* The raw error returned by the gateway
-
-The `error_details` object is returned **in addition to** the existing response fields. PayU continues to return `field9` and `error_Message`, so existing integrations require no changes.
-
-On PayU Hosted Checkout, PayU displays `userMessage` on the failure screen automatically.
-
-<Callout icon="📘" theme="info">
-  ### **Availability**
-
-  ML-powered error codes are currently available for **Domestic Cards**. Support for other payment modes is under development. Until a payment mode is made available, please continue to refer to the [Standard Error Codes](#standard-error-codes) for that mode.
-</Callout>
 
 | Payment mode        | Status            |
 | ------------------- | ----------------- |
