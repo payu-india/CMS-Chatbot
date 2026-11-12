@@ -74,8 +74,12 @@ next:
 | Accept payments without a website or technical setup            | ⚠️ Use [Payment Links](../../introduction-no-code-payments-integration/payment-links-dashboard) instead |
 | Accept payments natively in a mobile app                        |                           ⚠️ Use [PayU Mobile SDK](../../mobile-sdks) instead                           |
 
-<Callout icon="🤔" theme="info">
-  **Not sure which solution fits?** See [Start Here](https://docs.payu.in/docs/start-here) for a guided comparison of all PayU integration options.
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### **Not Sure Which PayU Solution is Right For You?**
+
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.<br />
+
+  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
 </Callout>
 
 ***
@@ -84,10 +88,10 @@ next:
 
 <Cards columns="3">
   <Card title="E-commerce with Custom Checkout" icon="fa-bag-shopping">
-    Full-brand checkout where card fields, UPI input, and net banking selectors match your site's design — no redirects until bank authentication.
+    Full-brand checkout where card fields, UPI input, and NetBanking selectors match your site's design, no redirects until bank authentication.
   </Card>
 
-  <Card title="Financial Services & Lending" icon="fa-building-columns">
+  <Card title="Financial Services and Lending" icon="fa-building-columns">
     Loan repayments, insurance premiums, and investment platforms that need tight integration with their own KYC and account management flows.
   </Card>
 
@@ -95,11 +99,11 @@ next:
     Invoice payments via net banking or NEFT/RTGS with full control over the payer experience and post-payment workflow.
   </Card>
 
-  <Card title="Travel & Hospitality" icon="fa-plane">
+  <Card title="Travel and Hospitality" icon="fa-plane">
     Booking platforms that need EMI on cards and specific bank offers surfaced directly in the payment UI, not in a third-party modal.
   </Card>
 
-  <Card title="EdTech & Healthcare" icon="fa-graduation-cap">
+  <Card title="EdTech and Healthcare" icon="fa-graduation-cap">
     Fee collection platforms that need branded, accessible payment flows with UPI and wallet support tailored to their user base.
   </Card>
 </Cards>
@@ -110,13 +114,15 @@ next:
 
 Before you integrate, make sure you have:
 
-- A **PayU merchant account**. [Register here](https://onboarding.payu.in/) if you don't have one.
-- Your **test merchant key and salt** — from PayU Dashboard → Settings → Developer Settings → Test/Sandbox.
-- Your **live merchant key and salt** — from PayU Dashboard → Settings → Developer Settings → Live/Production.
-- A **backend server** to generate SHA-512 hashes and post payment requests to PayU's `_payment` API.
-- An **HTTPS-enabled website** — required for all production card integrations.
-- **PCI-DSS compliance** if you are collecting card numbers and CVV on your website. Complete the [SAQ A-EP form](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf).
-- **Publicly reachable&#x20;**`surl`**&#x20;and&#x20;**`furl`**&#x20;callback URLs** over HTTPS.
+- [x] **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account
+
+
+- [x] **Test merchant key and salt**: From the **PayU Dashboard** → **Developer** → **API Keys** in the **Test Mode**.
+  - Your **live merchant key and salt** — from PayU Dashboard → Settings → Developer Settings → Live/Production.
+  - A **backend server** to generate SHA-512 hashes and post payment requests to PayU's `_payment` API.
+  - An **HTTPS-enabled website** — required for all production card integrations.
+  - **PCI-DSS compliance** if you are collecting card numbers and CVV on your website. Complete the [SAQ A-EP form](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf).
+  - **Publicly reachable&#x20;**`surl`**&#x20;and&#x20;**`furl`**&#x20;callback URLs** over HTTPS.
 
 ***
 
