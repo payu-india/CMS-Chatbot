@@ -118,11 +118,21 @@ Before you integrate, make sure you have:
 
 
 - [x] **Test merchant key and salt**: From the **PayU Dashboard** → **Developer** → **API Keys** in the **Test Mode**.
-  - Your **live merchant key and salt** — from PayU Dashboard → Settings → Developer Settings → Live/Production.
-  - A **backend server** to generate SHA-512 hashes and post payment requests to PayU's `_payment` API.
-  - An **HTTPS-enabled website** — required for all production card integrations.
-  - **PCI-DSS compliance** if you are collecting card numbers and CVV on your website. Complete the [SAQ A-EP form](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf).
-  - **Publicly reachable&#x20;**`surl`**&#x20;and&#x20;**`furl`**&#x20;callback URLs** over HTTPS.
+
+
+- [x] **Live merchant key and salt**: From the **PayU Dashboard** → **Developer** → **API Keys&#x20;**&#x69;n the **Live Mode**.
+
+
+- [x] **Backend Server:** To generate SHA-512 hashes and post payment requests to PayU's `_payment` API.
+
+
+- [x] **HTTPS-enabled Website**: For all production card integrations.
+
+
+- [x] **PCI-DSS Compliance:** If you are collecting card numbers and CVV on your website. Complete the [SAQ A-EP form](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf).
+
+
+- [x] **Publicly Reachable&#x20;**`surl`**&#x20;and&#x20;**`furl`**&#x20;callback URLs&#x20;**&#x4F;ver HTTPS.
 
 ***
 
