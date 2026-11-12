@@ -24,6 +24,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Android UPI SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Android UPI SDK
+  description: >-
+    This document provides information on UPI transactions, including Collect
+    and Intent transactions, VPA verification, and compatibility requirements
+    such as SDK versions and Kotlin version.
+  keywords:
+    - PayU India UPI SDK
+    - PayU UPI SDK
+    - UPI SDK integration Android
+    - Android UPI payment SDK
+    - PayU UPI payment gateway
+    - How to integrate PayU UPI SDK in Android
+    - PayU India UPI SDK for Android apps
+    - Guide to PayU UPI Android SDK
+    - PayU UPI payment gateway integration Android
+    - Step-by-step PayU UPI SDK Android integration
+  robots: index
+next:
+  description: ''
+---
 UPI SDK supports collect, intent and in app flows for accepting UPI payments through major acquirers. It seamlessly integrates into merchant apps providing various features for UPI.
 
 ## Features
