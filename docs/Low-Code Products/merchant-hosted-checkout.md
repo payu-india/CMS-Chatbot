@@ -173,22 +173,19 @@ Before you integrate, make sure you have:
 
 ## Is My Integration Secure?
 
-Merchant Hosted Checkout places significant security responsibility on you — more than Hosted Checkout or Checkout Plus — because your website handles raw payment data directly.
+Merchant Hosted Checkout places significant security responsibility on you more than Hosted Checkout or Checkout Plus, because your website handles raw payment data directly.
 
-**Hash generation is always server-side.** Your backend generates the SHA-512 hash using your merchant salt. The salt must never appear in any frontend code, HTML, or client-accessible endpoint.
-
-**PCI-DSS is required for card integrations.** If your website collects card numbers and CVV, your servers are in PCI-DSS scope. Ensure HTTPS on all pages, never store CVV, and complete the SAQ A-EP assessment.
-
-**Verify every payment server-side.** The `surl`/`furl` callback can be replayed or tampered with. Always verify the response hash and call the Verify Payment API before fulfilling any order.
-
-**Implement reverse hash verification.** For every response received at `surl`/`furl`, recompute the hash using the reverse formula and compare it to the `hash` field in the response. Reject any response where they don't match.
+- **Hash generation is always server-side:&#x20;**&#x59;our backend generates the SHA-512 hash using your merchant salt. The salt must never appear in any frontend code, HTML, or client-accessible endpoint.
+- **PCI-DSS is required for card integrations:** If your website collects card numbers and CVV, your servers are in PCI-DSS scope. Ensure HTTPS on all pages, never store CVV, and complete the SAQ A-EP assessment.
+- **Verify every payment server-side:** The `surl`/`furl` callback can be replayed or tampered with. Always verify the response hash and call the Verify Payment API before fulfilling any order.
+- **Implement reverse hash verification:&#x20;**&#x46;or every response received at `surl`/`furl`, recompute the hash using the reverse formula and compare it to the `hash` field in the response. Reject any response where they don't match.
 
 ***
 
 ## How Does My Customer Pay?
 
 <Accordion title="1. Customer fills your payment form" icon="fa-circle-1">
-  Your website presents the payment form you built. The customer enters their payment details — card number, UPI VPA, or selects their bank — directly on your page.
+  Your website presents the payment form you built. The customer enters their payment details such as card number, UPI VPA, or selects their bank directly on your page.
 </Accordion>
 
 <Accordion title="2. Your backend generates the hash and posts to PayU" icon="fa-circle-2">
@@ -196,7 +193,7 @@ Merchant Hosted Checkout places significant security responsibility on you — m
 </Accordion>
 
 <Accordion title="3. Bank authentication (if required)" icon="fa-circle-3">
-  For card payments, PayU redirects the customer to the issuing bank's 3DS authentication page. For net banking, the customer is redirected to their bank's login page. For UPI intent, the customer's UPI app opens. For wallets, PayU handles the redirect.
+  For card payments, PayU redirects the customer to the issuing bank's 3DS authentication page. For NetBanking, the customer is redirected to their bank's login page. For UPI intent, the customer's UPI app opens. For wallets, PayU handles the redirect.
 </Accordion>
 
 <Accordion title="4. Customer returns and your server handles the callback" icon="fa-circle-4">
@@ -208,19 +205,19 @@ Merchant Hosted Checkout places significant security responsibility on you — m
 ## Post-Payment Actions
 
 <Cards columns="2">
-  <Card title="Refunds" href="https://docs.payu.in/docs/introduction-refunds" icon="fa-rotate-left">
+  <Card title="Refunds" href="https://docs.payu.in/docs/introduction-refunds" icon="fa-rotate-left" target="_blank">
     Initiate full or partial refunds from the PayU Dashboard or via the Refund API. Supports instant refunds for eligible transactions.
   </Card>
 
-  <Card title="Refund APIs" href="https://docs.payu.in/docs/refund-apis-doc" icon="fa-rectangle-api">
-    API reference for initiating refunds, checking refund status, and retrieving all refunds by transaction ID.
-  </Card>
-
-  <Card title="Settlements Dashboard" href="https://docs.payu.in/docs/settlements-dashboard" icon="fa-building-columns">
+  <Card title="Settlements Dashboard" href="https://docs.payu.in/docs/settlements-dashboard" icon="fa-building-columns" target="_blank">
     View settlement records, download TDR reports, and track UTR details from the PayU Dashboard.
   </Card>
 
-  <Card title="Webhooks" href="https://docs.payu.in/docs/webhooks" icon="fa-plug">
+  <Card title="Chargeback" href="https://docs.payu.in/docs/chargeback" icon="fad fa-arrow-right-to-bracket" target="_blank">
+    Understand the chargeback process, contest or accept chargebacks via the PayU Dashboard, and set up webhook notifications for chargeback events.
+  </Card>
+
+  <Card title="Webhooks" href="https://docs.payu.in/docs/webhooks" icon="fa-plug" target="_blank">
     Receive server-to-server payment and refund notifications. Use as a fallback when `surl`/`furl` callbacks fail.
   </Card>
 </Cards>
