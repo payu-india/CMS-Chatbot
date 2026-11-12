@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-### ML-Powered Error Details
+## ML-Powered Error Details
 
 Issuing banks, card networks and payment gateways report transaction failures in widely varying formats, and a single failure reason may be returned as many different raw messages. PayU applies a machine learning model to each raw failure response and maps it to a single standard error code, accompanied by a message for the end customer and a detailed explanation for the merchant.
 
@@ -56,87 +56,89 @@ This section contains error codes associated with cards.
 | EMI                 | Under development |
 | BNPL                | Under development |
 
-<Callout icon="📘" theme="info">
-  ### **Note**
-
-  Every failure response contains a complete `error_details` object. Where PayU is unable to classify an error, the response contains a generic `userMessage`, with `newErrorCode` set to `NA` and the category set to `Unknown`. No additional fallback logic is required in your integration.
-</Callout>
-
-#### **Sample Response**
+### **Sample Response**
 
 The following sample illustrates the `error_details` object for a failed domestic card transaction:
 
-```json
-"error_details": {
-  "step": "authorisationFailure",
-  "source": "Risk decline",
-  "responsibility": "Issuer",
-  "userMessage": "Transaction failed as bank suspected fraud. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.",
-  "merchantMessage": "The bank declined the authorization because they suspected fraudulent activity. Please ask the customer to contact their bank or try a different payment method.",
-  "newErrorCode": "EN613",
-  "optional": {
-    "pgError": "05 | Do not honor",
-    "issuerErrorCode": "",
-    "apiLayer": ""
-  }
-}
-```
+<Tabs>
+  <Tab title="Response Payload">
+    ```json
+    "error_details": {
+      "step": "authorisationFailure",
+      "source": "Risk decline",
+      "responsibility": "Issuer",
+      "userMessage": "Transaction failed as bank suspected fraud. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.",
+      "merchantMessage": "The bank declined the authorization because they suspected fraudulent activity. Please ask the customer to contact their bank or try a different payment method.",
+      "newErrorCode": "EN613",
+      "optional": {
+        "pgError": "05 | Do not honor",
+        "issuerErrorCode": "",
+        "apiLayer": ""
+      }
+    }
+    ```
 
-#### **Field Reference**
 
-The following table describes each field in the `error_details` object and its intended audience:
+  </Tab>
 
-| Field                      | Description                                                                                                                | Audience         |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| `userMessage`              | Curated message for the end customer. PayU Hosted Checkout displays this message on the failure screen.                    | **End customer** |
-| `merchantMessage`          | Detailed technical explanation of the failure, with a recommended action, for analysis and support purposes.               | Merchant         |
-| `newErrorCode`             | Standard PayU error code (EN…). Set to `NA` where the error could not be classified.                                       | Merchant         |
-| `source`                   | Failure category, for example, Risk decline or Business decline. Set to `Unknown` where the error could not be classified. | Merchant         |
-| `responsibility`           | Party at which the failure occurred, for example, Issuer.                                                                  | Merchant         |
-| `step`                     | Payment stage at which the failure occurred.                                                                               | Merchant         |
-| `optional.pgError`         | Raw response code and description returned by the gateway or acquirer.                                                     | Merchant         |
-| `optional.issuerErrorCode` | Error code returned by the issuer, where available.                                                                        | Merchant         |
-| `optional.apiLayer`        | Layer at which the failure was raised. Set to `Unknown` where the error could not be classified.                           | Merchant         |
+  <Tab title="Parameter Description">
+    | Field                      | Description                                                                                                                | Audience         |
+    | -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+    | `userMessage`              | Curated message for the end customer. PayU Hosted Checkout displays this message on the failure screen.                    | **End customer** |
+    | `merchantMessage`          | Detailed technical explanation of the failure, with a recommended action, for analysis and support purposes.               | Merchant         |
+    | `newErrorCode`             | Standard PayU error code (EN…). Set to `NA` where the error could not be classified.                                       | Merchant         |
+    | `source`                   | Failure category, for example, Risk decline or Business decline. Set to `Unknown` where the error could not be classified. | Merchant         |
+    | `responsibility`           | Party at which the failure occurred, for example, Issuer.                                                                  | Merchant         |
+    | `step`                     | Payment stage at which the failure occurred.                                                                               | Merchant         |
+    | `optional.pgError`         | Raw response code and description returned by the gateway or acquirer.                                                     | Merchant         |
+    | `optional.issuerErrorCode` | Error code returned by the issuer, where available.                                                                        | Merchant         |
+    | `optional.apiLayer`        | Layer at which the failure was raised. Set to `Unknown` where the error could not be classified.                           | Merchant         |
 
-> **Important:** Only `userMessage` is intended for end customers. All other fields are intended for merchant use only and must not be displayed to customers.
+    > **Important:** Only `userMessage` is intended for end customers. All other fields are intended for merchant use only and must not be displayed to customers.
 
-#### **Error Code Reference**
+    ### `newErrorCode` Object Parameters
 
-Every failed payment response includes a `newErrorCode`, for example, `EN3126`.
+    <Tabs>
+      <Tab title="Category (first digit)">
+        | Digit | Category                 | Description                                                                                              | Recommended action                                                                          |
+        | ----- | ------------------------ | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+        | 1     | Customer error           | The customer entered incorrect details, cancelled the payment, or did not complete it.                   | Request the customer to verify their details and retry.                                     |
+        | 2     | Internal technical error | A technical issue within PayU systems.                                                                   | Retry the transaction. If the issue persists, contact PayU support.                         |
+        | 3     | External technical error | A technical issue at the bank, card network or another partner.                                          | Retry the transaction, or request the customer to use an alternative payment method.        |
+        | 4     | Configuration error      | The merchant account or integration is not configured for this payment.                                  | Contact your PayU account manager or PayU support.                                          |
+        | 5     | Business decline         | The transaction was declined for a business reason, such as insufficient funds or a limit being reached. | Request the customer to use an alternative payment method or contact their bank.            |
+        | 6     | Risk decline             | The transaction was declined by the bank or by risk checks for security reasons.                         | Do not retry with the same card. Request the customer to use an alternative payment method. |
+        | 0     | Unclassified             | The failure could not be categorised.                                                                    | Retry the transaction. If the issue persists, contact PayU support.                         |
+      </Tab>
 
-**Format:** `EN` + Category (first digit) + Source (second digit) + Message number (variable length).<br />For example: `EN311`, `EN3126`, `EN30505`.
+      <Tab title="Source (second digit)">
+        | Digit | Source      | Point of failure                    |
+        | ----- | ----------- | ----------------------------------- |
+        | 1     | Issuer      | The customer's bank                 |
+        | 2     | Network     | The card network or payment scheme  |
+        | 3     | Merchant    | The merchant account or integration |
+        | 4     | Customer    | The customer's action or input      |
+        | 5     | PayU        | PayU systems                        |
+        | 0     | Unspecified | The source could not be determined  |
+      </Tab>
+    </Tabs>
 
-#### Category (first digit)
+    **Format:** `EN` + Category (first digit) + Source (second digit) + Message number (variable length).<br />For example: `EN311`, `EN3126`, `EN30505`.
 
-| Digit | Category                 | Description                                                                                              | Recommended action                                                                          |
-| ----- | ------------------------ | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| 1     | Customer error           | The customer entered incorrect details, cancelled the payment, or did not complete it.                   | Request the customer to verify their details and retry.                                     |
-| 2     | Internal technical error | A technical issue within PayU systems.                                                                   | Retry the transaction. If the issue persists, contact PayU support.                         |
-| 3     | External technical error | A technical issue at the bank, card network or another partner.                                          | Retry the transaction, or request the customer to use an alternative payment method.        |
-| 4     | Configuration error      | The merchant account or integration is not configured for this payment.                                  | Contact your PayU account manager or PayU support.                                          |
-| 5     | Business decline         | The transaction was declined for a business reason, such as insufficient funds or a limit being reached. | Request the customer to use an alternative payment method or contact their bank.            |
-| 6     | Risk decline             | The transaction was declined by the bank or by risk checks for security reasons.                         | Do not retry with the same card. Request the customer to use an alternative payment method. |
-| 0     | Unclassified             | The failure could not be categorised.                                                                    | Retry the transaction. If the issue persists, contact PayU support.                         |
+    #### Examples
 
-#### Source (second digit)
+    | Code   | Interpretation                                                          |
+    | ------ | ----------------------------------------------------------------------- |
+    | EN3126 | External technical error (3) at the customer's bank (1), message 26     |
+    | EN6145 | Risk decline (6) by the customer's bank (1), message 45                 |
+    | EN4312 | Configuration error (4) in the merchant's configuration (3), message 12 |
+    | EN1408 | Customer error (1) arising from customer input (4), message 8           |
+  </Tab>
 
-| Digit | Source      | Point of failure                    |
-| ----- | ----------- | ----------------------------------- |
-| 1     | Issuer      | The customer's bank                 |
-| 2     | Network     | The card network or payment scheme  |
-| 3     | Merchant    | The merchant account or integration |
-| 4     | Customer    | The customer's action or input      |
-| 5     | PayU        | PayU systems                        |
-| 0     | Unspecified | The source could not be determined  |
-
-#### Examples
-
-| Code   | Interpretation                                                          |
-| ------ | ----------------------------------------------------------------------- |
-| EN3126 | External technical error (3) at the customer's bank (1), message 26     |
-| EN6145 | Risk decline (6) by the customer's bank (1), message 45                 |
-| EN4312 | Configuration error (4) in the merchant's configuration (3), message 12 |
-| EN1408 | Customer error (1) arising from customer input (4), message 8           |
+  <Tab title="New Tab">
+    >
+  </Tab>
+</Tabs>
 
 <Callout icon="📘" theme="info">
   ### **Recommendations**
@@ -147,7 +149,7 @@ Every failed payment response includes a `newErrorCode`, for example, `EN3126`.
   * **Message updates:** PayU updates error messages periodically to address new error scenarios across the ecosystem. Ensure that any logic built on this data accommodates such updates.
 </Callout>
 
-### Error Lists by Payment Mode
+### User Error Messages by Payment Mode
 
 The following lists set out the `userMessage` values that PayU returns to end customers for each payment mode.
 
