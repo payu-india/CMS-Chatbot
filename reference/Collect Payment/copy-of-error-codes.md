@@ -20,6 +20,16 @@ The `error_details` object is returned **in addition to** the existing response 
 
 On PayU Hosted Checkout, PayU displays `userMessage` on the failure screen automatically.
 
+| Payment mode        | Status            |
+| ------------------- | ----------------- |
+| Domestic Cards      | Available         |
+| International Cards | Under development |
+| Net Banking         | Under development |
+| UPI                 | Under development |
+| Wallets             | Under development |
+| EMI                 | Under development |
+| BNPL                | Under development |
+
 <Callout icon="📘" theme="info">
   ### **Note:**
 
@@ -45,16 +55,6 @@ On PayU Hosted Checkout, PayU displays `userMessage` on the failure screen autom
 ## Cards
 
 This section contains error codes associated with cards.
-
-| Payment mode        | Status            |
-| ------------------- | ----------------- |
-| Domestic Cards      | Available         |
-| International Cards | Under development |
-| Net Banking         | Under development |
-| UPI                 | Under development |
-| Wallets             | Under development |
-| EMI                 | Under development |
-| BNPL                | Under development |
 
 ### **Sample Response**
 
@@ -153,51 +153,53 @@ The following sample illustrates the `error_details` object for a failed domesti
 
 The following lists set out the `userMessage` values that PayU returns to end customers for each payment mode.
 
-#### Domestic Cards
+<Accordion title="Domestic Cards">
+  | Status | User message                                                                                                                                                         |
+  | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | failed | E-Commerce is not enabled for this card. Please enable E-commerce on your bank app and retry the transaction.                                                        |
+  | failed | Transaction Failed due to wrong OTP entered. Please retry and enter the correct OTP                                                                                  |
+  | failed | Transaction failed as bank suspected fraud. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                            |
+  | failed | Payment could not be processed. Please try again or use a different payment method.                                                                                  |
+  | failed | User authentication failed due to a technical error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                   |
+  | failed | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                           |
+  | failed | Payment could not be completed. Please try again later or use a different payment method.                                                                            |
+  | failed | A technical error occurred. Please try again or use a different payment method.                                                                                      |
+  | failed | Payment failed. Please try again later or use a different payment method.                                                                                            |
+  | failed | Bank server is down. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                                                   |
+  | failed | Session timed out error, Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                                               |
+  | failed | We couldn't verify your payment. Please try again.                                                                                                                   |
+  | failed | Payment declined by bank. Please contact your bank or try another card.                                                                                              |
+  | failed | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                             |
+  | failed | The card details entered were incorrect. Please re-enter correct card details and try again.                                                                         |
+  | failed | Transaction failed as the card has expired please use another paymode. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+  | failed | This card is not supported on this merchant, please use another card or another paymode.                                                                             |
+  | failed | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.        |
+  | failed | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode.                                                |
+  | failed | Wrong Expiry date/CVV entered, please recheck and try again.                                                                                                         |
+  | failed | Transaction failed due to bank server error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                           |
+  | failed | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode.                                                                  |
+  | failed | No account found for this card. You can retry on another paymode. If money is debited it will be refunded within 48 hours.                                           |
+  | failed | Transaction Failed due to insufficient fund in your account. Kindly use another card or another payment mode.                                                        |
+  | failed | This card is currently not supported by your card network. Please use another paymode. If money is debited it will be refunded within 48 hours.                      |
+  | failed | This payment was already processed. If charged twice, money will be refunded within 48 hours.                                                                        |
+  | failed | E-Commerce not enable for this card. Please enable E-commerce on your bank app and retry the transaction.                                                            |
+  | failed | Wrong Expiry date/CVV entered, please recheck and try again                                                                                                          |
+  | failed | Payment failed due to a technical issue. Please try again or use a different payment method.                                                                         |
+  | failed | Transaction Succesful                                                                                                                                                |
+  | failed | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 - 72 hours.                      |
+  | failed | The card used cannot be saved currently due to bank's rules. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.           |
+  | failed | Transaction Failed due to wrong OTP entered. Please retry and enter the correct OTP.                                                                                 |
+  | failed | Transaction has been cancelled by the user, Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                            |
+  | failed | Payment verification failed. Please try again.                                                                                                                       |
+  | failed | Transaction declined due to Wrong CVV or expiry. Please retry with correct card details or use another paymode.                                                      |
+  | failed | Transaction failed due to technical issues. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                            |
+  | failed | Transaction failed due to some technical issues. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                       |
+  | failed | Transaction timed out at the Payment Gateway, please retry.                                                                                                          |
+  | failed | No account found for this card. Please contact your issuer. You can retry on another paymode. If money is debited it will be refunded within 48 - 72 hours.          |
+  | failed | Transaction failed due to technical issues. Please retry or use another paymode. If money is debited it will be refunded within 48 - 72 hours                        |
 
-| Status | User message                                                                                                                                                         |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| failed | E-Commerce is not enabled for this card. Please enable E-commerce on your bank app and retry the transaction.                                                        |
-| failed | Transaction Failed due to wrong OTP entered. Please retry and enter the correct OTP                                                                                  |
-| failed | Transaction failed as bank suspected fraud. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                            |
-| failed | Payment could not be processed. Please try again or use a different payment method.                                                                                  |
-| failed | User authentication failed due to a technical error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                   |
-| failed | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                           |
-| failed | Payment could not be completed. Please try again later or use a different payment method.                                                                            |
-| failed | A technical error occurred. Please try again or use a different payment method.                                                                                      |
-| failed | Payment failed. Please try again later or use a different payment method.                                                                                            |
-| failed | Bank server is down. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                                                   |
-| failed | Session timed out error, Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                                               |
-| failed | We couldn't verify your payment. Please try again.                                                                                                                   |
-| failed | Payment declined by bank. Please contact your bank or try another card.                                                                                              |
-| failed | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                             |
-| failed | The card details entered were incorrect. Please re-enter correct card details and try again.                                                                         |
-| failed | Transaction failed as the card has expired please use another paymode. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
-| failed | This card is not supported on this merchant, please use another card or another paymode.                                                                             |
-| failed | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.        |
-| failed | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode.                                                |
-| failed | Wrong Expiry date/CVV entered, please recheck and try again.                                                                                                         |
-| failed | Transaction failed due to bank server error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                           |
-| failed | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode.                                                                  |
-| failed | No account found for this card. You can retry on another paymode. If money is debited it will be refunded within 48 hours.                                           |
-| failed | Transaction Failed due to insufficient fund in your account. Kindly use another card or another payment mode.                                                        |
-| failed | This card is currently not supported by your card network. Please use another paymode. If money is debited it will be refunded within 48 hours.                      |
-| failed | This payment was already processed. If charged twice, money will be refunded within 48 hours.                                                                        |
-| failed | E-Commerce not enable for this card. Please enable E-commerce on your bank app and retry the transaction.                                                            |
-| failed | Wrong Expiry date/CVV entered, please recheck and try again                                                                                                          |
-| failed | Payment failed due to a technical issue. Please try again or use a different payment method.                                                                         |
-| failed | Transaction Succesful                                                                                                                                                |
-| failed | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 - 72 hours.                      |
-| failed | The card used cannot be saved currently due to bank's rules. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.           |
-| failed | Transaction Failed due to wrong OTP entered. Please retry and enter the correct OTP.                                                                                 |
-| failed | Transaction has been cancelled by the user, Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                            |
-| failed | Payment verification failed. Please try again.                                                                                                                       |
-| failed | Transaction declined due to Wrong CVV or expiry. Please retry with correct card details or use another paymode.                                                      |
-| failed | Transaction failed due to technical issues. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                            |
-| failed | Transaction failed due to some technical issues. Please retry or use another paymode. If money is debited it will be refunded within 48 hours.                       |
-| failed | Transaction timed out at the Payment Gateway, please retry.                                                                                                          |
-| failed | No account found for this card. Please contact your issuer. You can retry on another paymode. If money is debited it will be refunded within 48 - 72 hours.          |
-| failed | Transaction failed due to technical issues. Please retry or use another paymode. If money is debited it will be refunded within 48 - 72 hours                        |
+
+</Accordion>
 
 #### Other Payment Modes
 
