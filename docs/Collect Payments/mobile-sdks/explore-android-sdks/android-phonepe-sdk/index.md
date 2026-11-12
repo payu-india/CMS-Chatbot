@@ -58,6 +58,7 @@ If the user device doesn’t have the PhonePe application installed, we will sho
 
 ## Compatibility
 
-* Min SDK Version: 21
-* Compile SDK Version: 31 and above
+* Min SDK Version: 24 and above
+* Compile SDK Version: 36
+* Target SDK Version: 36
 * Kotlin version: 1.6.10
