@@ -77,8 +77,6 @@ The following sample illustrates the `error_details` object for a failed domesti
       }
     }
     ```
-
-
   </Tab>
 
   <Tab title="Parameter Description">
@@ -133,10 +131,6 @@ The following sample illustrates the `error_details` object for a failed domesti
     | EN6145 | Risk decline (6) by the customer's bank (1), message 45                 |
     | EN4312 | Configuration error (4) in the merchant's configuration (3), message 12 |
     | EN1408 | Customer error (1) arising from customer input (4), message 8           |
-  </Tab>
-
-  <Tab title="New Tab">
-    >
   </Tab>
 </Tabs>
 
@@ -201,7 +195,7 @@ The following lists set out the `userMessage` values that PayU returns to end cu
 
 </Accordion>
 
-#### Other Payment Modes
+### Other Payment Modes
 
 <Callout icon="📘" theme="info">
   ### **Under development**
