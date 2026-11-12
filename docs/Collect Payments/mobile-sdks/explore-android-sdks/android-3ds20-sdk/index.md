@@ -80,7 +80,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     Use the following code snippet in your app’s build.gradle file:
 
   ```
-  implementation 'in.payu:threeds-sdk:2.0.2'
+  implementation 'in.payu:threeds-sdk:3.1.0'
   ```
 
   * Use our SDK for a complete transaction:
