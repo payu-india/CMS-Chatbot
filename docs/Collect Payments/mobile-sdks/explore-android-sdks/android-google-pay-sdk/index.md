@@ -33,6 +33,41 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Android Google Pay SDK
+excerpt: >-
+  Gpay SDK offers in app experience to start collecting payments through
+  instruments saved on gpay and phone. Supports UPI, card and wallet payments
+  along with UPI PIN authentication.
+deprecated: false
+hidden: false
+metadata:
+  title: Android Google Pay SDK
+  description: >-
+    This document outlines the features of PayU's integration with Google Pay or
+    GPay, including support for UPI, card, and wallet payments, as well as
+    onboarding requirements and different transaction flows. It also specifies
+    compatibility requirements such as minimum SDK version and Kotlin version.
+  keywords:
+    - PayU Google Pay SDK integration
+    - PayU India Google Pay SDK
+    - Android Google Pay SDK integration
+    - Google Pay SDK integration steps
+    - PayU Google Pay integration guide
+    - >-
+      How to integrate PayU Google Pay SDK in Android.Step-by-step PayU Google
+      Pay SDK integration
+    - PayU Google Pay SDK integration for Android apps
+    - Detailed guide for PayU Google Pay SDK integration
+    - PayU GPay SDK integration
+    - PayU India GPay SDK
+    - Android GPay SDK integration
+    - GPay SDK integration steps
+    - PayU GPay integration guide
+  robots: index
+next:
+  description: ''
+---
 ## Feature
 
 * Supports  UPI, card and wallet payment modes
@@ -78,6 +113,7 @@ If the user’s device does not have the Google Pay application installed, PayU 
 
 ## Compatibility
 
-* Min SDK Version: 21
-* Compile SDK Version: 31 and above
+* Min SDK Version: 24 and above
+* Compile SDK Version: 36
+* Target SDK Version: 36
 * Kotlin version: 1.6.10
