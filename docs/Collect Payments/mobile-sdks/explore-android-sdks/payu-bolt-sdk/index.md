@@ -54,6 +54,9 @@ The PayU UPI Bolt UI SDK, built on PayU UPI Bolt, provides a ready-made interfac
 
 <Image align="center" src="https://files.readme.io/5ca8ceb2d259d6e116529edca1e459c5255283ccc5e61148f621b290989879b0-M.jpg" />
 
-To integrate PayU Bolt SDK, refer to [PayU Bolt SDK Integration](doc:payubolt-sdk-integration-native).
+<Callout icon="far fa-circle-info" theme="info">
+  ### Reference:
 
-To integrate PayU Bolt UI SDK, refer to [PayU Bolt UI SDK Integration]()
+  - To integrate PayU Bolt SDK, refer to [PayU Bolt SDK Integration](doc:payubolt-sdk-integration-native).
+  - To integrate PayU Bolt UI SDK, refer to [PayU Bolt UI SDK Integration]()
+</Callout>
