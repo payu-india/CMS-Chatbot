@@ -31,6 +31,18 @@ Use this endpoint to collect payments using PayU Hosted Checkout for all the Web
 
 <Postman_collection />
 
+***
+
+<Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /\_payment
+  </Card>
+</Cards>
+
 ## Environment
 
 | Environment    | URL                                                                   |
@@ -38,58 +50,136 @@ Use this endpoint to collect payments using PayU Hosted Checkout for all the Web
 | **Test**       | [`https://test.payu.in/_payment`](https://test.payu.in/_payment>)     |
 | **Production** | [`https://secure.payu.in/_payment`](https://secure.payu.in/_payment>) |
 
-<Accordion title="Sample request" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d \
-  "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00 \
-  &firstname=PayU User&email=test@gmail.com&phone=9876543210 \
-  &productinfo=iPhone&surl= \
-  https://apiplayground-response.herokuapp.com/ \
-  &furl=https://apiplayground-response.herokuapp.com/ \
-  &hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
-  ```
-  ```python
+***
+
+## Sample Request
+
+<Tabs>
+  <Tab title="Request Payload">
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g" \
+      -d "txnid=PQI6MqpYrjEefU" \
+      -d "amount=10.00" \
+      -d "firstname=PayU User" \
+      -d "email=test@gmail.com" \
+      -d "phone=9876543210" \
+      -d "productinfo=iPhone" \
+      -d "surl=https://apiplayground-response.herokuapp.com/" \
+      -d "furl=https://apiplayground-response.herokuapp.com/" \
+      -d "hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+    ```
+    ```python
     import requests
 
-  url = "https://test.payu.in/_payment"
-  payload = "key=JP***g&txnid=Dnh8wYimuCRIdv&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=&bankcode=&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=cb4b8bda5677dbe80f53735b1d0ec5d48164c3654627369268cf6bf266db994db39108ce2e0868c953e66c172f6b2d78836b253d3463d0cc40d9b6a93118ed56"
-  headers = { 
-    "Accept": "application/json", 
-    "Content-Type": "application/x-www-form-urlencoded" 
-  }
-  response = requests.request("POST", url, data=payload, headers=headers)
-  print(response.text)
-  ```
-  ```php
-  $url = "https://test.payu.in/_payment";
-  $req = curl_init($url);
-  curl_setopt($req, CURLOPT_URL, $url);
-  curl_setopt($req, CURLOPT_POST, true); 
-  curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
-  $headers = array(
-    "Content-Type: application/x-www-form-urlencoded"
-  ); 
-  curl_setopt($req, CURLOPT_HTTPHEADER, $headers);
-  $data = "key=JP***g&txnid=Dnh8wYimuCRIdv&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=&bankcode=&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=&ccexpmon=&ccexpyr=&ccvv=&ccname=&txn_s2s_flow=&hash=cb4b8bda5677dbe80f53735b1d0ec5d48164c3654627369268cf6bf266db994db39108ce2e0868c953e66c172f6b2d78836b253d3463d0cc40d9b6a93118ed56";
-  curl_setopt($req, CURLOPT_POSTFIELDS, $data);
-  $resp = curl_exec($req);
-  curl_close($req);
-  var_dump($resp);
-  ```
-  ```java
-  Request request = Request.Post("https://test.payu.in/_payment");
-  String body = "key=JP***g&txnid=Dnh8wYimuCRIdv&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=&bankcode=&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=&ccexpmon=&ccexpyr=&ccvv=&ccname=&txn_s2s_flow=&hash=cb4b8bda5677dbe80f53735b1d0ec5d48164c3654627369268cf6bf266db994db39108ce2e0868c953e66c172f6b2d78836b253d3463d0cc40d9b6a93118ed56";
-  request.bodyString(body, ContentType.APPLICATION_FORM_URLENCODED);
-  request.setHeader("Content-Type", "application/x-www-form-urlencoded");
-  HttpResponse httpResponse = request.execute().returnResponse();
-  System.out.println(httpResponse.getStatusLine());
-  if (httpResponse.getEntity() != null) {
-      String html = EntityUtils.toString(httpResponse.getEntity());
-      System.out.println(html);
-  }
-  ```
-</Accordion>
+    url = "https://test.payu.in/_payment"
+
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    payload = {
+        "key": "JP***g",
+        "txnid": "Dnh8wYimuCRIdv",
+        "amount": "10.00",
+        "firstname": "PayU User",
+        "email": "test@gmail.com",
+        "phone": "9876543210",
+        "productinfo": "iPhone",
+        "pg": "",
+        "bankcode": "",
+        "surl": "https://apiplayground-response.herokuapp.com/",
+        "furl": "https://apiplayground-response.herokuapp.com/",
+        "hash": "cb4b8bda5677dbe80f53735b1d0ec5d48164c3654627369268cf6bf266db994db39108ce2e0868c953e66c172f6b2d78836b253d3463d0cc40d9b6a93118ed56"
+    }
+
+    response = requests.post(url, data=payload, headers=headers)
+    print(response.text)
+    ```
+    ```php
+    $url = "https://test.payu.in/_payment";
+
+    $headers = [
+        "Content-Type: application/x-www-form-urlencoded"
+    ];
+
+    $data = [
+        "key"          => "JP***g",
+        "txnid"        => "Dnh8wYimuCRIdv",
+        "amount"       => "10.00",
+        "firstname"    => "PayU User",
+        "email"        => "test@gmail.com",
+        "phone"        => "9876543210",
+        "productinfo"  => "iPhone",
+        "pg"           => "",
+        "bankcode"     => "",
+        "surl"         => "https://apiplayground-response.herokuapp.com/",
+        "furl"         => "https://apiplayground-response.herokuapp.com/",
+        "ccnum"        => "",
+        "ccexpmon"     => "",
+        "ccexpyr"      => "",
+        "ccvv"         => "",
+        "ccname"       => "",
+        "txn_s2s_flow" => "",
+        "hash"         => "cb4b8bda5677dbe80f53735b1d0ec5d48164c3654627369268cf6bf266db994db39108ce2e0868c953e66c172f6b2d78836b253d3463d0cc40d9b6a93118ed56"
+    ];
+
+    $req = curl_init($url);
+    curl_setopt_array($req, [
+        CURLOPT_POST           => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER     => $headers,
+        CURLOPT_POSTFIELDS     => http_build_query($data)
+    ]);
+
+    $resp = curl_exec($req);
+    curl_close($req);
+
+    var_dump($resp);
+    ```
+    ```java
+    List<NameValuePair> params = new ArrayList<>();
+    params.add(new BasicNameValuePair("key",          "JP***g"));
+    params.add(new BasicNameValuePair("txnid",        "Dnh8wYimuCRIdv"));
+    params.add(new BasicNameValuePair("amount",       "10.00"));
+    params.add(new BasicNameValuePair("firstname",    "PayU User"));
+    params.add(new BasicNameValuePair("email",        "test@gmail.com"));
+    params.add(new BasicNameValuePair("phone",        "9876543210"));
+    params.add(new BasicNameValuePair("productinfo",  "iPhone"));
+    params.add(new BasicNameValuePair("pg",           ""));
+    params.add(new BasicNameValuePair("bankcode",     ""));
+    params.add(new BasicNameValuePair("surl",         "https://apiplayground-response.herokuapp.com/"));
+    params.add(new BasicNameValuePair("furl",         "https://apiplayground-response.herokuapp.com/"));
+    params.add(new BasicNameValuePair("ccnum",        ""));
+    params.add(new BasicNameValuePair("ccexpmon",     ""));
+    params.add(new BasicNameValuePair("ccexpyr",      ""));
+    params.add(new BasicNameValuePair("ccvv",         ""));
+    params.add(new BasicNameValuePair("ccname",       ""));
+    params.add(new BasicNameValuePair("txn_s2s_flow", ""));
+    params.add(new BasicNameValuePair("hash",         "cb4b8bda5677dbe80f53735b1d0ec5d48164c3654627369268cf6bf266db994db39108ce2e0868c953e66c172f6b2d78836b253d3463d0cc40d9b6a93118ed56"));
+
+    HttpResponse httpResponse = Request
+        .Post("https://test.payu.in/_payment")
+        .bodyForm(params, StandardCharsets.UTF_8)
+        .execute()
+        .returnResponse();
+
+    System.out.println(httpResponse.getStatusLine());
+
+    if (httpResponse.getEntity() != null) {
+        String html = EntityUtils.toString(httpResponse.getEntity());
+        System.out.println(html);
+    }
+    ```
+  </Tab>
+
+  <Tab title="Tab 2">
+
+  </Tab>
+</Tabs>
 
 <Accordion title="Sample response" icon="fa-reply">
   #### Response
