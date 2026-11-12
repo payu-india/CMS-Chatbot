@@ -134,56 +134,40 @@ Before you integrate, make sure you have:
 
 - [x] **Publicly Reachable&#x20;**`surl`**&#x20;and&#x20;**`furl`**&#x20;callback URLs&#x20;**&#x4F;ver HTTPS.
 
-***
+<HTMLBlock>{`
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
 
-## How Do I Integrate Merchant Hosted Checkout?
-
-<Accordion title="Step 1: Choose your payment method" icon="fa-circle-1">
-  Merchant Hosted Checkout requires a separate integration for each payment method. Start with the payment method your customers use most — Cards is the most common starting point.
-
-  Each method uses the same `_payment` endpoint but with different `pg`, `bankcode`, and field parameters. See [Build Integration](./integration-guide/build-integration) for the per-method guides.
-</Accordion>
-
-<Accordion title="Step 2: Build your payment form" icon="fa-circle-2">
-  Design and build the UI for your chosen payment method on your website. For cards, this means card number, CVV, expiry, and name fields. For net banking, a bank selector dropdown. For UPI, a VPA input or QR/intent flow.
-
-  Your form collects payment details from the customer but does not submit them directly to PayU. The data goes to your backend first.
-</Accordion>
-
-<Accordion title="Step 3: Generate the hash on your backend" icon="fa-circle-3">
-  Your backend generates the SHA-512 transaction hash using your merchant salt:
-
-  ```
-  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-  ```
-
-  The salt must never appear in frontend code. Only the computed hash is passed to the frontend or included in the form POST.
-</Accordion>
-
-<Accordion title="Step 4: POST to PayU's _payment endpoint" icon="fa-circle-4">
-  Submit the payment parameters — including the hash and all payment-method-specific fields — as a form POST to PayU:
-
-  | Environment | Endpoint                          |
-  | ----------- | --------------------------------- |
-  | Test        | `https://test.payu.in/_payment`   |
-  | Production  | `https://secure.payu.in/_payment` |
-
-  PayU processes the payment, handles bank authentication, and redirects the customer to your `surl` (success) or `furl` (failure).
-</Accordion>
-
-<Accordion title="Step 5: Handle the callback and verify server-side" icon="fa-circle-5">
-  PayU POSTs the payment response to your `surl` or `furl`. Before marking any order as paid:
-
-  1. Verify the response hash using the reverse hash formula
-  2. Call the [Verify Payment API](https://docs.payu.in/reference/verify_payment_api) from your backend with the `txnid`
-  3. Confirm `status === 'success'` and the `amount` matches your order
-
-  Never trust the callback response alone — always verify server-side.
-</Accordion>
-
-<Callout icon="📘" theme="info">
-  **Full implementation details** — all parameters, hash formula, code samples, and per-payment-method guides are in [Build Integration](./integration-guide/build-integration).
-</Callout>
+                <button onclick="window.open('https://docs.payu.in/docs/payu-hosted-checkout-quick-start', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Follow the guided steps to set up and test your first payment.">
+                    Set Up and Test Your First Payment →
+                </button>
+`}</HTMLBlock>
 
 ***
 
