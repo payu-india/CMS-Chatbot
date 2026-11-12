@@ -1,4 +1,4 @@
 ---
 title: Collect Payment
-hidden: false
+hidden: true
 ---
