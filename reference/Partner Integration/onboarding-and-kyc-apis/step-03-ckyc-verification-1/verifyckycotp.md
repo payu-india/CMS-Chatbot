@@ -48,13 +48,21 @@ The **Verify CKYC OTP** API verifies the OTP from Step 03A and returns CKYC iden
 <Accordion title="Success scenario" icon="fa-file-code">
   ```json
   {
-    "name": "MERCHANT LEGAL NAME",
-    "dob": "06-01-2000",
-    "address": "123 MG Road",
-    "city": "Bangalore",
-    "state": "Karnataka",
-    "pincode": "560001",
-    "mobile": "******3210"
+    "name": "Merchant name",
+    "father_name": "Father name",
+    "dob": "25-08-2001",
+    "email": "test@gmail.com",
+    "mobile": "9307262444",
+    "ckyc_number": "40086603721111",
+    "nationality": "IN",
+    "address": "Permanent Address",
+    "pincode": "414003",
+    "state": "Maharashtra",
+    "city": "Ahmed Nagar",
+    "district": "Ahmed Nagar",
+    "image_type": "jpg",
+    "encrypted_image": "<base64 JPEG, truncated here for display>",
+    "masked_aadhar": ""
   }
   ```
 </Accordion>
