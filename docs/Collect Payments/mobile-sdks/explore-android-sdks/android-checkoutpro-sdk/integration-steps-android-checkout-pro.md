@@ -76,7 +76,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   **Maven Central**: PayU has moved to Maven Central, update your existing dependency with the following configuration:
 
   ```gradle
-  implementation 'in.payu:payu-checkout-pro:3.3.7' 
+  implementation 'in.payu:payu-checkout-pro:3.4.0' 
   ```
 </Callout>
 
