@@ -2,7 +2,6 @@
 - _payment_merchant_hosted
 - _payment_server_to_server
 - payu-errors-v2
-- copy-of-error-codes
 - addl_info-payment-apis
 - provision-alt-id-api
 - native-otp-flow-apis
