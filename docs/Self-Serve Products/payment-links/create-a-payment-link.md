@@ -1,5 +1,5 @@
 ---
-title: Create a Payment Link
+title: Create Payment Links
 excerpt: >-
   Create a payment link in the PayU Dashboard and share it with your customer in
   under 5 minutes. No code required.
