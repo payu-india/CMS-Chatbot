@@ -72,7 +72,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
   ```kotlin
   fun initiatePayment(
-      activity: AppCompatActivity,
+      activity: FragmentActivity,
       config: PayU3DS2Config,
       paymentParams: PaymentParams,
       callback: PayU3DS2PaymentCallback
@@ -83,7 +83,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 <Accordion title="Parameters for initiatePayment" icon="fa-list">
   | Parameter       | Description                                                                                                                                      |
   | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | `activity`      | This parameter contains the AppCompatActivity reference.                                                                                         |
+  | `activity`      | This parameter contains the `FragmentActivity` reference.                                                                                        |
   | `config`        | Configuration object for customizing the FlashPay SDK                                                                                            |
   | `paymentParams` | Payment-related details object. Merchants have to create the payment param object and pass it which will contain info such as cardDeatails, etc. |
   | `callback`      | Callback for payment success, failure, cancellation, etc.                                                                                        |
@@ -348,8 +348,6 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
         <td>
           100.0
-
-
         </td>
       </tr>
 
@@ -364,8 +362,6 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
         <td>
           "ProductInfo"
-
-
         </td>
       </tr>
 
@@ -380,8 +376,6 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
         <td>
           "Firstname"
-
-
         </td>
       </tr>
 
@@ -427,8 +421,6 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
         <td>
           The Surl that you have configured
-
-
         </td>
       </tr>
 
@@ -446,8 +438,6 @@ implementation 'in.payu:threeds-sdk:3.1.0'
 
         <td>
           The Furl that you have configured
-
-
         </td>
       </tr>
 
@@ -656,7 +646,7 @@ implementation 'in.payu:threeds-sdk:3.1.0'
   <Accordion title="Card Tokenization" icon="fa-code">
     Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
-    <Accordion title="ALTID  with PayU" icon="fa-code">
+    <Accordion title="Pay with ALTID " icon="fa-code">
       To make payments using ALTID, you need to pass below details :-
 
       ```kotlin
