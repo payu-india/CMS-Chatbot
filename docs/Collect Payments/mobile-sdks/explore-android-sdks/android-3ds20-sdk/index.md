@@ -96,7 +96,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
   ```kotlin
   fun initiatePayment(
-          activity: AppCompatActivity,
+          activity: FragmentActivity,
           config: PayU3DS2Config,
           paymentParams: PaymentParams,
           callback: PayU3DS2PaymentCallback
@@ -105,8 +105,10 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
   You have to pass the following parameters:
 
+    
+
   <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
+  <table style="width: 100%; border-collapse: collapse;">
   <thead>
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
@@ -131,13 +133,15 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the fields as a JSON object. For more information, refer to <a href="#callback-json-fields-description">callback JSON Fields Description</a>.</p></td>
     </tr>
   </tbody>
-</table>
+  </table>
   `}</HTMLBlock>
 
-#### config JSON Fields Description
+  #### config JSON Fields Description
+
+    
 
   <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
+  <table style="width: 100%; border-collapse: collapse;">
   <thead>
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
@@ -218,9 +222,8 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>acsContentConfig</code></p></td>
     </tr>
   </tbody>
-</table>
+  </table>
   `}</HTMLBlock>
-
 
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin

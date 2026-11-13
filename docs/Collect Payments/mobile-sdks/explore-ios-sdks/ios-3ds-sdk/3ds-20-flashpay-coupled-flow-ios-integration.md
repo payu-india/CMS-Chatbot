@@ -235,6 +235,10 @@ config.enableTxnTimeoutTimer = true //pass as true to show timer for page timeou
 config.merchantName = "merchant name" 
 config.amount = "txn amount"
 config.enableTxnTimeoutTimer = true
+config.hideInitialLoader = true //pass as true to hide Initial loader.
+config.merchantAutoInvokeBiometricTime = NSNumber?  // NEW — optional, 0/nil = use backend value
+config.bgGradientColor = "hexColor" //pass hax color code to set background color
+
 config.acsContentConfig = PayU3DS2ACSContentConfig()
 config.acsContentConfig?.submitButtonTitle = "Submit Button Title"
 config.acsContentConfig?.resendButtonTitle = "Resend Button Title"
@@ -245,16 +249,19 @@ config.acsContentConfig?.maxResendInfoContent = "Max Retry Content"
 
 #### Configuration properties
 
-| Property                    | Description                                                                                  |
-| --------------------------- | -------------------------------------------------------------------------------------------- |
-| `isProduction`              | Set environment (true for production, false for sandbox).                                    |
-| `fallback3DS1`              | Complete payment on bank page in case of failure. By default, value is "false"               |
-| `autoSubmit`                | Submit OTP automatically. By default, value is "false"                                       |
-| `initialiseTimeoutTimer`    | Timeout in seconds for merchant response. By default, value is "5"                           |
-| `enableMFAViaBiometric`     | Enable biometric authentication for OTP flow                                                 |
-| `enableCustomizedOtpUIFlow` | Enable customized OTP UI flow                                                                |
-| `enableTxnTimeoutTimer`     | Enable transaction timeout timer                                                             |
-| `authenticateOnly`          | Pass this as true if you want to authenticate only using PayU. By default we will authorize. |
+| Property                          | Description                                                                                                                                                                                             |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isProduction`                    | Set environment (true for production, false for sandbox).                                                                                                                                               |
+| `fallback3DS1`                    | Complete payment on bank page in case of failure. By default, value is "false"                                                                                                                          |
+| `autoSubmit`                      | Submit OTP automatically. By default, value is "false"                                                                                                                                                  |
+| `initialiseTimeoutTimer`          | Timeout in seconds for merchant response. By default, value is "5"                                                                                                                                      |
+| `enableMFAViaBiometric`           | Enable biometric authentication for OTP flow                                                                                                                                                            |
+| `enableCustomizedOtpUIFlow`       | Enable customized OTP UI flow                                                                                                                                                                           |
+| `enableTxnTimeoutTimer`           | Enable transaction timeout timer                                                                                                                                                                        |
+| `authenticateOnly`                | Pass this as true if you want to authenticate only using PayU. By default we will authorize.                                                                                                            |
+| `hideInitialLoader`               | `Boolean` pass as true, SDK skips its own initial loader — merchant must show/hide their own. Required pairing: implement onStatusUpdate (see §6) to know when to dismiss merchant's loader.            |
+| `merchantAutoInvokeBiometricTime` | `NSNumber` Automatically triggers biometric authentication (fingerprint/Face ID) after a specified idle time on the authentication selection screen, eliminating the need for the user to tap manually. |
+| `bgGradientColor`                 | `String` We will apply the bgGradientColor value as the background color of our registration biometric screen.                                                                                          |
 
 ### Step 3: UI customization
 
@@ -314,6 +321,18 @@ var fontFamilyCustomisation = PayU3DS2FontFamilyCustomisation(
 )
 ```
 
+**Logo Customization**
+
+```swift
+var logoCustomisation = PayU3DS2LogoCustomisation(
+        merchant: String?, 
+        mfaBiometric: String?,
+        mfaBiometricEnabled: String?, 
+        mfaMessaging: String?,
+        mfaTick: String?
+    )
+```
+
 #### UI Customization integration
 
 ```
@@ -323,7 +342,8 @@ var uiCustomisation = PayU3DS2UICustomisation(
         textBoxCustomisation: textBoxCustomisation,
         toolbarCustomisation: toolbarCustomisation,
         fontFamilyCustomisation: fontFamilyCustomisation,
-        textCustomisation: textCustomisation
+        textCustomisation: textCustomisation,
+         logoCustomisation: logoCustomisation
     )
 config.uiCustomisation = uiCustomisation
 ```
@@ -398,6 +418,13 @@ paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YI
 paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
 paymentParam.cardinfo = cardDetails
 
+// For AltId Tranasaction 
+paymentParam.altId = <Pass ALT ID>
+paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
+
+//Force_Pg_ID
+paymentParam.forcePgId = <Pass PG ID> //optional - payment routing to specific gateway
+
 paymentParam.partnerWebhookSuccess = "<url>"
 paymentParam.partnerWebhookFailure = "<url>"
 
@@ -448,213 +475,28 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
 
 > 📘 All the parameters are mandatory
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key `mandatory`
-      </td>
-
-      <td>
-        Merchant key issued by PayU
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        transactionId `mandatory`
-      </td>
-
-      <td>
-        Unique transaction identifier
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount `mandatory`
-      </td>
-
-      <td>
-        Transaction amount
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productInfo `mandatory`
-      </td>
-
-      <td>
-        Product description
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstName `mandatory`
-      </td>
-
-      <td>
-        Customer first name
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email `mandatory`
-      </td>
-
-      <td>
-        Customer email
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone `mandatory`
-      </td>
-
-      <td>
-        Customer phone number
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        surl `mandatory`
-      </td>
-
-      <td>
-        Success URL
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl  `mandatory`
-      </td>
-
-      <td>
-        Failure URL
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udfs.udf1 `optional`
-      </td>
-
-      <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udfs.udf2`optional`
-      </td>
-
-      <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udfs.udf3`optional`
-      </td>
-
-      <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udfs.udf4`optional`
-      </td>
-
-      <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udfs.udf5`optional`
-      </td>
-
-      <td>
-        `String` User-defined field, Merchant can store their customer ID, etc.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `isPreAuthTxn`
-      </td>
-
-      <td>
-        `Boolean`Set this as true for pre auth transactions
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        partnerWebhookSuccess `optional`
-      </td>
-
-      <td>
-        `String` When the transaction is successful, PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        partnerWebhookFailure  
-        `optional`
-      </td>
-
-      <td>
-        `String` When the transaction is failed, PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `shouldSaveCard`
-      </td>
-
-      <td>
-        `Boolean` For StoreCard pass as true.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `userCredential`
-      </td>
-
-      <td>
-        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards.  
-        **Format**: merchantKey**:**phone, Here, the UserId is any ID/email/phone number to uniquely identify the user.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter                             | Description                                                                                                                                                                                                                                                                                                              |
+| :------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key `mandatory`                       | Merchant key issued by PayU                                                                                                                                                                                                                                                                                              |
+| transactionId `mandatory`             | Unique transaction identifier                                                                                                                                                                                                                                                                                            |
+| amount `mandatory`                    | Transaction amount                                                                                                                                                                                                                                                                                                       |
+| productInfo `mandatory`               | Product description                                                                                                                                                                                                                                                                                                      |
+| firstName `mandatory`                 | Customer first name                                                                                                                                                                                                                                                                                                      |
+| email `mandatory`                     | Customer email                                                                                                                                                                                                                                                                                                           |
+| phone `mandatory`                     | Customer phone number                                                                                                                                                                                                                                                                                                    |
+| surl `mandatory`                      | Success URL                                                                                                                                                                                                                                                                                                              |
+| furl  `mandatory`                     | Failure URL                                                                                                                                                                                                                                                                                                              |
+| udfs.udf1 `optional`                  | `String` User-defined field, Merchant can store their customer ID, etc.                                                                                                                                                                                                                                                  |
+| udfs.udf2`optional`                   | `String` User-defined field, Merchant can store their customer ID, etc.                                                                                                                                                                                                                                                  |
+| udfs.udf3`optional`                   | `String` User-defined field, Merchant can store their customer ID, etc.                                                                                                                                                                                                                                                  |
+| udfs.udf4`optional`                   | `String` User-defined field, Merchant can store their customer ID, etc.                                                                                                                                                                                                                                                  |
+| udfs.udf5`optional`                   | `String` User-defined field, Merchant can store their customer ID, etc.                                                                                                                                                                                                                                                  |
+| `isPreAuthTxn`                        | `Boolean`Set this as true for pre auth transactions                                                                                                                                                                                                                                                                      |
+| partnerWebhookSuccess `optional`      | `String` When the transaction is successful, PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)                                                                                                                 |
+| partnerWebhookFailure<br />`optional` | `String` When the transaction is failed, PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)                                                                                                                     |
+| `shouldSaveCard`                      | `Boolean` For StoreCard pass as true.                                                                                                                                                                                                                                                                                    |
+| `userCredential`                      | `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards.<br />**Format**: merchantKey\*\*:\*\*phone, Here, the UserId is any ID/email/phone number to uniquely identify the user. |
+| `forcePgId`                           | `String` Forces payment routing to specific gateway by sending force_pgid, bypassing PayU's default PG selection logic.                                                                                                                                                                                                  |
 
 ### Card Information
 
@@ -671,6 +513,7 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
 | userCredential  | The merchant ID and a unique customer identifier.                                                                                                                                                                                                                                                                           |    |
 | cardToken       | A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   |    |
 | networkToken    | A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . |    |
+| altId           | Alt ID is an Alternate ID provisioned through PayU's Provision Alt ID API for specific card transactions and tokenization flows. Pass the `additional_info` object of the payment request to map the token reference to the transaction.                                                                                    |    |
 | cardTokenType   | Pass 1 if networkToken is passed                                                                                                                                                                                                                                                                                            |    |
 | `last4Digits`   | `String` Last 4 digits of the card                                                                                                                                                                                                                                                                                          |    |
 | `tavv` optional | `String` Transaction authorization verification value                                                                                                                                                                                                                                                                       |    |
@@ -737,16 +580,27 @@ enum PayU3DS2MFAStatus {
 
 ```
 
+- Status Update Callback
+
+Implement PayU3DS2StatusDelegate in your ViewController to receive status updates from the SDK.
+
+This callback is triggered when hideInitialLoader = true. The SDK sends the dismissMerchantLoader status update to notify the merchant that the initial loader can be dismissed.
+
+```swift
+func onStatusUpdate(response: [String: Any])
+```
+
 ### Callback Method Descriptions
 
-| Method                  | Description                                                                                                                                                                                                                                                                                                                                       |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                               |
-| `onPaymentFailure`      | Called when payment fails. It will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                                        |
-| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                                  |
-| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                                      |
-| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor label="hash-generation" target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">hash-generation</Anchor> |
-| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                                          |
+| Method                  | Description                                                                                                                                                                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                       |
+| `onPaymentFailure`      | Called when payment fails. It will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                |
+| `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                          |
+| `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                              |
+| `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">hash-generation</Anchor> |
+| `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                  |
+| `onStatusUpdate`        | called when hideInitialLoader = true. The SDK sends the dismissMerchantLoader status update to notify the merchant that the initial loader can be dismissed.                                                                                                                                                              |
 
 ### Error codes
 
