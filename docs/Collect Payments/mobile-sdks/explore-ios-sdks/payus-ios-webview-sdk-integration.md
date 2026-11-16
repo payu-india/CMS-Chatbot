@@ -67,23 +67,15 @@ Use the Verify Payment API to confirm transaction status server-side — never t
 ### Integration Flow
 
 ```mermaid
-Create Transaction (backend)
-       ↓
-Get Hash from Backend
-       ↓
-Build POST Parameters
-       ↓
-Initialize WebViewSDK
-       ↓
-Load PayU Checkout
-       ↓
-Customer Completes Payment
-       ↓
-PayUDelegate Callback
-       ↓
-Success / Failure / Error
-       ↓
-Verify Payment (backend)
+flowchart TD
+    A["Create Transaction (backend)"] --> B["Get Hash from Backend"]
+    B --> C["Build POST Parameters"]
+    C --> D["Initialize WebViewSDK"]
+    D --> E["Load PayU Checkout"]
+    E --> F["Customer Completes Payment"]
+    F --> G["PayUDelegate Callback"]
+    G --> H["Success / Failure / Error"]
+    H --> I["Verify Payment (backend)"]
 ```
 
 <Info>
