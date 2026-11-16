@@ -92,8 +92,7 @@ curl --location 'https://apitest.payu.in/settlement/range?dateFrom=2025-08-26&da
         "serviceFee": "0.0",
         "serviceTax": "0.0",
         "additionalServiceFee": "10.91",
-        "additionalServiceTax": "1.96",
-        "numberOfTransactions": 1,
+        "additionalServiceTax": "1.96",numberOfTransactions
         "transaction": [
           {
             "action": "capture",
@@ -211,7 +210,6 @@ curl --location 'https://apitest.payu.in/settlement/range?dateFrom=2025-08-26&da
 | serviceTax               | GST/Tax on the service fee. <code>string</code>                                                                                                    | 0.0                        |
 | additionalServiceFee     | Additional service fee (e.g., TDR or other extra fees) applied at UTR level. <code>string</code>                                                   | 10.91                      |
 | additionalServiceTax     | GST/Tax on the additional service fee. <code>string</code>                                                                                         | 1.96                       |
-| numberOfTransactions     | Count of successful capture transactions included in this settlement/UTR. <code>integer</code>                                                     | 1                          |
 | additionalTdrFee         | Additional TDR (Transaction Discount Rate) fee applied. <code>string</code>                                                                        | 10.91                      |
 | additionalTdrTax         | Tax on the additional TDR fee. <code>string</code>                                                                                                 | 1.96                       |
 | totalServiceTax          | Total tax amount (sum of SGST + CGST + IGST) applicable to fees. <code>string</code>                                                               | 1.96000                    |
