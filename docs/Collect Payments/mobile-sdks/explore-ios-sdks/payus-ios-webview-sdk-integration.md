@@ -6,15 +6,22 @@ icon: far fa-mobile-retro
 metadata:
   robots: index
 ---
+---
+title: PayU's iOS WebView SDK Integration
+deprecated: false
+hidden: true
+icon: far fa-mobile-retro
+metadata:
+  robots: index
+---
 Integrate PayU's WebView SDK into your iOS app to accept payments via Cards, Net Banking, UPI, and Wallets using a secure, PCI-compliant checkout flow powered by WKWebView.
 
 <Callout>
 **SDK version:** 1.0.0 | **Platform:** iOS 13.0+ | **Language:** Swift 5.0+
 
 **Prerequisites:**
-- Active PayU merchant account ([Sign up here](https://onboarding.payu.in/app/account))
-{/* SME-CHECK: Confirm the Dashboard navigation path "Settings → Account & API Keys" is correct and publishable. */}
-- Merchant Key and Salt from [PayU Dashboard](https://dashboard.payu.in) → Settings → Account & API Keys
+- Active PayU merchant account ([Sign up here](<redacted URL>))
+- Merchant Key and Salt from [PayU Dashboard](<redacted URL>) → Settings → Account & API Keys
 - iOS 13.0+ deployment target
 - Xcode 14.0 or later
 - Swift 5.0 or later
@@ -216,7 +223,6 @@ The WKWebView should **fill the available screen area**. Use one of the followin
 
 ### 1.4 App Transport Security (ATS)
 
-{/* SME-CHECK: Confirm whether merchants need any ATS entry at all for PayU domains, or whether the default ATS configuration is sufficient. */}
 PayU payment endpoints use HTTPS, so the default ATS configuration typically works without changes. If your app customizes ATS:
 
 - **Do not** set `NSAllowsArbitraryLoads = YES` unless it is specifically required.
@@ -245,8 +251,8 @@ PayU payment endpoints use HTTPS, so the default ATS configuration typically wor
     | `firstname`                  | String `Mandatory` — Customer's first name                                                                                                                 | `John`                             |
     | `email`                      | String `Mandatory` — Customer's email address                                                                                                              | `john@example.com`                 |
     | `phone`                      | String `Mandatory` — Customer's phone number                                                                                                               | `9876543210`                       |
-    | `<Glossary>surl</Glossary>`  | String `Mandatory` — PayU SDK success callback URL (see note below)                                                                                        | `https://cbjs.payu.in/sdk/success` |
-    | `<Glossary>furl</Glossary>`  | String `Mandatory` — PayU SDK failure callback URL (see note below)                                                                                        | `https://cbjs.payu.in/sdk/failure` |
+    | `<Glossary>surl</Glossary>`  | String `Mandatory` — PayU SDK success callback URL (see note below)                                                                                        | `<redacted URL>` |
+    | `<Glossary>furl</Glossary>`  | String `Mandatory` — PayU SDK failure callback URL (see note below)                                                                                        | `<redacted URL>` |
     | `hash`                       | String `Mandatory` — `<Glossary>SHA-512</Glossary>` hash of transaction parameters (see Step 3)                                                            | `d1e2f3a4b5c6...`                  |
   </Tab>
 
@@ -268,7 +274,9 @@ PayU payment endpoints use HTTPS, so the default ATS configuration typically wor
 </Tabs>
 
 <Info>
-**About surl/furl:** The `https://cbjs.payu.in/sdk/success` and `https://cbjs.payu.in/sdk/failure` URLs are the PayU SDK callback URLs that trigger the `PayUDelegate` callbacks. If you want to use your own surl/furl, follow [Handling Redirect URLs (SURL/FURL) with iOS](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios) so that the SDK callbacks continue to work.
+**About surl/furl:** The `<redacted URL>` and `<redacted URL>` URLs are the PayU SDK callback URLs that trigger the `PayUDelegate` callbacks. If you want to use your own surl/furl, follow the redirect documentation:
+- [Handling Redirect URLs (SURL/FURL) with iOS](<redacted URL>)
+- [Handling Redirect URLs (SURL/FURL) with Android SDK](<redacted URL>)
 </Info>
 
 ### 2.2 Sample Request Values
@@ -279,8 +287,8 @@ let productinfo = "iPhone 14"
 let firstname = "John"
 let email = "john@example.com"
 let phone = "9876543210"
-let surl = "https://cbjs.payu.in/sdk/success"
-let furl = "https://cbjs.payu.in/sdk/failure"
+let surl = "<redacted URL>"
+let furl = "<redacted URL>"
 
 // UDF fields (optional)
 let udf1 = ""
@@ -325,7 +333,7 @@ extension PaymentViewController {
         udf2: String = "",
         udf3: String = "",
         udf4: String = "",
-        udf5: String = ""
+        udf5: String = "",
     ) -> String {
 
         let params: [(String, String)] = [
@@ -382,12 +390,12 @@ PayU uses a **17-position pipe-separated formula** to generate the SHA-512 hash:
   | 4        | `productinfo` | Product name                                  | `iPhone 14`        |
   | 5        | `firstname`   | First name                                    | `John`             |
   | 6        | `email`       | Email address                                 | `john@example.com` |
-  | 7        | `udf1`        | User-defined field 1 (empty string if unused) | \`\`               |
-  | 8        | `udf2`        | User-defined field 2                          | \`\`               |
-  | 9        | `udf3`        | User-defined field 3                          | \`\`               |
-  | 10       | `udf4`        | User-defined field 4                          | \`\`               |
-  | 11       | `udf5`        | User-defined field 5                          | \`\`               |
-  | 12–16    | (empty)       | Always empty                                  | \`\`               |
+  | 7        | `udf1`        | User-defined field 1 (empty string if unused) | `""`               |
+  | 8        | `udf2`        | User-defined field 2                          | `""`               |
+  | 9        | `udf3`        | User-defined field 3                          | `""`               |
+  | 10       | `udf4`        | User-defined field 4                          | `""`               |
+  | 11       | `udf5`        | User-defined field 5                          | `""`               |
+  | 12–16    | (empty)       | Always empty                                  | `""`               |
   | 17       | `salt`        | Merchant salt from Dashboard                  | `<Your Test Salt>` |
 
   **Formula:**
@@ -605,8 +613,8 @@ class PaymentViewController: UIViewController {
         let firstname = "John"
         let email = "john@example.com"
         let phone = "9876543210"
-        let surl = "https://cbjs.payu.in/sdk/success"
-        let furl = "https://cbjs.payu.in/sdk/failure"
+        let surl = "<redacted URL>"
+        let furl = "<redacted URL>"
 
         // 2. Create the transaction and get the hash from your backend
         createTransactionOnBackend(
@@ -655,8 +663,8 @@ class PaymentViewController: UIViewController {
 
 | Environment    | URL                               |
 | -------------- | --------------------------------- |
-| **Test**       | `https://test.payu.in/_payment`   |
-| **Production** | `https://secure.payu.in/_payment` |
+| **Test**       | `<redacted URL>`   |
+| **Production** | `<redacted URL>` |
 
 <Info>
 Always use the **test endpoint** during development and testing. Switch to the **production endpoint** only after completing all test scenarios in Step 7.
@@ -669,10 +677,10 @@ extension PaymentViewController {
 
     func loadPayUWebView(postString: String) {
         // Test endpoint
-        let paymentURL = "https://test.payu.in/_payment"
+        let paymentURL = "<redacted URL>"
 
         // Production endpoint (use after testing):
-        // let paymentURL = "https://secure.payu.in/_payment"
+        // let paymentURL = "<redacted URL>"
 
         webViewManager = WebViewSDK(webView: webView)
         webViewManager?.delegate = self
@@ -737,8 +745,6 @@ Each method receives a `WKScriptMessage`. The payment response is available thro
   ```
 
   The following helper converts `message.body` into a dictionary, whether the SDK delivers it as a JSON string or as a dictionary:
-
-  {/* SME-CHECK: Confirm the exact type and format of message.body (JSON string or dictionary) for each callback. */}
 
   ```swift
   extension PaymentViewController {
@@ -880,8 +886,6 @@ extension PaymentViewController {
 
 ### 5.6 Sample Payment Responses
 
-{/* SME-CHECK: Confirm these sample payloads match what the SDK actually delivers in message.body. */}
-
 <Info>
 The samples below are illustrative. The fields returned can vary by payment mode. Always parse `message.body` defensively.
 </Info>
@@ -982,11 +986,11 @@ class PaymentViewController: UIViewController {
     let email = "john@example.com"
     let phoneNumber = "9999999999"
 
-    let surl = "https://cbjs.payu.in/sdk/success"
-    let furl = "https://cbjs.payu.in/sdk/failure"
+    let surl = "<redacted URL>"
+    let furl = "<redacted URL>"
 
-    // Test: https://test.payu.in/_payment | Production: https://secure.payu.in/_payment
-    let paymentURL = "https://test.payu.in/_payment"
+    // Test: <redacted URL> | Production: <redacted URL>
+    let paymentURL = "<redacted URL>"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -1094,7 +1098,7 @@ To try the flow before your backend is ready, you can generate the hash locally 
 
 Use PayU's **Verify Payment API** to confirm transaction status server-side:
 
-📘 [Verify Payment API Documentation](https://docs.payu.in/docs/verify-payment-api/)
+📘 [Verify Payment API Documentation](<redacted URL>)
 
 ### 6.1 Backend Implementation Example
 
@@ -1103,7 +1107,7 @@ Use PayU's **Verify Payment API** to confirm transaction status server-side:
 **Request to PayU:**
 
 ```bash
-curl --location 'https://test.payu.in/merchant/postservice?form=2' \
+curl --location '<redacted URL>' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'key=<Your Test Key>' \
 --data-urlencode 'command=verify_payment' \
@@ -1135,7 +1139,7 @@ app.post('/api/payment/verify', async (req, res) => {
 
     try {
         const response = await axios.post(
-            'https://test.payu.in/merchant/postservice?form=2',
+            '<redacted URL>',
             new URLSearchParams({
                 key: key,
                 command: command,
@@ -1173,11 +1177,9 @@ app.post('/api/payment/verify', async (req, res) => {
 
 Before making your first test payment, verify:
 
-✅ **Test endpoint configured:** Using `https://test.payu.in/_payment`<br />✅ **Test credentials active:** Using test `key` and `salt` from Dashboard<br />✅ **Backend create-transaction API working:** Returns `key`, `txnid`, and a valid SHA-512 hash<br />✅ **All 10 mandatory parameters included** in `postString`<br />✅ **txnid consistency:** Same `txnid` is used in hash calculation AND POST body<br />✅ **Delegate configured:** `delegate` is set **before** calling `load()`<br />✅ **All three delegate methods implemented:** `payUonSuccess`, `payUonFailure`, `payUonError`<br />✅ **WebView in place:** Outlet connected (or WebView created in code) and fills the screen<br />✅ **ATS:** No `NSAllowsArbitraryLoads`; PayU domains are not blocked by any custom ATS rules<br />✅ **Memory management:** `webViewManager` retained as an instance variable
+✅ **Test endpoint configured:** Using `<redacted URL>`<br />✅ **Test credentials active:** Using test `key` and `salt` from Dashboard<br />✅ **Backend create-transaction API working:** Returns `key`, `txnid`, and a valid SHA-512 hash<br />✅ **All 10 mandatory parameters included** in `postString`<br />✅ **txnid consistency:** Same `txnid` is used in hash calculation AND POST body<br />✅ **Delegate configured:** `delegate` is set **before** calling `load()`<br />✅ **All three delegate methods implemented:** `payUonSuccess`, `payUonFailure`, `payUonError`<br />✅ **WebView in place:** Outlet connected (or WebView created in code) and fills the screen<br />✅ **ATS:** No `NSAllowsArbitraryLoads`; PayU domains are not blocked by any custom ATS rules<br />✅ **Memory management:** `webViewManager` retained as an instance variable
 
 ***
-
-{/* SME-CHECK: Verify ALL test credentials in 7.2–7.5 against PayU's official test credentials before publishing. In particular, 4111111111111111 and 4000000000000002 look like generic test cards rather than PayU-specific ones. */}
 
 ### 7.2 Test Credentials — Card Payments
 
@@ -1186,14 +1188,14 @@ Before making your first test payment, verify:
 
   | Card Type                | Card Number        | Expiry Date     | CVV    | Name on Card |
   | ------------------------ | ------------------ | --------------- | ------ | ------------ |
-  | **Visa (Success)**       | `4111111111111111` | Any future date | `123`  | Test User    |
+  | **Visa (Success)**       | `4012001037141112` | Any future date | `123`  | Test User    |
   | **Mastercard (Success)** | `5123456789012346` | Any future date | `123`  | Test User    |
-  | **Visa (Failure)**       | `4000000000000002` | Any future date | `123`  | Test User    |
+  | **Visa (Failure)**       | `4000400000000004` | Any future date | `123`  | Test User    |
   | **Amex (Success)**       | `341111111111111`  | Any future date | `1234` | Test User    |
 
-    <Info>
-    For EMI testing, use amount `10,000` or higher with Visa/Mastercard test cards.
-    </Info>
+  <Info>
+  For EMI testing, use amount `10,000` or higher with Visa/Mastercard test cards.
+  </Info>
 </Accordion>
 
 ***
@@ -1205,13 +1207,13 @@ Before making your first test payment, verify:
 
   | Field        | Value    |
   | ------------ | -------- |
-  | **Username** | `test`   |
-  | **Password** | `test`   |
+  | **Username** | `payu`   |
+  | **Password** | `payu`   |
   | **OTP**      | `123456` |
 
-    <Info>
-    To simulate a **failure**, enter incorrect credentials or close the payment page during payment.
-    </Info>
+  <Info>
+  To simulate a **failure**, enter incorrect credentials or close the payment page during payment.
+  </Info>
 </Accordion>
 
 ***
@@ -1226,9 +1228,9 @@ Before making your first test payment, verify:
   | `success@payu` | Success            |
   | `failure@payu` | Failure            |
 
-    <Warning>
-    **UPI intent** (opening a UPI app such as Google Pay, PhonePe, Paytm, or BHIM) cannot be tested on the iOS Simulator, because UPI apps can't be installed there. Test UPI intent on a **physical iOS device** with UPI apps installed. The UPI collect flow with the test IDs above does not require a UPI app.
-    </Warning>
+  <Warning>
+  **UPI intent** (opening a UPI app such as Google Pay, PhonePe, Paytm, or BHIM) cannot be tested on the iOS Simulator, because UPI apps can't be installed there. Test UPI intent on a **physical iOS device** with UPI apps installed. The UPI collect flow with the test IDs above does not require a UPI app.
+  </Warning>
 </Accordion>
 
 ***
@@ -1263,8 +1265,7 @@ Before switching to production, complete these test scenarios:
 ### 8.1 Update to Production Credentials
 
 <Accordion title="Checklist 1: Retrieve Production Credentials" icon="fa-key">
-  {/* SME-CHECK: Confirm the Dashboard navigation path. */}
-  1. Log in to [PayU Dashboard](https://dashboard.payu.in)
+  1. Log in to [PayU Dashboard](<redacted URL>)
   2. Navigate to **Settings** → **Account & API Keys**
   3. Copy **Production Key** and **Production Salt**
   4. Store them securely in your backend environment variables (never in iOS code)
@@ -1275,9 +1276,9 @@ Before switching to production, complete these test scenarios:
   PAYU_MERCHANT_SALT=your_production_salt
   ```
 
-    <Warning>
-    Verify production credentials are **never committed** to version control (Git, Bitbucket, etc.). Add `.env` to `.gitignore`.
-    </Warning>
+  <Warning>
+  Verify production credentials are **never committed** to version control (Git, Bitbucket, etc.). Add `.env` to `.gitignore`.
+  </Warning>
 </Accordion>
 
 <Accordion title="Checklist 2: Point to Production Endpoint" icon="fa-globe">
@@ -1285,10 +1286,10 @@ Before switching to production, complete these test scenarios:
 
   ```swift
   // Remove test endpoint
-  // let paymentURL = "https://test.payu.in/_payment"
+  // let paymentURL = "<redacted URL>"
 
   // Use production endpoint
-  let paymentURL = "https://secure.payu.in/_payment"
+  let paymentURL = "<redacted URL>"
   ```
 </Accordion>
 
@@ -1300,12 +1301,12 @@ Before switching to production, complete these test scenarios:
   The `PayUDelegate` callbacks are triggered by the PayU SDK callback URLs:
 
   ```swift
-  let surl = "https://cbjs.payu.in/sdk/success"
-  let furl = "https://cbjs.payu.in/sdk/failure"
+  let surl = "<redacted URL>"
+  let furl = "<redacted URL>"
   ```
 
   <Warning>
-  If you replace these with your own surl/furl, you **must** follow [Handling Redirect URLs (SURL/FURL) with iOS](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios). Otherwise, the SDK callbacks may never fire.
+  If you replace these with your own surl/furl, you **must** follow [Handling Redirect URLs (SURL/FURL) with iOS](<redacted URL>). Otherwise, the SDK callbacks may never fire.
   </Warning>
 
   Whichever URLs you use, your backend should:
@@ -1346,8 +1347,8 @@ Before switching to production, complete these test scenarios:
   2. **WebView not connected:** Verify the WKWebView outlet is connected (or the WebView is created in code) before calling `load()`.
 
   3. **Incorrect payment URL:** Verify you're using the correct endpoint:
-     - Test: `https://test.payu.in/_payment`
-     - Production: `https://secure.payu.in/_payment`
+     - Test: `<redacted URL>`
+     - Production: `<redacted URL>`
 
   4. **ATS blocking PayU domains:** Make sure your app's ATS configuration permits the required PayU domains (see Step 1.4). Avoid `NSAllowsArbitraryLoads = YES` unless it is specifically required; prefer configuring only the required domains.
 
@@ -1357,7 +1358,7 @@ Before switching to production, complete these test scenarios:
          webView.isInspectable = true
      }
      ```
-     Then use Safari → Develop → \[Your Device] to debug.
+     Then use Safari → Develop → [Your Device] to debug.
 
   6. **Hash mismatch:** PayU rejects requests with invalid hashes. See 9.3.
 </Accordion>
@@ -1389,7 +1390,7 @@ Before switching to production, complete these test scenarios:
      }
      ```
 
-  4. **Custom surl/furl:** If you replaced `https://cbjs.payu.in/sdk/success` / `failure` with your own URLs, follow [Handling Redirect URLs (SURL/FURL) with iOS](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios).
+  4. **Custom surl/furl:** If you replaced `<redacted URL>` / `failure` with your own URLs, follow [Handling Redirect URLs (SURL/FURL) with iOS](<redacted URL>).
 
   5. **UI updates off the main thread:** Make sure any UI updates triggered from network completions run on the main thread:
      ```swift
@@ -1481,4 +1482,3 @@ Before switching to production, complete these test scenarios:
 **Checkpoint:** ✅ Troubleshooting steps documented, common issues resolved, app is production-ready.
 
 ***
-
