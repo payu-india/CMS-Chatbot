@@ -74,8 +74,14 @@ flowchart TD
     D --> E["Load PayU Checkout"]
     E --> F["Customer Completes Payment"]
     F --> G["PayUDelegate Callback"]
-    G --> H["Success / Failure / Error"]
-    H --> I["Verify Payment (backend)"]
+
+    G --> H["Success"]
+    G --> I["Failure"]
+    G --> J["Error"]
+
+    H --> K["Verify Payment (backend)"]
+    I --> K
+    J --> K
 ```
 
 <Info>
