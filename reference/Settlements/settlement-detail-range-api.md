@@ -92,7 +92,7 @@ curl --location 'https://apitest.payu.in/settlement/range?dateFrom=2025-08-26&da
         "serviceFee": "0.0",
         "serviceTax": "0.0",
         "additionalServiceFee": "10.91",
-        "additionalServiceTax": "1.96",numberOfTransactions
+        "additionalServiceTax": "1.96",
         "transaction": [
           {
             "action": "capture",
