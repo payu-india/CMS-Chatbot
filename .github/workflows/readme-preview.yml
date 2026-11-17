@@ -1,0 +1,16 @@
+name: ReadMe Preview Deploy
+
+on:
+  push:
+    branches-ignore:
+      - v1
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Push docs to ReadMe preview version
+        run: npx @readme/cli@latest docs ./docs --key ${{ secrets.README_API_KEY }} --version 4.0 --create-categories
