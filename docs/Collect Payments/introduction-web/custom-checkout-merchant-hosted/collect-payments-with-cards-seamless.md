@@ -1,27 +1,31 @@
 ---
 title: Cards Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: Cards Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Cards](./integration-guide/build-integration/cards).
+</Callout>
+
 PayU supports the following debit cards and credit cards:
 
 - American Express (AMEX)

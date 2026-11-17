@@ -1,27 +1,31 @@
 ---
 title: Net Banking Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: Net Banking Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Net Banking](./integration-guide/build-integration/net-banking).
+</Callout>
+
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 <Callout icon="👍" theme="okay">

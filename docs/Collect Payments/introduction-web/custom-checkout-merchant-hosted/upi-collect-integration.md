@@ -1,8 +1,8 @@
 ---
 title: UPI Collect Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: Collect Payments with UPI - Merchant Hosted Checkout
   description: >-
@@ -10,24 +10,28 @@ metadata:
     PayU's Merchant Hosted Checkout integration. Discover the steps to validate
     the customer's Virtual Payment Address (VPA), initiate payments, and verify
     the payment status.
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: UPI Collect Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: Collect Payments with UPI - Merchant Hosted Checkout
   description: >-
     Learn how to seamlessly collect payments through UPI transactions using
     PayU\'s Merchant Hosted Checkout integration.
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [UPI Collect](./integration-guide/build-integration/upi-collect).
+</Callout>
+
 <NPCI_Mandate />
 
 This section describes how UPI Collect should be integrated on your checkout. **As per NPCI\'s guidelines, UPI Collect payments are allowed only on MCC 6012 and 6211.**
