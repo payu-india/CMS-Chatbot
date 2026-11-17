@@ -1,15 +1,21 @@
 ---
 title: Integrate Checkout Plus
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+
+**This page has moved.** The updated guide is at [Build the Integration](../../../../Low-Code%20Products/checkout-plus/integration-guide/build-integration).
+
+</Callout>
+
 PayU Checkout Plus is the most convenient way to collect payment on your website. Add the inline JS script to your website's header section, then call the bolt.launch() function and pass the transaction data objects when your customers click **Payment**. PayU will take care of the payment and returns to your page when it is done.
 
 <Callout icon="👍" theme="okay">

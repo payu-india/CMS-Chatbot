@@ -1,15 +1,21 @@
 ---
 title: Integrate WebView for Mobile Apps (Checkout Plus)
 excerpt: ''
-deprecated: false
+deprecated: true
 hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+
+**This page has moved.** The updated guide is at [WebView for Mobile Apps](../../../../Low-Code%20Products/checkout-plus/integrate-webview-for-mobile-apps-checkout-plus).
+
+</Callout>
+
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
 - [Configure WebView for Android](#webview-integration-for-android)
