@@ -67,7 +67,7 @@ If you are integrating PayU Hosted Checkout inside a WebView in your Android, iO
   PayU offers multiple integration paths depending on how much control and setup you need:
 
   - **No code needed**: [Payment Links](../../../introduction-no-code-payments-integration/payment-links-dashboard) — collect payments by sharing a link, no website or code required
-  - **Custom checkout UI**: [Merchant Hosted Checkout](../../../custom-checkout-merchant-hosted) — full control over the payment page design and branding
+  - **Custom checkout UI**: [Merchant Hosted Checkout](../../custom-checkout-merchant-hosted) — full control over the payment page design and branding
   - **Mobile apps**: [Mobile SDKs](../../../mobile-sdks) — native SDKs for Android, iOS, React Native, and Flutter
   - **eCommerce platforms**: [eCommerce Plugins](../../../ecommerce-platform-plugins) — ready-made plugins for WooCommerce, Shopify, and Magento
 </Callout>

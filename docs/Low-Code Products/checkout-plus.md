@@ -63,7 +63,7 @@ next:
 | Built-in payment retry without restarting the checkout            |                                                    ✅                                                    |
 | PCI-DSS scope reduction                                           |                                                    ✅                                                    |
 | Redirect customers to a PayU-hosted page instead (simpler, no JS) |                 ⚠️ Use [PayU Hosted Checkout](../prebuilt-checkout-payu-hosted) instead                 |
-| Full design control over every element of the payment UI          |              ⚠️ Use [Merchant Hosted Checkout](../custom-checkout-merchant-hosted) instead              |
+| Full design control over every element of the payment UI          |              ⚠️ Use [Merchant Hosted Checkout](./custom-checkout-merchant-hosted) instead              |
 | Accept payments without a website or technical setup              | ⚠️ Use [Payment Links](../../introduction-no-code-payments-integration/payment-links-dashboard) instead |
 | Accept payments natively inside a mobile app                      |                           ⚠️ Use [PayU Mobile SDK](../../mobile-sdks) instead                           |
 | Open PayU checkout in a mobile app WebView                        |                    ⚠️ See [WebView Integration](./integrate/webview-for-mobile-apps)                    |

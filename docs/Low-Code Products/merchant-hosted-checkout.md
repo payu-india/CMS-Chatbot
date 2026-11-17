@@ -254,19 +254,19 @@ Use an AI coding assistant with the PayU Developer MCP to search these docs, sca
 ## Next Steps
 
 <Cards columns="2">
-  <Card title="How It Works" href="./how-it-works" icon="fa-diagram-project">
+  <Card title="How It Works" href="./custom-checkout-merchant-hosted/how-it-works" icon="fa-diagram-project">
     Architecture, the \_payment API flow, PCI-DSS scope, and how MHC differs from other PayU products.
   </Card>
 
-  <Card title="Quick Start" href="./quick-start" icon="fa-play">
+  <Card title="Quick Start" href="./custom-checkout-merchant-hosted/quick-start" icon="fa-play">
     Make your first test card payment in minutes — hash generation, form POST, and callback handling.
   </Card>
 
-  <Card title="Build Integration" href="./integration-guide/build-integration" icon="fa-code">
+  <Card title="Build Integration" href="./custom-checkout-merchant-hosted/integration-guide/build-integration" icon="fa-code">
     Per-method integration guides: Cards, Net Banking, UPI, Wallets, EMI, BNPL, and more.
   </Card>
 
-  <Card title="APIs" href="./merchant-hosted-checkout-apis" icon="fa-rectangle-api">
+  <Card title="APIs" href="./custom-checkout-merchant-hosted/merchant-hosted-checkout-apis" icon="fa-rectangle-api">
     API reference index for \_payment, Verify Payment, and transaction management.
   </Card>
 </Cards>

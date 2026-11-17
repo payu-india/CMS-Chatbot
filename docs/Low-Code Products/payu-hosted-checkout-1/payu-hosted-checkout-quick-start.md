@@ -51,7 +51,7 @@ Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout
 <Callout icon="fad fa-comment-captions" theme="info">
   ### **Other Integration Options**
 
-  If you need complete control over the checkout UI, consider [Merchant Hosted Checkout](../../custom-checkout-merchant-hosted) instead. If you need no technical setup at all, consider [Payment Links](../../introduction-no-code-payments-integration/payment-links-dashboard).
+  If you need complete control over the checkout UI, consider [Merchant Hosted Checkout](../custom-checkout-merchant-hosted) instead. If you need no technical setup at all, consider [Payment Links](../../introduction-no-code-payments-integration/payment-links-dashboard).
 </Callout>
 
 ***
