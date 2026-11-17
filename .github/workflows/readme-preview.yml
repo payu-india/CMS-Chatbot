@@ -15,6 +15,6 @@ jobs:
       - name: Push docs to ReadMe preview version
         uses: readmeio/rdme@v9
         with:
-          rdme: docs ./docs --version 4.0 --create-categories
+          rdme: docs ./docs --version 4.0
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
