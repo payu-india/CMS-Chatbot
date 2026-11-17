@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Push docs to ReadMe preview version
-        run: npx @readme/cli@latest docs ./docs --key ${{ secrets.README_API_KEY }} --version 4.0 --create-categories
+        run: npx rdme@latest docs ./docs --key ${{ secrets.README_API_KEY }} --version 4.0 --create-categories
