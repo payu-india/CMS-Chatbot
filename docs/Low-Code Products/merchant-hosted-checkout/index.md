@@ -1,96 +1,94 @@
 ---
 title: Merchant Hosted Checkout
-excerpt: Collect payment details on your own checkout and post them to PayU for processing
+excerpt: >-
+  Collect payment details on your own checkout and post them to PayU. You own
+  the payment form. PayU processes the payment and returns the result.
 deprecated: false
 hidden: true
-updatedAt: "2026-11-18"
 metadata:
-  title: Merchant Hosted Checkout | PayU Developer Docs
+  title: Merchant Hosted Checkout — Overview
   description: >-
-    Build a custom PayU checkout on your site. Form-post card, UPI, net banking, wallet, PayPal, and Pluxee payments to _payment with a server-side SHA-512 hash.
+    PayU Merchant Hosted Checkout: build your own payment form, post card, UPI,
+    net banking, wallet, PayPal, and Pluxee payments to _payment.
+  keywords:
+    - payu merchant hosted checkout
+    - payu custom checkout integration
+    - payu _payment merchant hosted
+    - payu seamless checkout cards upi net banking
   robots: index
-agentTools:
-  projectIndex: "https://docs.payu.in/llms.txt"
+next:
+  description: Explore related information and resources.
 ---
-
 <Banner
   isInline={true}
-  message="Integration effort: you host the checkout UI and collect payment details"
-  color="#FF6B00"
+  message="Integration effort: Developer required"
+  color="#E9A23B"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
-/>
+ />
 
-# Merchant Hosted Checkout
+## How Does Merchant Hosted Checkout Simplify My Business?
 
-Merchant Hosted Checkout, also called Custom Checkout, lets you collect payment details on your website and post them to PayU. You design the checkout. PayU processes the payment, sends the customer through the bank, wallet, or UPI flow when that is required, and redirects the customer back to your success or failure URL.
-
-## What Can I Build with Merchant Hosted Checkout?
-
-<Accordion title="A checkout that matches your site" icon="fa-paintbrush">
-  You collect the payment details on your page and post them to PayU. The source describes this as control over the look and feel of checkout, with the customer relationship staying on your site.
+<Accordion title="Keep the payment form on your website">
+  You design the checkout. The customer enters card, UPI, net banking, wallet, PayPal, or Pluxee details on your page. Your page form-posts those details to PayU. PayU does not show its own payment page for the customer to pick a method.
 </Accordion>
 
-<Accordion title="Card payments on your page" icon="fa-credit-card">
-  Visa, Mastercard, American Express, Diners, and RuPay. You collect the card fields and post them with `pg=CC`. Card data on your site is in PCI-DSS scope.
+<Accordion title="Accept the payment methods you enable">
+  One `_payment` endpoint accepts the methods documented for this integration: cards, net banking, wallets, UPI Collect, PayPal, and Pluxee. You choose the method with `pg` and `bankcode`.<br />
+
+  The method must be enabled on your PayU merchant account. PayPal is activated from the PayU Dashboard.
 </Accordion>
 
-<Accordion title="Net banking, wallets, and UPI Collect" icon="fa-building-columns">
-  Net banking, wallets, and UPI Collect each use the same `_payment` endpoint with their own `pg` and `bankcode`. UPI Collect also needs the customer's VPA.
+<Accordion title="You are in PCI-DSS scope when you collect cards">
+  Card numbers and CVV are entered on your website. The source says that if you store, process, or transmit cardholder data you must complete PCI-DSS SAQ A-EP. If you use only UPI and wallets, the site must still be secure.
 </Accordion>
 
-<Accordion title="PayPal for international payments" icon="fa-globe">
-  PayPal uses `pg=PAYPAL` and `bankcode=PAYPAL`. Activate PayPal on the PayU Dashboard before you use it. Settlements are processed in INR.
+<Accordion title="The integration is a form post, a hash, and a verify call">
+  Generate a SHA-512 hash on your server, post the form from the browser to `_payment`, verify the reverse hash on `surl` or `furl`, then confirm the payment with Verify Payment.
 </Accordion>
 
-<Accordion title="Pluxee meal cards" icon="fa-utensils">
-  Pluxee (formerly Sodexo) uses `pg=MC` and `bankcode=SODEXO`. The source recommends checking the card balance before you post the payment.
+<Accordion title="You own the customer journey up to the bank">
+  The customer stays on your checkout until PayU sends them to the bank ACS, net banking login, wallet, or UPI flow. After that step, PayU redirects the customer back to your site.
 </Accordion>
+
+<Callout icon="📘" theme="info">
+  ### **Tips:**
+
+  Post the payment with an HTML form to the <Anchor target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API — Merchant Hosted Checkout</Anchor>.
+</Callout>
+
+***
 
 ## Is Merchant Hosted Checkout Right for Me?
 
 | I want to… | Works? |
-| --- | --- |
-| Design the payment form on my own website | ✅ |
-| Choose the payment method in the request with `pg` and `bankcode` | ✅ |
-| Let PayU host the payment page | ⚠️ Use [PayU Hosted Checkout](https://docs.payu.in/docs/payu-hosted-checkout-1) instead |
-| Accept payments without a website | ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-dashboard) instead |
-| Accept payments inside a native mobile app | ⚠️ Use [PayU Mobile SDK](https://docs.payu.in/docs/mobile-sdk-integration) instead |
-| Set up recurring auto-debit | ⚠️ Use [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) instead |
+| --- | :---: |
+| Design every field of the payment form on my website | ✅ |
+| Choose the method in the request with `pg` and `bankcode` | ✅ |
+| Collect cards, UPI, net banking, and wallets on my page | ✅ |
+| Accept card data on my site and take on PCI-DSS | ✅ |
+| Post the payment with an HTML form | ✅ |
+| Let PayU host and secure the payment page | ⚠️ Use [PayU Hosted Checkout](https://docs.payu.in/docs/payu-hosted-checkout-1) instead |
+| Accept payments without a website or any technical setup | ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-dashboard) instead |
+| Accept payments natively inside a mobile app | ⚠️ Use [PayU Mobile SDK](https://docs.payu.in/docs/mobile-sdk-integration) instead |
+| Set up recurring auto-debit payments | ⚠️ Use [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) instead |
 
-<Callout icon="📘" theme="info">
-  Not sure? Compare this with PayU Hosted Checkout. Hosted Checkout collects payment details on PayU's page. Merchant Hosted Checkout collects them on yours.
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### **Not Sure Which PayU Solution is Right For You?**
+
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.<br />
+
+  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
 </Callout>
 
-## Supported Payment Methods
-
-Each method is selected with `pg` and `bankcode` on the `_payment` request. Bank codes are case-sensitive, and the method must be enabled on your PayU account.
-
-| Method | pg | bankcode | Guide |
-| --- | --- | --- | --- |
-| Credit and debit cards | CC | Network-specific. Samples in the source use CC, MAST, AMEX, and VISA | [Cards](./integration-guide/build-integration/cards) |
-| Net banking | NB in the parameter table. Samples use TESTPG | Bank-specific. The test sample uses TESTPGNB | [Net Banking](./integration-guide/build-integration/net-banking) |
-| Wallets | CASH. Advantage Club uses RD | Wallet-specific. The Paytm sample uses PAYTM. Advantage Club uses ADVCLUB | [Wallets](./integration-guide/build-integration/wallets) |
-| UPI Collect | UPI | UPI | [UPI Collect](./integration-guide/build-integration/upi-collect) |
-| PayPal | PAYPAL | PAYPAL | [PayPal](./integration-guide/build-integration/paypal) |
-| Pluxee (Sodexo) | MC | SODEXO | [Pluxee](./integration-guide/build-integration/pluxee) |
-
-<!-- VALIDATION NEEDED: The overview table in the legacy Merchant Hosted page says PayPal bankcode is N/A. The PayPal integration page says bankcode=PAYPAL. The net banking steps card says pg=NEFT, the parameter table says pg=NB, and the samples use pg=TESTPG. The overview also says every net banking request must include account number and IFSC; those fields are not on the net banking page. EFTNET is described once as pg=NEFTRTGS and once as pg=NB with bankcode=EFTAXTPV. -->
-
-<Callout icon="📘" theme="info">
-  EMI, BNPL, EFTNET (NEFT/RTGS), and Net Banking TPV are listed on the legacy pages as links to other guides. Those guides are not rewritten here. UPI Intent is a server-to-server flow, not this form POST. QR points at Dynamic Storefront, which is a different product.
-</Callout>
-
-<Callout icon="⚠️" theme="warn">
-  **NPCI mandate on UPI Collect.** For Merchant Hosted integrations using `txn_s2s_flow = 2` or `txn_s2s_flow = 4`: Android apps must use Smart Intent; web must use the UPI Intent S2S deeplink to build a QR, not UPI Collect; iOS may keep a deeplink and UPI Collect. Seamless form POST does not support Intent. UPI Collect is allowed only for MCC 6012 and 6211.
-</Callout>
+***
 
 ## Common Use Cases
 
-<Cards columns={3}>
-  <Card title="Branded web checkout" icon="fa-store" href="./integration-guide/build-integration">
-    Collect the payment on your site and post it to PayU with the method the customer chose.
+<Cards columns="3">
+  <Card title="Branded web checkout" icon="fa-bag-shopping" href="./integration-guide/build-integration">
+    Collect the payment on your store and post the method the customer chose.
   </Card>
   <Card title="Saved-card repeat payment" icon="fa-credit-card" href="./integration-guide/build-integration/cards">
     Post a network token with `store_card_token` instead of the full card number.
@@ -99,125 +97,137 @@ Each method is selected with `pg` and `bankcode` on the `_payment` request. Bank
     Validate the VPA, then post `pg=UPI`, `bankcode=UPI`, and `vpa`.
   </Card>
   <Card title="International PayPal" icon="fa-globe" href="./integration-guide/build-integration/paypal">
-    Post `pg=PAYPAL` and `bankcode=PAYPAL` after PayPal is activated on the Dashboard.
+    Post `pg=PAYPAL` and `bankcode=PAYPAL` after PayPal is activated.
   </Card>
   <Card title="Pluxee meal cards" icon="fa-utensils" href="./integration-guide/build-integration/pluxee">
-    Check the balance, then post the Pluxee card with `pg=MC` and `bankcode=SODEXO`.
+    Check the balance, then post `pg=MC` and `bankcode=SODEXO`.
+  </Card>
+  <Card title="Net banking" icon="fa-building-columns" href="./integration-guide/build-integration/net-banking">
+    Post the bank code for the bank the customer selected.
   </Card>
 </Cards>
 
-## What Do I Need to Get Started?
+***
 
-- A PayU merchant account. Use a test account while you integrate, then a production account.
-- The merchant key and salt from the PayU Dashboard. The salt is used to generate the hash.
-- HTTPS on your site.
-- A backend that generates the SHA-512 hash. Do not put the salt in the browser.
-- A success URL (`surl`) and a failure URL (`furl`) that PayU can reach.
-- PCI-DSS compliance, including SAQ A-EP, if you store, process, or transmit cardholder data. The source states that Merchant Hosted Checkout collects card details on your site, so card flows are in scope.
-- Webhooks if you need a server-to-server update when the browser callback does not arrive. Confirm the transaction with the Verify Payment API.
+## What All I Need to Get Started?
 
-<Callout icon="⚠️" theme="warn">
-  If you use only UPI and wallet modes, the source still says your website must be secure.
-</Callout>
+Before you integrate, make sure you have:<br />
 
-## How Do I Integrate Merchant Hosted Checkout?
+- [x] **A PayU merchant account:** a test account while you integrate, then a production account.
+- [x] **API key and salt:** from the PayU Dashboard. The salt is used to generate the hash.
+- [x] **A website on HTTPS:** where you collect the payment details.
+- [x] **A backend that generates SHA-512:** the salt stays on the server.
+- [x] **surl and furl:** URLs PayU can redirect the customer to.
+- [x] **PCI-DSS SAQ A-EP:** if you store, process, or transmit cardholder data.
 
-<Accordion title="1. Choose the payment method" icon="fa-circle-1">
-  Set `pg` and `bankcode` for the method the customer selected. Card, UPI Collect, and Pluxee requests also include the method-specific fields.
-</Accordion>
+***
 
-<Accordion title="2. Generate the hash on your server" icon="fa-circle-2">
-  Build the hash string in the documented field order and hash it with SHA-512 and your salt. The salt stays on the server.
-</Accordion>
+## Supported Payment Methods
 
-<Accordion title="3. Post the payment from the browser" icon="fa-circle-3">
-  Form-post the parameters and the hash to `https://test.payu.in/_payment` in test, or `https://secure.payu.in/_payment` in production.
-</Accordion>
+These are the payment methods with integration steps in this guide:<br />
 
-<Accordion title="4. Handle surl and furl" icon="fa-circle-4">
-  PayU redirects the customer to your success or failure URL and posts the transaction response. Verify the reverse hash before you accept the result.
-</Accordion>
+- Credit Cards and Debit Cards (`pg=CC`)
+- Net Banking (`pg=NB` in the parameter table; test samples use `pg=TESTPG`)
+- Wallets (`pg=CASH`; Advantage Club uses `pg=RD`)
+- UPI Collect (`pg=UPI`, `bankcode=UPI`)
+- PayPal (`pg=PAYPAL`, `bankcode=PAYPAL`)
+- Pluxee (`pg=MC`, `bankcode=SODEXO`)
 
-<Accordion title="5. Verify the payment on the server" icon="fa-circle-5">
-  Call Verify Payment (`command=verify_payment`) and use webhooks when the callback does not arrive. Do not fulfil an order from the browser callback alone.
-</Accordion>
+EMI, BNPL, EFTNET, and Net Banking TPV are linked from the legacy pages to other guides. They are not rewritten here.
 
-<Callout icon="📘" theme="info">
-  Parameter tables, samples, and method-specific pre-steps are in [Build the Integration](./integration-guide/build-integration).
-</Callout>
+***
 
 ## Is My Integration Secure?
 
-Generate the hash on your server. The salt is known only to you and PayU. Never store the CVV. Do not store the full card number or expiry on your server. For repeat card payments, the source points to PayU Save Cards or another PCI-DSS tokenization service. Verify the reverse hash on the callback, then confirm the status with Verify Payment. Use HTTPS between the browser and your site, and between your server and PayU. PayU supports 3DS 2.0 on this integration.
+You collect the payment details, including card data when the customer pays by card. Your server must not store the CVV or the full card number.<br />
+
+Your integration has two security responsibilities:
+
+<Tabs>
+  <Tab title="Protect the Payment Request">
+    Before the browser posts the form, your server generates a SHA-512 hash of the transaction parameters using your merchant salt. PayU uses this hash to verify that the request came from you and was not modified. The salt must stay on your server.
+  </Tab>
+  <Tab title="Verify the Payment Response">
+    When PayU redirects the customer back, your server must verify the reverse hash and then call Verify Payment. Do not treat the browser redirect alone as success.
+  </Tab>
+</Tabs>
+
+***
 
 ## How Does My Customer Pay?
 
-<Accordion title="1. The customer pays on your site" icon="fa-circle-1">
-  The customer finishes checkout on your website and submits the payment details you collected, such as a saved card and CVV.
-</Accordion>
+The legacy overview includes this customer-journey diagram:
 
-<Accordion title="2. PayU receives the form post" icon="fa-circle-2">
-  The browser posts the payment to PayU. The source describes a secured PayU environment that shows the transaction ID.
-</Accordion>
 
-<Accordion title="3. The bank, wallet, or UPI app authenticates" icon="fa-circle-3">
-  For cards, the customer completes the bank ACS page with the OTP the bank sends. Net banking, wallets, UPI, PayPal, and Pluxee follow the flow for that method.
-</Accordion>
+<Image src="https://files.readme.io/f3853b72839386d63dda5c0929a3d8f82812c794036a97a5e50f3940a6bea27c-merchant_hosted_customer_journey.png" align="center" alt="Merchant Hosted Checkout customer journey" border={true} />
 
-<Accordion title="4. The customer returns to your site" icon="fa-circle-4">
-  PayU redirects to your site. You show success or failure from the transaction status PayU returns.
-</Accordion>
 
-## Post-Payment Actions
+The following is the customer journey using cards, as described in the source:<br />
 
-<Cards columns={2}>
-  <Card title="Verify Payment" icon="fa-circle-check" href="https://docs.payu.in/reference/verify_payment_api">
-    Confirm the status with `command=verify_payment` before you fulfil the order.
-  </Card>
-  <Card title="Get Transaction Info" icon="fa-receipt" href="https://docs.payu.in/reference/get_transaction_info_api">
-    Look up a transaction by txnid with `command=get_transaction_info`.
-  </Card>
-  <Card title="Refund" icon="fa-rotate-left" href="https://docs.payu.in/reference/refund_transaction_api">
-    Refund with `command=cancel_refund_transaction`, or from the PayU Dashboard.
-  </Card>
-  <Card title="Webhooks" icon="fa-plug" href="https://docs.payu.in/docs/webhooks">
-    Use webhooks when the browser callback does not arrive. This folder does not list webhook event names.
-  </Card>
-</Cards>
+1. The customer finishes checkout on your website and starts the payment.
+2. The customer enters the card details, including CVV, on your page.
+3. The browser posts the payment. The customer passes through a PayU environment that shows the transaction ID.
+4. The customer completes the bank ACS page with the OTP the bank sends.
+5. The customer returns to your website. You show success or failure from the PayU status.<br />
+
+For request parameters, hash generation, and response handling, see [Build the Integration](./integration-guide/build-integration).
+
+***
+
+## What Happens After a Payment
+
+After the customer completes a payment:<br />
+
+- PayU determines the transaction result.
+- The customer is redirected back to your `surl` or `furl`.
+- A payment response is posted with transaction details, including `mihpayid`, `status`, `txnid`, `amount`, `hash`, `error`, and `error_Message`.
+
+<Callout icon="⚠️" theme="warn">
+  ### **Important:**
+
+  Don't treat the browser redirect alone as confirmation that a payment succeeded. Confirm the transaction on the server with Verify Payment. The production checklist says to use webhooks if the callback fails.
+</Callout>
+
+Learn how to verify payment status in the [Integration Guide](./integration-guide).
+
+***
+
+## What If My Customer Wants the Money Back?
+
+<Tabs>
+  <Tab title="Refunds">
+    Refund from the PayU Dashboard or with `command=cancel_refund_transaction`. The PayPal page says the PayPal account needs sufficient funds before a refund.
+  </Tab>
+  <Tab title="Settlements">
+    PayPal settlements are processed in INR. Other settlement screens are not described in the Merchant Hosted pages.
+  </Tab>
+  <Tab title="Disputes and Chargebacks">
+    The parameter tables say `email`, `phone`, and `address1` help with fraud detection and chargebacks. A chargeback walkthrough is not in this folder.
+  </Tab>
+</Tabs>
+
+***
 
 ## Use AI to Help You
 
-Ask an assistant to look up the hash formula, the `_payment` fields for one method, or the callback checks. Use the docs as the source. Do not paste your salt into a chat.
+Ask your AI coding assistant using a prompt to get targeted help with your Merchant Hosted Checkout integration. Use these docs as the source. Do not paste your salt into a chat.
 
 <Callout icon="📘" theme="info">
-  Example prompts: "What is the SHA-512 request hash field order for PayU Merchant Hosted Checkout?" "Which pg and bankcode does UPI Collect use?" "What does the cards callback field error E1903 mean in the Merchant Hosted sample?"
+  Example prompts: "What is the SHA-512 request hash field order for PayU Merchant Hosted Checkout?" "Which pg and bankcode does UPI Collect use?" "What does error E1903 mean on a Merchant Hosted cards callback?"
 </Callout>
 
-<Cards columns={2}>
-  <Card title="PayU Developer MCP" icon="fa-server" href="https://docs.payu.in/docs/payu-devguide-builder-mcp-configuration">
-    Connect the PayU docs MCP so an assistant can read these guides from the editor.
-  </Card>
-  <Card title="Integration Lab" icon="fa-flask" href="https://payu.in/integrationlab/seamless/sm-nb-status">
-    The net banking and UPI Collect source pages link to Integration Lab flows that generate sample code.
-  </Card>
-</Cards>
+***
 
 ## Next Steps
 
-<Cards columns={2}>
-  <Card title="How It Works" icon="fa-diagram-project" href="./how-it-works">
-    Endpoints, hash formulas, and the payment flow.
+<Cards>
+  <Card title="Quick Start" href="./quick-start">
+    Set up and test your first net banking payment.
   </Card>
-  <Card title="Quick Start" icon="fa-play" href="./quick-start">
-    Post one net banking test payment and verify the callback.
+  <Card title="How Merchant Hosted Checkout Works" href="./how-it-works">
+    Understand the form-post flow and key concepts.
   </Card>
-  <Card title="Build the Integration" icon="fa-code" href="./integration-guide/build-integration">
-    Parameter tables and samples for each payment method.
-  </Card>
-  <Card title="Best Practices" icon="fa-list-check" href="./best-practices">
-    Card data handling, pre-checks, and callback verification.
-  </Card>
-  <Card title="APIs" icon="fa-rectangle-api" href="./merchant-hosted-checkout-apis">
-    `_payment`, pre-payment commands, and post-payment commands.
+  <Card title="Integration Guide" href="./integration-guide">
+    Build, test, and prepare your integration for production.
   </Card>
 </Cards>

@@ -1,217 +1,116 @@
 ---
 title: How Merchant Hosted Checkout Works
-excerpt: How a merchant-hosted payment moves from your checkout through PayU and back
+excerpt: >-
+  Understand the payment journey. From your checkout to PayU and back,
+  including the bank step, the callback, and verification.
 deprecated: false
 hidden: true
-updatedAt: "2026-11-18"
 metadata:
-  title: How Merchant Hosted Checkout Works | PayU Developer Docs
+  title: How Merchant Hosted Checkout Works
   description: >-
-    Merchant Hosted Checkout flow: browser form POST to PayU _payment, bank or UPI authentication, surl/furl callback, SHA-512 hash, and server-side verify.
+    Step-by-step Merchant Hosted Checkout flow: collect details, form POST to
+    _payment, bank authentication, surl/furl response, and verification.
+  keywords:
+    - how payu merchant hosted checkout works
+    - payu custom checkout payment flow
+    - payu _payment form post flow
+    - payu surl furl merchant hosted
   robots: index
-agentTools:
-  projectIndex: "https://docs.payu.in/llms.txt"
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: merchant-hosted-checkout
+      title: Merchant Hosted Checkout
+      type: basic
 ---
+Merchant Hosted Checkout collects payment details on your website and form-posts them to PayU. PayU processes the payment, sends the customer to the bank, wallet, or UPI step when that method requires it, and posts the result back to your callback URL.
 
-# How Merchant Hosted Checkout Works
+***
 
-The customer submits payment details on your site. The browser form-posts those details to PayU. PayU sends the customer to the card ACS, the bank's net banking page, the wallet, or the UPI flow. After the bank or app finishes, PayU redirects the customer to your site.
+## How Does the Payment Flow Work?
 
-## Architecture Overview
 
-1. The browser posts the payment form directly to PayU. Your page does not send the customer to a PayU-hosted payment page to choose the method.
-2. PayU processes the request in its environment, then reaches the card ACS or the bank's net banking page when that method requires it.
-3. When the bank-side step finishes, PayU redirects the customer to your `surl` or `furl` and posts the transaction result.
+<Image src="https://files.readme.io/4aeeafdbefc392fa362522d8209dc7268178e104e699b067895a3408ff412c42-merchant_hosted_flow.png" alt="Merchant Hosted Checkout payment flow" align="center" border={true} />
 
-The legacy overview includes the flow diagram and the customer-journey diagram. Those images are the source for the sequence above.
 
-## Endpoints
+The payment moves through six stages:<br />
 
-| Environment | URL |
-| --- | --- |
-| Test `_payment` | `POST https://test.payu.in/_payment` |
-| Production `_payment` | `POST https://secure.payu.in/_payment` |
-| Test post-service (BIN sample) | `POST https://test.payu.in/merchant/postservice?form=2` |
-| Production post-service (BIN sample) | `POST https://info.payu.in/merchant/postservice?form=2` |
-| Production post-service (APIs page) | `POST https://info.payu.in/merchant/postservice.php?form=2` |
+1. **Initiation**: The customer proceeds to pay on your website. Your checkout collects the payment details for the method they chose.
+2. **Form post**: The browser posts the payment to PayU at `_payment`, including `pg`, `bankcode`, and the hash your server generated.
+3. **Payment details**: The customer has already entered the details on your page. PayU does not ask them to pick a method on a PayU-hosted page.
+4. **Authentication**: The customer may complete the bank ACS OTP, a net banking login, a wallet redirect, or a UPI collect request.
+5. **Processing**: PayU sends the transaction to the bank, card network, or payment provider and receives the result.
+6. **Return**: PayU redirects the customer to your `surl` or `furl` and posts the payment result.
 
-<!-- VALIDATION NEEDED: The legacy APIs page writes the post-service path as merchant/postservice.php?form=2. The cards BIN sample and the UPI validateVPA sample use merchant/postservice?form=2 without .php. Verify Payment's shared block uses both forms. Do not pick one URL until the docs team confirms which path is current for each command. -->
+***
 
-## Key Parameters
+## What Happens After the Payment?
 
-`pg` selects the payment category. `bankcode` selects the network, bank, or wallet. Other methods add their own fields. The values below are the ones stated on the method pages. Conflicts are flagged. They are not resolved here.
+After the transaction completes, PayU returns the outcome to your application:<br />
 
-| Parameter | Value in source | Purpose |
+| Outcome | Callback | What the source shows |
 | --- | --- | --- |
-| pg | CC | Cards |
-| bankcode | CC, MAST, AMEX, or VISA in different card samples | Card network or bank code |
-| pg | NB in the net banking table. Samples use TESTPG | Net banking |
-| bankcode | TESTPGNB in the net banking test sample | Test net banking bank code |
-| pg | CASH, or RD for Advantage Club | Wallets |
-| bankcode | PAYTM in the Paytm sample. ADVCLUB for Advantage Club | Wallet code |
-| pg | UPI | UPI Collect |
-| bankcode | UPI | UPI Collect. The legacy overview also names INTENT and UPIDBQR for Intent and QR |
-| pg | PAYPAL | PayPal |
-| bankcode | PAYPAL | PayPal. The legacy overview table says N/A |
-| pg | MC | Pluxee |
-| bankcode | SODEXO | Pluxee |
+| **Success** | `surl` | Samples show `status=success`, `unmappedstatus=captured`, `error=E000` |
+| **Failure** | `furl` | The cards failure sample shows `status=failure`, `error=E1903` |
+| **Pending** | <!-- DOCUMENTATION GAP: The test steps say to simulate pending. They do not say which URL receives it or what status value to expect. --> | Not defined in this folder |
+| **Cancelled** | <!-- DOCUMENTATION GAP: A cancelled outcome is not described in the Merchant Hosted pages. --> | Not defined in this folder |
 
-<!-- VALIDATION NEEDED: Cards steps say bankcode=CC, the HTML sample uses MAST, the parameter example is AMEX, and a saved-card sample uses VISA. Net banking steps say pg=NEFT. See the method pages before you copy a sample. -->
+<!-- VALIDATION NEEDED: Cards, UPI Collect, PayPal, and Pluxee describe surl as success and furl as failure. The net banking and wallets parameter tables swap those descriptions. -->
 
-## Hash Generation
+The payment result arrives at your application in two ways described in the source:<br />
 
-### Request Hash
+- **Browser redirect**: PayU redirects the customer's browser to your `surl` or `furl` and posts the result.
+- **Webhook**: The production checklist says to use webhooks to hear callbacks if the browser callback fails. Event names are not listed in this folder.<br />
 
-The method pages state this formula:
+Your application should verify the reverse hash and call Verify Payment before treating the payment as confirmed.<br />
 
-```
-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-```
+For implementation details, see [Build the Integration](./integration-guide/build-integration).
 
-Empty UDF fields stay in the string as empty values between the pipes. Generate this on your server. Append the salt at the end. The algorithm is SHA-512.
+***
 
-<!-- VALIDATION NEEDED: A second Python sample on the legacy overview builds key|txnid|amount|productinfo|firstname|email||||||||||salt and omits the five UDF fields. The legacy APIs page says card and other modes can require a different sequence, and it does not print that sequence. Use the UDF formula from the method pages until the docs team confirms otherwise. -->
+## Responsibilities
 
-<Tabs>
-  <Tab title="Node.js">
-    ```javascript
-    const crypto = require('crypto');
-
-    function generateHash(params, salt) {
-        const key = params.key;
-        const txnid = params.txnid;
-        const amount = params.amount;
-        const productinfo = params.productinfo;
-        const firstname = params.firstname;
-        const email = params.email;
-        const udf1 = params.udf1 || '';
-        const udf2 = params.udf2 || '';
-        const udf3 = params.udf3 || '';
-        const udf4 = params.udf4 || '';
-        const udf5 = params.udf5 || '';
-        const hashString = `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}|${udf1}|${udf2}|${udf3}|${udf4}|${udf5}||||||${salt}`;
-        return crypto.createHash('sha512').update(hashString).digest('hex');
-    }
-    ```
-  </Tab>
-  <Tab title="PHP">
-    ```php
-    <?php
-    function generateHash($params, $salt) {
-        $udf1 = isset($params['udf1']) ? $params['udf1'] : '';
-        $udf2 = isset($params['udf2']) ? $params['udf2'] : '';
-        $udf3 = isset($params['udf3']) ? $params['udf3'] : '';
-        $udf4 = isset($params['udf4']) ? $params['udf4'] : '';
-        $udf5 = isset($params['udf5']) ? $params['udf5'] : '';
-        $hashString = $params['key'] . '|' . $params['txnid'] . '|' . $params['amount'] . '|' . $params['productinfo'] . '|' .
-                      $params['firstname'] . '|' . $params['email'] . '|' . $udf1 . '|' . $udf2 . '|' .
-                      $udf3 . '|' . $udf4 . '|' . $udf5 . '||||||' . $salt;
-        return strtolower(hash('sha512', $hashString));
-    }
-    ?>
-    ```
-  </Tab>
-</Tabs>
-
-The same sequence is in `<HashingSample />`, which also includes Java, C#, and Python.
-
-<HashingSample />
-
-Post-service commands (`getBinInfo`, `validateVPA`, `verify_payment`, and the other `command` APIs) use a different formula, stated on the legacy APIs page:
-
-```
-sha512(key|command|var1|SALT)
-```
-
-### Response Hash Verification
-
-PayU returns a hash on the callback. Rebuild it from the response fields and your salt. Accept the payment only when your hash matches the hash in the response.
-
-The UPI Collect page states this order:
-
-```
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
-
-<ReverseHashing />
-
-<!-- DOCUMENTATION GAP: The reverse-hash formula is in the source. A full verification function is not in this folder. It is referenced through the ReverseHashing block. Do not invent a code sample here. -->
-
-## Payment Flow — Step by Step
-
-<Accordion title="1. Collect the payment details" icon="fa-circle-1">
-  Your checkout collects the fields for the selected method. For cards, that includes the card number, name, expiry, and CVV. For UPI Collect, collect the VPA. For net banking, collect the bank choice that maps to `bankcode`.
+<Accordion title="What Does PayU Handle?" icon="fa-server">
+  - **Payment processing** — PayU sends the transaction to the bank, card network, UPI provider, or wallet.
+  - **Authentication handoff** — For cards, the customer is taken to the bank ACS page. Net banking goes to the bank login. Wallets, UPI, PayPal, and Pluxee follow that method's flow.
+  - **Returning the result** — PayU posts the outcome to your callback URL and redirects the customer's browser back to your site.
 </Accordion>
 
-<Accordion title="2. Hash the request on the server" icon="fa-circle-2">
-  Your server builds the request hash with the salt and returns only the hash to the page that submits the form.
+<Accordion title="What Does Your Application Handle?" icon="fa-code">
+  - **The payment form** — You collect the payment details, including card fields when the customer pays by card.
+  - **Choosing the method** — You send `pg` and `bankcode`.
+  - **Securing the request** — You generate the SHA-512 hash on the server. The salt never goes to the browser.
+  - **Receiving the payment result** — You expose `surl` and `furl`.
+  - **Verifying the result** — You check the reverse hash and call `verify_payment` before you fulfil the order.
 </Accordion>
 
-<Accordion title="3. The browser posts to _payment" icon="fa-circle-3">
-  The form posts `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `pg`, `bankcode`, `surl`, `furl`, `hash`, and the method fields.
-</Accordion>
-
-<Accordion title="4. PayU and the bank authenticate" icon="fa-circle-4">
-  PayU validates the hash and routes the payment. The customer may see the bank ACS page, a net banking login, a wallet redirect, or a UPI collect request.
-</Accordion>
-
-<Accordion title="5. PayU posts the result to surl or furl" icon="fa-circle-5">
-  The callback includes `mihpayid`, `status`, `txnid`, `amount`, `hash`, `error`, and `error_Message`, plus method fields such as `mode` and `bankcode`.
-</Accordion>
-
-<Accordion title="6. Verify the reverse hash" icon="fa-circle-6">
-  Recompute the response hash. Reject the callback when it does not match.
-</Accordion>
-
-<Accordion title="7. Verify the payment on the server" icon="fa-circle-7">
-  Call `verify_payment` with the `txnid`. The legacy checklist says to confirm the status on the server if the callback fails, and to use webhooks to hear callbacks.
-</Accordion>
-
-## PCI-DSS Scope
-
-If you store, process, or transmit cardholder data, the source says you must comply with PCI-DSS. It names the Self-Assessment Questionnaire A-EP and Attestation of Compliance. Merchant Hosted Checkout collects card details on your website, so card collection is in scope. International card transactions must be enabled by writing to the PayU Integration Team at integration@pay.in.
-
-<!-- DOCUMENTATION GAP: The source names SAQ A-EP and links the PCI form. It does not list the questionnaire steps. -->
-
-If you use only UPI and wallets, the source says the website must still be secure. It does not say those modes remove every compliance duty.
-
-## When to Use Merchant Hosted Checkout vs Alternatives
-
-| Scenario | Recommended product |
-| --- | --- |
-| You want to design the payment form and post the details yourself | Merchant Hosted Checkout |
-| You want PayU to collect the payment details on a PayU page | [PayU Hosted Checkout](https://docs.payu.in/docs/payu-hosted-checkout-1) |
-| You do not have a website | [Payment Links](https://docs.payu.in/docs/payment-links-dashboard) |
-| You are collecting payment inside a native app | [PayU Mobile SDK](https://docs.payu.in/docs/mobile-sdk-integration) |
+***
 
 ## Key Concepts
 
-<Accordion title="key" icon="fa-key">
-  The merchant identifier PayU gives you. Test and production keys are different.
+<Accordion title="Transaction" icon="fa-exchange-alt">
+  A single payment attempt. You assign `txnid`. The saved-card parameter text says PayU will not accept a duplicate transaction id.
 </Accordion>
 
-<Accordion title="salt" icon="fa-shield-halved">
-  The secret used in the hash. It stays on your server.
+<Accordion title="Payment Request" icon="fa-file-alt">
+  The form post to `_payment`: amount, customer details, `pg`, `bankcode`, method fields, `surl`, `furl`, and the hash.
 </Accordion>
 
-<Accordion title="txnid" icon="fa-fingerprint">
-  Your unique transaction id. The saved-card parameter text says PayU will not accept a duplicate transaction id.
+<Accordion title="Form Post" icon="fa-arrows-alt-h">
+  The browser posts the payment from your page to PayU. Test URL: `https://test.payu.in/_payment`. Production URL: `https://secure.payu.in/_payment`.
 </Accordion>
 
-<Accordion title="pg and bankcode" icon="fa-credit-card">
-  `pg` is the payment category. `bankcode` is the network, bank, or wallet. Values are case-sensitive.
+<Accordion title="surl / furl" icon="fa-link">
+  `surl` is the success URL. `furl` is the failure URL, on the cards, UPI Collect, PayPal, and Pluxee pages. PayU posts the result to the URL it redirects to.
 </Accordion>
 
-<Accordion title="surl and furl" icon="fa-link">
-  `surl` is the success redirect. `furl` is the failure redirect. PayU posts the response to the URL it redirects to.
+<Accordion title="Payment Response" icon="fa-reply-all">
+  The fields PayU posts back. Samples include `mihpayid`, `status`, `txnid`, `amount`, `mode`, `bankcode`, `hash`, `error`, and `error_Message`.
 </Accordion>
 
-<!-- VALIDATION NEEDED: The net banking and wallets parameter tables in the legacy pages describe furl as the success URL and surl as the failure URL. Cards, UPI Collect, PayPal, and Pluxee describe surl as success and furl as failure. -->
+***
 
-<Accordion title="mihpayid" icon="fa-hashtag">
-  PayU's payment id, returned on the callback. Samples on the method pages include it.
-</Accordion>
+## Next Steps
 
-<Accordion title="hash" icon="fa-lock">
-  The SHA-512 digest of the request string, and a separate digest PayU returns on the response for you to verify.
-</Accordion>
+- [Quick Start:](./quick-start) Run your first net banking test payment.
+- [Build the Integration:](./integration-guide/build-integration) Parameters, hash, form post, reverse hash, and Verify Payment for each method.
