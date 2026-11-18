@@ -2,7 +2,7 @@
 title: Merchant Wallet
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 icon: far fa-wallet
 metadata:
   title: ''
