@@ -1,7 +1,7 @@
 ---
 title: Seamless Wallet Debit Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---

@@ -1,7 +1,7 @@
 ---
 title: Closed-Loop Wallets
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Closed-Loop Wallet Management
   keywords:

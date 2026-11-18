@@ -2,7 +2,7 @@
 title: SDK-Based Wallet Checkout Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: SDK-Based Integration for Merchant Wallets
   description: ''

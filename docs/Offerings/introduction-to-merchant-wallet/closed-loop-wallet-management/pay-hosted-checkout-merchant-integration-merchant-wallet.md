@@ -2,7 +2,7 @@
 title: PayU Hosted Wallet Checkout Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

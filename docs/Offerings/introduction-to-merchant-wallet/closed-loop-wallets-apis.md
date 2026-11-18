@@ -1,7 +1,7 @@
 ---
 title: APIs used in Integration
 deprecated: false
-hidden: false
+hidden: true
 icon: far fa-rectangle-api
 metadata:
   title: APIs used in Closed-Loop Wallet integration
