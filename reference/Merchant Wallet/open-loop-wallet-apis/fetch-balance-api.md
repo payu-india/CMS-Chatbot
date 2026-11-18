@@ -2,7 +2,7 @@
 title: Fetch Balance API
 excerpt: 'API Command: **check\_balance**'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

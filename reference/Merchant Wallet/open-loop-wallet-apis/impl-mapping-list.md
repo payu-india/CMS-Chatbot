@@ -2,7 +2,7 @@
 title: IMPL Mapping List
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

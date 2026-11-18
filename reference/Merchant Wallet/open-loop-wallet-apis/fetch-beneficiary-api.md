@@ -2,7 +2,7 @@
 title: Fetch Beneficiary API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

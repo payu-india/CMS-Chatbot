@@ -2,7 +2,7 @@
 title: Change Card Status API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
