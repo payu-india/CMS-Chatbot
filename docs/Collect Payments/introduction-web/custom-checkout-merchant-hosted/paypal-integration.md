@@ -1,27 +1,31 @@
 ---
 title: PayPal Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: PayPal Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [PayPal](../../../Low-Code%20Products/merchant-hosted-checkout/integration-guide/build-integration/paypal).
+</Callout>
+
 Integrate PayU with PayPal wallets to facilitate international payments. PayPal can be seamlessly integrated with your PayU Hosted or Merchant Hosted Checkout integration. Customers have the option to utilize PayPal Currency Conversion to convert international payments from INR (or other currencies) to their chosen currency. Payments made through PayPal are directly transferred to your PayPal wallet, with settlements processed in INR.
 
 This section describes the following:

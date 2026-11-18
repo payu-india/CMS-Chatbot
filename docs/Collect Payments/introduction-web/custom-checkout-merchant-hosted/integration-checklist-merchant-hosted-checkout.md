@@ -1,20 +1,20 @@
 ---
 title: Production Checklist
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: Production Checklist for Merchant Hosted Checkout integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: >-
@@ -32,11 +32,15 @@ metadata:
     - production payment integration checklist payu web india
     - payu custom checkout security webhook go live checklist
     - merchant hosted payment integration production readiness payu
-  robots: index
+  robots: noindex
 
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Go-Live Checklist](../../../Low-Code%20Products/merchant-hosted-checkout/integration-guide/go-live-checklist).
+</Callout>
+
 ## 1. Update Production Key and Salt
 
 Update your Production Key and Salt in your integration code to replace the Test Key and Salt. To generate the live merchant key and salt:

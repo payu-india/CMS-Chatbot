@@ -1,12 +1,16 @@
 ---
 title: APIs used for Integration
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 icon: far fa-rectangle-api
 metadata:
   title: APIs used for Merchant Hosted Integration
-  robots: index
+  robots: noindex
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Merchant Hosted Checkout APIs](../../../Low-Code%20Products/merchant-hosted-checkout/merchant-hosted-checkout-apis).
+</Callout>
+
 | Use case → Reference                                                                                                                                                            | `command` / primary value                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | Collect payment (form post from browser, card/UPI/NB/etc. per mode) — [Collect Payment API (Merchant Hosted Checkout)](https://docs.payu.in/reference/_payment_merchant_hosted) | Browser form `POST` to `_payment` with mode-specific fields (`pg`, `bankcode`, card/UPI params as applicable) |

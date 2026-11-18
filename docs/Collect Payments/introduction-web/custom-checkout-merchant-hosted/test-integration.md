@@ -1,20 +1,20 @@
 ---
 title: Test the Integration
 excerpt: Use the Test mode to check if the integration is working as expected.
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: Test the Integration
 excerpt: Use the Test mode to check if the integration is working as expected.
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: >-
@@ -32,11 +32,15 @@ metadata:
     - payment gateway test mode merchant hosted integration payu india
     - payu merchant hosted integration testing before production go live
     - test payu payment api merchant hosted checkout website integration
-  robots: index
+  robots: noindex
 
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Test Your Integration](../../../Low-Code%20Products/merchant-hosted-checkout/integration-guide/test-integration).
+</Callout>
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.

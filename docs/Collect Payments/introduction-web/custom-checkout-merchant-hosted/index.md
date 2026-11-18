@@ -1,8 +1,8 @@
 ---
 title: Merchant Hosted Checkout
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: Custom Checkout Integration
   description: >-
@@ -21,15 +21,15 @@ metadata:
     - payment gateway integration for websites payu hosted
     - payu collect payment api hosted checkout developer guide
     - accept upi cards netbanking wallet hosted checkout payu
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: Merchant Hosted Checkout
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: Custom Checkout Integration
   description: >-
@@ -48,10 +48,14 @@ metadata:
     - payment gateway integration for websites payu hosted
     - payu collect payment api hosted checkout developer guide
     - accept upi cards netbanking wallet hosted checkout payu
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Merchant Hosted Checkout](../../../Low-Code%20Products/merchant-hosted-checkout/).
+</Callout>
+
 This part of the documentation provides a comprehensive overview of integrating PayU’s Merchant Hosted Checkout solution for collecting payments on your website or application. This guide is designed for developers with varying levels of experience, from those new to payment gateways to seasoned API integrators.
 
 ```php
