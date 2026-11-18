@@ -1,0 +1,646 @@
+---
+name: AcceptFirstPaymentGuide
+---
+// AcceptFirstPaymentGuide - Canonical interactive onboarding journey.
+// Selecting an integration updates prerequisites, snippets, docs links, and next steps
+// without leaving the page. Includes language tabs, copy, progress, and scroll-sync nav.
+// Usage on guides: <AcceptFirstPaymentGuide />
+
+import { useEffect, useRef, useState } from 'react';
+
+export const AcceptFirstPaymentGuide = function AcceptFirstPaymentGuide() {
+  var INTEGRATIONS = JSON.parse(
+    '[{"id":"hosted","label":"Hosted Checkout","description":"Redirect customers to the PayU-hosted payment page. Fastest path for most merchants.","recommended":true},{"id":"seamless","label":"Seamless","description":"Keep checkout on your site with Merchant Hosted APIs. Full UI control; PCI applies for cards."},{"id":"commercepro","label":"CommercePro","description":"Conversion-optimized checkout where PayU handles sensitive card data."},{"id":"sdk","label":"Mobile SDK","description":"Native and cross-platform Checkout Pro SDKs for Android, iOS, React Native, and Flutter."},{"id":"plugins","label":"Plugins","description":"Install a ready-made plugin for Shopify, WooCommerce, Magento, and other platforms."},{"id":"other","label":"Other","description":"Server-to-Server, Payment Links, UPI QR, or specialized collection flows."}]'
+  );
+
+  var LANGS = JSON.parse(
+    '[{"id":"nodejs","label":"Node.js"},{"id":"java","label":"Java"},{"id":"php","label":"PHP"},{"id":"python","label":"Python"},{"id":"go","label":"Go"},{"id":"dotnet","label":".NET"}]'
+  );
+
+  var SECTIONS = JSON.parse(
+    '[{"id":"overview","title":"Overview"},{"id":"prerequisites","title":"Prerequisites"},{"id":"choose-integration-method","title":"Choose Integration Method"},{"id":"get-credentials","title":"Get Credentials"},{"id":"generate-hash","title":"Generate Hash"},{"id":"create-payment-request","title":"Create Payment Request"},{"id":"handle-payment-response","title":"Handle Payment Response"},{"id":"verify-payment","title":"Verify Payment"},{"id":"test","title":"Test"},{"id":"go-live","title":"Go Live"},{"id":"next-steps","title":"Next Steps"}]'
+  );
+
+  var CONTENT = JSON.parse(
+    '{"hosted":{"summary":"Hosted Checkout posts a signed form to PayU. Customers pay on PayU and return to your surl or furl.","prerequisites":["PayU merchant account with Test Mode enabled","Test merchant key and salt from the dashboard","Public HTTPS surl and furl endpoints","Server-side environment to generate SHA-512 hashes"],"docsUrl":"https://docs.payu.in/docs/prebuilt-checkout-payu-hosted","docsLabel":"Hosted Checkout Guide","nextCards":[{"id":"hosted","title":"I am using Hosted Checkout","description":"Deep-dive into redirect parameters, reverse hash, WebView notes, and go-live.","href":"https://docs.payu.in/docs/prebuilt-checkout-payu-hosted","cta":"Continue to Hosted Checkout Guide"},{"id":"lab","title":"Try the Hosted Checkout lab","description":"Use the interactive lab to compute a hash and open PayU test checkout.","href":"https://docs.payu.in/docs/prebuilt-checkout-page-integration","cta":"Open integration steps"}],"createHint":"Build a server-side form POST to https://test.payu.in/_payment with key, txnid, amount, productinfo, firstname, email, phone, surl, furl, and hash."},"seamless":{"summary":"Seamless (Merchant Hosted) keeps the payment UI on your website and calls PayU APIs per payment method.","prerequisites":["PayU merchant account and Test Mode credentials","PCI-DSS scope reviewed if you collect card data on your pages","HTTPS endpoints for callbacks and webhooks","Backend capable of hashing and method-specific API calls"],"docsUrl":"https://docs.payu.in/docs/custom-checkout-merchant-hosted","docsLabel":"Seamless / Merchant Hosted Guide","nextCards":[{"id":"seamless","title":"I am using Seamless","description":"Continue to Merchant Hosted checkout for cards, UPI, wallets, and BNPL flows.","href":"https://docs.payu.in/docs/custom-checkout-merchant-hosted","cta":"Continue to Seamless Guide"},{"id":"upi","title":"Start with UPI Collect","description":"If UPI is your first method, follow the UPI Collect seamless guide.","href":"https://docs.payu.in/docs/upi-collect-integration","cta":"Open UPI Collect guide"}],"createHint":"Collect payment details on your UI, generate hash on the server, and call the Merchant Hosted payment APIs for the selected method."},"commercepro":{"summary":"CommercePro Checkout optimizes conversion while PayU handles sensitive card data for you.","prerequisites":["PayU merchant account with CommercePro enabled","Test key and salt","Callback URL configuration","Backend for order creation and hash generation"],"docsUrl":"https://docs.payu.in/docs/checkout-express","docsLabel":"CommercePro Guide","nextCards":[{"id":"commercepro","title":"I am using CommercePro","description":"Continue to CommercePro Checkout integration and callback handling.","href":"https://docs.payu.in/docs/checkout-express","cta":"Continue to CommercePro Guide"},{"id":"plugin","title":"CommercePro on a platform","description":"If you use Shopify or WooCommerce, prefer the CommercePro plugin path.","href":"https://docs.payu.in/docs/commercepro-checkout","cta":"Open CommercePro plugins"}],"createHint":"Create the CommercePro session or redirect payload from your server, then hand the customer off to the optimized PayU checkout."},"sdk":{"summary":"Mobile SDKs embed Checkout Pro in your app. Generate hashes on your server and launch the SDK payment flow.","prerequisites":["PayU merchant account and Test Mode key/salt","Android, iOS, React Native, or Flutter project","Server endpoint that returns payment hashes","Enabled payment methods in the dashboard"],"docsUrl":"https://docs.payu.in/docs/explore-android-sdks","docsLabel":"Mobile SDK documentation","nextCards":[{"id":"android","title":"I am using Android SDK","description":"Continue to Android Checkout Pro SDK setup and sample app.","href":"https://docs.payu.in/docs/android-checkoutpro-sdk","cta":"Continue to Android SDK"},{"id":"ios","title":"I am using iOS SDK","description":"Continue to iOS Checkout Pro SDK integration.","href":"https://docs.payu.in/docs/ios-checkoutpro-sdk","cta":"Continue to iOS SDK"},{"id":"go","title":"I am using Go SDK","description":"For server helpers alongside mobile, continue to the Go SDK.","href":"https://docs.payu.in/docs/go-sdk","cta":"Continue to Go SDK Guide"}],"createHint":"Your app requests a hash from your backend, then starts Checkout Pro with payment parameters. Never ship salt inside the mobile binary."},"plugins":{"summary":"Plugins install PayU into your eCommerce platform with minimal custom code.","prerequisites":["Store admin access on Shopify, WooCommerce, Magento, or another supported platform","PayU merchant key and salt","Platform plugin package or App Store listing","Test Mode available before production cutover"],"docsUrl":"https://docs.payu.in/docs/ecommerce-platform-plugins","docsLabel":"Plugin documentation","nextCards":[{"id":"plugins","title":"I am integrating through Plugins","description":"Pick your platform and follow the plugin configuration guide.","href":"https://docs.payu.in/docs/ecommerce-platform-plugins","cta":"Continue to Plugin documentation"},{"id":"shopify","title":"Shopify merchants","description":"Install and configure the PayU Shopify / CommercePro plugin.","href":"https://docs.payu.in/docs/shopify","cta":"Open Shopify guide"}],"createHint":"Install the plugin, enter key and salt in the plugin settings, enable Test Mode, and place a test order from your storefront."},"other":{"summary":"Other paths include Server-to-Server APIs, Payment Links, and in-person UPI QR collection.","prerequisites":["PayU merchant account","Clear use case: S2S, links, or offline QR","HTTPS callbacks where required","Backend or dashboard access depending on the path"],"docsUrl":"https://docs.payu.in/docs/server-to-server-integration","docsLabel":"Server-to-Server Guide","nextCards":[{"id":"s2s","title":"Server-to-Server","description":"Full backend orchestration for large merchants and marketplaces.","href":"https://docs.payu.in/docs/server-to-server-integration","cta":"Continue to S2S Guide"},{"id":"links","title":"Payment Links","description":"Create and share payment links from dashboard or API with almost no checkout code.","href":"https://docs.payu.in/docs/payment-links-dashboard","cta":"Open Payment Links"},{"id":"go","title":"I am using Go SDK","description":"Use the Go SDK helpers for create, verify, refund, and settlements.","href":"https://docs.payu.in/docs/go-sdk","cta":"Continue to Go SDK Guide"}],"createHint":"Choose the specific product guide after this journey. Most API paths still require server-side hashing and payment verification."}}'
+  );
+
+  var HASH_SNIPPETS = JSON.parse(
+    '{"nodejs":{"label":"Node.js","code":"const crypto = require(\'crypto\');\\n\\nfunction generateHash(params, salt) {\\n  const parts = [\\n    params.key,\\n    params.txnid,\\n    params.amount,\\n    params.productinfo,\\n    params.firstname,\\n    params.email,\\n    params.udf1 || \'\',\\n    params.udf2 || \'\',\\n    params.udf3 || \'\',\\n    params.udf4 || \'\',\\n    params.udf5 || \'\',\\n    \'\', \'\', \'\', \'\', \'\',\\n    salt\\n  ];\\n  return crypto.createHash(\'sha512\').update(parts.join(\'|\')).digest(\'hex\');\\n}\\n\\nconst hash = generateHash({\\n  key: process.env.PAYU_KEY,\\n  txnid: \'TXN\' + Date.now(),\\n  amount: \'10.00\',\\n  productinfo: \'First payment\',\\n  firstname: \'Ada\',\\n  email: \'ada@example.com\'\\n}, process.env.PAYU_SALT);"},"java":{"label":"Java","code":"import java.nio.charset.StandardCharsets;\\nimport java.security.MessageDigest;\\n\\nString hashString = key + \\"|\\" + txnid + \\"|\\" + amount + \\"|\\" +\\n    productinfo + \\"|\\" + firstname + \\"|\\" + email +\\n    \\"|||||||||||\\" + salt;\\n\\nMessageDigest md = MessageDigest.getInstance(\\"SHA-512\\");\\nbyte[] digest = md.digest(hashString.getBytes(StandardCharsets.UTF_8));\\nStringBuilder sb = new StringBuilder();\\nfor (byte b : digest) sb.append(String.format(\\"%02x\\", b));\\nString hash = sb.toString();"},"php":{"label":"PHP","code":"<?php\\nfunction generateHash(array $params, string $salt): string {\\n  $hashString = $params[\'key\'] . \'|\' . $params[\'txnid\'] . \'|\' .\\n    $params[\'amount\'] . \'|\' . $params[\'productinfo\'] . \'|\' .\\n    $params[\'firstname\'] . \'|\' . $params[\'email\'] .\\n    \'|||||||||||\' . $salt;\\n  return strtolower(hash(\'sha512\', $hashString));\\n}\\n\\n$hash = generateHash([\\n  \'key\' => getenv(\'PAYU_KEY\'),\\n  \'txnid\' => uniqid(\'TXN\'),\\n  \'amount\' => \'10.00\',\\n  \'productinfo\' => \'First payment\',\\n  \'firstname\' => \'Ada\',\\n  \'email\' => \'ada@example.com\',\\n], getenv(\'PAYU_SALT\'));"},"python":{"label":"Python","code":"import hashlib\\nimport os\\n\\ndef generate_hash(params, salt):\\n    parts = [\\n        params[\'key\'], params[\'txnid\'], params[\'amount\'],\\n        params[\'productinfo\'], params[\'firstname\'], params[\'email\'],\\n        params.get(\'udf1\', \'\'), params.get(\'udf2\', \'\'), params.get(\'udf3\', \'\'),\\n        params.get(\'udf4\', \'\'), params.get(\'udf5\', \'\'),\\n        \'\', \'\', \'\', \'\', \'\', salt\\n    ]\\n    return hashlib.sha512(\'|\'.join(parts).encode(\'utf-8\')).hexdigest()\\n\\nhash_value = generate_hash({\\n    \'key\': os.environ[\'PAYU_KEY\'],\\n    \'txnid\': \'TXN001\',\\n    \'amount\': \'10.00\',\\n    \'productinfo\': \'First payment\',\\n    \'firstname\': \'Ada\',\\n    \'email\': \'ada@example.com\',\\n}, os.environ[\'PAYU_SALT\'])"},"go":{"label":"Go","code":"package main\\n\\nimport (\\n  \\"crypto/sha512\\"\\n  \\"encoding/hex\\"\\n  \\"os\\"\\n  \\"strings\\"\\n)\\n\\nfunc generateHash(key, txnid, amount, productinfo, firstname, email, salt string) string {\\n  parts := []string{key, txnid, amount, productinfo, firstname, email, \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", salt}\\n  sum := sha512.Sum512([]byte(strings.Join(parts, \\"|\\")))\\n  return hex.EncodeToString(sum[:])\\n}\\n\\nfunc main() {\\n  _ = generateHash(os.Getenv(\\"PAYU_KEY\\"), \\"TXN001\\", \\"10.00\\", \\"First payment\\", \\"Ada\\", \\"ada@example.com\\", os.Getenv(\\"PAYU_SALT\\"))\\n}"},"dotnet":{"label":".NET","code":"using System.Security.Cryptography;\\nusing System.Text;\\n\\nstring GenerateHash(string key, string txnid, string amount, string productinfo,\\n    string firstname, string email, string salt)\\n{\\n    var hashString = $\\"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}\\";\\n    using var sha = SHA512.Create();\\n    var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(hashString));\\n    return Convert.ToHexString(bytes).ToLowerInvariant();\\n}\\n\\nvar hash = GenerateHash(\\n    Environment.GetEnvironmentVariable(\\"PAYU_KEY\\")!,\\n    \\"TXN001\\",\\n    \\"10.00\\",\\n    \\"First payment\\",\\n    \\"Ada\\",\\n    \\"ada@example.com\\",\\n    Environment.GetEnvironmentVariable(\\"PAYU_SALT\\")!);"}}'
+  );
+
+  var CREATE_SNIPPETS = JSON.parse(
+    '{"hosted":{"nodejs":"const params = new URLSearchParams({\\n  key: process.env.PAYU_KEY,\\n  txnid,\\n  amount: \'10.00\',\\n  productinfo: \'First payment\',\\n  firstname: \'Ada\',\\n  email: \'ada@example.com\',\\n  phone: \'9999999999\',\\n  surl: \'https://merchant.example.com/payu/success\',\\n  furl: \'https://merchant.example.com/payu/failure\',\\n  hash\\n});\\n\\n// Return an HTML form that POSTs to https://test.payu.in/_payment and auto-submits.","java":"// Build application/x-www-form-urlencoded fields and return an auto-submit HTML form\\n// action=https://test.payu.in/_payment\\n// Required: key, txnid, amount, productinfo, firstname, email, phone, surl, furl, hash","php":"$fields = [\\n  \'key\' => getenv(\'PAYU_KEY\'),\\n  \'txnid\' => $txnid,\\n  \'amount\' => \'10.00\',\\n  \'productinfo\' => \'First payment\',\\n  \'firstname\' => \'Ada\',\\n  \'email\' => \'ada@example.com\',\\n  \'phone\' => \'9999999999\',\\n  \'surl\' => \'https://merchant.example.com/payu/success\',\\n  \'furl\' => \'https://merchant.example.com/payu/failure\',\\n  \'hash\' => $hash,\\n];\\n// Echo a POST form targeting https://test.payu.in/_payment and auto-submit it.","python":"fields = {\\n  \'key\': os.environ[\'PAYU_KEY\'],\\n  \'txnid\': txnid,\\n  \'amount\': \'10.00\',\\n  \'productinfo\': \'First payment\',\\n  \'firstname\': \'Ada\',\\n  \'email\': \'ada@example.com\',\\n  \'phone\': \'9999999999\',\\n  \'surl\': \'https://merchant.example.com/payu/success\',\\n  \'furl\': \'https://merchant.example.com/payu/failure\',\\n  \'hash\': hash_value,\\n}\\n# Return HTML that POSTs fields to https://test.payu.in/_payment","go":"// Prefer the PayU Go SDK helpers for create payment:\\n// go get github.com/payu-india/web-sdk-go\\n// Configure key/salt, then create the payment form / redirect payload for test.payu.in","dotnet":"// Return an auto-submit form POST to https://test.payu.in/_payment\\n// Include key, txnid, amount, productinfo, firstname, email, phone, surl, furl, hash"},"seamless":{"nodejs":"// Collect method-specific fields on your UI, hash on server,\\n// then call the Merchant Hosted payment endpoint for that method.\\nconst payload = { key, txnid, amount, productinfo, firstname, email, phone, hash, pg, bankcode };\\n// POST application/x-www-form-urlencoded to PayU Merchant Hosted APIs","java":"// Build method-specific Merchant Hosted request (cards/UPI/wallets)\\n// Hash on the server. Never expose salt to the browser.","php":"// Server-side: generate hash, then call Merchant Hosted payment APIs\\n// Keep card PAN/CVV handling inside your PCI scope.","python":"# Server-side Merchant Hosted request\\n# Include pg/bankcode (or method params) + hash, then POST to PayU","go":"// Use Go SDK or direct API calls for Merchant Hosted method flows\\n// Keep salt server-side; verify every response hash","dotnet":"// Create Merchant Hosted request with method params + hash on the server"},"commercepro":{"nodejs":"// Create CommercePro checkout order/session on your server, sign with hash,\\n// then redirect or launch the CommercePro checkout experience.","java":"// Server creates CommercePro payload with hash, then hands off to PayU checkout.","php":"// Create CommercePro request server-side; configure callback URL for results.","python":"# Create CommercePro checkout request with hash; send customer to PayU-optimized UI","go":"// Create CommercePro payment payload with Go helpers / APIs, then redirect","dotnet":"// Server-side CommercePro create + hash, then continue to PayU checkout"},"sdk":{"nodejs":"// Mobile app calls your backend:\\napp.post(\'/payu/hash\', (req, res) => {\\n  const hash = generateHash(req.body, process.env.PAYU_SALT);\\n  res.json({ hash });\\n});\\n// App launches Checkout Pro with payment params + hash from this API.","java":"// Expose a secure hash API for the mobile SDK. Never embed salt in the app.","php":"// /payu/hash endpoint returns SHA-512 hash for Checkout Pro params.","python":"# Flask/FastAPI endpoint returns hash for Android/iOS/RN/Flutter Checkout Pro","go":"// Serve hash generation for mobile SDK using Go; see Go SDK docs for helpers","dotnet":"// ASP.NET endpoint returns hash consumed by Checkout Pro SDK"},"plugins":{"nodejs":"// No custom create-payment code required for most plugins.\\n// Configure key, salt, and Test Mode in the plugin admin, then place a test order.","java":"// Plugin path: configure credentials in the platform admin rather than custom Java.","php":"// WooCommerce/Magento: enter key & salt in plugin settings, enable Test Mode.","python":"# Plugin path is configuration-first. Use platform admin, not custom Python.","go":"// Plugins do not require Go payment code. Use platform settings + test order.","dotnet":"// Configure the platform plugin with key/salt; place a sandbox order."},"other":{"nodejs":"// Payment Links: create via Dashboard or Payment Link APIs.\\n// S2S: orchestrate payment steps from your backend with hashes + webhooks.","java":"// Choose Payment Links for no-code, or Server-to-Server for full control.","php":"// Start with Payment Links API or S2S _payment flows depending on PCI needs.","python":"# Use Payment Links for speed, or S2S APIs when you need backend orchestration","go":"// Go SDK supports create/verify/refund helpers for server-side integrations","dotnet":"// Use Payment Links or S2S APIs; keep hashing and verification on the server"}}'
+  );
+
+  var VERIFY_SNIPPETS = JSON.parse(
+    '{"nodejs":"const crypto = require(\'crypto\');\\n\\nfunction verifyReverseHash(body, salt) {\\n  // status|udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key|salt|additional\\n  const base = [\\n    body.status, body.udf5 || \'\', body.udf4 || \'\', body.udf3 || \'\', body.udf2 || \'\', body.udf1 || \'\',\\n    body.email, body.firstname, body.productinfo, body.amount, body.txnid, body.key, salt\\n  ].join(\'|\');\\n  const expected = crypto.createHash(\'sha512\').update(base).digest(\'hex\');\\n  return expected === body.hash;\\n}\\n\\n// Also call verify_payment API before fulfilling the order.","java":"// 1) Validate reverse hash from surl/furl POST\\n// 2) Call verify_payment with key + command + hash + var1=txnid\\n// Only mark the order paid when PayU confirms success.","php":"// Validate reverse hash on surl/furl, then call verify_payment before fulfilment.","python":"# Validate reverse hash, then call verify_payment before shipping/activating access.","go":"// Use Go SDK verify helpers or call verify_payment; never trust client-only status.","dotnet":"// Validate reverse hash + verify_payment server-side before fulfilment."}'
+  );
+
+  var brand = '#00A651';
+  var ink = '#1e3a5f';
+  var muted = '#6b7280';
+  var line = '#e5e7eb';
+
+  var _integration = useState('hosted');
+  var integration = _integration[0];
+  var setIntegration = _integration[1];
+  var _lang = useState('nodejs');
+  var lang = _lang[0];
+  var setLang = _lang[1];
+  var _activeSection = useState('overview');
+  var activeSection = _activeSection[0];
+  var setActiveSection = _activeSection[1];
+  var _copied = useState('');
+  var copied = _copied[0];
+  var setCopied = _copied[1];
+  var copyTimer = useRef(null);
+  var rootRef = useRef(null);
+
+  useEffect(function () {
+    if (typeof window === 'undefined') return;
+    try {
+      var savedLang = window.localStorage.getItem('payu-devex-lang');
+      if (savedLang) {
+        for (var i = 0; i < LANGS.length; i += 1) {
+          if (LANGS[i].id === savedLang) setLang(savedLang);
+        }
+      }
+      var savedInt = window.localStorage.getItem('payu-devex-integration');
+      if (savedInt && CONTENT[savedInt]) setIntegration(savedInt);
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  useEffect(
+    function () {
+      try {
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem('payu-devex-lang', lang);
+          window.localStorage.setItem('payu-devex-integration', integration);
+        }
+      } catch (e) {
+        // ignore
+      }
+    },
+    [lang, integration]
+  );
+
+  useEffect(function () {
+    return function () {
+      if (copyTimer.current) clearTimeout(copyTimer.current);
+    };
+  }, []);
+
+  useEffect(
+    function () {
+      if (typeof window === 'undefined' || typeof document === 'undefined') return undefined;
+      var root = rootRef.current;
+      if (!root) return undefined;
+      var nodes = [];
+      for (var i = 0; i < SECTIONS.length; i += 1) {
+        var el = root.querySelector('[data-section-id="' + SECTIONS[i].id + '"]');
+        if (el) nodes.push({ id: SECTIONS[i].id, el: el });
+      }
+      if (!nodes.length) return undefined;
+
+      var observer = new IntersectionObserver(
+        function (entries) {
+          var visible = {};
+          for (var j = 0; j < entries.length; j += 1) {
+            visible[entries[j].target.getAttribute('data-section-id')] =
+              entries[j].isIntersecting && entries[j].intersectionRatio > 0;
+          }
+          for (var k = 0; k < nodes.length; k += 1) {
+            if (visible[nodes[k].id]) {
+              setActiveSection(nodes[k].id);
+              break;
+            }
+          }
+        },
+        { root: null, rootMargin: '-96px 0px -55% 0px', threshold: [0, 0.2, 0.5, 1] }
+      );
+      for (var n = 0; n < nodes.length; n += 1) observer.observe(nodes[n].el);
+      return function () {
+        observer.disconnect();
+      };
+    },
+    [integration]
+  );
+
+  var content = CONTENT[integration] || CONTENT.hosted;
+  var stepIndex = 0;
+  for (var s = 0; s < SECTIONS.length; s += 1) {
+    if (SECTIONS[s].id === activeSection) stepIndex = s;
+  }
+  var pct = Math.round(((stepIndex + 1) / SECTIONS.length) * 100);
+
+  function selectIntegration(id) {
+    setIntegration(id);
+  }
+
+  function selectLang(id) {
+    var y = typeof window !== 'undefined' ? window.scrollY : 0;
+    setLang(id);
+    if (typeof window !== 'undefined') {
+      requestAnimationFrame(function () {
+        window.scrollTo(0, y);
+      });
+    }
+  }
+
+  function jump(id) {
+    var root = rootRef.current;
+    if (!root) return;
+    var el = root.querySelector('[data-section-id="' + id + '"]');
+    if (!el) return;
+    var y = el.getBoundingClientRect().top + window.scrollY - 88;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    setActiveSection(id);
+    el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll: true });
+  }
+
+  function copyText(key, value) {
+    if (!value) return;
+    var done = function () {
+      setCopied(key);
+      if (copyTimer.current) clearTimeout(copyTimer.current);
+      copyTimer.current = setTimeout(function () {
+        setCopied('');
+      }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(done).catch(function () {
+        fallbackCopy(value, done);
+      });
+    } else {
+      fallbackCopy(value, done);
+    }
+  }
+
+  function fallbackCopy(value, done) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = value;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  function codePanel(heading, codeKey, code) {
+    return (
+      <div
+        style={{
+          border: '1px solid #1f2937',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          background: '#0f172a',
+          marginTop: '12px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            gap: '8px',
+            alignItems: 'center',
+            padding: '10px 12px',
+            background: '#111827',
+            borderBottom: '1px solid #1f2937',
+          }}
+        >
+          <div style={{ color: '#e5e7eb', fontSize: '13px', fontWeight: 600 }}>{heading}</div>
+          <button
+            type="button"
+            onClick={function () {
+              copyText(codeKey, code);
+            }}
+            aria-label={copied === codeKey ? 'Copied to clipboard' : 'Copy code to clipboard'}
+            style={{
+              padding: '6px 12px',
+              borderRadius: '6px',
+              border: '1px solid ' + (copied === codeKey ? brand : '#4b5563'),
+              background: copied === codeKey ? 'rgba(0,166,81,.2)' : '#1f2937',
+              color: copied === codeKey ? '#86efac' : '#e5e7eb',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            {copied === codeKey ? 'Copied!' : 'Copy'}
+          </button>
+        </div>
+        <pre
+          style={{
+            margin: 0,
+            padding: '16px',
+            overflow: 'auto',
+            maxHeight: '360px',
+            color: '#e5e7eb',
+            fontSize: '12.5px',
+            lineHeight: 1.55,
+            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+          }}
+        >
+          <code>{code}</code>
+        </pre>
+      </div>
+    );
+  }
+
+  function sectionShell(id, title, children) {
+    return (
+      <section
+        key={id}
+        data-section-id={id}
+        aria-labelledby={'afp-' + id}
+        style={{
+          marginTop: '28px',
+          paddingTop: '8px',
+          borderTop: '1px solid ' + line,
+          scrollMarginTop: '96px',
+        }}
+      >
+        <h3 id={'afp-' + id} style={{ margin: '0 0 8px', fontSize: '1.15rem', color: ink }}>
+          {title}
+        </h3>
+        {children}
+      </section>
+    );
+  }
+
+  var createCode =
+    (CREATE_SNIPPETS[integration] && CREATE_SNIPPETS[integration][lang]) ||
+    (CREATE_SNIPPETS.hosted && CREATE_SNIPPETS.hosted[lang]) ||
+    '';
+  var hashCode = (HASH_SNIPPETS[lang] && HASH_SNIPPETS[lang].code) || '';
+  var verifyCode = VERIFY_SNIPPETS[lang] || '';
+
+  var shell = {
+    border: '1px solid ' + line,
+    borderRadius: '14px',
+    background: '#fff',
+    padding: '20px',
+    margin: '20px 0',
+    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+    color: '#111827',
+    fontSize: '14px',
+    lineHeight: 1.55,
+  };
+
+  return (
+    <div ref={rootRef} style={shell} role="region" aria-label="Accept your first payment guide">
+      <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: brand, marginBottom: '6px' }}>
+        Canonical onboarding
+      </div>
+      <h2 style={{ margin: '0 0 8px', fontSize: '1.45rem', color: ink }}>Accept Your First Payment</h2>
+      <p style={{ margin: '0 0 14px', color: muted }}>
+        One primary journey from zero to a successful test payment. Choose an integration method to personalize prerequisites, code, and next steps — without leaving this page.
+      </p>
+
+      <div role="progressbar" aria-valuemin={1} aria-valuemax={SECTIONS.length} aria-valuenow={stepIndex + 1} aria-label="Guide progress" style={{ marginBottom: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: muted, marginBottom: '6px' }}>
+          <span>
+            {SECTIONS[stepIndex].title} · Step {stepIndex + 1} of {SECTIONS.length}
+          </span>
+          <span>{pct}%</span>
+        </div>
+        <div style={{ height: '6px', background: '#e5e7eb', borderRadius: '999px', overflow: 'hidden' }}>
+          <div style={{ height: '100%', width: pct + '%', background: brand, transition: 'width 0.25s ease' }} />
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '16px',
+          alignItems: 'start',
+        }}
+      >
+        <nav
+          aria-label="On this page"
+          style={{
+            position: 'sticky',
+            top: '72px',
+            flex: '1 1 200px',
+            maxWidth: '240px',
+            minWidth: '180px',
+            border: '1px solid ' + line,
+            borderRadius: '12px',
+            padding: '12px',
+            background: '#f9fafb',
+          }}
+        >
+          <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: muted, marginBottom: '8px' }}>
+            Journey
+          </div>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: '2px' }}>
+            {SECTIONS.map(function (section) {
+              var isActive = section.id === activeSection;
+              return (
+                <li key={section.id}>
+                  <button
+                    type="button"
+                    onClick={function () {
+                      jump(section.id);
+                    }}
+                    aria-current={isActive ? 'true' : undefined}
+                    style={{
+                      width: '100%',
+                      textAlign: 'left',
+                      padding: '7px 10px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      background: isActive ? 'rgba(0,166,81,.1)' : 'transparent',
+                      color: isActive ? '#067a3d' : '#374151',
+                      fontWeight: isActive ? 700 : 500,
+                      fontSize: '12.5px',
+                      cursor: 'pointer',
+                      borderLeft: '3px solid ' + (isActive ? brand : 'transparent'),
+                    }}
+                  >
+                    {section.title}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <div style={{ flex: '1 1 320px', minWidth: 0 }}>
+          {sectionShell(
+            'overview',
+            'Overview',
+            <div>
+              <p style={{ margin: '0 0 10px', color: muted }}>
+                PayU payment flows share the same backbone: obtain credentials, sign the request with a SHA-512 hash, create the payment, handle the customer return, and verify status on your server before fulfilment.
+              </p>
+              <p style={{ margin: 0, padding: '12px 14px', borderRadius: '10px', background: 'rgba(0,166,81,.06)', border: '1px solid rgba(0,166,81,.2)', color: '#374151' }}>
+                Current path: <strong style={{ color: ink }}>{(INTEGRATIONS.find(function (x) { return x.id === integration; }) || {}).label}</strong> — {content.summary}
+              </p>
+            </div>
+          )}
+
+          {sectionShell(
+            'prerequisites',
+            'Prerequisites',
+            <ul style={{ margin: 0, paddingLeft: '18px', color: '#374151' }}>
+              {content.prerequisites.map(function (item) {
+                return (
+                  <li key={item} style={{ marginBottom: '6px' }}>
+                    {item}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
+          {sectionShell(
+            'choose-integration-method',
+            'Choose Integration Method',
+            <div>
+              <fieldset style={{ border: 'none', margin: 0, padding: 0 }}>
+                <legend style={{ fontSize: '13px', fontWeight: 600, color: ink, marginBottom: '8px' }}>
+                  How are you integrating?
+                </legend>
+                <div role="radiogroup" aria-label="How are you integrating?" style={{ display: 'grid', gap: '8px' }}>
+                  {INTEGRATIONS.map(function (opt, index) {
+                    var selected = opt.id === integration;
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        role="radio"
+                        aria-checked={selected}
+                        tabIndex={selected ? 0 : -1}
+                        onClick={function () {
+                          selectIntegration(opt.id);
+                        }}
+                        style={{
+                          display: 'flex',
+                          gap: '12px',
+                          textAlign: 'left',
+                          width: '100%',
+                          padding: '12px 14px',
+                          borderRadius: '10px',
+                          border: '1px solid ' + (selected ? brand : line),
+                          background: selected ? 'rgba(0,166,81,.06)' : '#f9fafb',
+                          cursor: 'pointer',
+                          color: ink,
+                        }}
+                      >
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            width: '18px',
+                            height: '18px',
+                            marginTop: '2px',
+                            borderRadius: '50%',
+                            border: '2px solid ' + (selected ? brand : '#9ca3af'),
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0,
+                          }}
+                        >
+                          {selected ? <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: brand }} /> : null}
+                        </span>
+                        <span>
+                          <span style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+                            <span style={{ fontWeight: 700, fontSize: '14px' }}>{opt.label}</span>
+                            {opt.recommended ? (
+                              <span style={{ fontSize: '11px', fontWeight: 700, color: '#067a3d', background: 'rgba(0,166,81,.12)', padding: '2px 8px', borderRadius: '6px' }}>
+                                Recommended
+                              </span>
+                            ) : null}
+                          </span>
+                          <span style={{ display: 'block', marginTop: '4px', fontSize: '12px', color: muted }}>{opt.description}</span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </fieldset>
+              <p style={{ margin: '12px 0 0', fontSize: '13px', color: muted }}>
+                Selection updates the prerequisites above and the code samples, docs links, and next steps below — instantly, with no page reload.
+              </p>
+            </div>
+          )}
+
+          {sectionShell(
+            'get-credentials',
+            'Get Credentials',
+            <div>
+              <ol style={{ margin: '0 0 10px', paddingLeft: '18px', color: '#374151' }}>
+                <li>Log in to the PayU Dashboard and switch to <strong>Test Mode</strong>.</li>
+                <li>Open Payment Gateway settings and copy your <strong>merchant key</strong> and <strong>salt</strong>.</li>
+                <li>Store both as server environment variables. Never expose salt in browsers, apps, or plugins that ship client-side.</li>
+              </ol>
+              <a href="https://docs.payu.in/docs/payu-dashboard" style={{ color: brand, fontWeight: 700, fontSize: '13px' }}>
+                Open PayU Dashboard docs →
+              </a>
+            </div>
+          )}
+
+          {sectionShell(
+            'generate-hash',
+            'Generate Hash',
+            <div>
+              <p style={{ margin: '0 0 10px', color: muted }}>
+                Hash formula (request): <code style={{ fontSize: '12px' }}>key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt</code>
+              </p>
+              <div role="tablist" aria-label="Programming language" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                {LANGS.map(function (item) {
+                  var selected = item.id === lang;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={selected}
+                      tabIndex={selected ? 0 : -1}
+                      onClick={function () {
+                        selectLang(item.id);
+                      }}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        border: '1px solid ' + (selected ? brand : line),
+                        background: selected ? brand : '#fff',
+                        color: selected ? '#fff' : '#374151',
+                        fontWeight: 600,
+                        fontSize: '13px',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
+              {codePanel('Generate Hash · ' + ((HASH_SNIPPETS[lang] && HASH_SNIPPETS[lang].label) || lang), 'hash', hashCode)}
+            </div>
+          )}
+
+          {sectionShell(
+            'create-payment-request',
+            'Create Payment Request',
+            <div>
+              <p style={{ margin: '0 0 8px', color: muted }}>{content.createHint}</p>
+              {codePanel('Create First Payment · ' + ((LANGS.find(function (l) { return l.id === lang; }) || {}).label || lang), 'create', createCode)}
+            </div>
+          )}
+
+          {sectionShell(
+            'handle-payment-response',
+            'Handle Payment Response',
+            <div>
+              <ul style={{ margin: 0, paddingLeft: '18px', color: '#374151' }}>
+                <li>
+                  <strong>surl / furl</strong> — PayU POSTs transaction fields to your success or failure URL.
+                </li>
+                <li>
+                  <strong>Webhooks</strong> — configure server notifications for reliable reconciliation in production.
+                </li>
+                <li>
+                  Treat browser return as a UX signal only. Fulfilment waits for verification.
+                </li>
+              </ul>
+            </div>
+          )}
+
+          {sectionShell(
+            'verify-payment',
+            'Verify Payment',
+            <div>
+              <p style={{ margin: '0 0 8px', color: muted }}>
+                Validate the reverse hash from the return POST, then confirm status with <code>verify_payment</code> before fulfilling the order.
+              </p>
+              {codePanel('Verify Payment · ' + ((LANGS.find(function (l) { return l.id === lang; }) || {}).label || lang), 'verify', verifyCode)}
+            </div>
+          )}
+
+          {sectionShell(
+            'test',
+            'Test',
+            <ul style={{ margin: 0, paddingLeft: '18px', color: '#374151' }}>
+              <li>Complete a successful Test Mode payment for your selected integration.</li>
+              <li>Confirm surl receives the expected txnid and amount.</li>
+              <li>Force a failure path and confirm furl / failure handling.</li>
+              <li>Confirm reverse hash validation and verify_payment both pass.</li>
+              <li>Use a fresh txnid for every attempt.</li>
+            </ul>
+          )}
+
+          {sectionShell(
+            'go-live',
+            'Go Live',
+            <ol style={{ margin: 0, paddingLeft: '18px', color: '#374151' }}>
+              <li>Switch endpoints from <code>https://test.payu.in</code> to production (<code>https://secure.payu.in</code> for hosted).</li>
+              <li>Replace test key/salt with production credentials on secure servers only.</li>
+              <li>Enable webhooks and monitor surl/furl error rates.</li>
+              <li>Run a small live transaction before opening full traffic.</li>
+            </ol>
+          )}
+
+          {sectionShell(
+            'next-steps',
+            'Next Steps',
+            <div>
+              <p style={{ margin: '0 0 12px', color: muted }}>
+                Branch into the product-specific guide for your selected path. These are continuations of this journey — not separate starting points.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
+                {content.nextCards.map(function (card) {
+                  return (
+                    <a
+                      key={card.id}
+                      href={card.href}
+                      style={{
+                        display: 'block',
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        border: '1px solid ' + line,
+                        borderRadius: '12px',
+                        padding: '14px',
+                        background: '#f9fafb',
+                      }}
+                    >
+                      <div style={{ fontWeight: 700, color: ink, marginBottom: '6px' }}>{card.title}</div>
+                      <p style={{ margin: '0 0 10px', fontSize: '13px', color: muted }}>{card.description}</p>
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: brand }}>{card.cta} →</span>
+                    </a>
+                  );
+                })}
+              </div>
+              <p style={{ margin: '14px 0 0', fontSize: '13px' }}>
+                Primary docs for this path:{' '}
+                <a href={content.docsUrl} style={{ color: brand, fontWeight: 700 }}>
+                  {content.docsLabel}
+                </a>
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <span role="status" aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>
+        {copied ? 'Copied to clipboard' : ''}
+      </span>
+    </div>
+  );
+};
+
+<AcceptFirstPaymentGuide />
