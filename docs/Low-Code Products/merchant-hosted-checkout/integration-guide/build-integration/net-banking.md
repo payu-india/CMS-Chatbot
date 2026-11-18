@@ -4,7 +4,9 @@ excerpt: >-
   Post a net banking payment. The parameter table says pg=NB. Test samples use
   pg=TESTPG and bankcode=TESTPGNB.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Net Banking — Merchant Hosted Checkout
   description: >-
@@ -14,8 +16,6 @@ metadata:
     - payu merchant hosted net banking
     - payu TESTPG TESTPGNB
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 <!-- VALIDATION NEEDED: The parameter text says pg=NB. Samples use pg=TESTPG and bankcode=TESTPGNB. The steps card says pg=NEFT. Account number and IFSC are not on this page. -->
 

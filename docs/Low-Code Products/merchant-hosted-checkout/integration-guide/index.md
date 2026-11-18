@@ -3,7 +3,9 @@ title: Integration Guide
 excerpt: >-
   Build, test, and go live with Merchant Hosted Checkout.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Integrate Merchant Hosted Checkout
   description: >-
@@ -13,18 +15,6 @@ metadata:
     - integrate payu merchant hosted checkout
     - payu custom checkout build test go live
   robots: index
-next:
-  description: Explore related information and resources.
-  pages:
-    - slug: merchant-hosted-checkout
-      title: Merchant Hosted Checkout
-      type: basic
-    - slug: how-it-works
-      title: How Merchant Hosted Checkout Works
-      type: basic
-    - slug: quick-start
-      title: Quick Start
-      type: basic
 ---
 <Banner
   isInline={true}

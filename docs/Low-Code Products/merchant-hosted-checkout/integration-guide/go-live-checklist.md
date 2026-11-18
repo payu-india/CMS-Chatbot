@@ -4,7 +4,9 @@ excerpt: >-
   Switch Merchant Hosted Checkout from test credentials to the production key,
   salt, and endpoint.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Merchant Hosted Checkout Go-live Checklist
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu production key salt
     - payu secure.payu.in _payment
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}

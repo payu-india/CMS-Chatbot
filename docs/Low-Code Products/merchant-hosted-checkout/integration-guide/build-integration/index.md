@@ -4,7 +4,9 @@ excerpt: >-
   Request parameters, hash, HTML form post, reverse hash, and server-side
   verification for Merchant Hosted Checkout.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Build Merchant Hosted Checkout
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu _payment form post parameters
     - payu sha512 hash merchant hosted
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}

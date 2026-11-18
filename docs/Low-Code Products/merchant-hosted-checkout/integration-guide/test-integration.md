@@ -4,7 +4,9 @@ excerpt: >-
   Test credentials, payment scenarios, and verification steps for Merchant
   Hosted Checkout.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Test Merchant Hosted Checkout Integration
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu test net banking otp 123456
     - payu upi test vpa anything@payu
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}

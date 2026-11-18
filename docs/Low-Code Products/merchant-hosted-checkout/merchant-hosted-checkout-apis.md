@@ -4,7 +4,9 @@ excerpt: >-
   Collect Payment and Verify Payment for Merchant Hosted Checkout, plus the
   pre-payment checks named in the method pages.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Merchant Hosted Checkout APIs
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu _payment api
     - payu verify payment api
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 These are the APIs used in a Merchant Hosted Checkout integration.
 

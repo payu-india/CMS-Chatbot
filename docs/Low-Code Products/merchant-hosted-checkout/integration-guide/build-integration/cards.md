@@ -4,7 +4,9 @@ excerpt: >-
   Post a card payment with pg=CC. Includes BIN lookup, saved cards, Alt ID, and
   3DS 2.0.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Cards — Merchant Hosted Checkout
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu pg CC bankcode
     - payu 3ds merchant hosted
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 <Callout icon="⚠️" theme="warn">
   Collecting card data on your site requires PCI-DSS SAQ A-EP. International cards must be enabled by writing to integration@pay.in. Networks named in the source: Visa, Mastercard, American Express, Diners, and RuPay.

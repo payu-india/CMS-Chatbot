@@ -3,7 +3,9 @@ title: UPI Collect
 excerpt: >-
   Post a UPI Collect payment with pg=UPI, bankcode=UPI, and the customer's VPA.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: UPI Collect — Merchant Hosted Checkout
   description: >-
@@ -13,8 +15,6 @@ metadata:
     - payu merchant hosted upi collect
     - payu validateVPA
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 <Callout icon="⚠️" theme="warn">
   UPI Collect is allowed only for MCC 6012 and 6211. Web and Android must use UPI Intent S2S. Seamless form POST does not support Intent. iOS may keep a deeplink and UPI Collect.

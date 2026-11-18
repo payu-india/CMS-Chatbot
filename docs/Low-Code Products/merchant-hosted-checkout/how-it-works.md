@@ -4,7 +4,9 @@ excerpt: >-
   Understand the payment journey. From your checkout to PayU and back,
   including the bank step, the callback, and verification.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: How Merchant Hosted Checkout Works
   description: >-
@@ -16,12 +18,6 @@ metadata:
     - payu _payment form post flow
     - payu surl furl merchant hosted
   robots: index
-next:
-  description: Explore related information and resources.
-  pages:
-    - slug: merchant-hosted-checkout
-      title: Merchant Hosted Checkout
-      type: basic
 ---
 Merchant Hosted Checkout collects payment details on your website and form-posts them to PayU. PayU processes the payment, sends the customer to the bank, wallet, or UPI step when that method requires it, and posts the result back to your callback URL.
 

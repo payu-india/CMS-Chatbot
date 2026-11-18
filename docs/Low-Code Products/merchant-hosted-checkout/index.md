@@ -4,7 +4,9 @@ excerpt: >-
   Collect payment details on your own checkout and post them to PayU. You own
   the payment form. PayU processes the payment and returns the result.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Merchant Hosted Checkout — Overview
   description: >-
@@ -16,8 +18,6 @@ metadata:
     - payu _payment merchant hosted
     - payu seamless checkout cards upi net banking
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}
@@ -77,7 +77,9 @@ next:
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
 
-  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.<br />
+  Merchant Hosted Checkout is the form-post integration. You collect the payment details on your site and send `pg` and `bankcode`. Use it when the payment form has to stay on your website. If you want PayU to show the payment page, use PayU Hosted Checkout.<br />
+
+  <!-- NEW CONTENT: comparison callout required by the page structure; the choice itself is the Merchant Hosted vs Hosted Checkout split in the legacy overview. -->
 
   <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
 </Callout>

@@ -4,7 +4,9 @@ excerpt: >-
   Post a PayPal payment with pg=PAYPAL and bankcode=PAYPAL. Activate PayPal on
   the PayU Dashboard first.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: PayPal — Merchant Hosted Checkout
   description: >-
@@ -14,8 +16,6 @@ metadata:
     - payu merchant hosted paypal
     - payu pg PAYPAL
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 Activate PayPal from the PayU Dashboard before you post `pg=PAYPAL` and `bankcode=PAYPAL`. Settlements are in INR. Refunds need a PayPal balance.
 

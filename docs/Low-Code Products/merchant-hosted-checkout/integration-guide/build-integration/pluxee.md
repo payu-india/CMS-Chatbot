@@ -4,7 +4,9 @@ excerpt: >-
   Post a Pluxee payment with pg=MC and bankcode=SODEXO. Check the balance
   before you charge a saved card.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Pluxee — Merchant Hosted Checkout
   description: >-
@@ -14,8 +16,6 @@ metadata:
     - payu merchant hosted pluxee
     - payu sodexo SODEXO bankcode
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 `pg=MC` and `bankcode=SODEXO`. Do not store the full PAN, expiry, or CVV, even with consent.
 

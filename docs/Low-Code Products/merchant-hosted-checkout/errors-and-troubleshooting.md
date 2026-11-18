@@ -4,7 +4,9 @@ excerpt: >-
   Incorrect hash, a callback that does not arrive, reverse hash mismatch, and
   the bank decline named in the Merchant Hosted source.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Merchant Hosted Checkout Errors and Troubleshooting
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu incorrect hash
     - payu E1903 authorization failed
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 
 Diagnose issues using the symptoms the Merchant Hosted pages name.

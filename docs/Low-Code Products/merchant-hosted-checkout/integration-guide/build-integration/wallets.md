@@ -4,7 +4,9 @@ excerpt: >-
   Post a wallet payment with pg=CASH. Advantage Club uses pg=RD and
   bankcode=ADVCLUB.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Wallets — Merchant Hosted Checkout
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu pg CASH PAYTM
     - payu advantage club ADVCLUB
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 `pg=CASH` and the wallet `bankcode` from [Wallet Codes](https://docs.payu.in/docs/wallet-codes). The Paytm sample uses `PAYTM`. Advantage Club uses `pg=RD` and `bankcode=ADVCLUB`.
 

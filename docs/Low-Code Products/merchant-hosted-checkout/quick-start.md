@@ -4,7 +4,9 @@ excerpt: >-
   Make your first Merchant Hosted Checkout test payment. Get your test
   credentials, generate a hash, and post a net banking payment.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Merchant Hosted Checkout Quick Start
   description: >-
@@ -16,15 +18,6 @@ metadata:
     - payu test net banking payu payu 123456
     - payu sha512 hash merchant hosted
   robots: index
-next:
-  description: Explore related information and resources.
-  pages:
-    - slug: merchant-hosted-checkout
-      title: Merchant Hosted Checkout
-      type: basic
-    - slug: how-it-works
-      title: How Merchant Hosted Checkout Works
-      type: basic
 ---
 <Banner
   isInline={true}

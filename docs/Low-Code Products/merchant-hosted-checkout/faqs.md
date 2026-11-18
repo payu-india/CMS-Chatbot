@@ -4,7 +4,9 @@ excerpt: >-
   Questions about Merchant Hosted Checkout: setup, hash, callbacks, PCI-DSS,
   and going live.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Merchant Hosted Checkout FAQs
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu custom checkout pci
     - payu hash faq merchant hosted
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 ## Getting Started
 

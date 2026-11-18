@@ -4,7 +4,9 @@ excerpt: >-
   Card data, transaction ids, callbacks, and the failure message for Merchant
   Hosted Checkout.
 deprecated: false
-hidden: true
+hidden: false
+next:
+  pages: []
 metadata:
   title: Merchant Hosted Checkout Best Practices
   description: >-
@@ -15,8 +17,6 @@ metadata:
     - payu do not store cvv
     - payu callback verify payment
   robots: index
-next:
-  description: Explore related information and resources.
 ---
 These practices come from the Merchant Hosted security list and the method pages. Use them after the payment form is in place.
 
