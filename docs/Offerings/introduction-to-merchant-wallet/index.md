@@ -60,10 +60,6 @@ Closed-loop wallet is issued by merchants to customers allowing them to purchase
 
 Also, there is no limitation of amount/transactions on this wallet as per compliance (risk limitations can be applied. For more information, refer to [Closed-Loop Wallet Management](doc:closed-loop-wallet-management).
 
-### Semi-closed loop  or Open-loop wallet/card
-
-Semi-Closed Loop or Open Loop is a prepaid instrument issued to customers no restriction on its usage on any merchant.It is part of RBI guidelines and for any customer to be onboarded, KYC of the customer is required. Limits for amount that can be stored in a wallet of a customer also varies whether it is min KYC or full KYC customer. For more information, refer to [Semi-Closed or Open Loop Management](doc:api-integration-for-wallet-management).
-
 #### Use cases include:
 
 * Virtual/Physical cards
