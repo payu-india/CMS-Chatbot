@@ -6,427 +6,274 @@ icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
 ---
-***
+---
+title: Omni Transaction Status Check API (Merchant)
+excerpt: Check transaction status and retrieve comprehensive payment details for Dynamic Bharat QR (DBQR) and POS Card transactions.
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
 
-Th&#x65;**&#x20;Check Transaction Status&#x20;**&#x41;PI allows merchants and partners to query the status and retrieve complete details of transactions initiated via the PayU Omni Integrated Flow. This API is essential for payment verification, reconciliation, and handling delayed webhook scenarios.
+## Overview
 
-***
+The **Omni Transaction Status Check API** is used by merchants using PayU's Omni product to check the real-time transaction status and retrieve payment details for transactions initiated via **Dynamic Bharat QR (DBQR)** and **Point of Sale (POS) Card** payments.
 
-## Endpoint
+Merchants can use this server-to-server endpoint to verify transaction outcomes, reconcile payment records, and retrieve acquiring bank and terminal metadata.
 
-**HTTP Method:** `POST`
+---
 
-**URL Path:** `/v1/transaction/?mode=bqr`
+## Environments & Endpoints
 
-**Content-Type:** `application/json`
+| Environment | Method | Endpoint URL |
+| :--- | :--- | :--- |
+| **Production** | `POST` | `https://info.payu.in/v1/transaction/?mode=bqr` |
+| **Sandbox / Test** | `POST` | `<redacted URL>` |
 
-**Required Header:** `Info-Command: check_bqr_txn_status`
+---
 
-***
+## Request Headers
 
-## Environment URLs
+### Mandatory Headers
 
-| Environment | URL                                             |
-| ----------- | ----------------------------------------------- |
-| Production  | `https://info.payu.in/v1/transaction/?mode=bqr` |
+| Header | Description |
+| :--- | :--- |
+| mid | _String_<br>Merchant identifier (MID) used in the request header.<br>**Example:** `2` |
+| Content-Type | _String_<br>Request payload content type. Must be set to `application/json`. |
+| Info-Command | _String_<br>Name of the PayU information command. Pass `check_bqr_txn_status`. |
+| authorization | _String_<br>HMAC authorization header generated using the merchant credentials and request date.<br>**Format:** `hmac username="<merchantKey>", algorithm="sha512", headers="date", signature="<signature>"` |
+| date | _String_<br>Request timestamp formatted in GMT according to RFC 1123.<br>**Example:** `Thu, 16 Apr 2026 06:01:44 GMT` |
 
-<Warning>
-⚠️ **Info Gap:** Test/UAT environment URL not documented in source materials. Contact PayU Integration Support (integration-support@payu.in) for test endpoint details.
-</Warning>
-
-***
-
-## When to Use This API
-
-Use the Check Transaction Status API in the following scenarios:
-
-✅ **Webhook not received** within 5 minutes of payment initiation<br />✅ **Daily reconciliation** to verify all transactions<br />✅ **Customer disputes** requiring transaction proof<br />✅ **Retry logic** - verify transaction state before retrying<br />✅ **Refund processing** - confirm payment status before initiating refund<br />✅ **Audit trails** - maintain transaction history for compliance
-
-***
-
-## Sample Request
-
-### cURL
-
-```bash
-curl --location 'https://info.payu.in/v1/transaction/?mode=bqr' \
---header 'mid: YOUR_MERCHANT_ID' \
---header 'Info-Command: check_bqr_txn_status' \
---header 'Content-Type: application/json' \
---data '{
-  "merchantKey": "YOUR_MERCHANT_KEY",
-  "merchantTransactionIds": ["TXN_2024011501", "TXN_2024011502"],
-  "hash": "calculated_hash_value"
-}'
-```
-```python
-import requests
-import hashlib
-import json
-
-def generate_status_hash(merchant_key, txn_ids, merchant_salt):
-    # Join transaction IDs with pipe separator
-    txn_ids_string = '|'.join(txn_ids)
-    
-    # Hash sequence: merchant_key|txn_ids_separated_by_pipe|merchant_salt
-    hash_string = f"{merchant_key}|{txn_ids_string}|{merchant_salt}"
-    
-    # Generate SHA-512 hash
-    hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-    
-    return hash_value
-
-# Example usage
-merchant_key = "YOUR_MERCHANT_KEY"
-merchant_salt = "YOUR_MERCHANT_SALT"
-txn_ids = ["TXN_2024011501", "TXN_2024011502"]
-
-hash_value = generate_status_hash(merchant_key, txn_ids, merchant_salt)
-
-url = "https://info.payu.in/v1/transaction/?mode=bqr"
-headers = {
-    "mid": "YOUR_MERCHANT_ID",
-    "Info-Command": "check_bqr_txn_status",
-    "Content-Type": "application/json"
-}
-payload = {
-    "merchantKey": merchant_key,
-    "merchantTransactionIds": txn_ids,
-    "hash": hash_value
-}
-
-try:
-    response = requests.post(url, headers=headers, json=payload, timeout=30)
-    print(f"Status: {response.status_code}")
-    print(f"Response: {response.json()}")
-except requests.exceptions.RequestException as e:
-    print(f"Error: {e}")
-```
-```php
-<?php
-
-function generateStatusHash($merchantKey, $txnIds, $merchantSalt) {
-    // Join transaction IDs with pipe separator
-    $txnIdsString = implode('|', $txnIds);
-    
-    // Hash sequence
-    $hashString = $merchantKey . '|' . $txnIdsString . '|' . $merchantSalt;
-    
-    // Generate SHA-512 hash
-    return hash('sha512', $hashString);
-}
-
-$merchantKey = "YOUR_MERCHANT_KEY";
-$merchantSalt = "YOUR_MERCHANT_SALT";
-$txnIds = ["TXN_2024011501", "TXN_2024011502"];
-
-$hash = generateStatusHash($merchantKey, $txnIds, $merchantSalt);
-
-$url = "https://info.payu.in/v1/transaction/?mode=bqr";
-$headers = [
-    "mid: YOUR_MERCHANT_ID",
-    "Info-Command: check_bqr_txn_status",
-    "Content-Type: application/json"
-];
-$payload = json_encode([
-    "merchantKey" => $merchantKey,
-    "merchantTransactionIds" => $txnIds,
-    "hash" => $hash
-]);
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-echo "Status: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
-?>
-```
-```java
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-import java.security.MessageDigest;
-import java.util.Arrays;
-import com.google.gson.Gson;
-import java.util.HashMap;
-import java.util.Map;
-
-public class CheckStatusAPI {
-    
-    public static String generateStatusHash(String merchantKey, String[] txnIds, String merchantSalt) throws Exception {
-        // Join transaction IDs with pipe
-        String txnIdsString = String.join("|", txnIds);
-        
-        // Hash sequence
-        String hashString = merchantKey + "|" + txnIdsString + "|" + merchantSalt;
-        
-        // Generate SHA-512 hash
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] hashBytes = md.digest(hashString.getBytes("UTF-8"));
-        
-        // Convert to hex
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hashBytes) {
-            String hex = Integer.toHexString(0xff & b);
-            if (hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        
-        return hexString.toString();
-    }
-    
-    public static void main(String[] args) throws Exception {
-        String merchantKey = "YOUR_MERCHANT_KEY";
-        String merchantSalt = "YOUR_MERCHANT_SALT";
-        String[] txnIds = {"TXN_2024011501", "TXN_2024011502"};
-        
-        String hash = generateStatusHash(merchantKey, txnIds, merchantSalt);
-        
-        // Build payload
-        Map<String, Object> payload = new HashMap<>();
-        payload.put("merchantKey", merchantKey);
-        payload.put("merchantTransactionIds", Arrays.asList(txnIds));
-        payload.put("hash", hash);
-        
-        String jsonPayload = new Gson().toJson(payload);
-        
-        // Build request
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://info.payu.in/v1/transaction/?mode=bqr"))
-            .header("mid", "YOUR_MERCHANT_ID")
-            .header("Info-Command", "check_bqr_txn_status")
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
-            .build();
-        
-        HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status: " + response.statusCode());
-        System.out.println("Response: " + response.body());
-    }
-}
-```
-
-***
+---
 
 ## Request Parameters
 
-### Request Headers
+### Mandatory Parameters
 
-**Mandatory parameters**
+| Parameter | Description |
+| :--- | :--- |
+| txnId | _Array of Strings_<br>Transaction ID list sent in the JSON request body. Pass one or more merchant transaction IDs in an array.<br>**Example:** `["b5f29799999987989990012345"]` |
 
-| Parameter    | Type   | Description                    | Example              |
-| :----------- | :----- | :----------------------------- | :------------------- |
-| mid          | String | Merchant ID provided by PayU   | YOUR_MERCHANT_ID     |
-| Info-Command | String | Must be "check_bqr_txn_status" | check_bqr_txn_status |
-| Content-Type | String | Must be "application/json"     | application/json     |
+---
 
-***
+## Sample Request
 
-### Body Parameters
-
-**Mandatory parameters**
-
-| Parameter              | Type             | Description                                                  | Example                 |
-| :--------------------- | :--------------- | :----------------------------------------------------------- | :---------------------- |
-| merchantKey            | String           | Merchant key provided by PayU                                | YOUR_MERCHANT_KEY       |
-| merchantTransactionIds | Array of Strings | List of transaction IDs to query (max 10 per request)        | \["TXN_001", "TXN_002"] |
-| hash                   | String           | SHA-512 hash for authentication (see Hash Calculation below) | a3b2c1d0e9f8a7b6...     |
-
-***
-
-## Hash Calculation
-
-The hash ensures request authenticity and prevents tampering.
-
-### Hash Sequence
-
-```
-hash_string = merchant_key + "|" + txn_id_1 + "|" + txn_id_2 + "|" + ... + "|" + merchant_salt
-
-hash = SHA512(hash_string) (lowercase hexadecimal)
+```bash cURL
+curl --location 'https://info.payu.in/v1/transaction/?mode=bqr' \
+--header 'mid: 2' \
+--header 'Content-Type: application/json' \
+--header 'Info-Command: check_bqr_txn_status' \
+--header 'authorization: hmac username="<merchantKey>", algorithm="sha512", headers="date", signature="0742db17cbab1a1881a0ecbb2d950fb19b4da2a061acbb42c184e68d7a44bc2e0c78ad97b457f15fe7008f6b6b27d40cafd774da3d2b64d5159a918a58ceed74"' \
+--header 'date: Thu, 16 Apr 2026 06:01:44 GMT' \
+--data '{
+    "txnId": ["b5f29799999987989990012345"]
+}'
 ```
 
-### Example
-
-```python
-import hashlib
-
-merchant_key = "ABC123"
-merchant_salt = "XYZ789"
-txn_ids = ["TXN_001", "TXN_002", "TXN_003"]
-
-# Join with pipe
-hash_string = merchant_key + "|" + "|".join(txn_ids) + "|" + merchant_salt
-# Result: "ABC123|TXN_001|TXN_002|TXN_003|XYZ789"
-
-# Calculate SHA-512 hash
-hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-```
-
-<Warning>
-**Important:**
-- Hash must be **lowercase hexadecimal**
-- Transaction IDs must be in the **same order** as in the request array
-- Use pipe `|` separator between each component
-- Include `merchant_salt` at the end
-</Warning>
-
-***
-
-## Sample Response
-
-### Success Scenario
-
-```json
-{
-  "status": "success",
-  "data": {
-    "TXN_2024011501": {
-      "txnId": "TXN_2024011501",
-      "paymentId": "PAYU_TXN_12345ABC",
-      "orderId": "ORD_2024011501",
-      "amount": "500.00",
-      "txnStatus": "SUCCESS",
-      "paymentMethod": "CARD",
-      "cardDetails": {
-        "cardType": "CREDIT",
-        "cardNetwork": "VISA",
-        "last4Digits": "1234"
-      },
-      "timestamp": "2024-01-15T10:32:45Z",
-      "settlementDate": "2024-01-16",
-      "merchantMessage": "Transaction successful"
-    },
-    "TXN_2024011502": {
-      "txnId": "TXN_2024011502",
-      "paymentId": "PAYU_TXN_67890XYZ",
-      "orderId": "ORD_2024011502",
-      "amount": "1000.00",
-      "txnStatus": "FAILED",
-      "errorCode": "E_PAYMENT_DECLINED",
-      "message": "Payment declined by bank",
-      "timestamp": "2024-01-15T10:35:12Z"
-    }
-  }
-}
-```
-
-### Failure Scenario
-
-**Transaction Not Found**
-
-```json
-{
-  "status": "failed",
-  "message": "Transaction not found",
-  "errorCode": "E_TXN_NOT_FOUND",
-  "data": {
-    "TXN_2024011503": {
-      "status": "NOT_FOUND",
-      "message": "No transaction found for this txnId"
-    }
-  }
-}
-```
-
-**Invalid Hash**
-
-```json
-{
-  "status": "failed",
-  "message": "Invalid hash",
-  "errorCode": "E_INVALID_HASH"
-}
-```
-
-***
+---
 
 ## Response Parameters
 
-### Success Response Fields
+### Top-Level Parameters
 
-| Field  | Type   | Description                                   |
-| :----- | :----- | :-------------------------------------------- |
-| status | String | "success" or "failed"                         |
-| data   | Object | Map of transaction IDs to transaction details |
+| Parameter | Description |
+| :--- | :--- |
+| status | _Integer_<br>Status of the web service call:<br>• `1`: Web service call succeeded.<br>• `0`: Web service call failed. |
+| message | _String_<br>Message returned by the API (e.g., `Success`). |
+| result | _Array of Objects_<br>Encoded transaction and status details. Includes transaction status, merchant details, payment mode, amount, UTR or bank reference information, error details, and related transaction metadata. For more details, refer to the following tables|
 
-### Transaction Details Object
+### result Object Fields Description
+#### Response Parameters for Dynamic Bharat QR (DBQR)
 
-| Field          | Type   | Description                                                   |
-| :------------- | :----- | :------------------------------------------------------------ |
-| txnId          | String | Transaction ID from your system                               |
-| paymentId      | String | PayU-generated payment ID                                     |
-| orderId        | String | Order ID from your system                                     |
-| amount         | String | Transaction amount                                            |
-| txnStatus      | String | "SUCCESS", "FAILED", "PENDING", "USER_CANCELLED", "INITIATED" |
-| paymentMethod  | String | "CARD", "UPI", "WALLET", "EMI", "QR"                          |
-| cardDetails    | Object | (If payment method is CARD) Card type, network, last 4 digits |
-| timestamp      | String | ISO 8601 timestamp                                            |
-| settlementDate | String | Expected settlement date (YYYY-MM-DD)                         |
-| errorCode      | String | (On failure) Error code                                       |
-| message        | String | Human-readable message                                        |
+Returned inside `result[]` when `mode` is `DBQR`:
 
-### Transaction Status Values
+| Parameter | Description |
+| :--- | :--- |
+| txnId | _String_<br>Merchant transaction identifier. |
+| mihpayId | _Number_ or _String_<br>Unique PayU reference identifier (PayU ID). |
+| mode | _String_<br>Payment mode of the transaction. Returns `DBQR`. |
+| status | _String_<br>Merchant-facing mapped payment status:<br>• `success`: Transaction completed successfully.<br>• `failure`: Transaction failed or declined.<br>• `pending`: QR code generated, awaiting customer payment. |
+| unmappedStatus | _String_<br>Internal PayU status before merchant mapping (e.g., `captured`, `failed`, `in progress`, `initiated`, `dropped`). |
+| bqrTxnStatusMessage | _String_<br>Status description message for the transaction (e.g., `Transaction is Successful`). |
+| message | _String_<br>Per-transaction lookup message (e.g., `Found TxnId`, `Transaction is Successful`, `Transaction is Pending`). |
+| errorCode | _String_<br>PayU error code (`E000` on success). |
+| errorMessage | _String_<br>Human-readable error description for `errorCode` (`No Error` on success). |
+| amount | _Number_<br>Transaction base amount payable. |
+| originalAmount | _Number_<br>Original transaction amount before promotional or offer discounts. |
+| additionalCharges | _Number_<br>Extra charges on top of base amount (e.g., convenience fees, surcharges). |
+| discount | _Number_<br>Total promotional discount applied to the transaction. |
+| instantDiscount | _Number_<br>Instant discount deducted during checkout. |
+| netDebitAmount | _Number_<br>Net amount debited from customer: `originalAmount - discount + additionalCharges` (+ TCS if any). Returns `0` on non-successful transactions. |
+| originalCurrency | _String_<br>Transaction currency code (default: `INR`). |
+| bankcode | _String_<br>Payment option / scheme code. Returns `UPIDBQR`. |
+| pgType | _String_<br>Payment gateway label formatted as `{mode}-PG`. Returns `DBQR-PG`. |
+| bankReferenceNumber | _String_<br>Bank or acquirer reference for the payment (RRN / UTR at acquirer level). |
+| productInfo | _String_<br>Product description provided for the QR transaction (e.g., `Offline Dynamic`, `UPI Payment for Order`). |
+| addedOn | _String_<br>Transaction creation timestamp in PayU (`YYYY-MM-DD HH:MM:SS`). |
+| merchantUTR | _String_<br>Settlement UTR credited to the merchant bank account. Returns `null` if not yet settled. |
+| appName | _String_<br>UPI application used by the payer (e.g., `GooglePay`, `PhonePe`, `Paytm`). |
+| surl | _String_<br>Success redirect URL sent in request payload. |
+| furl | _String_<br>Failure redirect URL sent in request payload. |
+| curl | _String_<br>Cancel redirect URL sent in request payload. |
+| reverseHash | _String_<br>SHA-512 security hash generated by PayU for verifying response authenticity. |
+| field0 | _String_<br>PayU reference / QR reference ID. |
+| field1 | _String_<br>Customer name as registered on UPI. |
+| field2 | _String_<br>Approval code from Bank. |
+| field3 | _String_<br>Customer / Payer Virtual Payment Address (VPA). |
+| field4 | _String_<br>Merchant Virtual Payment Address (VPA). |
+| field5 | _String_<br>NPCI UPI transaction reference ID. |
+| field6 | _String_<br>Multiple details about customer / payer in delimited format (`Account|Mobile|IFSC`). |
+| field7 | _String_<br>UPI response code from Bank (e.g., `APPROVED OR COMPLETED SUCCESSFULLY|00`). |
+| field8 | _String_<br>UPI transaction note. |
+| field9 | _String_<br>Status trail (e.g., `success|Transaction success|Completed Using Callback`). |
 
-| Status Value   | Description                                                |
-| :------------- | :--------------------------------------------------------- |
-| SUCCESS        | Payment completed successfully                             |
-| FAILED         | Payment failed (bank decline, insufficient funds, etc.)    |
-| PENDING        | Payment in progress (waiting for customer action)          |
-| USER_CANCELLED | Customer cancelled payment on device                       |
-| INITIATED      | Payment request sent to device (customer hasn't acted yet) |
-| NOT_FOUND      | Transaction ID not found in PayU system                    |
+#### Response Parameters for POS Card Payments
 
-***
+Returned inside `result[]` when `mode` is `POS`:
 
-## Error Codes
+| Parameter | Description |
+| :--- | :--- |
+| txnId | _String_<br>Merchant transaction identifier. |
+| mihpayId | _Number_ or _String_<br>Unique PayU reference identifier (PayU ID). |
+| mode | _String_<br>Payment mode of the transaction. Returns `POS`. |
+| status | _String_<br>Merchant-facing mapped payment status:<br>• `success`: Transaction authorized and captured on terminal.<br>• `failure`: Transaction declined or cancelled on terminal.<br>• `pending`: Transaction pushed to terminal, awaiting customer action. |
+| unmappedStatus | _String_<br>Internal PayU status before merchant mapping (e.g., `captured`, `failed`, `in progress`, `initiated`, `dropped`). |
+| bqrTxnStatusMessage | _String_<br>Status description message for the transaction (e.g., `Transaction is Successful`). |
+| message | _String_<br>Per-transaction lookup message (e.g., `Found TxnId`, `Transaction is Successful`, `Transaction is Pending`). |
+| errorCode | _String_<br>PayU error code (`E000` on success). |
+| errorMessage | _String_<br>Human-readable error description for `errorCode` (`No Error` on success). |
+| amount | _Number_<br>Transaction base amount payable. |
+| originalAmount | _Number_<br>Original transaction amount before promotional or offer discounts. |
+| additionalCharges | _Number_<br>Extra charges on top of base amount (e.g., convenience fees, tips, surcharges). |
+| discount | _Number_<br>Total promotional discount applied to the transaction. |
+| instantDiscount | _Number_<br>Instant discount deducted during checkout. |
+| netDebitAmount | _Number_<br>Net amount debited from customer card: `originalAmount - discount + additionalCharges` (+ TCS if any). Returns `0` on non-successful transactions. |
+| originalCurrency | _String_<br>Transaction currency code (default: `INR`). |
+| bankcode | _String_<br>Payment option / scheme code as per the scheme of the card (e.g., `VISA`, `MAST`, `RUPAY`). |
+| pgType | _String_<br>Payment gateway label formatted as `{mode}-PG`. Returns `POS-PG`. |
+| bankReferenceNumber | _String_<br>Bank or acquirer reference for the payment (RRN / UTR at acquirer level). |
+| productInfo | _String_<br>Product description configured for POS payments (e.g., `Non-Integrated POS`, `Integrated POS`). |
+| addedOn | _String_<br>Transaction creation timestamp in PayU (`YYYY-MM-DD HH:MM:SS`). |
+| merchantUTR | _String_<br>Settlement UTR credited to the merchant bank account. Returns `null` if not yet settled. |
+| nameOnCard | _String_<br>Customer name as embossed on the card (e.g., `Navnath Gawade`). |
+| cardNo | _String_<br>Masked card number (e.g., `XXXXXXXXXXXX1234`). |
+| appName | _String_<br>Always returns `null` for POS card transactions. |
+| surl | _String_<br>Success redirect URL sent in request payload. |
+| furl | _String_<br>Failure redirect URL sent in request payload. |
+| curl | _String_<br>Cancel redirect URL sent in request payload. |
+| reverseHash | _String_<br>SHA-512 security hash generated by PayU for verifying response authenticity. |
+| field0 | _String_<br>POS Device ID / Terminal ID (e.g., `TERM123456`). |
+| field1 | _String_<br>Customer name on the card. |
+| field2 | _String_<br>Authorization code from acquirer (e.g., `482911`). |
+| field3 | _String_<br>Card mode and PIN verification indicator (e.g., `CTLESSEMV|false`). |
+| field4 | _String_<br>Merchant mobile number and username in delimited format (`Mobile|Username`). |
+| field5 | _String_<br>Acquirer Terminal ID (TID) (e.g., `28I01743`). |
+| field6 | _String_<br>Empty string for POS card transactions. |
+| field7 | _String_<br>Terminal status and response message on initiation or failure (e.g., `200|payment Initiated successfully`). |
+| field8 | _String_<br>Empty string for POS card transactions. |
+| field9 | _String_<br>Acquirer approval trail (e.g., `00|APPROVED|Transaction approved successfully`). |
 
-| Error Code         | Message               | Cause                                           | Resolution                                              |
-| ------------------ | --------------------- | ----------------------------------------------- | ------------------------------------------------------- |
-| E_TXN_NOT_FOUND    | Transaction not found | Transaction ID doesn't exist in PayU system     | Verify `txnId` is correct and transaction was initiated |
-| E_INVALID_HASH     | Invalid hash          | Hash calculation incorrect or credentials wrong | Regenerate hash with correct sequence and credentials   |
-| E_INVALID_MERCHANT | Invalid merchant      | Merchant key or ID incorrect                    | Verify merchant credentials                             |
-| E_RATE_LIMIT       | Too many requests     | Exceeded API rate limit                         | Implement backoff and retry after 1 minute              |
-| 401                | Unauthorized          | Invalid merchant credentials                    | Verify `mid` and `merchantKey` are correct              |
+---
 
-***
+## Sample Responses
 
-## Best Practices
+### 1. Dynamic Bharat QR (DBQR) Response
 
-### When to Call Status API
+```json
+{
+  "message": "Success",
+  "status": 1,
+  "result": [
+    {
+      "bqrTxnStatusMessage": "Transaction is Successful",
+      "field0": "27447252485",
+      "field1": "NAVNATH SAMBHAJI GAWADE",
+      "field2": "359524",
+      "field3": "navnathgawade99@okhdfcbank",
+      "field4": "12096969ofdbqr.payu@indus",
+      "field5": "PPPL27447252485250226175136699ee950",
+      "field6": "50100330275312|8693817260|HDFC0001602",
+      "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
+      "field8": "UPI Transaction",
+      "field9": "success|Transaction success|Completed Using Callback",
+      "instantDiscount": 0,
+      "reverseHash": "278a47bf669e4e3a3957738e97c0b6668ad344536889e617976a7a1a051987561999db808fc087df0593dd3dd6882d4e4e72b696e257c5c309a615b9cc02ce4b",
+      "curl": "<redacted URL>",
+      "furl": "<redacted URL>",
+      "surl": "<redacted URL>",
+      "mihpayId": 27447252485,
+      "bankReferenceNumber": "119144221818",
+      "amount": 1,
+      "mode": "DBQR",
+      "originalAmount": 1,
+      "additionalCharges": 0,
+      "discount": 0,
+      "netDebitAmount": 1,
+      "productInfo": "UPI Payment for Order",
+      "bankcode": "UPIDBQR",
+      "errorCode": "E000",
+      "errorMessage": "No Error",
+      "addedOn": "2026-02-25 17:51:36",
+      "pgType": "DBQR-PG",
+      "status": "success",
+      "unmappedStatus": "captured",
+      "merchantUTR": null,
+      "appName": "GooglePay",
+      "originalCurrency": "INR",
+      "message": "Found TxnId",
+      "txnId": "b5f29799999987989990012345"
+    }
+  ]
+}
+```
 
-✅ **If webhook not received within 5 minutes** of payment initiation<br />✅ **Before retrying** a failed transaction<br />✅ **During daily reconciliation** to verify all transactions<br />✅ **For high-value transactions** to cross-verify webhook data<br />✅ **When customer disputes** transaction status
+### 2. POS Card Payment Response
 
-### Query Optimization
-
-- **Batch queries:** Query up to 10 transactions per request (reduces API calls)
-- **Cache results:** Store transaction status locally to avoid repeated queries
-- **Use filters:** Only query transactions in specific time windows
-- **Implement retry:** Use exponential backoff for failed API calls
-
-### Security
-
-- **Verify hash:** Always validate response data authenticity
-- **Secure credentials:** Store `merchant_salt` in environment variables
-- **Rate limiting:** Implement client-side rate limiting to avoid throttling
-- **Log requests:** Maintain audit trail of all status queries
-
-***
-
-## Related Resources
-
-- **[Collect Payment Using PayU Omni →](doc:collect-payment-using-payu-omni)** - Complete integration guide
-- **[Initiate Payment API Reference →](doc:initiate-payment-api-omni)** - Initiate POS payments
-- **[PayU Omni Overview →](doc:payu-omni)** - Product features and benefits
-
-***
+```json
+{
+  "status": 1,
+  "message": "Success",
+  "result": [
+    {
+      "bqrTxnStatusMessage": "Transaction is Successful",
+      "message": "Found TxnId",
+      "txnId": "POS20260416001",
+      "mihpayId": 28500123456,
+      "status": "success",
+      "unmappedStatus": "captured",
+      "errorCode": "E000",
+      "errorMessage": "No Error",
+      "mode": "POS",
+      "bankcode": "VISA",
+      "pgType": "POS-PG",
+      "amount": 1500,
+      "originalAmount": 1500,
+      "additionalCharges": 0,
+      "discount": 0,
+      "netDebitAmount": 1500,
+      "originalCurrency": "INR",
+      "bankReferenceNumber": "987654321098",
+      "productInfo": "Integrated POS",
+      "addedOn": "2026-04-16 10:30:00",
+      "merchantUTR": null,
+      "field0": "TERM123456",
+      "field1": "Navnath Gawade",
+      "field2": "482911",
+      "field3": "CTLESSEMV|false",
+      "field4": "9876543210|store_manager",
+      "field5": "28I01743",
+      "field6": "",
+      "field7": "200|payment Initiated successfully",
+      "field8": "",
+      "field9": "00|APPROVED|Transaction approved successfully",
+      "nameOnCard": "Navnath Gawade",
+      "cardNo": "XXXXXXXXXXXX1234",
+      "appName": null,
+      "surl": "<redacted URL>",
+      "furl": "<redacted URL>",
+      "curl": "<redacted URL>",
+      "reverseHash": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    }
+  ]
+}
+```
