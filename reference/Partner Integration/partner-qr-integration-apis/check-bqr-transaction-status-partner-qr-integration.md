@@ -1,5 +1,5 @@
 ---
-title: Check BQR Transaction Status - Partner QR Integration
+title: Check Omni Transaction Status - Partner QR Integration
 deprecated: false
 hidden: true
 link:
