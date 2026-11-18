@@ -1,7 +1,7 @@
 ---
 title: Check Status API - CLW
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---

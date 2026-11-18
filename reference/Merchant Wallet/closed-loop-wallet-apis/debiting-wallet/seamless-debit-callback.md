@@ -1,7 +1,7 @@
 ---
 title: Seamless Debit Callback
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---

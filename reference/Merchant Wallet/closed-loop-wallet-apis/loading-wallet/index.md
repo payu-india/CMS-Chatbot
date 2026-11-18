@@ -1,7 +1,7 @@
 ---
 title: Loading Wallet APIs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Loading Wallet APIs - Closed Loop Wallet
   robots: index

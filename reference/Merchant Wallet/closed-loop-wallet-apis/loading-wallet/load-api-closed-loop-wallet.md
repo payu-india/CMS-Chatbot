@@ -1,7 +1,7 @@
 ---
 title: Load API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Load API - Closed Loop Wallet
   robots: index

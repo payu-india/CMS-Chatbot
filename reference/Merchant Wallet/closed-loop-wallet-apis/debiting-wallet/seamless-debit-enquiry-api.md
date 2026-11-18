@@ -1,7 +1,7 @@
 ---
 title: Debit Enquiry API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---

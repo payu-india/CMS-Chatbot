@@ -1,7 +1,7 @@
 ---
 title: Status Codes
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: CLW Status Codes
   description: Status Codes for Close-Loop Wallets
