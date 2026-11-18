@@ -84,8 +84,6 @@ curl --location 'https://api.payu.in/partner/transaction/verifyStatus' \
 | message   | _String_<br />Overall status message returned by the API (e.g., `Success`).                                                 |
 | result    | _Array of Objects_<br />Array containing transaction records matching the queried transaction IDs. For more information, refer to the following tables.                          |
 
-***
-
 ### result Parameter description
 #### For Dynamic Bharat QR (DBQR)
 
@@ -131,7 +129,6 @@ The following parameters are returned inside `result[]` when `mode` is `DBQR`:
 | field8              | _String_<br />UPI transaction note.                                                                                                                                                                                  |                     |                              |
 | field9              | _String_<br />Status trail (e.g., \`success                                                                                                                                                                          | Transaction success | Completed Using Callback\`). |
 
-***
 
 #### For POS Card Payments
 
