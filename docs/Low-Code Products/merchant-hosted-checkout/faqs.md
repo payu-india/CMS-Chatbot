@@ -1,77 +1,191 @@
 ---
-title: FAQs — Merchant Hosted Checkout
-excerpt: Answers drawn from the Merchant Hosted Checkout source, with gaps marked where the source is silent
+title: FAQs (Frequently Asked Questions)
+excerpt: >-
+  Questions about Merchant Hosted Checkout: setup, hash, callbacks, PCI-DSS,
+  and going live.
 deprecated: false
 hidden: true
-updatedAt: "2026-11-18"
 metadata:
-  title: Merchant Hosted Checkout FAQs | PayU Developer Docs
+  title: Merchant Hosted Checkout FAQs
   description: >-
-    FAQs for PayU Merchant Hosted Checkout: difference from PayU Hosted, PCI-DSS, server-side hash, production endpoint, and UPI Collect limits.
+    FAQs for PayU Merchant Hosted Checkout: pg and bankcode, SHA-512 hash,
+    surl and furl, PCI-DSS SAQ A-EP, and the production endpoint.
+  keywords:
+    - payu merchant hosted faq
+    - payu custom checkout pci
+    - payu hash faq merchant hosted
   robots: index
-agentTools:
-  projectIndex: "https://docs.payu.in/llms.txt"
+next:
+  description: Explore related information and resources.
 ---
+## Getting Started
 
-# FAQs — Merchant Hosted Checkout
+1. #### What is Merchant Hosted Checkout?
 
-<Accordion title="How does Merchant Hosted Checkout differ from PayU Hosted Checkout?" icon="fa-circle-question">
-  Merchant Hosted Checkout collects the payment details on your site and form-posts them to `_payment` with `pg` and `bankcode`. PayU Hosted Checkout sends the customer to a PayU payment page, and PayU collects the payment details there. Use PayU Hosted Checkout when you do not want to build the payment form.
+<Accordion title="Answer" icon="fa-circle-question">
+  You collect payment details on your website and form-post them to PayU. You choose the method with `pg` and `bankcode`. PayU processes the payment and redirects the customer to your `surl` or `furl`.
 </Accordion>
 
-<Accordion title="Do I need PCI-DSS compliance?" icon="fa-shield-halved">
-  Yes, if you store, process, or transmit cardholder data. The source names SAQ A-EP. It also says that Merchant Hosted Checkout collects card details on your website, so that collection is in scope. If you use only UPI and wallets, the source says the website must still be secure. It does not say those modes remove PCI scope for cards you also accept.
+2. #### What are the minimum prerequisites?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  - A PayU merchant account
+  - Test key and salt, then the live key and salt
+  - A server that generates SHA-512
+  - HTTPS callback URLs
+  - PCI-DSS SAQ A-EP if you collect card data
 </Accordion>
 
-<Accordion title="Should I generate the hash on the frontend or the backend?" icon="fa-code">
-  Generate it on the server. The salt is a secret known to you and PayU. The source does not describe a frontend hash as a valid option.
+3. #### What payment methods are supported?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  This guide has steps for cards (`pg=CC`), net banking, wallets (`pg=CASH`), UPI Collect (`pg=UPI`, `bankcode=UPI`), PayPal (`pg=PAYPAL`, `bankcode=PAYPAL`), and Pluxee (`pg=MC`, `bankcode=SODEXO`). EMI, BNPL, EFTNET, and Net Banking TPV stay on their existing guides.
 </Accordion>
 
-<Accordion title="How do I handle the pending status?" icon="fa-clock">
-  <!-- DOCUMENTATION GAP: The test steps say to simulate pending transactions. They do not define the status value or the fulfilment rule. -->
+4. #### Do I need PCI-DSS?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  Yes, if you store, process, or transmit cardholder data. The source names SAQ A-EP. Card details are entered on your site. UPI and wallet only still require a secure site.
 </Accordion>
 
-<Accordion title="What happens if the customer closes the browser before the redirect?" icon="fa-window-maximize">
-  <!-- DOCUMENTATION GAP: The source does not describe this case. The production checklist says to confirm the transaction on the server if the callback fails, and to use webhooks. It does not give a timeout. -->
+***
+
+## Integration Setup
+
+1. #### What are surl and furl?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  On the cards, UPI Collect, PayPal, and Pluxee pages, `surl` is the success URL and `furl` is the failure URL.
+
+  <!-- VALIDATION NEEDED: The net banking and wallets tables swap those descriptions. -->
 </Accordion>
 
-<Accordion title="How is surl/furl different from webhooks?" icon="fa-plug">
-  `surl` and `furl` are the URLs PayU redirects the customer's browser to, with the payment response. The production checklist says to use webhooks to hear callbacks when you confirm status on the server after a callback failure. Webhook event names are not in this folder.
+2. #### Where do I post the payment?
 
-  <!-- DOCUMENTATION GAP: The source does not compare reliability of surl/furl and webhooks beyond that instruction. -->
+<Accordion title="Answer" icon="fa-circle-question">
+  Test: `POST https://test.payu.in/_payment`. Production: `POST https://secure.payu.in/_payment`. Use `method="post"`.
 </Accordion>
 
-<Accordion title="How do I enable specific payment methods?" icon="fa-toggle-on">
-  The legacy overview says the methods you support must be enabled on your PayU merchant account. PayPal must be activated from the PayU Dashboard. The source does not give a click-path for other methods.
+3. #### How do I choose a payment method?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  Send `pg` and `bankcode`. Bank codes are case-sensitive. The method must be enabled on your PayU account. PayPal is activated from the Dashboard.
 </Accordion>
 
-<Accordion title="What is the production endpoint?" icon="fa-server">
-  `POST https://secure.payu.in/_payment`.
+***
 
-  The production checklist also writes the production environment as `https://secure.payu.in/`.
+## Hash Generation
 
-  Post-service production is written two ways in the source: `https://info.payu.in/merchant/postservice?form=2` and `https://info.payu.in/merchant/postservice.php?form=2`.
+1. #### Where do I generate the hash?
 
-  <!-- VALIDATION NEEDED: Confirm which post-service path is current before you hard-code it. -->
+<Accordion title="Answer" icon="fa-circle-question">
+  On the server. The salt stays on the server.
 </Accordion>
 
-<Accordion title="How do I debug a hash mismatch?" icon="fa-bug">
-  Check the field order. The method pages use `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`. A second sample on the legacy overview drops the UDF fields. Use the same values in the hash and in the form post, including empty UDF positions.
+2. #### What is the request hash formula?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  The method pages use `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`.
+
+  <!-- VALIDATION NEEDED: The legacy overview also shows a formula with no UDF fields. -->
 </Accordion>
 
-<Accordion title="Can I use UPI Collect on the web?" icon="fa-mobile-screen">
-  The source says UPI Collect is allowed only for MCC 6012 and 6211. For web, it says to use the UPI Intent S2S deeplink and render that deeplink as a QR, instead of UPI Collect. Seamless form POST does not support Intent. Android must use Smart Intent. iOS may keep a deeplink and UPI Collect.
+***
+
+## Checkout Experience
+
+1. #### Does PayU show its own payment page?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  No. The customer enters details on your page. PayU may still send them to a bank ACS, net banking login, wallet, or UPI step, then back to your site.
 </Accordion>
 
-<Accordion title="What is bankcode for each method?" icon="fa-list">
-  | Method | pg | bankcode |
-  | --- | --- | --- |
-  | Cards | CC | Network-specific. Samples use CC, MAST, AMEX, VISA, and MASTERCARD |
-  | Net banking | NB in the parameter text. Samples use TESTPG | Bank-specific. Test sample is TESTPGNB |
-  | Wallets | CASH. Advantage Club uses RD | Wallet-specific. Paytm sample PAYTM. Advantage Club ADVCLUB |
-  | UPI Collect | UPI | UPI |
-  | PayPal | PAYPAL | PAYPAL. The overview table says N/A |
-  | Pluxee | MC | SODEXO |
+***
 
-  <!-- VALIDATION NEEDED: Do not treat the conflicting pg and bankcode values as settled. They are copied from the legacy pages and flagged on the method pages. -->
+## Testing
+
+1. #### Which test values can I use?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  Net banking: username `payu`, password `payu`, OTP `123456`. UPI: `anything@payu` or `9999999999@payu.in`. Paytm: mobile `7777777777`, OTP `888888`. Use the test key and salt only.
+</Accordion>
+
+***
+
+## Reverse Hashing
+
+1. #### What is the reverse hash order?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)`. Compare it with the `hash` in the callback before you fulfil the order.
+</Accordion>
+
+***
+
+## Callback vs Webhook
+
+1. #### How is surl/furl different from webhooks?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  `surl` and `furl` are the browser redirects. The production checklist says to use webhooks if the callback fails, and to confirm status with Verify Payment. Webhook event names are not in this folder.
+</Accordion>
+
+***
+
+## Duplicate Processing
+
+1. #### Can I reuse a txnid?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  No. The saved-card text says PayU will not accept a duplicate transaction id. Use a new `txnid` and a new hash for another attempt.
+</Accordion>
+
+***
+
+## Refunds & Cancellations
+
+1. #### How do I refund?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  Use the Dashboard or `command=cancel_refund_transaction`. The PayPal page says the PayPal account needs sufficient funds before a refund.
+</Accordion>
+
+***
+
+## Taxation, Compliance & Identity Verification
+
+1. #### What compliance does the source name?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  PCI-DSS SAQ A-EP when you handle cardholder data. The cards page also says guest checkout with a plain card number was not allowed after 31 Oct 2023, and that the replacement is an Alt ID. International cards must be enabled by writing to integration@pay.in.
+</Accordion>
+
+***
+
+## Advanced Features & Payment Methods
+
+1. #### What are the UPI Collect limits?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  UPI Collect is allowed only for MCC 6012 and 6211. Web and Android must move to UPI Intent S2S. Seamless form POST does not support Intent. iOS may keep a deeplink and UPI Collect.
+</Accordion>
+
+***
+
+## Chargebacks & Dispute Resolution
+
+1. #### What does the source say about chargebacks?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  `email`, `phone`, and `address1` are described as useful for fraud detection and chargebacks. A dispute workflow is not in this folder.
+</Accordion>
+
+***
+
+## Production Go-Live
+
+1. #### What is the production endpoint and where is the live salt?
+
+<Accordion title="Answer" icon="fa-circle-question">
+  Post to `https://secure.payu.in/_payment`. In the Dashboard, switch to Live Mode and open **Payment Gateway → Web Integration → Key Salt Details**.
 </Accordion>

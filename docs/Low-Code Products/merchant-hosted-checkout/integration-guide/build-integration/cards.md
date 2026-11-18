@@ -1,353 +1,139 @@
 ---
 title: Cards
-excerpt: Collect a card payment on your checkout and post it to PayU with pg=CC
+excerpt: >-
+  Post a card payment with pg=CC. Includes BIN lookup, saved cards, Alt ID, and
+  3DS 2.0.
 deprecated: false
 hidden: true
-updatedAt: "2026-11-18"
 metadata:
-  title: Cards — Merchant Hosted Checkout | PayU Developer Docs
+  title: Cards — Merchant Hosted Checkout
   description: >-
-    Merchant Hosted card payments: BIN lookup, pg=CC, saved-card tokens, guest checkout Alt ID, 3DS 2.0 browser data, callback, and verify payment.
+    Merchant Hosted card payments: pg=CC, BIN lookup, saved-card token, guest
+    Alt ID, and 3DS 2.0 browser data.
+  keywords:
+    - payu merchant hosted cards
+    - payu pg CC bankcode
+    - payu 3ds merchant hosted
   robots: index
-agentTools:
-  projectIndex: "https://docs.payu.in/llms.txt"
+next:
+  description: Explore related information and resources.
 ---
-
 <Callout icon="⚠️" theme="warn">
-  Collecting card data on your site requires PCI-DSS. The source says you must fill the Self-Assessment Questionnaire A-EP and Attestation of Compliance if you store or transmit cardholder data. International transactions must be enabled by writing to integration@pay.in.
+  Collecting card data on your site requires PCI-DSS SAQ A-EP. International cards must be enabled by writing to integration@pay.in. Networks named in the source: Visa, Mastercard, American Express, Diners, and RuPay.
 </Callout>
 
-# Cards
+`pg=CC`. `bankcode` is network-specific.
 
-Card payments use `pg=CC`. Supported networks named in the source are American Express, Visa, Mastercard, Diners, and RuPay.
+<!-- VALIDATION NEEDED: Samples use bankcode CC, MAST, AMEX, VISA, and MASTERCARD. -->
 
-<!-- VALIDATION NEEDED: The cards steps say bankcode=CC. The HTML sample uses bankcode=MAST. The mandatory-parameter example is AMEX. A saved-card sample uses VISA. A 3DS sample uses bankcode=CC. A guest-checkout sample uses MASTERCARD. The parameter text says bankcode is based on the issuing bank and points to Cards Bank Codes. -->
+***
 
-## Validate the Card Type
+## Prerequisites
 
-Validate the card type with the first six digits before you post the payment. The source calls this the `getBinInfo` API (BIN API).
+Read [Build the Integration](./index) for the shared hash, reverse hash, and Verify Payment steps.
+
+***
+
+## Overview of Steps
+
+1. Validate the BIN, then prepare card parameters.
+2. Generate the SHA-512 hash on the server.
+3. Post the form to `_payment`.
+4. Verify the reverse hash.
+5. Call `verify_payment`.
+
+***
+
+## Build Integration Steps
+
+### Step 1: Prepare Payment Request Parameters
+
+Call `getBinInfo` first. Test URL: `POST https://test.payu.in/merchant/postservice?form=2`. The prose says `var1=1`, `var2=512345`, `var5=1`. The cURL sends `var1=2`.
+
+<!-- VALIDATION NEEDED: var1 is 1 in the prose and 2 in the sample. -->
+
+<Tabs>
+  <Tab title="Mandatory Parameters and Description">
+    | Parameter | Description | Example |
+    | --- | --- | --- |
+    | `pg` | Cards | CC |
+    | `bankcode` | Issuing network. See Cards Bank Codes | AMEX |
+    | `ccnum` | 13–19 digits. 15 for AMEX. Validate with LUHN | 5123456789012346 |
+    | `ccname` | Name on card | Ashish Kumar |
+    | `ccvv` | 3 digits, or 4 for AMEX | 123 |
+    | `ccexpmon` | Expiry month, MM | 10 |
+    | `ccexpyr` | Expiry year, four digits in the table | 2026 |
+    | `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, `furl`, `hash` | Shared fields. See [Build the Integration](./index) | |
+  </Tab>
+  <Tab title="Optional Parameters and Description">
+    `lastname`, `address1`, `address2`, `city`, `state`, `country`, `zipcode` (limit 20, mandatory for cardless EMI), `udf1`–`udf5`.
+
+    Saved card: `store_card_token`, `storecard_token_type=1`, `additional_info` with `last4Digits`, `TAVV`, `trid`, and `tokenRefNo`.
+
+    Guest Alt ID: `alt_id` and `additional_info` with `tavv`, `last4Digits`, `par`, and `tokenReferenceId`. Plain guest PAN was not allowed after 31 Oct 2023.
+
+    3DS 2.0: `threeDS2RequestData` with `browserInfo`. The sample also sends `txn_s2s_flow=4`.
+  </Tab>
+</Tabs>
+
+***
+
+### Step 2: Generate Secure Hash
+
+Same formula as [Build the Integration](./index#step-2-generate-secure-hash):
+
+```text
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+```
+
+***
+
+### Step 3: Post the Payment Form
 
 | Environment | URL |
 | --- | --- |
-| Test | `POST https://test.payu.in/merchant/postservice?form=2` |
-| Production | `POST https://info.payu.in/merchant/postservice?form=2` |
+| Test | `https://test.payu.in/_payment` |
+| Production | `https://secure.payu.in/_payment` |
 
-The prose for a single-card lookup says `var1=1`, `var2=512345`, and `var5=1`. The cURL sample in the same section sends `var1=2`.
-
-<!-- VALIDATION NEEDED: var1 is 1 in the cards prose and 2 in the cards cURL. The sample also sends empty var3 and var4. -->
-
-Post-service hash, from the legacy APIs page:
-
-```
-sha512(key|command|var1|SALT)
-```
-
-<Accordion title="Request" icon="fa-code">
-  ```bash
-  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "key=JP***g" \
-    -d "command=getBinInfo" \
-    -d "var1=2" \
-    -d "var2=512345" \
-    -d "var3=" \
-    -d "var4=" \
-    -d "var5=1" \
-    -d "hash={{hash_value}}"
-  ```
-
-  <!-- DOCUMENTATION GAP: This folder has no full BIN parameter table. The cards page says to use the BIN API reference: https://docs.payu.in/reference/get_bin_info_api -->
+<Accordion title="POST the HTML Form" icon="fa-paper-plane">
+  The HTML sample posts `pg=CC` and `bankcode=MAST`. The cURL sample posts `bankcode=CC`. Copy the full form from the legacy cards page until you pick one `bankcode`.
 </Accordion>
 
-<Accordion title="Response" icon="fa-table">
-  Success fields in the sample: `status` 1, and `data.bins_data` with `issuing_bank` (sample HDFC), `bin` (sample 512345), `category` (sample creditcard), `card_type` (sample MAST), and `is_domestic` (sample 1).
+<Accordion title="Success and Error Response" icon="fa-circle-check">
+  Success: `mode=CC`, `status=success`, `error=E000`, `field7=AUTHPOSITIVE`.
+
+  Failure: `status=failure`, `error=E1903`, `error_Message=Authorization failed at Bank`, `field7=AUTHNEGATIVE`. The sample says `cardhash` is no longer returned.
 </Accordion>
 
-## Post the Payment Request
+***
 
-| Environment | URL |
-| --- | --- |
-| Test | `POST https://test.payu.in/_payment` |
-| Production | `POST https://secure.payu.in/_payment` |
+### Step 4: Verify Response via Reverse Hashing
 
-### Mandatory Parameters
+<ReverseHashing />
 
-| Parameter | Description | Example |
-| --- | --- | --- |
-| key | Merchant key provided by PayU | JP\*\*\*g |
-| txnid | Unique reference id generated by the merchant | ashdfu72634 |
-| amount | Payment amount | 1000.00 |
-| productinfo | Product description | iPhone |
-| firstname | Customer first name | Ashish |
-| email | Customer email | test@gmail.com |
-| phone | Customer phone | 9988776655 |
-| pg | Payment gateway. For cards, CC | CC |
-| bankcode | Based on the issuing bank. See Cards Bank Codes | AMEX |
-| ccnum | 13–19 digit card number (15 for AMEX). Validate with LUHN. PCI-DSS applies | 5123456789012346 |
-| ccname | Name on card | Ashish Kumar |
-| ccvv | CVV. 3 digits, or 4 for AMEX | 123 |
-| ccexpmon | Expiry month, MM. Prefix 0 for months 1–9 | 10 |
-| ccexpyr | Expiry year, four digits, in the parameter table | 2026 |
-| surl | Success URL | https://yourwebsite.com/success |
-| furl | Failure URL | https://yourwebsite.com/failure |
-| hash | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|Salt)` | |
+`authRefNo` on a guest response holds the AMEX AEVV or the RuPay reference. The source says to ask PayU to enable it.
 
-<!-- VALIDATION NEEDED: The cards cURL sample sets ccexpyr=YY. The parameter table says four digits. -->
+***
 
-### Optional Parameters
+### Step 5: Verify the Payment
 
-| Parameter | Description | Example |
-| --- | --- | --- |
-| address1 | Billing address line 1. Source says this helps fraud detection and chargebacks | 123 Main St |
-| address2 | Billing address line 2 | Apt 4B |
-| city | Billing city | Mumbai |
-| state | Billing state | Maharashtra |
-| country | Billing country | India |
-| zipcode | Billing zip. Mandatory for cardless EMI. Character limit 20 | 400001 |
-| udf1 | User-defined field | custom_value_1 |
-| udf2 | User-defined field | custom_value_2 |
-| udf3 | User-defined field | custom_value_3 |
-| udf4 | User-defined field | custom_value_4 |
-| udf5 | User-defined field | custom_value_5 |
+<Verify_Payment_Tabs />
 
-<Accordion title="cURL" icon="fa-code">
-  ```bash
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "key=YOUR_MERCHANT_KEY" \
-    -d "txnid=TXN_12345" \
-    -d "amount=1000.00" \
-    -d "productinfo=Product+Description" \
-    -d "firstname=Customer+Name" \
-    -d "email=customer@example.com" \
-    -d "phone=9988776655" \
-    -d "pg=CC" \
-    -d "bankcode=CC" \
-    -d "ccnum=CARD_NUMBER" \
-    -d "ccexpmon=MM" \
-    -d "ccexpyr=YY" \
-    -d "ccvv=CVV" \
-    -d "ccname=NAME_ON_CARD" \
-    -d "surl=https://yourwebsite.com/success" \
-    -d "furl=https://yourwebsite.com/failure" \
-    -d "hash=HASH_GENERATED_ON_SERVER"
-  ```
-</Accordion>
+***
 
-<Accordion title="Form POST" icon="fa-code">
-  The HTML sample posts `bankcode=MAST` and card number `5123456789012346`.
+## Security
 
-  ```html
-  <form action='https://test.payu.in/_payment' method='post'>
-  <input type="hidden" name="key" value="JP***g" />
-  <input type="hidden" name="txnid" value="t6svtqtjRdl34W" />
-  <input type="hidden" name="productinfo" value="iPhone" />
-  <input type="hidden" name="amount" value="10" />
-  <input type="hidden" name="email" value="test@gmail.com" />
-  <input type="hidden" name="firstname" value="Ashish" />
-  <input type="hidden" name="lastname" value="Kumar" />
-  <input type="hidden" name="pg" value="CC" />
-  <input type="hidden" name="bankcode" value="MAST" />
-  <input type="hidden" name="ccnum" value="5123456789012346" />
-  <input type="hidden" name="ccname" value="Ashish Kumar" />
-  <input type="hidden" name="ccvv" value="123" />
-  <input type="hidden" name="ccexpmon" value="12" />
-  <input type="hidden" name="ccexpyr" value="2021" />
-  <input type="hidden" name="surl" value="your own success url" />
-  <input type="hidden" name="furl" value="your own failure url" />
-  <input type="hidden" name="phone" value="9988776655" />
-  <input type="hidden" name="hash" value="generated_on_your_server" />
-  <input type="submit" value="submit">
-  </form>
-  ```
-</Accordion>
+Do not store the CVV or the full card number. Card collection on your site is in PCI-DSS scope (SAQ A-EP).
 
-## Saved Cards
+***
 
-Use this when you pay with a network token instead of the full card number. The source says the token is generated at your end.
+## Next Steps
 
-### Mandatory Parameters
-
-| Parameter | Description | Example |
-| --- | --- | --- |
-| key | Merchant key | Your Test Key |
-| txnid | Unique merchant reference. Source says PayU will not accept a duplicate transaction id | s7hhDQVWvbhBdN |
-| amount | Payment amount. For cardless EMI the source says the amount must be at least Rs. 8000 | 10.00 |
-| productinfo | Product description. Character limit 100 | iPhone |
-| firstname | Customer first name. Character limit 60 | Ashish |
-| email | Customer email. Character limit 50 | test@gmail.com |
-| phone | Customer phone. Source says this is required for fraud detection and chargebacks | 9876543210 |
-| lastname | Customer last name. Character limit 60 | Verma |
-| pg | CC for cards | CC |
-| bankcode | Bank code for the payment option | AMEX |
-| ccexpmon | Network token expiry month | 10 |
-| ccexpyr | Network token expiry year | 2022 |
-| store_card_token | Saved-card network token | 1234 4567 2456 3566 |
-| storecard_token_type | Token type. Source says include 1 for this scenario | 1 |
-| additional_info | JSON with last4Digits, TAVV, trid, and tokenRefNo | `{"last4Digits":"1234","TAVV":"ABCDEFGH","trid":"1234567890","tokenRefNo":"abcde123456"}` |
-| surl | Success URL | https://apiplayground-response.herokuapp.com/ |
-| furl | Failure URL | https://apiplayground-response.herokuapp.com/ |
-| hash | Same request formula as a new card payment | |
-
-Optional fields on the saved-card table: `api_version` (example 1), `address1`, `address2`, `city`, `state`, `country`, `zipcode`, and `udf1` through `udf5`.
-
-<Accordion title="cURL" icon="fa-code">
-  The saved-card sample posts `bankcode=VISA`, `store_card_token`, `storecard_token_type=1`, and `additional_info`.
-
-  ```bash
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "pg=CC" \
-    -d "bankcode=VISA" \
-    -d "store_card_token=4111111111111111" \
-    -d "storecard_token_type=1" \
-    -d "additional_info={\"last4Digits\":\"1111\",\"TAVV\":\"ABCD1234EFGH5678\",\"trid\":\"987654321012345\",\"tokenRefNo\":\"TKN_REF_12345678\"}"
-  ```
-
-  The full saved-card sample on the legacy page also sends key, txnid, amount, productinfo, firstname, email, phone, surl, furl, expiry, and hash. Copy those from [Collect Payments with Cards](https://docs.payu.in/docs/collect-payments-with-cards-seamless) until this page is the only source.
-</Accordion>
-
-## Guest Checkout and Alt ID
-
-Guest checkout lets a customer pay without creating an account on your site. The source says to contact your PayU Key Account Manager or PayU Integration Support to enable it.
-
-The same section says that, under RBI direction, guest checkout with a plain card number was not allowed after 31 Oct 2023, and that the plain number is replaced with an Alternative ID (Alt ID).
-
-### Scenario 1 — PayU provisions and processes
-
-No extra fields on the `_payment` request. The source says no changes are required.
-
-### Scenario 2 — Alt ID provisioned outside PayU
-
-Pass `alt_id`, and pass TAVV (cryptogram), the last four digits, and `par` inside `additional_info`. The source says `par` is optional. `tokenReferenceId` is required in `additional_info` when you provision the Alt ID outside PayU for a Diners card.
-
-| Parameter | Description | Example |
-| --- | --- | --- |
-| pg | CC | CC |
-| bankcode | Bank code for the card | AMEX |
-| ccname | Name on card | Ashish Kumar |
-| ccvv | CVV | 123 |
-| ccexpmon | Card or Alt ID expiry month. For VISA, post the plain card expiry month | 10 |
-| ccexpyr | Card or Alt ID expiry year, four digits. For VISA, post the plain card expiry year | 2021 |
-| alt_id | Alt ID for the guest checkout transaction | |
-| additional_info | JSON with tavv, last4Digits, par, and tokenReferenceId | See the sample below |
-| surl | Success URL | |
-| furl | Failure URL | |
-| hash | Same request formula | |
-
-```json
-{
-  "tavv": "AKF/FaM3BPWoAAEWYTiQAAADFA==",
-  "last4Digits": "2346",
-  "par": "799F3ED865F5965CC760A32682BA8A80F19E99ECB3F7F03574C14F5B6C3EB2C1",
-  "tokenReferenceId": "3acdd709-3c4b-4280-a6db-3f02271d09a3"
-}
-```
-
-| additional_info field | Description in source |
-| --- | --- |
-| trid | Token Requestor ID from the card network, via your token provider |
-| tokenReferenceID | Token reference id generated with the network token |
-| TAVV | Token authentication verification value, also called the cryptogram |
-
-The guest-checkout cURL posts to `http://local.secure.payu.in/_payment` with `bankcode=MASTERCARD` and `alt_id`. That host is the sample as written. It is not the test or production URL in the environment table.
-
-### Scenario 3 — Provision Alt ID from PayU
-
-The source says the Provision Alt ID API provisions an Alt ID from PayU when you process the transaction outside PayU. The request body is not in this folder.
-
-<!-- DOCUMENTATION GAP: Provision Alt ID request and response are not in the Merchant Hosted cards page. The page links https://docs.payu.in/reference/provision-alt-id-api -->
-
-The guest response sample includes `authRefNo`. The source says `authRefNo` contains the AEVV for an AMEX transaction and `rupayAuthRefId` for a RuPay transaction. It says to contact your Key Account Manager or PayU Support to enable `authRefNo` in the response.
-
-## 3DS Secure 2.0
-
-PayU supports 3DS 2.0 on Merchant Hosted Checkout. Send `threeDS2RequestData` with the card `_payment` request. The sample also sends `txn_s2s_flow=4`.
-
-### browserInfo fields
-
-The source JSON uses a `browserInfo` object:
-
-| Field | Description | Example |
-| --- | --- | --- |
-| userAgent | User agent of the device browser | |
-| acceptHeader | Header format | application/json |
-| language | Language for the 3DS challenge | en-US |
-| colorDepth | Screen color depth | 24 |
-| screenHeight | Screen height | 640 |
-| screenWidth | Screen width | 480 |
-| javaEnabled | Whether Java is enabled | true |
-| timeZone | Time zone code | 273 |
-| ip | IP address of the device | 10.248.2.71 |
-
-Mandatory card fields for this request are the same as a new card payment (`key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `pg`, `bankcode`, `ccnum`, `ccname`, `ccvv`, `ccexpmon`, `ccexpyr`, `surl`, `furl`, `hash`). Optional fields named here are `lastname`, `txn_s2s_flow`, and `threeDS2RequestData`.
-
-<Accordion title="cURL" icon="fa-code">
-  ```bash
-  curl --location 'https://test.payu.in/_payment' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'key=JF****g' \
-    --data-urlencode 'txnid=jYhbOYH9o4' \
-    --data-urlencode 'amount=10' \
-    --data-urlencode 'productinfo=Product_info' \
-    --data-urlencode 'firstname=Ashish' \
-    --data-urlencode 'email=test@example.com' \
-    --data-urlencode 'phone=9876543210' \
-    --data-urlencode 'pg=CC' \
-    --data-urlencode 'bankcode=CC' \
-    --data-urlencode 'ccnum=4012000000002004' \
-    --data-urlencode 'ccname=Test User' \
-    --data-urlencode 'ccvv=123' \
-    --data-urlencode 'ccexpmon=06' \
-    --data-urlencode 'ccexpyr=2024' \
-    --data-urlencode 'surl=http://pp30admin.payu.in/test_response' \
-    --data-urlencode 'furl=http://pp30admin.payu.in/test_response' \
-    --data-urlencode 'hash=e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184' \
-    --data-urlencode 'txn_s2s_flow=4' \
-    --data-urlencode 'threeDS2RequestData={"browserInfo":{"userAgent":"Mozilla/5.0","acceptHeader":"*/*","language":"en-US","colorDepth":"24","screenHeight":"600","screenWidth":"800","timeZone":"-300","javaEnabled":true,"ip":"10.248.2.71"}}'
-  ```
-</Accordion>
-
-## Handle the Callback
-
-PayU posts the result to `surl` or `furl`. Verify the reverse hash before you fulfil the order.
-
-```
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
-
-<Accordion title="Verify the response hash" icon="fa-shield-halved">
-  <ReverseHashing />
-</Accordion>
-
-Success sample values from the cards page: `mode=CC`, `status=success`, `unmappedstatus=captured`, `error=E000`, `error_Message=No Error`, `field7=AUTHPOSITIVE`, `field9=Transaction is Successful`, `bankcode=CC`, `cardnum` masked.
-
-Failure sample values: `mode=CC`, `status=failure`, `unmappedstatus=failed`, `error=E1903`, `error_Message=Authorization failed at Bank`, `field7=AUTHNEGATIVE`, `field9=Authorization failed at Bank`, `bankcode=AMEX`. The sample says `cardhash` is no longer supported in postback params.
-
-## Verify the Payment Server-Side
-
-<Accordion title="Verify Payment API" icon="fa-circle-check">
-  <Verify_Payment_Tabs />
-</Accordion>
-
-## Test Credentials
-
-<!-- DOCUMENTATION GAP: The cards page uses card numbers inside request samples. The Merchant Hosted test page does not publish a plain-card test matrix. EMI test cards are on the test page. Do not treat the sample PANs on this page as published test cards. -->
-
-## Related Resources
-
-<Cards columns={2}>
-  <Card title="Cards bank codes" icon="fa-list" href="https://docs.payu.in/docs/cards-bank-codes">
-    Bank codes the cards parameter table tells you to use for `bankcode`.
+<Cards columns="2">
+  <Card title="Test Integration" href="../test-integration" icon="fa-flask">
+    EMI test cards are listed there. Plain card test numbers are not in this folder.
   </Card>
-  <Card title="Collect Payment API — Cards" icon="fa-rectangle-api" href="https://docs.payu.in/reference/_payment_merchant_hosted_cards">
-    Try-it reference for Merchant Hosted card payments.
-  </Card>
-  <Card title="BIN API" icon="fa-magnifying-glass" href="https://docs.payu.in/reference/get_bin_info_api">
-    Full BIN request, which this page does not reproduce.
-  </Card>
-  <Card title="Test your integration" icon="fa-flask" href="../../test-integration">
-    EMI test cards and the test key and salt.
+  <Card title="Cards bank codes" href="https://docs.payu.in/docs/cards-bank-codes" icon="fa-list">
+    Values for `bankcode`.
   </Card>
 </Cards>

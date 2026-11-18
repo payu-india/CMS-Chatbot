@@ -1,122 +1,117 @@
 ---
 title: PayPal
-excerpt: Collect a PayPal payment with pg=PAYPAL and bankcode=PAYPAL
+excerpt: >-
+  Post a PayPal payment with pg=PAYPAL and bankcode=PAYPAL. Activate PayPal on
+  the PayU Dashboard first.
 deprecated: false
 hidden: true
-updatedAt: "2026-11-18"
 metadata:
-  title: PayPal — Merchant Hosted Checkout | PayU Developer Docs
+  title: PayPal — Merchant Hosted Checkout
   description: >-
-    Merchant Hosted PayPal: activate PayPal on the PayU Dashboard, post pg=PAYPAL and bankcode=PAYPAL to _payment, then verify the callback.
+    Merchant Hosted PayPal: pg=PAYPAL, bankcode=PAYPAL, INR settlement, and
+    refunds from the PayPal balance.
+  keywords:
+    - payu merchant hosted paypal
+    - payu pg PAYPAL
   robots: index
-agentTools:
-  projectIndex: "https://docs.payu.in/llms.txt"
+next:
+  description: Explore related information and resources.
 ---
+Activate PayPal from the PayU Dashboard before you post `pg=PAYPAL` and `bankcode=PAYPAL`. Settlements are in INR. Refunds need a PayPal balance.
 
-<Callout icon="⚠️" theme="warn">
-  Activate PayPal from the PayU Dashboard before you integrate. Refunds need sufficient funds in the PayPal account. The source says you can refund from the PayU Dashboard or the Refund Transaction API.
-</Callout>
+<!-- VALIDATION NEEDED: The customer journey describes a PayU-hosted wallet list. The overview table says the PayPal bankcode is N/A. -->
 
-# PayPal
+***
 
-PayPal on the integration page uses `pg=PAYPAL` and `bankcode=PAYPAL`. Settlements are processed in INR. The page says customers can use PayPal currency conversion.
+## Prerequisites
 
-<!-- VALIDATION NEEDED: The legacy Merchant Hosted overview table says PayPal bankcode is N/A. This page follows the PayPal integration page, which says bankcode=PAYPAL, and flags the conflict. -->
+Read [Build the Integration](./index). Enable PayPal on the Dashboard.
 
-## Customer Journey
+***
 
-The PayPal page describes this journey:
+## Overview of Steps
 
-1. The customer is redirected to the PayU payment page.
-2. The customer selects Wallets.
-3. The customer selects PayPal.
-4. The customer selects a currency and clicks PayPal. PayU sends the success or failure response after verification.
+1. Prepare `pg=PAYPAL` and `bankcode=PAYPAL`.
+2. Generate the hash on the server.
+3. Post the form.
+4. Verify the reverse hash.
+5. Call `verify_payment`.
 
-<!-- VALIDATION NEEDED: That journey describes a PayU-hosted wallet list. It does not describe a merchant-hosted form post. The request on the same page is a form post to _payment with pg=PAYPAL. -->
+***
 
-## Post the Payment Request
+## Build Integration Steps
+
+### Step 1: Prepare Payment Request Parameters
+
+<Tabs>
+  <Tab title="Mandatory Parameters and Description">
+    | Parameter | Description | Example |
+    | --- | --- | --- |
+    | `pg` | PayPal | PAYPAL |
+    | `bankcode` | PayPal | PAYPAL |
+    | `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, `furl`, `hash` | Shared fields. `surl` is success and `furl` is failure on this page | |
+  </Tab>
+  <Tab title="Optional Parameters and Description">
+    `address1`, `address2`, `city`, `state`, `country`, `zipcode`, `udf1`–`udf5`.
+  </Tab>
+</Tabs>
+
+<!-- DOCUMENTATION GAP: No HTML form sample is in the PayPal page. -->
+
+***
+
+### Step 2: Generate Secure Hash
+
+```text
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+```
+
+***
+
+### Step 3: Post the Payment Form
 
 | Environment | URL |
 | --- | --- |
-| Test | `POST https://test.payu.in/_payment` |
-| Production | `POST https://secure.payu.in/_payment` |
+| Test | `https://test.payu.in/_payment` |
+| Production | `https://secure.payu.in/_payment` |
 
-### Mandatory Parameters
-
-| Parameter | Description | Example |
-| --- | --- | --- |
-| key | Merchant key | 8488225 |
-| txnid | Unique order reference from the merchant | fd3e847h2 |
-| amount | Payment amount | 10 |
-| productinfo | Product description | T-shirt |
-| firstname | Customer first name | Ankit |
-| email | Customer email | test@gmail.com |
-| phone | Customer phone | 9876543210 |
-| pg | PAYPAL | PAYPAL |
-| bankcode | PAYPAL | PAYPAL |
-| surl | Success URL | https://apiplayground-response.herokuapp.com/ |
-| furl | Failure URL | https://apiplayground-response.herokuapp.com/ |
-| hash | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|Salt)` | |
-
-### Optional Parameters
-
-| Parameter | Description | Example |
-| --- | --- | --- |
-| lastname | Customer last name | Kumar |
-| address1 | Billing address line 1 | 123 Main St |
-| address2 | Billing address line 2 | Apt 4B |
-| city | Billing city | Mumbai |
-| state | Billing state | Maharashtra |
-| country | Billing country | India |
-| zipcode | Billing zip. The PayPal table says this is mandatory for cardless EMI | 400001 |
-| udf1 | User-defined field | custom_data_1 |
-| udf2 | User-defined field | custom_data_2 |
-| udf3 | User-defined field | custom_data_3 |
-| udf4 | User-defined field | custom_data_4 |
-| udf5 | User-defined field | custom_data_5 |
-
-The PayPal page has no HTML form sample.
-
-<Accordion title="cURL" icon="fa-code">
-  ```bash
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=PAYPAL&bankcode=PAYPAL&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
-  ```
+<Accordion title="POST the HTML Form" icon="fa-paper-plane">
+  Post the shared fields with `pg=PAYPAL` and `bankcode=PAYPAL`.
 </Accordion>
 
-## Handle the Callback
-
-<!-- DOCUMENTATION GAP: The PayPal page does not print the reverse-hash formula. The formula used on UPI Collect and in the ReverseHashing block is sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key). -->
-
-<Accordion title="Verify the response hash" icon="fa-shield-halved">
-  <ReverseHashing />
-
-  Sample response fields: `mihpayid`, `mode=PAYPAL`, `status=success`, `PG_TYPE=PAYPAL-PG`, `bank_ref_num`, `bankcode=PAYPAL`, `field4=0.12`, `field5=USD`, `error=E000`, `error_Message=No Error`.
+<Accordion title="Success and Error Response" icon="fa-circle-check">
+  Sample: `mode=PAYPAL`, `bankcode=PAYPAL`, `status=success`, `error=E000`, `field4=0.12`, `field5=USD`.
 </Accordion>
 
-## Verify the Payment Server-Side
+***
 
-<Accordion title="Verify Payment API" icon="fa-circle-check">
-  <Verify_Payment_Tabs />
-</Accordion>
+### Step 4: Verify Response via Reverse Hashing
 
-## Refunds
+<ReverseHashing />
 
-The PayPal page says the PayPal account needs sufficient funds before a refund. Refund from the [Refunds Dashboard](https://docs.payu.in/docs/refunds-dashboard) or the [Refund Transaction API](https://docs.payu.in/reference/refund_transaction_api). Refund request fields are not on the PayPal page.
+***
 
-## Test Credentials
+### Step 5: Verify the Payment
 
-<!-- DOCUMENTATION GAP: The PayPal integration page and the Merchant Hosted test page do not list a PayPal sandbox buyer, test amount, or test currency. -->
+<Verify_Payment_Tabs />
 
-## Related Resources
+Refund from the Dashboard or with `cancel_refund_transaction`. The PayPal account needs sufficient funds.
 
-<Cards columns={2}>
-  <Card title="Collect Payment API — Wallets" icon="fa-rectangle-api" href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets">
-    The PayPal page points its Try-it link here.
+***
+
+## Security
+
+<!-- DOCUMENTATION GAP: No PayPal test buyer is published in this folder. -->
+
+***
+
+## Next Steps
+
+<Cards columns="2">
+  <Card title="Test Integration" href="../test-integration" icon="fa-flask">
+    Confirm PayPal is enabled before you test.
   </Card>
-  <Card title="Refund Transaction API" icon="fa-rotate-left" href="https://docs.payu.in/reference/refund_transaction_api">
-    Refund command referenced from the PayPal page.
+  <Card title="APIs" href="../../merchant-hosted-checkout-apis" icon="fa-rectangle-api">
+    The PayPal Try-it link points at the wallets API reference.
   </Card>
 </Cards>
