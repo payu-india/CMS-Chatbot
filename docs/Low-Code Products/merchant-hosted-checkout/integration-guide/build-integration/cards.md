@@ -18,33 +18,51 @@ metadata:
     - payu 3ds merchant hosted
   robots: index
 ---
+<Banner
+  isInline={true}
+  message="Integration effort: Developer required"
+  color="#FFC107"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+ />
+
 <Callout icon="⚠️" theme="warn">
   Collecting card data on your site requires PCI-DSS SAQ A-EP. International cards must be enabled by writing to integration@pay.in. Networks named in the source: Visa, Mastercard, American Express, Diners, and RuPay.
 </Callout>
 
-`pg=CC`. `bankcode` is network-specific.
+<Anchor target="_blank" href="https://docs.payu.in/docs/merchant-hosted-checkout">Merchant Hosted Checkout</Anchor> Card payments on Merchant Hosted Checkout are posted from your page with `pg=CC`. The customer enters the card number, expiry, and CVV on your site.
 
-<!-- VALIDATION NEEDED: Samples use bankcode CC, MAST, AMEX, VISA, and MASTERCARD. -->
+<Callout icon="📘" theme="info">
+  ### **API References:**
+
+  - [Collect Payment API — Cards](https://docs.payu.in/reference/_payment_merchant_hosted_cards)
+  - [Verify Payment API](https://docs.payu.in/reference/verify_payment_api)
+  - [getBinInfo](https://docs.payu.in/reference/get_bin_info_api)
+</Callout>
 
 ***
 
 ## Prerequisites
 
-Read [Build the Integration](./index) for the shared hash, reverse hash, and Verify Payment steps.
+Go through [What All I Need to Get Started](../../index#what-all-i-need-to-get-started) before you proceed. Collecting card data on your site requires PCI-DSS SAQ A-EP.
 
 ***
 
 ## Overview of Steps
 
-1. Validate the BIN, then prepare card parameters.
-2. Generate the SHA-512 hash on the server.
-3. Post the form to `_payment`.
-4. Verify the reverse hash.
-5. Call `verify_payment`.
+1. To start with, [prepare the payment request parameters](#step-1-prepare-payment-request-parameters) before you put them in the form.
+2. After the parameters are ready, [generate a secure hash](#step-2-generate-secure-hash) on your server.
+3. [Post the HTML form](#step-3-redirect-customers-to-payu-checkout) to `_payment`.
+   1. Merchant Hosted Checkout does not add a PayU page to customise. See [Step 3.1](#step-31-customize-payu-payment-page-optional).
+4. When the response arrives, [verify it with the reverse hash](#step-4-verify-response-via-reverse-hashing).
+5. [Verify the payment](#step-5-verify-the-payment) with Verify Payment before you fulfil the order.
 
 ***
 
 ## Build Integration Steps
+
+Follow these steps for this payment method:
 
 ### Step 1: Prepare Payment Request Parameters
 
@@ -76,7 +94,7 @@ Collect and structure the parameters below before you post a card payment. Call 
     | `furl` | `string` Failure URL PayU redirects to if the transaction fails. For example, `https://yourwebsite.com/failure`. |
     | `hash` | `string` SHA-512 hash from Step 2. Formula: `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)`. |
   </Tab>
-  <Tab title="Optional Advanced Parameters and Description">
+  <Tab title="Optional Advanced Paramters and Description">
     Send these optional parameters when the payment needs them.<br />
 
     | Parameter | Description |
@@ -100,23 +118,66 @@ Collect and structure the parameters below before you post a card payment. Call 
 
 ***
 
+***
+
 ### Step 2: Generate Secure Hash
 
+To ensure the payment request is secure, generate a hash on your server from the transaction details and your merchant salt. PayU uses this hash to confirm the request was not changed.
+
 <Accordion title="Steps to Generate Hash" icon="fa-key">
-  Generate the hash on your server. The cards page uses this order:
+  The Merchant Hosted method pages use this order. Refer to Step 1 for the parameter descriptions.
 
   ```text Logic
   sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
   ```
 
   <HashingSample />
+
+  <Callout icon="🚧" theme="warn">
+    ### Important!
+
+    Replace the key and salt with your test values. Generate the hash on the server.
+  </Callout>
+
+  **Hash scenarios:**
+
+  | UDF fields sent | Hash formula |
+  | --- | --- |
+  | All five UDFs | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)` |
+  | Some UDFs (for example udf2 and udf4 only) | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|udf2\|\|udf4\|\|\|\|\|\|\|SALT)` |
+  | No UDFs | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|SALT)` |
+
+  <!-- VALIDATION NEEDED: The legacy overview also shows a hash with no UDF fields. The APIs page says some modes can use a different sequence and does not print it. -->
+
+  <Callout icon="⚠️" theme="warn">
+    ### **Critical Rules**
+
+    - Generate the hash on your server only. The salt must not be in browser code.
+    - Keep every pipe (`|`) separator, including the empty fields.
+    - Do not add spaces inside a parameter value.
+    - Use UTF-8 before hashing.
+    - Use SHA-512.
+  </Callout>
+
+  #### Expected Output<br />
+
+  The result is a 128-character hexadecimal string. Send it as `hash` with the other parameters in the next step.<br />
+
+  <Callout icon="🚧" theme="warn">
+    ### **Common Causes of Invalid Hash:**
+
+    - Wrong parameter order.
+    - Missing pipe separators
+    - Wrong salt
+    - Extra spaces
+  </Callout>
 </Accordion>
 
 ***
 
-### Step 3: Post the Payment Form
+### Step 3: Redirect Customers to PayU Checkout
 
-POST the parameters from Step 1 and the hash from Step 2 to `_payment`. The customer enters the card on your page. PayU does not show a method-selection page.
+POST the parameters from Step 1 and the hash from Step 2 to `_payment` with an HTML form. The browser submits the form. For Merchant Hosted Checkout the customer has already entered the payment details on your page. PayU does not show a page where the customer picks the method.
 
 <Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
   <Cards>
@@ -128,7 +189,9 @@ POST the parameters from Step 1 and the hash from Step 2 to `_payment`. The cust
     </Card>
   </Cards>
 
-  | Environment | URL |
+  #### Environment
+
+  | | |
   | --- | --- |
   | **Test** | `https://test.payu.in/_payment` |
   | **Production** | `https://secure.payu.in/_payment` |
@@ -324,33 +387,171 @@ POST the parameters from Step 1 and the hash from Step 2 to `_payment`. The cust
       }
   }
   ```
+
+  <Image src="https://files.readme.io/4aeeafdbefc392fa362522d8209dc7268178e104e699b067895a3408ff412c42-merchant_hosted_flow.png" align="center" alt="Merchant Hosted Checkout payment flow" border={true} />
+
+  <Callout icon="🚧" theme="warn">
+    ### **Request Parameters**
+
+    - Use the descriptions in Step 1.
+    - Replace the sample values with your data and the hash from Step 2.
+  </Callout>
+
+  <Callout icon="✅" theme="okay">
+    ### **Best Practices:**
+
+    - Use a new `txnid` for every attempt. The saved-card text says PayU will not accept a duplicate transaction id.
+    - Do not store the CVV or the full card number.
+  </Callout>
 </Accordion>
 
 <Accordion title="Success and Error Response" icon="fa-circle-check">
-  Success: `mode=CC`, `status=success`, `error=E000`, `field7=AUTHPOSITIVE`.
+  Below is the response sample for this payment method.<br />
 
-  Failure: `status=failure`, `error=E1903`, `error_Message=Authorization failed at Bank`, `field7=AUTHNEGATIVE`. The sample says `cardhash` is no longer returned.
+  **Cards**<br />
+
+  ```text Success Response
+  mihpayid=403993715524069222
+  mode=CC
+  status=success
+  unmappedstatus=captured
+  field7=AUTHPOSITIVE
+  field9=Transaction is Successful
+  PG_TYPE=CC-PG
+  bankcode=CC
+  error=E000
+  error_Message=No Error
+  cardnum=512345XXXXXX2346
+  ```
+
+  ```text Failure Response
+  mihpayid=20869277619
+  mode=CC
+  status=failure
+  unmappedstatus=failed
+  field7=AUTHNEGATIVE
+  field9=Authorization failed at Bank
+  PG_TYPE=CC-PG
+  bankcode=AMEX
+  error=E1903
+  error_Message=Authorization failed at Bank
+  cardhash=This field is no longer supported in postback params.
+  ```
+
+  Refer to [Errors and Troubleshooting](../../errors-and-troubleshooting) for the error values named in the Merchant Hosted source.
+</Accordion>
+
+#### What Next - Customer Journey
+
+PayU sends the customer through the bank, wallet, or UPI step when that method needs it, then posts the result to your `surl` or `furl`. The customer journey diagram is on [Merchant Hosted Checkout](../../index#how-does-my-customer-pay).
+
+#### Step 3.1 Customize PayU Payment Page _(Optional)_
+
+<Accordion title="Customize Checkout" icon="fa-gear">
+  Merchant Hosted Checkout does not render a PayU page where the customer chooses a method. You choose the method on your own form with `pg` and `bankcode`.
+
+  <!-- DOCUMENTATION GAP: Logo, colour, and display language are not parameters on the Merchant Hosted pages. Do not send display_lang, enforce_paymethod, or drop_category. -->
 </Accordion>
 
 ***
 
 ### Step 4: Verify Response via Reverse Hashing
 
-<ReverseHashing />
+After the payment, PayU posts the result to your `surl` or `furl`. The post includes `status`, `mihpayid`, and `hash`. Compare your reverse hash with that `hash` before you fulfil the order.
 
-`authRefNo` on a guest response holds the AMEX AEVV or the RuPay reference. The source says to ask PayU to enable it.
+**Why this matters:** A browser redirect can be sent by anyone. The reverse hash is how you check that PayU sent the response.
+
+<Callout icon="✅" theme="okay">
+  ### **Validation Rules:**
+
+  - The hash you generate must match the `hash` in the response.
+  - The response includes `amount`. The Merchant Hosted pages do not say to compare it with your order amount.
+  - The response includes the `txnid` you posted.
+  - Use a new `txnid` for another attempt. PayU will not accept a duplicate.
+</Callout>
+
+<Accordion title="Reverse Hashing Logic" icon="fa-arrow-rotate-left">
+  The UPI Collect page prints this order. Compute it on your server from the response values.<br />
+
+  ```text Reverse Hash Logic
+  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+  ```
+
+  <ReverseHashing />
+</Accordion>
+
+<Callout icon="⚠️" theme="warn">
+  ### **Important!**
+
+  **If the hash does not match:**
+
+  - Do not fulfil the order.
+  - Do not treat the payment as successful.
+</Callout>
 
 ***
 
 ### Step 5: Verify the Payment
 
-<Verify_Payment_Tabs />
+After you check the reverse hash, confirm the payment. The production checklist says to confirm the transaction on the server if the callback does not arrive, and to use webhooks.
+
+1. **Reverse hash validation** (Step 4)
+2. **Webhooks:** The Merchant Hosted checklist says to use webhooks when the callback fails. Event names are not in this folder. See [Webhooks](https://docs.payu.in/docs/webhooks).
+3. **Verify Payment API:** Call [Verify Payment](https://docs.payu.in/reference/verify_payment_api) with the `txnid`.
+4. **PayU Dashboard:** The source says you can also review the transaction in the PayU Dashboard. The click-path is not in this folder.
+
+<Accordion title="Verify Payment Methods" icon="fa-check-double">
+  <Tabs>
+    <Tab title="1. Verify using Webhooks">
+      The production checklist says to use webhooks if the browser callback does not arrive.<br />
+
+      <!-- DOCUMENTATION GAP: Webhook event names and the Dashboard click-path are not in the Merchant Hosted pages. See https://docs.payu.in/docs/webhooks -->
+    </Tab>
+    <Tab title="2. Verify using APIs">
+      <Verify_Payment_Tabs />
+    </Tab>
+    <Tab title="3. Verify from Dashboard">
+      The source says to review transactions after go-live. It does not give the menu path.
+
+      <!-- DOCUMENTATION GAP: The Merchant Hosted pages do not show a Transactions menu screenshot. -->
+    </Tab>
+  </Tabs>
+</Accordion>
 
 ***
 
 ## Security
 
-Do not store the CVV or the full card number. Card collection on your site is in PCI-DSS scope (SAQ A-EP).
+Merchant Hosted Checkout uses SHA-512 for the request and the response. PayU rejects a request when the hash is wrong. Fulfil an order only after the reverse hash matches and you have confirmed the payment.
+
+| Requirement | Where it applies | Why |
+| --- | --- | --- |
+| Generate the hash on the server | Step 2 | The salt is a secret known to you and PayU |
+| Do not put the salt in the browser | Step 2 | The salt is used to build the hash |
+| Use HTTPS for the site and the callback URLs | Your checkout and `surl` / `furl` | The integration best-practices list says to transmit card details over HTTPS |
+| Check the reverse hash on every callback | Step 4 | The response `hash` is how you confirm PayU sent the result |
+| Do not store the CVV or the full card number | Your checkout | The integration best-practices list and the Pluxee page say this |
+| Use a new `txnid` for another attempt | Your order handling | The saved-card text says PayU will not accept a duplicate |
+
+<Callout icon="🔐" theme="warn">
+  ### **Non-negotiable Rules**
+
+  - Never generate the hash in the browser.
+  - Never skip the reverse hash check. A redirect to `surl` is not proof of payment.
+  - Never store the CVV.
+</Callout>
+
+### PCI Scope Reduction
+
+Card numbers and CVV are entered on your website, not on a PayU page. The source says that if you store, process, or transmit cardholder data you must complete PCI-DSS SAQ A-EP. This integration does not reduce that scope.
+
+***
+
+## Using WebView in a mobile app?
+
+Merchant Hosted Checkout is a browser form post to `_payment`. This guide does not include a WebView setup. For a native Android, iOS, React Native, or Flutter app, use the [Mobile SDKs](https://docs.payu.in/docs/mobile-sdk-integration).
+
+
 
 ***
 
@@ -358,9 +559,9 @@ Do not store the CVV or the full card number. Card collection on your site is in
 
 <Cards columns="2">
   <Card title="Test Integration" href="../test-integration" icon="fa-flask">
-    EMI test cards are listed there. Plain card test numbers are not in this folder.
+    Test values for this method are on the test page.
   </Card>
-  <Card title="Cards bank codes" href="https://docs.payu.in/docs/cards-bank-codes" icon="fa-list">
-    Values for `bankcode`.
+  <Card title="Go-live Checklist" href="../go-live-checklist" icon="fa-circle-check">
+    Switch to the production key, salt, and `https://secure.payu.in/_payment`.
   </Card>
 </Cards>
