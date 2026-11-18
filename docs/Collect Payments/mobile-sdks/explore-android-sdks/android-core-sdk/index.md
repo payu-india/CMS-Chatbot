@@ -80,7 +80,7 @@ Supported payment options
 * Target SDK Version: 36
 * Kotlin version: 1.6.10
 
-For the recommended integration workflow, refer to [Integration Steps](<redacted URL>). After you integrate with the above steps, you can use the APIs listed in the following to integrate web services or TPV integration:
+For the recommended integration workflow, refer to [Integration Steps](doc:integration-steps-android-checkout-pro). After you integrate with the above steps, you can use the APIs listed in the following to integrate web services or TPV integration:
 
 * [Web Services for Core SDK](<redacted URL>)
 * [TPV with Android Core SDK](<redacted URL>)
