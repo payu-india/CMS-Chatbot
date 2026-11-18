@@ -1,15 +1,20 @@
 ---
 title: BNPL Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [BNPL](<../../../../Low-Code Products/custom-checkout-merchant-hosted/integration-guide/build-integration/bnpl.md>).
+</Callout>
+
 Buy Now Pay Later (<Glossary>BNPL</Glossary>) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration. For more information, refer to the PayU BNPL API Integration, which includes the following:
 
 * [PayU Hosted Checkout BNPL Workflow](https://docs.payu.in/docs/bnpl-workflow-payu-hosted-checkout)

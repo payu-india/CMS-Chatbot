@@ -1,27 +1,32 @@
 ---
 title: Pluxee Card Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
 ---
 title: Pluxee Card Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Pluxee Card](<../../../../Low-Code Products/custom-checkout-merchant-hosted/integration-guide/build-integration/pluxee.md>).
+</Callout>
+
 This section describes the parameters required to collect payments using the Pluxee card with Merchant Hosted Checkout integration (using **\_payment** API) with a sample request and response.
 
 <Callout icon="📘" theme="info">

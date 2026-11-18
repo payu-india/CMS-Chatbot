@@ -1,10 +1,11 @@
 ---
 title: UPI Intent Integration
-deprecated: false
-hidden: false
-link:
-  new_tab: false
-  url: https://docs.payu.in/docs/upi-intent-server-to-server
+deprecated: true
+hidden: true
 metadata:
-  robots: index
+  robots: noindex
 ---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [UPI Intent](<../../../../Low-Code Products/custom-checkout-merchant-hosted/integration-guide/build-integration/upi-intent.md>).
+</Callout>
+

@@ -1,8 +1,8 @@
 ---
 title: Wallets Integration
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: Collect Payments with Wallets - Merchant Hosted Checkout
   description: >-
@@ -10,10 +10,15 @@ metadata:
     through PayU's Merchant Hosted Checkout integration. This guide outlines the
     process of initiating payments and verifying payment status, ensuring a
     smooth transaction experience.
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Wallets](<../../../../Low-Code Products/custom-checkout-merchant-hosted/integration-guide/build-integration/wallets.md>).
+</Callout>
+
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted as mentioned in <Anchor target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>.
 
 **Steps to Integrate**

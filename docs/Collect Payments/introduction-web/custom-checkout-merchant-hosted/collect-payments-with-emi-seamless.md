@@ -1,14 +1,19 @@
 ---
 title: EMI Integration
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: Collect Payments with EMI - Merchant Hosted Checkout
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [EMI](<../../../../Low-Code Products/custom-checkout-merchant-hosted/integration-guide/build-integration/emi.md>).
+</Callout>
+
 When your customer wants to opt for the EMI option with cards, you can use EMI APIs to check the customer’s eligibility and get the EMI amount, interest, processing fee, or No-Cost EMI and tenure. If the customer is eligible, you can post the transaction with EMI conversion.
 
 PayU EMI API Integration includes the following:
