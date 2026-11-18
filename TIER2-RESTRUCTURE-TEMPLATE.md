@@ -29,14 +29,27 @@ For each file found, read its full contents. Answer these questions before movin
 - Are there already well-structured pages to retain?
 - Are there legacy, duplicate, or deprecated pages that add noise?
 
-### 0.2 Read the two reference implementations
+### 0.2 Read the reference implementation
 
 Read this to understand the target structure before forming an opinion:
 
 **PayU Hosted Checkout** (completed reference implementation):
 `docs/Low-Code Products/payu-hosted-checkout-1/`
 
-This is the gold standard for structure, frontmatter, component usage, and content conventions. Use it as the benchmark — not as a template to clone. The right IA for the product you are restructuring will be adapted based on that product's complexity and integration model.
+Read every page in this directory. When reading, extract only:
+- The **heading structure** (H1, H2, H3) for each page — this is what you replicate
+- The **ReadMe components used** per section (Accordion, Cards, Callout, Banner, Tabs, table, prose)
+- The **section order** within each page
+- The **frontmatter fields** used
+
+Do NOT extract or reuse:
+- Any text, descriptions, or explanations from these pages
+- Any code samples, API calls, or cURL commands
+- Any diagrams or flow descriptions
+- Any parameter names, values, or examples
+- Any product-specific content of any kind
+
+The reference tells you **how a finished page is structured**. All content in the new pages must come exclusively from the source product's own files — not from the reference.
 
 ### 0.3 Check the reference directory for OAS/JSON files
 
@@ -181,7 +194,22 @@ Execute only the approved IA and content outlines. Do not add pages, remove page
 
 ### Source-first writing rule
 
-For every section of every page, read the relevant source files before writing. Extract parameters, code samples, test credentials, flow descriptions, and error codes from the source. Do not write from memory or training data.
+For every section of every page, read the relevant source files before writing. Extract parameters, code samples, test credentials, flow descriptions, and error codes from the source product's files. Do not write from memory or training data.
+
+### Diff check (before committing)
+
+After all pages are written, run a heading diff before the final commit:
+
+For every new page, list its H2 headings and compare them against the matching page in `docs/Low-Code Products/payu-hosted-checkout-1/`. Fix any drift in heading names or section order. This is the last gate before commit — if any page's H2 structure has drifted from the gold standard without an `[ADD]` or `[OMIT]` annotation from the approved Phase 1 outline, correct it now.
+
+```
+# example diff check for index.md
+grep "^## " docs/Low-Code\ Products/payu-hosted-checkout-1/index.md
+grep "^## " docs/Low-Code\ Products/{product-slug}/index.md
+# headings should match except for intentional [ADD] / [OMIT] from the approved outline
+```
+
+**Structure from reference, content from source.** The heading skeleton and component layout comes from the reference implementation. Every word of content comes from the source product's files. These are two separate inputs — never mix them. When writing a section, ask: "Does this content exist in the source files?" If no, write a gap comment.
 
 If a section has no source material:
 ```markdown
@@ -596,24 +624,24 @@ title: {Page Title}
 excerpt: {One-sentence description of what this page covers}
 deprecated: false
 hidden: false
-updatedAt: "YYYY-MM-DD"
+next:
+  pages: []
 metadata:
   title: {SEO title} | PayU Developer Docs
   description: >-
     {150–160 char SEO description}
   robots: index
-agentTools:
-  projectIndex: "https://docs.payu.in/llms.txt"
 ---
 ```
 
 **Rules:**
 - `title` — matches the H1 heading
 - `excerpt` — one sentence, no trailing period
-- `deprecated: false` and `hidden: false` for all new pages
-- `updatedAt` — the date the file is created/updated, `YYYY-MM-DD`
+- `deprecated: false` for all new pages
+- `hidden: false` for all new pages
+- `next.pages` — leave as empty array; fill in after all pages in the section are created
 - `metadata.robots: index` for all new pages
-- `agentTools.projectIndex` — always `"https://docs.payu.in/llms.txt"` exactly as shown
+- Do **not** include `updatedAt` or `agentTools` fields — these are injected by ReadMe and must not be set manually
 
 ---
 
@@ -706,6 +734,37 @@ Reference existing blocks from `custom_blocks/` rather than duplicating content:
 
 These rules are non-negotiable.
 
+### Structure from reference, content from source
+
+The reference implementation (`docs/Low-Code Products/payu-hosted-checkout-1/`) defines **structure only**:
+- Use the same H1, H2, H3 headings and section order
+- Use the same ReadMe components in the same positions
+- Use the same frontmatter fields
+
+Every word of content, every code sample, every parameter name, every endpoint URL, every diagram description must come from the **source product's own files** — not from the reference. If a section in the reference has no equivalent in the source product, write a `<!-- DOCUMENTATION GAP -->` comment instead of copying from the reference.
+
+### Do not copy from the reference
+
+Never copy any of the following from the PayU Hosted Checkout reference pages:
+- Text, sentences, or descriptions (even as a starting point to edit)
+- Code samples or cURL commands
+- Diagrams or flow descriptions
+- Parameter tables or values
+- Use cases or examples
+
+The reference is a structural mirror only.
+
+### Items specific to PayU Hosted Checkout — never include in other products
+
+The following appear in the reference implementation but are **exclusive to PayU Hosted Checkout**. They must not appear in any other product's restructured pages:
+
+- `display_lang` parameter — hosted checkout language selector
+- `enforce_paymethod` parameter — restricts visible payment methods on the hosted page
+- PayU Hosted Checkout test card numbers from the hosted test page (the `KeySaltReference` block is fine; hosted-only test cards are not)
+- UI/page customisation options (logo, colour, language) — these are hosted-page controls, not SDK controls
+- Redirect flow descriptions where PayU's hosted page is the payment UI
+- Any mention of ReadMe's "hosted" checkout page experience as a feature of the product being documented
+
 ### Do not invent
 
 Never generate content for any of the following unless it exists verbatim in the source files:
@@ -769,7 +828,9 @@ Keep all original content below the Callout. Never delete legacy content.
 
 ## Git Workflow
 
-**Branch naming:** `docs/restructure-{product-slug}`
+**Branch naming:** `v1.0_restructure-{product-slug}`
+
+The `v1.0_` prefix follows ReadMe's BiDi branch-to-version sync format (`{version}_{branch}`). The branch syncs to the matching ReadMe version for preview without extra tooling. Branch from `v1`.
 
 **Commit messages:** `Restructure {Product Name} — {what was done}`
 
@@ -798,8 +859,11 @@ One product per branch.
 
 **Frontmatter**
 - [ ] All new pages: `deprecated: false`, `hidden: false`, `metadata.robots: index`
-- [ ] All new pages: `updatedAt` set to today's date
-- [ ] All new pages: `agentTools.projectIndex: "https://docs.payu.in/llms.txt"`
+- [ ] All new pages: `next.pages: []` present (no `updatedAt`, no `agentTools`)
+
+**Diff check**
+- [ ] For every new page, H2 headings match the gold-standard page in `docs/Low-Code Products/payu-hosted-checkout-1/` — deviations are limited to `[ADD]` / `[OMIT]` sections approved in the Phase 1 outline
+- [ ] No PayU Hosted Checkout-exclusive items (`display_lang`, `enforce_paymethod`, hosted UI controls) appear in any new page
 
 **Content accuracy**
 - [ ] No invented APIs, parameters, endpoints, or test credentials
