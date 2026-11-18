@@ -63,10 +63,11 @@ Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-To
 | amount | _Double_ or _String_<br>Transaction amount payable in INR (e.g., `10`, `10.55`, or `"10.55"`). |
 | currency | _String_<br>Three-letter ISO 4217 currency code. Pass `INR`. |
 | paymentSource | _String_<br>Source channel identifier for the payment request (e.g., `WEB`). |
-| paymentMethod | _Object_<br>Container object holding payment instrument configurations. For DBQR, pass `name = "DBQR"` and `bankCode = "UPIDBQR"`. |
-| order | _Object_<br>Container object capturing order details, product information, user-defined fields, and price specifications. |
-| additionalInfo | _Object_<br>Container object defining transaction flow type, S2S routing flags, and merchant/customer VPA. |
-| callBackActions | _Object_<br>Container object holding callback and redirect URLs for payment outcomes. |
+| paymentMethod | _Object_<br>Container object holding payment instrument configurations. For DBQR, pass `name = "DBQR"` and `bankCode = "UPIDBQR"`. <br/> For more information, refer to [paymentMethod Object Fields Descrption
+](#paymentmethod-object-fields-descrption) |
+| order | _Object_<br>Container object capturing order details, product information, user-defined fields, and price specifications. For more information, refer to [order Object Fields Descrption](#order-object-fields-descrption) |
+| additionalInfo | _Object_<br>Container object defining transaction flow type, S2S routing flags, and merchant/customer VPA. For more information, refer to [additionalInfo Object Fields Descrption](#additionalinfo-object-fields-descrption)|
+| callBackActions | _Object_<br>Container object holding callback and redirect URLs for payment outcomes. For more information, refer to [callBackActions Object Fields Descrption](#callbackactions-object-fields-descrption) |
 | omniChannelDetails | _Object_<br>Container object holding soundbox terminal identifier, store details, and QR session expiry settings. |
 
 
@@ -90,7 +91,7 @@ Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-To
 | vpa | _String_<br>Merchant or customer Virtual Payment Address (VPA) used for the DBQR transaction flow (e.g., `7807305029@ptsbi`). |
 
 
-### order Object Fields Descrption
+#### order Object Fields Descrption
 **Mandatory Parameters**
 | Parameter | Description |
 | :--- | :--- |
@@ -115,18 +116,14 @@ Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-To
 | failureAction | _String_<br>HTTPS URL to redirect or notify if the payment fails or is declined. |
 | cancelAction | _String_<br>HTTPS URL to redirect or notify if the payment session is abandoned or cancelled. |
 
-
----
-
-### Nested Object: `omniChannelDetails`
-
-#### Mandatory Parameters
+#### omniChannelDetails Object Fields Descrption
+**Mandatory Parameters**
 
 | Parameter | Description |
 | :--- | :--- |
 | soundBoxTerminalId | _String_<br>Unique soundbox or POS terminal identifier mapped to the merchant (e.g., `N820W368427`). |
 
-#### Optional Parameters
+**Optional Parameters**
 
 | Parameter | Description |
 | :--- | :--- |
