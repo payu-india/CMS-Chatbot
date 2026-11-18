@@ -54,9 +54,7 @@ Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-To
 
 ## Request Parameters
 
-### Top-Level Parameters
-
-#### Mandatory Parameters
+### Mandatory Parameters
 
 | Parameter | Description |
 | :--- | :--- |
@@ -71,11 +69,9 @@ Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-To
 | callBackActions | _Object_<br>Container object holding callback and redirect URLs for payment outcomes. |
 | omniChannelDetails | _Object_<br>Container object holding soundbox terminal identifier, store details, and QR session expiry settings. |
 
----
 
-### Nested Object: `paymentMethod`
 
-#### Mandatory Parameters
+#### paymentMethod Object Fields Descrption
 
 | Parameter | Description |
 | :--- | :--- |
@@ -84,9 +80,7 @@ Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-To
 
 ---
 
-### Nested Object: `additionalInfo`
-
-#### Mandatory Parameters
+#### additionalInfo Object Fields Descrption
 
 | Parameter | Description |
 | :--- | :--- |
@@ -95,39 +89,32 @@ Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-To
 | txnS2sFlow | _String_<br>Server-to-server transaction flow identifier. Hardcoded value: `"4"`. |
 | vpa | _String_<br>Merchant or customer Virtual Payment Address (VPA) used for the DBQR transaction flow (e.g., `7807305029@ptsbi`). |
 
----
 
-### Nested Object: `order`
-
-#### Mandatory Parameters
-
+### order Object Fields Descrption
+**Mandatory Parameters**
 | Parameter | Description |
 | :--- | :--- |
 | paymentChargeSpecification.price | _Double_ or _String_<br>Payable price matching the transaction `amount` (e.g., `10.00` or `"10.00"`). |
 
-#### Optional Parameters
-
+*Optional Parameters**
 | Parameter | Description |
 | :--- | :--- |
 | productInfo | _String_<br>Brief description or product title for the transaction (e.g., `UPI Payment for Order`). |
 | userDefinedFields | _Object_<br>Container holding custom metadata fields `udf1` through `udf10` for internal reconciliation and tracking. |
 
----
-
-### Nested Object: `callBackActions`
-
-#### Mandatory Parameters
+#### callBackActions Object Fields Descrption
 
 | Parameter | Description |
 | :--- | :--- |
 | successAction | _String_<br>HTTPS URL to redirect or notify upon successful transaction completion. |
 
-#### Optional Parameters
+### Optional Parameters
 
 | Parameter | Description |
 | :--- | :--- |
 | failureAction | _String_<br>HTTPS URL to redirect or notify if the payment fails or is declined. |
 | cancelAction | _String_<br>HTTPS URL to redirect or notify if the payment session is abandoned or cancelled. |
+
 
 ---
 
