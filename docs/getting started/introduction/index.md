@@ -127,8 +127,6 @@ Enhance your checkout and customer experience with PayU’s extended offerings:
 
 * [**Cross-Border Payments**](https://docs.payu.in/docs/introduction-cross-border-payments-import)
 
-* [**Merchant Wallets**](https://docs.payu.in/docs/introduction-to-merchant-wallet/)
-
 * [**Split Settlements**](https://docs.payu.in/docs/split-settlments)
 
 * [**Tokenization / Save Cards**](https://docs.payu.in/docs/introduction-save-cards)
