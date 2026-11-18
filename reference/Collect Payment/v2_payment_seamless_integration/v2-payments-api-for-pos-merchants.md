@@ -20,856 +20,326 @@ The **V2 Payments API for POS Merchants** (`POST /v2/payments`) enables billing 
 When your billing application initiates a transaction via this endpoint, PayU's cloud payment engine pushes the payment request to the designated physical terminal (`posDeviceId`). The customer completes the transaction by dipping/tapping/swiping their card or scanning the dynamic UPI QR code displayed on the terminal screen.
 
 ---
+---
 
-## Environment
+## Environments & Endpoints
 
-| Environment | HTTP Method | Base URL | Content-Type |
-| :--- | :--- | :--- | :--- |
-| **Sandbox (UAT)** | `POST` | `https://apitest.payu.in/v2/payments` | `application/json` |
-| **Production** | `POST` | `https://api.payu.in/v2/payments` | `application/json` |
+| Environment | Method | Endpoint URL |
+| :--- | :--- | :--- |
+| **Production** | `POST` | `https://api.payu.in/apilayer/partner/initiatePayment` |
+| **Sandbox / Test (UAT)** | `POST` | `https://apitest.payu.in/apilayer/partner/initiatePayment` |
 
 ---
 
-## Request Authentication & Headers
+## Authentication & Request Headers
 
-Requests to PayU's v2 Payments API must be signed using the PayU V2 HMAC authorization scheme.
+Partner QR APIs require dual authentication: a Bearer OAuth token (`X-Partner-Token`) and an HMAC-SHA512 signature (`Authorization`).
 
-### Request Header
+<Callout icon="📘" theme="info">
+  ### **Merchant Key Placement**
+  Do **not** send `X-PayU-Merchant-Key` in the request headers for this API. Instead, pass the merchant key as `accountId` in the JSON request body.
+</Callout>
+
+### Mandatory Headers
 
 | Header | Description |
 | :--- | :--- |
-| Content-Type | _String_<br>Must be set to `application/json`. |
-| date | _String_<br>Current request timestamp formatted according to RFC 1123 / RFC 7231 (e.g. `Wed, 04 Nov 2026 12:00:00 GMT`). Must match the server clock within ±15 minutes. |
-| authorization | _String_<br>HMAC-SHA512 authorization signature calculated as per the PayU v2 authentication specification. |
+| Content-Type | _String_<br>Content type of the request payload. Must be set to `application/json`. |
+| X-Partner-Token | _String_<br>OAuth 2.0 Bearer access token obtained from PayU's OAuth Token API with `partner_payments` scope.<br>**Format:** `Bearer <access_token>` |
+| X-PayU-Reseller-UUID | _String_<br>Unique partner/reseller identifier (UUID) assigned by PayU. |
+| date | _String_<br>Current request timestamp formatted in GMT according to RFC 1123 / RFC 7231 (e.g. `Tue, 15 Jul 2025 07:03:38 GMT`). Used in HMAC signature verification. |
+| Authorization | _String_<br>HMAC-SHA512 authorization signature generated using the partner credentials, request date, and request body.<br>**Format:** `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<signature>"` |
+
+---
 
 ## Request Parameters
 
-### Mandatory Parameters
-
-| Parameter          | Description                                                                                                                                            |
-| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| accountId          | _String_<br />Merchant account identifier (MID or merchant key) registered with PayU (e.g. `smsplus`).                                                 |
-| txnId              | _String_<br />Merchant's unique transaction reference identifier. Special characters allowed: `-`, `_`. Maximum length: 50 characters.                 |
-| amount             | _Number_ or _String_<br />Gross transaction amount in INR. Both numeric and decimal string formats are accepted (e.g. `10.00`, `10.55`, or `"10.55"`). |
-| currency           | _String_<br />Three-letter ISO 4217 currency code. Must be set to `INR` for domestic in-store POS transactions.                                        |
-| paymentSource      | _String_<br />Source channel identifier for the payment request. Pass `POS` or `WEB` depending on your integration profile.                            |
-| paymentMethod      | _Object_<br />Container object specifying the in-store POS payment instrument and channel.                                                             |
-| additionalInfo     | _Object_<br />Container object holding transaction execution flow directives.                                                                          |
-| callBackActions    | _Object_<br />Container object holding callback and redirect endpoints.                                                                                |
-| order              | _Object_<br />Container object holding product metadata, custom tracking fields, and price specifications.                                             |
-| omniChannelDetails | _Object_<br />Container object holding hardware terminal specifications, device routing identifiers, and charge slip display lines.                    |
-
-### Optional Parameters
-
-| Parameter | Description                                                                                         |
-| :-------- | :-------------------------------------------------------------------------------------------------- |
-| gstParams | _Object_<br />Container object holding GST invoice parameters, GSTIN, and tax component breakdowns. |
-
-#### Nested Object: `paymentMethod`
-
-Defines the payment instrument and routing channel for POS terminal execution.
+### Top-Level Parameters
 
 #### Mandatory Parameters
 
-| Parameter | Description                                                                                        |
-| :-------- | :------------------------------------------------------------------------------------------------- |
-| name      | _String_<br />Payment method name. Must be hardcoded to `POS` for in-store terminal transactions.  |
-| bankCode  | _String_<br />Bank code identifier. Must be hardcoded to `POS` for in-store terminal transactions. |
-
-```json
-"paymentMethod": {
-  "name": "POS",
-  "bankCode": "POS"
-}
-```
+| Parameter | Description |
+| :--- | :--- |
+| accountId | _String_<br>Merchant account key / identifier provided by PayU. |
+| txnId | _String_<br>Merchant's unique transaction reference identifier. Must be unique per merchant transaction. |
+| amount | _Double_ or _String_<br>Transaction amount payable in INR (e.g., `10`, `10.55`, or `"10.55"`). |
+| currency | _String_<br>Three-letter ISO 4217 currency code. Pass `INR`. |
+| paymentSource | _String_<br>Source channel identifier for the payment request (e.g., `WEB`). |
+| paymentMethod | _Object_<br>Container object holding payment instrument configurations. For DBQR, pass `name = "DBQR"` and `bankCode = "UPIDBQR"`. |
+| order | _Object_<br>Container object capturing order details, product information, user-defined fields, and price specifications. |
+| additionalInfo | _Object_<br>Container object defining transaction flow type, S2S routing flags, and merchant/customer VPA. |
+| callBackActions | _Object_<br>Container object holding callback and redirect URLs for payment outcomes. |
+| omniChannelDetails | _Object_<br>Container object holding soundbox terminal identifier, store details, and QR session expiry settings. |
 
 ---
 
-#### Nested Object: `additionalInfo`
-
-Directs the transaction flow engine inside PayU's payment gateway.
+### Nested Object: `paymentMethod`
 
 #### Mandatory Parameters
 
-| Parameter  | Description                                                                                                       |
-| :--------- | :---------------------------------------------------------------------------------------------------------------- |
-| txnFlow    | _String_<br />Transaction flow mode. Must be set to `seamless` for in-store POS transactions.                     |
-| txnS2sFlow | _String_<br />Server-to-server flow configuration identifier. Must be set to `"4"` for in-store POS transactions. |
-
-```json
-"additionalInfo": {
-  "txnFlow": "seamless",
-  "txnS2sFlow": "4"
-}
-```
+| Parameter | Description |
+| :--- | :--- |
+| name | _String_<br>Payment method name. Hardcoded value: `DBQR`. |
+| bankCode | _String_<br>Payment scheme or bank code. Hardcoded value: `UPIDBQR`. |
 
 ---
 
-#### order JSON Object Fields Description
+### Nested Object: `additionalInfo`
 
-Encapsulates order details, product information, user-defined fields, and price specifications.
-
-**Mandatory Fields**
-
-| Parameter                        | Description                                                                                                        |
-| :------------------------------- | :----------------------------------------------------------------------------------------------------------------- |
-| paymentChargeSpecification       | _Object_<br />Financial charge container defining the payable transaction price.                                   |
-| paymentChargeSpecification.price | _Number_ or _String_<br />Gross transaction amount in INR. Must match the top-level `amount` value (e.g. `10.00`). |
-
-**Optional Fields**
-
-| Parameter              | Description                                                                                                    |
-| :--------------------- | :------------------------------------------------------------------------------------------------------------- |
-| productInfo            | _String_<br />Concise description or title of the product, service, or retail department (e.g. `POS Payment`). |
-| userDefinedFields      | _Object_<br />Container object holding custom merchant tracking metadata.                                      |
-| userDefinedFields.udf1 | _String_<br />User Defined Field 1 (e.g. store identifier `store-123`). Maximum length: 255 characters.        |
-| userDefinedFields.udf2 | _String_<br />User Defined Field 2 (e.g. cashier identifier `cashier-456`). Maximum length: 255 characters.    |
-| userDefinedFields.udf3 | _String_<br />User Defined Field 3 for internal merchant metadata. Maximum length: 255 characters.             |
-| userDefinedFields.udf4 | _String_<br />User Defined Field 4 for internal merchant metadata. Maximum length: 255 characters.             |
-| userDefinedFields.udf5 | _String_<br />User Defined Field 5 for internal merchant metadata. Maximum length: 255 characters.             |
-
-```json
-"order": {
-  "productInfo": "POS Payment",
-  "userDefinedFields": {
-    "udf1": "store-123",
-    "udf2": "cashier-456"
-  },
-  "paymentChargeSpecification": {
-    "price": 10.00
-  }
-}
-```
----
-
-#### callBackActions JSON Object Fields Description
-
-Defines callback actions for web redirects. While customer web browser redirection is not performed during offline in-store terminal payments, the V2 gateway schema enforces `successAction`.
-
-**Mandatory Fields**
-
-| Parameter     | Description                                                                                                                      |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------- |
-| successAction | _String_<br />HTTPS URL placeholder for success redirection. Provide your application URL (e.g. `https://yoursite.com/success`). |
-
-**Optional Fields**
+#### Mandatory Parameters
 
 | Parameter | Description |
 | :--- | :--- |
-| failureAction | _String_<br>HTTPS URL placeholder for failure redirection (e.g. `https://yoursite.com/failure`). |
-| cancelAction | _String_<br>HTTPS URL placeholder for cancellation redirection (e.g. `https://yoursite.com/cancel`). |
-
-```json
-"callBackActions": {
-  "successAction": "https://yoursite.com/success",
-  "failureAction": "https://yoursite.com/failure",
-  "cancelAction": "https://yoursite.com/cancel"
-}
-```
+| txnFlow | _String_<br>Transaction integration flow. Hardcoded value: `seamless`. |
+| createOrder | _Boolean_<br>Flag to create an order entity. Hardcoded value: `true`. |
+| txnS2sFlow | _String_<br>Server-to-server transaction flow identifier. Hardcoded value: `"4"`. |
+| vpa | _String_<br>Merchant or customer Virtual Payment Address (VPA) used for the DBQR transaction flow (e.g., `7807305029@ptsbi`). |
 
 ---
 
-#### omniChannelDetails JSON Object Fields Description
+### Nested Object: `order`
 
-Specifies the target POS hardware terminal, enforced payment mode on the screen, and custom print lines for the charge slip.
-
-**Mandatory Fields**
-
-| Parameter   | Description                                                                                                                                |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| posDeviceId | _String_<br />The unique terminal hardware identifier mapped to your merchant account in PayU's terminal management system (e.g. `"134"`). |
-
-**Optional Fields**
+#### Mandatory Parameters
 
 | Parameter | Description |
 | :--- | :--- |
-| posPaymentMethod | _String_<br>Specific payment mode to enforce on the POS terminal screen. Allowed values: `sale` (card swipe, chip dip, or contactless tap) or `qr` (Dynamic UPI QR code). If omitted, the terminal allows the cashier/customer to choose. |
-| userId | _String_<br>Cashier, counter, or operator identifier tagged to the transaction for auditing (e.g. `cashier-123`). |
-| printInfo | _Object_<br>Container object holding custom text lines printed on the physical thermal receipt slip. |
-| printInfo.printInfo1 | _String_<br>Primary custom print line displayed on the printed charge slip (e.g. store branch name `Puma Store Pimpri`). |
-| printInfo.printInfo2 | _String_<br>Secondary custom print line displayed on the printed charge slip (e.g. store address `Pimpri, Pune`). |
+| paymentChargeSpecification.price | _Double_ or _String_<br>Payable price matching the transaction `amount` (e.g., `10.00` or `"10.00"`). |
 
-```json
-"omniChannelDetails": {
-  "printInfo": {
-    "printInfo1": "Puma Store Pimpri",
-    "printInfo2": "Pimpri, Pune"
-  },
-  "userId": "cashier-123",
-  "posDeviceId": "134",
-  "posPaymentMethod": "sale"
-}
-```
+#### Optional Parameters
+
+| Parameter | Description |
+| :--- | :--- |
+| productInfo | _String_<br>Brief description or product title for the transaction (e.g., `UPI Payment for Order`). |
+| userDefinedFields | _Object_<br>Container holding custom metadata fields `udf1` through `udf10` for internal reconciliation and tracking. |
 
 ---
 
-#### gstParams JSON Object Fields Description
+### Nested Object: `callBackActions`
 
-Captures itemized GST tax invoices, tax identification numbers, and statutory levy breakdowns.
-**All the fields are optional**
-| Field | Description |
+#### Mandatory Parameters
+
+| Parameter | Description |
 | :--- | :--- |
-| invoiceNo | _String_<br>Unique commercial invoice number associated with the bill (e.g. `INV-1234`). |
-| invoiceDate | _String_<br>Invoice creation timestamp in ISO 8601 format with timezone offset (e.g. `1993-01-12T06:42:12+05:30`). |
-| invoiceName | _String_<br>Title or descriptive label of the invoice (e.g. `Store Invoice`). |
-| gstIn | _String_<br>15-character Goods and Services Tax Identification Number (GSTIN) of the merchant or billing store (e.g. `08TESTF0078P1ZP`). |
-| gst | _Number_ or _String_<br>Total cumulative GST amount levied on the order. |
-| cgst | _Number_ or _String_<br>Central Goods and Services Tax amount. |
-| sgst | _Number_ or _String_<br>State Goods and Services Tax amount. |
-| igst | _Number_ or _String_<br>Integrated Goods and Services Tax amount (for inter-state transactions). |
-| cess | _Number_ or _String_<br>Statutory cess amount applicable to the purchase. |
-| gstIncentive | _Number_ or _String_<br>Government-mandated GST incentive or concession value. |
-| gstPercentage | _Number_ or _String_<br>Aggregate GST percentage rate applied (e.g. `18` or `50`). |
+| successAction | _String_<br>HTTPS URL to redirect or notify upon successful transaction completion. |
 
-```json
-"gstParams": {
-  "invoiceNo": "INV-1234",
-  "invoiceDate": "1993-01-12T06:42:12+05:30",
-  "invoiceName": "Store Invoice",
-  "gstIn": "08TESTF0078P1ZP",
-  "gst": "10",
-  "cgst": "10",
-  "sgst": "40",
-  "igst": "50",
-  "cess": "60",
-  "gstIncentive": "12.5",
-  "gstPercentage": "50"
-}
-```
+#### Optional Parameters
+
+| Parameter | Description |
+| :--- | :--- |
+| failureAction | _String_<br>HTTPS URL to redirect or notify if the payment fails or is declined. |
+| cancelAction | _String_<br>HTTPS URL to redirect or notify if the payment session is abandoned or cancelled. |
+
+---
+
+### Nested Object: `omniChannelDetails`
+
+#### Mandatory Parameters
+
+| Parameter | Description |
+| :--- | :--- |
+| soundBoxTerminalId | _String_<br>Unique soundbox or POS terminal identifier mapped to the merchant (e.g., `N820W368427`). |
+
+#### Optional Parameters
+
+| Parameter | Description |
+| :--- | :--- |
+| outletName | _String_<br>Physical outlet or store name (e.g., `puma pimpri`). |
+| vendorId | _String_<br>Partner or vendor reference identifier. |
+| tips | _String_<br>Gratuity or tips amount/information, if applicable. |
+| childMerchId | _String_<br>Child merchant account identifier for multi-merchant store configurations. |
+| expiryTime | _String_<br>QR code session time-to-live / expiry duration in seconds (e.g., `"100"`). |
 
 ---
 
 ## Sample Request
 
-The following cURL command demonstrates initiating a ₹10.00 in-store POS sale transaction:
+### Step A: Generate HMAC Signature (Node.js)
 
-```shell cURL
-curl --location 'https://api.payu.in/v2/payments' \
---header 'Content-Type: application/json' \
---header 'date: Wed, 04 Nov 2026 14:19:05 GMT' \
---header 'authorization: {{authorization}}' \
---data-raw '{
-  "accountId": "smsplus",
-  "txnId": "b5f297999999879895905",
-  "amount": 10.00,
+```javascript
+const crypto = require('crypto');
+
+const CLIENT_ID = 'YOUR_PARTNER_CLIENT_ID';
+const CLIENT_SECRET = 'YOUR_PARTNER_CLIENT_SECRET';
+
+const requestPayload = {
+  "accountId": "gtKFFx",
+  "txnId": "b5f1212001123",
+  "amount": 10,
   "currency": "INR",
   "paymentSource": "WEB",
   "paymentMethod": {
-    "name": "POS",
-    "bankCode": "POS"
+    "name": "DBQR",
+    "bankCode": "UPIDBQR"
+  },
+  "order": {
+    "productInfo": "UPI Payment for Order",
+    "userDefinedFields": {
+      "udf1": "",
+      "udf2": "",
+      "udf3": "",
+      "udf4": "",
+      "udf5": "",
+      "udf6": "",
+      "udf7": "",
+      "udf8": "",
+      "udf9": "",
+      "udf10": ""
+    },
+    "paymentChargeSpecification": {
+      "price": "10.00"
+    }
   },
   "additionalInfo": {
     "txnFlow": "seamless",
-    "txnS2sFlow": "4"
+    "createOrder": true,
+    "txnS2sFlow": "4",
+    "vpa": "7807305029@ptsbi"
   },
   "callBackActions": {
     "successAction": "https://yoursite.com/success",
     "failureAction": "https://yoursite.com/failure",
     "cancelAction": "https://yoursite.com/cancel"
   },
-  "order": {
-    "productInfo": "POS Payment",
-    "userDefinedFields": {
-      "udf1": "store-123",
-      "udf2": "cashier-456"
-    },
-    "paymentChargeSpecification": {
-      "price": 10.00
-    }
-  },
-  "gstParams": {
-    "invoiceNo": "INV-1234",
-    "invoiceDate": "1993-01-12T06:42:12+05:30",
-    "invoiceName": "Store Invoice",
-    "gstIn": "08TESTF0078P1ZP",
-    "gst": "10",
-    "cgst": "10",
-    "sgst": "40",
-    "igst": "50",
-    "cess": "60",
-    "gstIncentive": "12.5",
-    "gstPercentage": "50"
-  },
   "omniChannelDetails": {
-    "printInfo": {
-      "printInfo1": "Puma Store Pimpri",
-      "printInfo2": "Pimpri, Pune"
-    },
-    "userId": "cashier-123",
-    "posDeviceId": "134",
-    "posPaymentMethod": "sale"
-  }
-}'
-```
-```javascript Node.js
-const requestDate = new Date().toUTCString(); // RFC 1123 timestamp
-const authorizationToken = "YOUR_V2_AUTHORIZATION_HEADER";
-
-const payload = {
-  accountId: "smsplus",
-  txnId: "b5f297999999879895905",
-  amount: 10.00,
-  currency: "INR",
-  paymentSource: "WEB",
-  paymentMethod: {
-    name: "POS",
-    bankCode: "POS"
-  },
-  additionalInfo: {
-    txnFlow: "seamless",
-    txnS2sFlow: "4"
-  },
-  callBackActions: {
-    successAction: "https://yoursite.com/success",
-    failureAction: "https://yoursite.com/failure",
-    cancelAction: "https://yoursite.com/cancel"
-  },
-  order: {
-    productInfo: "POS Payment",
-    userDefinedFields: {
-      udf1: "store-123",
-      udf2: "cashier-456"
-    },
-    paymentChargeSpecification: {
-      price: 10.00
-    }
-  },
-  gstParams: {
-    invoiceNo: "INV-1234",
-    invoiceDate: "1993-01-12T06:42:12+05:30",
-    invoiceName: "Store Invoice",
-    gstIn: "08TESTF0078P1ZP",
-    gst: "10",
-    cgst: "10",
-    sgst: "40",
-    igst: "50",
-    cess: "60",
-    gstIncentive: "12.5",
-    gstPercentage: "50"
-  },
-  omniChannelDetails: {
-    printInfo: {
-      printInfo1: "Puma Store Pimpri",
-      printInfo2: "Pimpri, Pune"
-    },
-    userId: "cashier-123",
-    posDeviceId: "134",
-    posPaymentMethod: "sale"
+    "soundBoxTerminalId": "N820W368427",
+    "outletName": "puma pimpri",
+    "vendorId": "vendorId",
+    "tips": "tips",
+    "childMerchId": "childMerchId",
+    "expiryTime": "100"
   }
 };
 
-async function initiatePosPayment() {
-  try {
-    const response = await fetch("https://api.payu.in/v2/payments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "date": requestDate,
-        "authorization": authorizationToken
-      },
-      body: JSON.stringify(payload)
-    });
-
-    const data = await response.json();
-    console.log("POS Payment Initiation Response:", data);
-  } catch (error) {
-    console.error("Error initiating POS payment:", error);
-  }
-}
-
-initiatePosPayment();
+const requestBody = JSON.stringify(requestPayload);
+const date = new Date().toUTCString();
+const hashString = `${requestBody}|${date}|${CLIENT_SECRET}`;
+const signature = crypto.createHash('sha512').update(hashString).digest('hex');
+const authorization = `hmac username="${CLIENT_ID}", algorithm="sha512", headers="date", signature="${signature}"`;
 ```
-```python Python
-import json
-from datetime import datetime, timezone
-import requests
 
-# Generate RFC 1123 timestamp
-request_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
-authorization_token = "YOUR_V2_AUTHORIZATION_HEADER"
+### Step B: Call Initiate Payment API
 
-url = "https://api.payu.in/v2/payments"
-
-headers = {
-    "Content-Type": "application/json",
-    "date": request_date,
-    "authorization": authorization_token
-}
-
-payload = {
-    "accountId": "smsplus",
-    "txnId": "b5f297999999879895905",
-    "amount": 10.00,
-    "currency": "INR",
-    "paymentSource": "WEB",
-    "paymentMethod": {
-        "name": "POS",
-        "bankCode": "POS"
-    },
-    "additionalInfo": {
-        "txnFlow": "seamless",
-        "txnS2sFlow": "4"
-    },
-    "callBackActions": {
-        "successAction": "https://yoursite.com/success",
-        "failureAction": "https://yoursite.com/failure",
-        "cancelAction": "https://yoursite.com/cancel"
-    },
-    "order": {
-        "productInfo": "POS Payment",
-        "userDefinedFields": {
-            "udf1": "store-123",
-            "udf2": "cashier-456"
-        },
-        "paymentChargeSpecification": {
-            "price": 10.00
-        }
-    },
-    "gstParams": {
-        "invoiceNo": "INV-1234",
-        "invoiceDate": "1993-01-12T06:42:12+05:30",
-        "invoiceName": "Store Invoice",
-        "gstIn": "08TESTF0078P1ZP",
-        "gst": "10",
-        "cgst": "10",
-        "sgst": "40",
-        "igst": "50",
-        "cess": "60",
-        "gstIncentive": "12.5",
-        "gstPercentage": "50"
-    },
-    "omniChannelDetails": {
-        "printInfo": {
-            "printInfo1": "Puma Store Pimpri",
-            "printInfo2": "Pimpri, Pune"
-        },
-        "userId": "cashier-123",
-        "posDeviceId": "134",
-        "posPaymentMethod": "sale"
-    }
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(payload))
-print("Status Code:", response.status_code)
-print("Response JSON:", response.json())
-```
-```java Java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-
-public class InitiatePosPayment {
-
-    public static void main(String[] args) {
-        try {
-            String requestDate = DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneOffset.UTC));
-            String authorizationToken = "YOUR_V2_AUTHORIZATION_HEADER";
-
-            String jsonPayload = """
-            {
-              "accountId": "smsplus",
-              "txnId": "b5f297999999879895905",
-              "amount": 10.00,
-              "currency": "INR",
-              "paymentSource": "WEB",
-              "paymentMethod": {
-                "name": "POS",
-                "bankCode": "POS"
-              },
-              "additionalInfo": {
-                "txnFlow": "seamless",
-                "txnS2sFlow": "4"
-              },
-              "callBackActions": {
-                "successAction": "https://yoursite.com/success",
-                "failureAction": "https://yoursite.com/failure",
-                "cancelAction": "https://yoursite.com/cancel"
-              },
-              "order": {
-                "productInfo": "POS Payment",
-                "userDefinedFields": {
-                  "udf1": "store-123",
-                  "udf2": "cashier-456"
-                },
-                "paymentChargeSpecification": {
-                  "price": 10.00
-                }
-              },
-              "gstParams": {
-                "invoiceNo": "INV-1234",
-                "invoiceDate": "1993-01-12T06:42:12+05:30",
-                "invoiceName": "Store Invoice",
-                "gstIn": "08TESTF0078P1ZP",
-                "gst": "10",
-                "cgst": "10",
-                "sgst": "40",
-                "igst": "50",
-                "cess": "60",
-                "gstIncentive": "12.5",
-                "gstPercentage": "50"
-              },
-              "omniChannelDetails": {
-                "printInfo": {
-                  "printInfo1": "Puma Store Pimpri",
-                  "printInfo2": "Pimpri, Pune"
-                },
-                "userId": "cashier-123",
-                "posDeviceId": "134",
-                "posPaymentMethod": "sale"
-              }
-            }
-            """;
-
-            HttpClient client = HttpClient.newHttpClient();
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://api.payu.in/v2/payments"))
-                    .header("Content-Type", "application/json")
-                    .header("date", requestDate)
-                    .header("authorization", authorizationToken)
-                    .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("Status Code: " + response.statusCode());
-            System.out.println("Response Body: " + response.body());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
-```
-```php PHP
-<?php
-
-$requestDate = gmdate('D, d M Y H:i:s T'); // RFC 1123 format
-$authorizationToken = 'YOUR_V2_AUTHORIZATION_HEADER';
-
-$payload = [
-    'accountId' => 'smsplus',
-    'txnId' => 'b5f297999999879895905',
-    'amount' => 10.00,
-    'currency' => 'INR',
-    'paymentSource' => 'WEB',
-    'paymentMethod' => [
-        'name' => 'POS',
-        'bankCode' => 'POS'
-    ],
-    'additionalInfo' => [
-        'txnFlow' => 'seamless',
-        'txnS2sFlow' => '4'
-    ],
-    'callBackActions' => [
-        'successAction' => 'https://yoursite.com/success',
-        'failureAction' => 'https://yoursite.com/failure',
-        'cancelAction' => 'https://yoursite.com/cancel'
-    ],
-    'order' => [
-        'productInfo' => 'POS Payment',
-        'userDefinedFields' => [
-            'udf1' => 'store-123',
-            'udf2' => 'cashier-456'
-        ],
-        'paymentChargeSpecification' => [
-            'price' => 10.00
-        ]
-    ],
-    'gstParams' => [
-        'invoiceNo' => 'INV-1234',
-        'invoiceDate' => '1993-01-12T06:42:12+05:30',
-        'invoiceName' => 'Store Invoice',
-        'gstIn' => '08TESTF0078P1ZP',
-        'gst' => '10',
-        'cgst' => '10',
-        'sgst' => '40',
-        'igst' => '50',
-        'cess' => '60',
-        'gstIncentive' => '12.5',
-        'gstPercentage' => '50'
-    ],
-    'omniChannelDetails' => [
-        'printInfo' => [
-            'printInfo1' => 'Puma Store Pimpri',
-            'printInfo2' => 'Pimpri, Pune'
-        ],
-        'userId' => 'cashier-123',
-        'posDeviceId' => '134',
-        'posPaymentMethod' => 'sale'
-    ]
-];
-
-$ch = curl_init('https://api.payu.in/v2/payments');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Content-Type: application/json',
-    'date: ' . $requestDate,
-    'authorization: ' . $authorizationToken
-]);
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-echo "HTTP Code: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
-?>
-```
-```csharp C#
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        string requestDate = DateTime.UtcNow.ToString("r"); // RFC 1123 format
-        string authorizationToken = "YOUR_V2_AUTHORIZATION_HEADER";
-
-        string jsonPayload = @"{
-          ""accountId"": ""smsplus"",
-          ""txnId"": ""b5f297999999879895905"",
-          ""amount"": 10.00,
-          ""currency"": ""INR"",
-          ""paymentSource"": ""WEB"",
-          ""paymentMethod"": {
-            ""name"": ""POS"",
-            ""bankCode"": ""POS""
-          },
-          ""additionalInfo"": {
-            ""txnFlow"": ""seamless"",
-            ""txnS2sFlow"": ""4""
-          },
-          ""callBackActions"": {
-            ""successAction"": ""https://yoursite.com/success"",
-            ""failureAction"": ""https://yoursite.com/failure"",
-            ""cancelAction"": ""https://yoursite.com/cancel""
-          },
-          ""order"": {
-            ""productInfo"": ""POS Payment"",
-            ""userDefinedFields"": {
-              ""udf1"": ""store-123"",
-              ""udf2"": ""cashier-456""
-            },
-            ""paymentChargeSpecification"": {
-              ""price"": 10.00
-            }
-          },
-          ""gstParams"": {
-            ""invoiceNo"": ""INV-1234"",
-            ""invoiceDate"": ""1993-01-12T06:42:12+05:30"",
-            ""invoiceName"": ""Store Invoice"",
-            ""gstIn"": ""08TESTF0078P1ZP"",
-            ""gst"": ""10"",
-            ""cgst"": ""10"",
-            ""sgst"": ""40"",
-            ""igst"": ""50"",
-            ""cess"": ""60"",
-            ""gstIncentive"": ""12.5"",
-            ""gstPercentage"": ""50""
-          },
-          ""omniChannelDetails"": {
-            ""printInfo"": {
-              ""printInfo1"": ""Puma Store Pimpri"",
-              ""printInfo2"": ""Pimpri, Pune""
-            },
-            ""userId"": ""cashier-123"",
-            ""posDeviceId"": ""134"",
-            ""posPaymentMethod"": ""sale""
-          }
-        }";
-
-        using var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "https://api.payu.in/v2/payments")
-        {
-            Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json")
-        };
-
-        request.Headers.Add("date", requestDate);
-        request.Headers.Add("authorization", authorizationToken);
-
-        HttpResponseMessage response = await client.SendAsync(request);
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        Console.WriteLine($"Status Code: {response.StatusCode}");
-        Console.WriteLine($"Response: {responseBody}");
-    }
-}
+```bash cURL
+curl --location --request POST 'https://api.payu.in/apilayer/partner/initiatePayment' \
+--header 'Content-Type: application/json' \
+--header 'X-Partner-Token: Bearer YOUR_ACCESS_TOKEN' \
+--header 'X-PayU-Reseller-UUID: YOUR_RESELLER_UUID' \
+--header 'date: Tue, 15 Jul 2025 07:03:38 GMT' \
+--header 'Authorization: hmac username="YOUR_CLIENT_ID", algorithm="sha512", headers="date", signature="YOUR_SIGNATURE"' \
+--data-raw '{
+   "accountId": "gtKFFx",
+   "txnId": "b5f1212001123",
+   "amount": 10,
+   "currency": "INR",
+   "paymentSource": "WEB",
+   "paymentMethod": {
+       "name": "DBQR",
+       "bankCode": "UPIDBQR"
+   },
+   "order": {
+       "productInfo": "UPI Payment for Order",
+       "userDefinedFields": {
+           "udf1": "",
+           "udf2": "",
+           "udf3": "",
+           "udf4": "",
+           "udf5": "",
+           "udf6": "",
+           "udf7": "",
+           "udf8": "",
+           "udf9": "",
+           "udf10": ""
+       },
+       "paymentChargeSpecification": {
+           "price": "10.00"
+       }
+   },
+   "additionalInfo": {
+       "txnFlow": "seamless",
+       "createOrder": true,
+       "txnS2sFlow": "4",
+       "vpa": "7807305029@ptsbi"
+   },
+   "callBackActions": {
+       "successAction": "https://yoursite.com/success",
+       "failureAction": "https://yoursite.com/failure",
+       "cancelAction": "https://yoursite.com/cancel"
+   },
+   "omniChannelDetails": {
+       "soundBoxTerminalId": "N820W368427",
+       "outletName": "puma pimpri",
+       "vendorId": "vendorId",
+       "tips": "tips",
+       "childMerchId": "childMerchId",
+       "expiryTime": "100"
+   }
+}'
 ```
 
 ---
 
 ## Response Parameters
 
-The API response returns two top-level containers: `metaData` (transaction status and error descriptors) and `result` (generated identifiers).
+The response contains two main objects: `metaData` and `result`.
 
-### Response Container: `metaData`
+### Nested Object: `metaData`
 
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| txnId | _String_<br>Unique transaction ID passed by the merchant in the request. | `TXN0001` |
-| referenceId | _String_<br>Encrypted 64-character transaction reference generated by PayU. | `39679eb1408864fc5d26b4aaae5c69cf0e633108168442c548c317ff5cfd7239` |
-| txnStatus | _String_<br>Overall transaction status. Possible values: `pending`, `failed`. | `pending` |
-| unmappedStatus | _String_<br>Granular processing stage status. Possible values: `pending`, `failure`. | `pending` |
-| statusCode | _String_<br>Standard PayU response status code (e.g. `E000` for success). | `E000` |
-| message | _String_<br>Human-readable description of the status code. | `Payment initiated successfully` |
-
-### Response Container: `result`
-
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| paymentId | _String_<br>Unique payment identifier generated by PayU. | `1234567890` |
-| authAction | _String_<br>Internal authentication action URL generated by PayU's gateway. | `https://api.payu.in:8443/payments/990000000000005335/otps` |
-| otpPostUrl | _String_<br>Endpoint for posting OTP (empty for offline POS terminal transactions). | `""` |
+| Parameter | Description |
+| :--- | :--- |
+| txnId | _String_<br>Unique transaction ID passed by the merchant in the request. |
+| referenceId | _String_<br>Encoded unique identifier generated by PayU for the transaction session. |
+| txnStatus | _String_<br>Payment status. Initiated transactions return `pending`. |
+| unmappedStatus | _String_<br>Status at different transaction lifecycle stages (e.g., `pending`, `failure`). |
+| statusCode | _String_<br>PayU internal status code (e.g., `E342`). Returned on failure or non-success. |
+| message | _String_<br>Status code description or error reason. |
 
 ---
 
-## Transaction Lifecycle & Status Code Matrix
+### Nested Object: `result`
 
-The following table outlines the status codes, stage flags, and resolutions encountered when initiating in-store POS transactions:
-
-| Scenario | txnStatus | unmappedStatus | statusCode | message | Description & Troubleshooting |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Payment initiated successfully** | pending | pending | `E000` | Payment initiated successfully | The payment request was successfully accepted and dispatched to the POS terminal. The terminal is currently awaiting customer authorization. |
-| **Transaction not initiated** | failed | failure | `E342` | Transaction not initiated | The gateway could not initiate payment on the physical terminal. Verify that the terminal is powered on, connected to Wi-Fi/4G, and not in an active payment session. |
-| **Inactive payment option** | failed | failure | `EX158` | Merchant Integration Exception occurred | POS payment acceptance is not enabled or configured for the specified merchant account (`accountId`). Contact PayU support to activate POS processing. |
-| **Invalid PG & bank code** | failed | failure | `E1101` | Invalid PG & Bank Code Combination | The values passed in `paymentMethod.name` or `paymentMethod.bankCode` are invalid. Both fields must be set strictly to `"POS"`. |
-| **Invalid device ID** | failed | failure | `E2081` | Invalid Device Id | The `posDeviceId` supplied in `omniChannelDetails` is invalid, inactive, or not mapped to your merchant MID. |
+| Parameter | Description |
+| :--- | :--- |
+| otpPostUrl | _String_<br>PayU internal endpoint URL for handling authentication and OTP responses. |
+| authAction | _String_<br>PayU authentication/action URL generated for the payment transaction. |
+| paymentId | _String_<br>Unique payment reference identifier (`mihpayId`) generated by PayU for the DBQR transaction. |
+| merchantName | _String_<br>Business display name of the merchant account associated with the QR. |
+| merchantVpa | _String_<br>Merchant Virtual Payment Address (VPA) encoded into the generated DBQR payment string. |
+| qrString | _String_<br>UPI QR intent string. Render this value as a QR code image or stream it to a soundbox device for customer scanning. |
+| amount | _String_<br>Transaction amount for which the DBQR payment was created (e.g., `"10.00"`). |
 
 ---
 
-## Sample Responses
+## Sample Success Response
 
-### Success Scenario — Payment Initiated Successfully (`E000`)
+When the DBQR transaction is initiated successfully, PayU returns an HTTP `200 OK` with the transaction in `pending` status:
 
 ```json
 {
   "metaData": {
-    "message": "Payment initiated successfully",
-    "referenceId": "39679eb1408864fc5d26b4aaae5c69cf0e633108168442c548c317ff5cfd7239",
-    "statusCode": "E000",
-    "txnId": "454672833901",
+    "referenceId": "d663c7315932183ab92c095a1774d778cb4dc640bdc9fcd2bfc5138695da65dc",
+    "txnId": "b5f1212001123",
     "txnStatus": "pending",
     "unmappedStatus": "pending"
   },
   "result": {
-    "otpPostUrl": "",
-    "authAction": "https://api.payu.in:8443/payments/990000000000005335/otps",
-    "paymentId": "1234567890"
-  }
-}
-```
-
-### Failure Scenarios
-
-#### Transaction Not Initiated (`E342`)
-
-```json
-{
-  "metaData": {
-    "message": "Transaction not initiated",
-    "referenceId": "39679eb1408864fc5d26b4aaae5c69cf08b672ec877f06e9f41668e3a5e6eb30",
-    "statusCode": "E342",
-    "txnId": "454672833999",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
-  },
-  "result": {
-    "otpPostUrl": "",
-    "authAction": "https://api.payu.in:8443/payments/990000000000005335/otps",
-    "paymentId": "1234567890"
-  }
-}
-```
-
-#### Inactive Payment Option (`EX158`)
-
-```json
-{
-  "metaData": {
-    "message": "Merchant Integration Exception occurred",
-    "referenceId": "78a03c334c2b487ed65758a197702386967b81a26581af15be45b3063355cc45",
-    "statusCode": "EX158",
-    "txnId": "pos148",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
-  },
-  "result": {
-    "otpPostUrl": "",
-    "authAction": "https://api.payu.in:8443/payments/990000000000005335/otps",
-    "paymentId": "1234567890"
-  }
-}
-```
-
-#### Invalid PG & Bank Code (`E1101`)
-
-```json
-{
-  "metaData": {
-    "message": "Invalid PG & Bank Code Combination",
-    "referenceId": "78a03c334c2b487ed65758a197702386967b81a26581af15be45b3063355cc45",
-    "statusCode": "E1101",
-    "txnId": "pos148",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
-  },
-  "result": {
-    "otpPostUrl": "",
-    "authAction": "https://api.payu.in:8443/payments/990000000000005335/otps",
-    "paymentId": "1234567890"
-  }
-}
-```
-
-#### Invalid Device ID (`E2081`)
-
-```json
-{
-  "metaData": {
-    "message": "Invalid Device Id",
-    "referenceId": "f187f77206be8ec89c6935cadc2fc96ae23f1d893472f205ba6e407dd9ce4e06",
-    "statusCode": "E2081",
-    "txnId": "DBQRp123456789012",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
-  },
-  "result": {
-    "otpPostUrl": "",
-    "authAction": "https://api.payu.in:8443/payments/990000000000005335/otps",
-    "paymentId": "12312"
+    "otpPostUrl": "https://test.payu.in/ResponseHandler.php",
+    "authAction": "https://apitest.payu.in/payments/613345778913213977/otps",
+    "paymentId": "613345778913213977",
+    "merchantName": "PayUTestAccount",
+    "merchantVpa": "yellowqr.testing121@indus",
+    "qrString": "upi://pay?pa=yellowqr.testing121@indus&pn=PayU Test Account&tr=613345778913213977&tid=PPPL6133457789132139772309261525576&am=10.00&cu=INR&tn=UPI Transaction",
+    "amount": "10.00"
   }
 }
 ```
 
 ---
 
-## Server-to-Server (S2S) Webhook
+## Transaction Lifecycle & Webhook Notification
 
-Once the customer completes or cancels payment on the physical terminal, PayU dispatches an asynchronous HTTP POST webhook to your configured webhook endpoint.
-
-### Webhook Configuration
-- Register your HTTPS webhook endpoint with your PayU Integration Specialist or account manager during onboarding.
-- The webhook listener must respond with an HTTP `200 OK` status immediately upon receiving the payload.
-
-### Webhook Payload Schema
-
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| vendorTxnId | _String_<br>Internal vendor transaction identifier generated during terminal authorization. | `"1499262399"` |
-| txnId | _String_<br>Merchant transaction reference ID originally passed in the request. | `"b5f29799999987989990012345"` |
-| mihpayId | _Number_<br>PayU unique transaction identifier (`mihpayid`). | `27447252485` |
-| flowType | _String_<br>Operational integration flow type. | `"Integrated"` |
-| message | _String_<br>Status directive instructing the merchant to confirm state. | `"Please call check status api to get the transaction details"` |
-| status | _String_<br>Terminal payment outcome. Possible values: `captured`, `failed`. | `"captured"` |
+1. **Pending Status on Initiation**: Upon successful invocation, the transaction is created in `pending` status awaiting the customer's UPI payment.
+2. **Asynchronous Webhook**: When the customer scans the QR code and completes payment via their UPI app, PayU sends an asynchronous Server-to-Server (S2S) webhook notification to the configured partner/merchant webhook URL.
+3. **Status Enquiry**: Partners can also verify and reconcile the final transaction status using the **Omni Transaction Status Check API**.
 
 ### Sample Webhook Payload
 
@@ -878,13 +348,17 @@ Once the customer completes or cancels payment on the physical terminal, PayU di
   "vendorTxnId": "1499262399",
   "txnId": "b5f29799999987989990012345",
   "mihpayId": 27447252485,
-  "flowType": "Integrated",
+  "flowType": "Non-Integrated",
   "message": "Please call check status api to get the transaction details",
   "status": "captured"
 }
 ```
 
-<Callout icon="⚠️" theme="warn">
-  ### **Mandatory: Verify Final Transaction Status**
-  As indicated in the webhook message directive (`"Please call check status api to get the transaction details"`), your billing system should immediately invoke the **Status Enquiry API** using `txnId` to fetch complete payment metadata (card brand, authorization code, terminal RRN, and invoice breakdown) before marking the order as fulfilled in your local database.
-</Callout>
+| Parameter | Description |
+| :--- | :--- |
+| vendorTxnId | _String_<br>Partner or vendor transaction reference identifier. |
+| txnId | _String_<br>Merchant transaction identifier. |
+| mihpayId | _Number_<br>Unique PayU reference identifier for the completed transaction. |
+| flowType | _String_<br>Payment flow type (e.g., `Non-Integrated`). |
+| message | _String_<br>Actionable guidance message to verify transaction details via the Check Status API. |
+| status | _String_<br>Final payment capture state (e.g., `captured`). |
