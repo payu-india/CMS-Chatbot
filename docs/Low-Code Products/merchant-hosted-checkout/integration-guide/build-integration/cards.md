@@ -133,7 +133,197 @@ POST the parameters from Step 1 and the hash from Step 2 to `_payment`. The cust
   | **Test** | `https://test.payu.in/_payment` |
   | **Production** | `https://secure.payu.in/_payment` |
 
-  The HTML sample posts `pg=CC` and `bankcode=MAST`. The cURL sample posts `bankcode=CC`.
+  **Sample Payloads in HTML and Other Language Bindings**<br />
+
+  The HTML form posts `pg=CC` and `bankcode=MAST`. The cURL and language samples post `bankcode=CC`.
+
+  <!-- VALIDATION NEEDED: The HTML sample uses bankcode MAST. The Sample Request tab uses bankcode CC. The cURL sends ccexpyr as YY. The parameter table says four digits. -->
+
+  ```html
+  <body>
+  <form action='https://test.payu.in/_payment' method='post'>
+  <input type="hidden" name="key" value="JP***g" />
+  <input type="hidden" name="txnid" value="t6svtqtjRdl34W" />
+  <input type="hidden" name="productinfo" value="iPhone" />
+  <input type="hidden" name="amount" value="10" />
+  <input type="hidden" name="email" value="test@gmail.com" />
+  <input type="hidden" name="firstname" value="Ashish" />
+  <input type="hidden" name="lastname" value="Kumar" />
+  <input type="hidden" name="pg" value="CC" />
+  <input type="hidden" name="bankcode" value="MAST" />
+  <input type="hidden" name="ccnum" value="5123456789012346" />
+  <input type="hidden" name="ccname" value="Ashish Kumar" />
+  <input type="hidden" name="ccvv" value="123" />
+  <input type="hidden" name="ccexpmon" value="12" />
+  <input type="hidden" name="ccexpyr" value="2021" />
+  <input type="hidden" name="surl" value="your own success url" />
+  <input type="hidden" name="furl" value="your own failure url" />
+  <input type="hidden" name="phone" value="9988776655" />
+  <input type="hidden" name="hash" value="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
+  <input type="submit" value="submit"> </form>
+  </body>
+  </html>
+  ```
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=YOUR_MERCHANT_KEY" \
+    -d "txnid=TXN_12345" \
+    -d "amount=1000.00" \
+    -d "productinfo=Product+Description" \
+    -d "firstname=Customer+Name" \
+    -d "email=customer@example.com" \
+    -d "phone=9988776655" \
+    -d "pg=CC" \
+    -d "bankcode=CC" \
+    -d "ccnum=CARD_NUMBER" \
+    -d "ccexpmon=MM" \
+    -d "ccexpyr=YY" \
+    -d "ccvv=CVV" \
+    -d "ccname=NAME_ON_CARD" \
+    -d "surl=https://yourwebsite.com/success" \
+    -d "furl=https://yourwebsite.com/failure" \
+    -d "hash=HASH_GENERATED_ON_SERVER"
+  ```
+  ```python
+  import urllib.request
+  import urllib.parse
+
+  url = "https://test.payu.in/_payment"
+  payload = {
+      "key": "YOUR_MERCHANT_KEY",
+      "txnid": "TXN_12345",
+      "amount": "1000.00",
+      "productinfo": "Product Description",
+      "firstname": "Customer Name",
+      "email": "customer@example.com",
+      "phone": "9988776655",
+      "pg": "CC",
+      "bankcode": "CC",
+      "ccnum": "CARD_NUMBER",
+      "ccexpmon": "MM",
+      "ccexpyr": "YY",
+      "ccvv": "CVV",
+      "ccname": "NAME_ON_CARD",
+      "surl": "https://yourwebsite.com/success",
+      "furl": "https://yourwebsite.com/failure",
+      "hash": "HASH_GENERATED_ON_SERVER",
+  }
+  data = urllib.parse.urlencode(payload).encode("utf-8")
+  req = urllib.request.Request(url, data=data,
+        headers={"Content-Type": "application/x-www-form-urlencoded"}, method="POST")
+  with urllib.request.urlopen(req) as response:
+      print(response.read().decode("utf-8"))
+  ```
+  ```php
+  <?php
+  $url = "https://test.payu.in/_payment";
+  $payload = [
+      "key"         => "YOUR_MERCHANT_KEY",
+      "txnid"       => "TXN_12345",
+      "amount"      => "1000.00",
+      "productinfo" => "Product Description",
+      "firstname"   => "Customer Name",
+      "email"       => "customer@example.com",
+      "phone"       => "9988776655",
+      "pg"          => "CC",
+      "bankcode"    => "CC",
+      "ccnum"       => "CARD_NUMBER",
+      "ccexpmon"    => "MM",
+      "ccexpyr"     => "YY",
+      "ccvv"        => "CVV",
+      "ccname"      => "NAME_ON_CARD",
+      "surl"        => "https://yourwebsite.com/success",
+      "furl"        => "https://yourwebsite.com/failure",
+      "hash"        => "HASH_GENERATED_ON_SERVER",
+  ];
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/x-www-form-urlencoded"]);
+  $response = curl_exec($ch);
+  curl_close($ch);
+  echo $response;
+  ?>
+  ```
+  ```java
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.LinkedHashMap;
+  import java.util.Map;
+  import java.util.StringJoiner;
+  public class PayUPaymentProcessor {
+      public static void main(String[] args) throws Exception {
+          String url = "https://test.payu.in/_payment";
+          Map<String, String> params = new LinkedHashMap<>();
+          params.put("key", "YOUR_MERCHANT_KEY");
+          params.put("txnid", "TXN_12345");
+          params.put("amount", "1000.00");
+          params.put("productinfo", "Product Description");
+          params.put("firstname", "Customer Name");
+          params.put("email", "customer@example.com");
+          params.put("phone", "9988776655");
+          params.put("pg", "CC");
+          params.put("bankcode", "CC");
+          params.put("ccnum", "CARD_NUMBER");
+          params.put("ccexpmon", "MM");
+          params.put("ccexpyr", "YY");
+          params.put("ccvv", "CVV");
+          params.put("ccname", "NAME_ON_CARD");
+          params.put("surl", "https://yourwebsite.com/success");
+          params.put("furl", "https://yourwebsite.com/failure");
+          params.put("hash", "HASH_GENERATED_ON_SERVER");
+          StringJoiner formData = new StringJoiner("&");
+          for (Map.Entry<String, String> e : params.entrySet())
+              formData.add(URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8));
+          HttpClient client = HttpClient.newHttpClient();
+          HttpRequest request = HttpRequest.newBuilder()
+                  .uri(URI.create(url))
+                  .header("Content-Type", "application/x-www-form-urlencoded")
+                  .POST(HttpRequest.BodyPublishers.ofString(formData.toString()))
+                  .build();
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          System.out.println(response.body());
+      }
+  }
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Threading.Tasks;
+  class PayUPaymentProcessor {
+      static async Task Main(string[] args) {
+          using var client = new HttpClient();
+          var formData = new FormUrlEncodedContent(new[] {
+              new KeyValuePair<string, string>("key",         "YOUR_MERCHANT_KEY"),
+              new KeyValuePair<string, string>("txnid",       "TXN_12345"),
+              new KeyValuePair<string, string>("amount",      "1000.00"),
+              new KeyValuePair<string, string>("productinfo", "Product Description"),
+              new KeyValuePair<string, string>("firstname",   "Customer Name"),
+              new KeyValuePair<string, string>("email",       "customer@example.com"),
+              new KeyValuePair<string, string>("phone",       "9988776655"),
+              new KeyValuePair<string, string>("pg",          "CC"),
+              new KeyValuePair<string, string>("bankcode",    "CC"),
+              new KeyValuePair<string, string>("ccnum",       "CARD_NUMBER"),
+              new KeyValuePair<string, string>("ccexpmon",    "MM"),
+              new KeyValuePair<string, string>("ccexpyr",     "YY"),
+              new KeyValuePair<string, string>("ccvv",        "CVV"),
+              new KeyValuePair<string, string>("ccname",      "NAME_ON_CARD"),
+              new KeyValuePair<string, string>("surl",        "https://yourwebsite.com/success"),
+              new KeyValuePair<string, string>("furl",        "https://yourwebsite.com/failure"),
+              new KeyValuePair<string, string>("hash",        "HASH_GENERATED_ON_SERVER")
+          });
+          var response = await client.PostAsync("https://test.payu.in/_payment", formData);
+          Console.WriteLine(await response.Content.ReadAsStringAsync());
+      }
+  }
+  ```
 </Accordion>
 
 <Accordion title="Success and Error Response" icon="fa-circle-check">
