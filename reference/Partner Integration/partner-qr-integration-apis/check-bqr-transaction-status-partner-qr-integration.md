@@ -30,67 +30,111 @@ See [Authentication for Partner QR APIs](authentication-partner-qr-apis) for OAu
 
 ***
 
-## Request headers
+## Request Headers
 
-| Parameter            | Value                                                                                      |
-| -------------------- | ------------------------------------------------------------------------------------------ |
-| Content-Type         | `application/json`                                                                         |
-| X-Partner-Token      | `Bearer {access_token}` — token with `partner_payments` scope                              |
-| X-PayU-Reseller-UUID | Your PayU-issued partner/reseller UUID                                                     |
-| X-PayU-Merchant-Key  | Merchant key (same value as `accountId` in Initiate Payment)                               |
-| date                 | Current GMT timestamp (used in HMAC)                                                       |
-| Authorization        | `hmac username="{client_id}", algorithm="sha512", headers="date", signature="{signature}"` |
+### Mandatory Headers
 
-***
-
-## Request parameters
-
-| Parameter         | Description                                                                           | Example               |
-| ----------------- | ------------------------------------------------------------------------------------- | --------------------- |
-| txnId `mandatory` | Array of partner transaction IDs to check. Pass the `txnId` used in Initiate Payment. | `["PARTNER_TXN_001"]` |
+| Header               | Description                                                                                                                                                                                                  |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Content-Type         | _String_<br />Request payload content type. Must be set to `application/json`.                                                                                                                               |
+| X-Partner-Token      | _String_<br />Bearer token obtained from PayU's OAuth Token API.<br />**Example:** `Bearer eac098a510327e68a50c7e65fda3b12a48ac2836b482d190b65997208d8b9e8d`                                                 |
+| X-PayU-Reseller-UUID | _String_<br />Unique partner/reseller identifier (UUID) assigned by PayU.<br />**Example:** `11f1-81c5-0fa9d53c-b101-0a9dbb6a0045`                                                                           |
+| X-PayU-Merchant-Key  | _String_<br />Merchant identifier (merchant key) associated with the transaction.<br />**Example:** `DSHd23`                                                                                                 |
+| authorization        | _String_<br />HMAC authorization header generated using the partner credentials and request date.<br />**Format:** `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<signature>"` |
+| date                 | _String_<br />Request timestamp formatted in GMT according to RFC 1123.<br />**Example:** `Thu, 16 Apr 2026 06:01:44 GMT`                                                                                    |
 
 ***
 
-## Sample request
+## Request Parameters
 
-### Step A: Generate HMAC signature (JavaScript)
+### Mandatory Parameters
 
-```javascript
-const crypto = require('crypto');
+| Parameter | Description                                                                                                                                                                  |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| txnId     | _Array of Strings_<br />List of merchant transaction IDs to verify. Pass one or more transaction identifiers in an array.<br />**Example:** `["b5f29799999987989990012345"]` |
 
-const CLIENT_ID = 'YOUR_CLIENT_ID';
-const CLIENT_SECRET = 'YOUR_CLIENT_SECRET';
+***
 
-const requestBody = JSON.stringify({
-  "txnId": ["PARTNER_TXN_001"]
-});
+## Sample Request
 
-const date = new Date().toUTCString();
-const hashString = requestBody + '|' + date + '|' + CLIENT_SECRET;
-const signature = crypto.createHash('sha512').update(hashString).digest('hex');
-const authorization = `hmac username="${CLIENT_ID}", algorithm="sha512", headers="date", signature="${signature}"`;
-```
-
-### Step B: Call Check BQR Transaction Status
-
-```curl
-curl --location --request POST 'https://apitest.payu.in/apilayer/partner/transaction/verifyStatus' \
+```bash cURL
+curl --location 'https://api.payu.in/partner/transaction/verifyStatus' \
 --header 'Content-Type: application/json' \
---header 'X-Partner-Token: Bearer YOUR_ACCESS_TOKEN' \
---header 'X-PayU-Reseller-UUID: YOUR_RESELLER_UUID' \
---header 'X-PayU-Merchant-Key: MERCHANT_KEY' \
---header 'date: Tue, 15 Jul 2025 07:03:38 GMT' \
---header 'Authorization: hmac username="YOUR_CLIENT_ID", algorithm="sha512", headers="date", signature="YOUR_SIGNATURE"' \
---data-raw '{
-  "txnId": ["PARTNER_TXN_001"]
+--header 'X-Partner-Token: Bearer eac098a510327e68a50c7e65fda3b12a48ac2836b482d190b65997208d8b9e8d' \
+--header 'X-PayU-Reseller-UUID: 11f1-81c5-0fa9d53c-b101-0a9dbb6a0045' \
+--header 'X-PayU-Merchant-Key: DSHd23' \
+--header 'authorization: hmac username="<clientId>", algorithm="sha512", headers="date", signature="0742db17cbab1a1881a0ecbb2d950fb19b4da2a061acbb42c184e68d7a44bc2e0c78ad97b457f15fe7008f6b6b27d40cafd774da3d2b64d5159a918a58ceed74"' \
+--header 'date: Thu, 16 Apr 2026 06:01:44 GMT' \
+--data '{
+    "txnId": [
+        "b5f29799999987989990012345"
+    ]
 }'
 ```
 
 ***
 
-## Sample response
+## Response Parameters
 
-### Success
+### Top-Level Parameters
+
+| Parameter | Description                                                                                                                 |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| status    | _Integer_<br />Status of the web service call:<br />• `1`: Web service call succeeded.<br />• `0`: Web service call failed. |
+| message   | _String_<br />Overall status message returned by the API (e.g., `Success`).                                                 |
+| result    | _Array of Objects_<br />Array containing transaction records matching the queried transaction IDs.                          |
+
+***
+
+### Nested Object: `result[]`
+
+| Parameter           | Description                                                                                                                                                                                                                                                              |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bqrTxnStatusMessage | _String_<br />Status description message for the transaction (e.g., `Transaction is Successful`).                                                                                                                                                                        |
+| message             | _String_<br />Per-transaction lookup message (e.g., `Found TxnId`, `Transaction is Successful`, `Transaction is Pending`).                                                                                                                                               |
+| txnId               | _String_<br />Merchant transaction identifier.                                                                                                                                                                                                                           |
+| mihpayId            | _Number_ or _String_<br />Unique PayU reference identifier (PayU ID).                                                                                                                                                                                                    |
+| status              | _String_<br />Merchant-facing mapped payment status:<br />• **DBQR:** `success`, `failure`, or `pending` (QR code generated, awaiting customer payment).<br />• **Card:** `success`, `failure`, or `pending` (transaction pushed to terminal, awaiting customer action). |
+| unmappedStatus      | _String_<br />PayU internal transaction status prior to merchant mapping (e.g., `captured`, `failed`, `in progress`, `initiated`, `dropped`).                                                                                                                            |
+| errorCode           | _String_<br />PayU error code (`E000` indicates success).                                                                                                                                                                                                                |
+| errorMessage        | _String_<br />Human-readable error description for `errorCode` (`No Error` indicates success).                                                                                                                                                                           |
+| mode                | _String_<br />Payment mode of the transaction:<br />• `DBQR`: Dynamic Bharat QR / UPI QR.<br />• `POS`: Point of Sale terminal payment (Card swipe/dip/tap).                                                                                                             |
+| bankcode            | _String_<br />Payment scheme or bank code:<br />• **DBQR:** e.g., `UPIDBQR`.<br />• **Card:** Scheme of the card (e.g., `VISA`, `MAST`, `RUPAY`).                                                                                                                        |
+| pgType              | _String_<br />Payment gateway label formatted as `{mode}-PG`:<br />• **DBQR:** `DBQR-PG`.<br />• **Card:** `POS-PG`.                                                                                                                                                     |
+| amount              | _Number_<br />Transaction base amount payable.                                                                                                                                                                                                                           |
+| originalAmount      | _Number_<br />Original transaction amount before promotional or offer discounts.                                                                                                                                                                                         |
+| additionalCharges   | _Number_<br />Additional surcharges applied on top of the base amount (e.g., convenience fees, tips, surcharges).                                                                                                                                                        |
+| discount            | _Number_<br />Total promotional discount applied to the transaction.                                                                                                                                                                                                     |
+| instantDiscount     | _Number_<br />Instant discount amount deducted during checkout.                                                                                                                                                                                                          |
+| netDebitAmount      | _Number_<br />Net amount debited from customer: `originalAmount - discount + additionalCharges`. Returns `0` on non-successful transactions.                                                                                                                             |
+| originalCurrency    | _String_<br />Transaction currency code (default: `INR`).                                                                                                                                                                                                                |
+| bankReferenceNumber | _String_<br />Bank or acquirer payment reference identifier (RRN or UTR).                                                                                                                                                                                                |
+| productInfo         | _String_<br />Product description:<br />• **DBQR:** e.g., `Offline Dynamic`, `UPI Payment for Order`.<br />• **Card:** e.g., `Integrated POS`, `Non-Integrated POS`.                                                                                                     |
+| addedOn             | _String_<br />Timestamp when the transaction was created in PayU (`YYYY-MM-DD HH:MM:SS`).                                                                                                                                                                                |
+| merchantUTR         | _String_<br />Settlement UTR credited to the merchant bank account. Returns `null` if not yet settled.                                                                                                                                                                   |
+| appName             | _String_<br />UPI application used by the payer for DBQR transactions (e.g., `GooglePay`, `PhonePe`). Returns `null` for Card POS transactions.                                                                                                                          |
+| nameOnCard          | _String_<br />Customer name as embossed on the card for Card POS transactions. Returns `null` for DBQR transactions.                                                                                                                                                     |
+| cardNo              | _String_<br />Masked card number (e.g., `XXXXXXXXXXXX1234`) for Card POS transactions. Returns `null` for DBQR transactions.                                                                                                                                             |
+| reverseHash         | _String_<br />SHA-512 security hash generated by PayU for verifying response authenticity.                                                                                                                                                                               |
+| surl                | _String_<br />Success redirect URL specified for the transaction.                                                                                                                                                                                                        |
+| furl                | _String_<br />Failure redirect URL specified for the transaction.                                                                                                                                                                                                        |
+| curl                | _String_<br />Cancel redirect URL specified for the transaction.                                                                                                                                                                                                         |
+| field0              | _String_<br />• **DBQR:** PayU reference / QR reference ID.<br />• **Card:** POS Device ID / Terminal ID.                                                                                                                                                                |
+| field1              | _String_<br />• **DBQR:** Customer name.<br />• **Card:** Customer name on card.                                                                                                                                                                                         |
+| field2              | _String_<br />• **DBQR:** Bank approval code.<br />• **Card:** Acquirer authorization code.                                                                                                                                                                              |
+| field3              | _String_<br />• **DBQR:** Customer / Payer VPA.<br />• **Card:** Card mode and PIN verification indicator (e.g., `CTLESSEMV\|false`).                                                                                                                                    |
+| field4              | _String_<br />• **DBQR:** Merchant VPA.<br />• **Card:** Merchant mobile number \| Merchant username.                                                                                                                                                                    |
+| field5              | _String_<br />• **DBQR:** NPCI UPI transaction ID.<br />• **Card:** Acquirer Terminal ID (TID).                                                                                                                                                                          |
+| field6              | _String_<br />• **DBQR:** Payer account details (e.g., `Account\|Mobile\|IFSC`).<br />• **Card:** Empty string.                                                                                                                                                          |
+| field7              | _String_<br />• **DBQR:** UPI bank response code.<br />• **Card:** Status and message on failure/initiation (e.g., `{status}\|{message}`).                                                                                                                               |
+| field8              | _String_<br />• **DBQR:** UPI transaction note.<br />• **Card:** Empty string.                                                                                                                                                                                           |
+| field9              | _String_<br />• **DBQR:** Status trail (e.g., `success\|Transaction success\|Completed Using Callback`).<br />• **Card:** Acquirer approval trail (e.g., `00\|APPROVED\|Transaction approved successfully`).                                                             |
+
+***
+
+## Sample Responses
+
+### 1. Dynamic Bharat QR (DBQR) Response
 
 ```json
 {
@@ -98,89 +142,95 @@ curl --location --request POST 'https://apitest.payu.in/apilayer/partner/transac
   "status": 1,
   "result": [
     {
-      "mihpayId": 21612493009,
-      "txnId": "PARTNER_TXN_001",
-      "status": "success",
-      "unmappedStatus": "captured",
-      "originalAmount": 100.00,
-      "netDebitAmount": 100.00,
-      "mode": "UPI",
-      "field9": "Transaction is Successful",
+      "bqrTxnStatusMessage": "Transaction is Successful",
+      "field0": "27447252485",
+      "field1": "NAVNATH SAMBHAJI GAWADE",
+      "field2": "359524",
+      "field3": "navnathgawade99@okhdfcbank",
+      "field4": "12096969ofdbqr.payu@indus",
+      "field5": "PPPL27447252485250226175136699ee950",
+      "field6": "50100330275312|8693817260|HDFC0001602",
+      "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
+      "field8": "UPI Transaction",
+      "field9": "success|Transaction success|Completed Using Callback",
+      "instantDiscount": 0,
+      "reverseHash": "278a47bf669e4e3a3957738e97c0b6668ad344536889e617976a7a1a051987561999db808fc087df0593dd3dd6882d4e4e72b696e257c5c309a615b9cc02ce4b",
+      "curl": "https://test.payu.in/admin/test_response",
+      "furl": "https://test.payu.in/admin/test_response",
+      "surl": "https://test.payu.in/admin/test_response",
+      "mihpayId": 27447252485,
+      "bankReferenceNumber": "119144221818",
+      "amount": 1,
+      "mode": "DBQR",
+      "originalAmount": 1,
+      "additionalCharges": 0,
+      "discount": 0,
+      "netDebitAmount": 1,
+      "productInfo": "UPI Payment for Order",
+      "bankcode": "UPIDBQR",
       "errorCode": "E000",
       "errorMessage": "No Error",
-      "addedOn": "2024-11-19 21:17:55"
+      "addedOn": "2026-02-25 17:51:36",
+      "pgType": "DBQR-PG",
+      "status": "success",
+      "unmappedStatus": "captured",
+      "merchantUTR": null,
+      "appName": "GooglePay",
+      "originalCurrency": "INR",
+      "message": "Found TxnId",
+      "txnId": "b5f29799999987989990012345"
     }
   ]
 }
 ```
 
-| Field                    | Description                                                |
-| ------------------------ | ---------------------------------------------------------- |
-| status                   | `1` indicates API call succeeded                           |
-| result\[].txnId          | Partner transaction ID                                     |
-| result\[].mihpayId       | PayU payment ID                                            |
-| result\[].status         | Transaction status (`success`, `failure`, `pending`, etc.) |
-| result\[].unmappedStatus | Detailed status (e.g. `captured`, `failed`)                |
-| result\[].originalAmount | Original transaction amount in rupees                      |
-| result\[].netDebitAmount | Net debited amount in rupees                               |
-| result\[].mode           | Payment mode (e.g. `UPI`)                                  |
-| result\[].errorCode      | Error code (`E000` = no error on success)                  |
-| result\[].errorMessage   | Error description                                          |
-| result\[].addedOn        | Transaction timestamp                                      |
-
-### Polling guidance
-
-| status / unmappedStatus | Action                                               |
-| ----------------------- | ---------------------------------------------------- |
-| `pending`               | Continue polling (recommended interval: 3–5 seconds) |
-| `success` / `captured`  | Payment complete — stop polling                      |
-| `failure` / `failed`    | Payment failed — stop polling                        |
-
-Recompute HMAC with a fresh `date` header on each poll request.
-
-***
-
-## Failed responses
-
-### Wrapper authentication and validation errors
-
-| Code | Reason                                                                     | Response                                                           |
-| ---- | -------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| 400  | Required header `X-PayU-Merchant-Key` missing                              | Spring default 400 (see below)                                     |
-| 400  | Merchant key not found                                                     | `{ "error": "Merchant not found for key: {merchant_key}" }`        |
-| 400  | Could not load merchant salt                                               | `{ "error": "Failed to fetch merchant credentials" }`              |
-| 400  | Merchant salt missing                                                      | `{ "error": "Merchant salt not found" }`                           |
-| 401  | Invalid/expired token, wrong scope, reseller mismatch, merchant not linked | `{ "error": "Invalid Auth token" }`                                |
-| 401  | Malformed HMAC header or missing `date`                                    | `{ "error": "Invalid HMAC header" }`                               |
-| 403  | HMAC signature mismatch                                                    | `{ "error": "Invalid Hash" }`                                      |
-| 500  | Downstream proxy failure                                                   | `{ "error": "Internal error while verifying transaction status" }` |
-| 500  | Internal dependency failure                                                | `{ "error": "PayU Internal Server Error" }`                        |
-
-### Missing required header (framework)
-
-**HTTP Status:** `400 Bad Request`
+### 2. POS Card Payment Response
 
 ```json
 {
-  "timestamp": "2026-08-19T07:30:00.000+00:00",
-  "status": 400,
-  "error": "Bad Request",
-  "message": "Required header 'X-PayU-Merchant-Key' is not present",
-  "path": "/apilayer/partner/transaction/verifyStatus"
+  "status": 1,
+  "message": "Success",
+  "result": [
+    {
+      "bqrTxnStatusMessage": "Transaction is Successful",
+      "message": "Found TxnId",
+      "txnId": "POS20260416001",
+      "mihpayId": 28500123456,
+      "status": "success",
+      "unmappedStatus": "captured",
+      "errorCode": "E000",
+      "errorMessage": "No Error",
+      "mode": "POS",
+      "bankcode": "VISA",
+      "pgType": "POS-PG",
+      "amount": 1500,
+      "originalAmount": 1500,
+      "additionalCharges": 0,
+      "discount": 0,
+      "netDebitAmount": 1500,
+      "originalCurrency": "INR",
+      "bankReferenceNumber": "987654321098",
+      "productInfo": "Integrated POS",
+      "addedOn": "2026-04-16 10:30:00",
+      "merchantUTR": null,
+      "field0": "TERM123456",
+      "field1": "Navnath Gawade",
+      "field2": "482911",
+      "field3": "CTLESSEMV|false",
+      "field4": "9876543210|store_manager",
+      "field5": "28I01743",
+      "field6": "",
+      "field7": "200|payment Initiated successfully",
+      "field8": "",
+      "field9": "00|APPROVED|Transaction approved successfully",
+      "nameOnCard": "Navnath Gawade",
+      "cardNo": "XXXXXXXXXXXX1234",
+      "appName": null,
+      "surl": "https://test.payu.in/admin/test_response",
+      "furl": "https://test.payu.in/admin/test_response",
+      "curl": "https://test.payu.in/admin/test_response",
+      "reverseHash": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    }
+  ]
 }
 ```
-
-### Downstream errors (after auth succeeds)
-
-When authentication passes but the Info / transaction service returns an error, the downstream status code and response body are returned **as-is** (no wrapper envelope).
-
-***
-
-## Complete integration checklist
-
-- [ ] OAuth token with `partner_payments` scope obtained
-- [ ] Merchant linked to partner account
-- [ ] Initiate Payment called — `mihpayId` received
-- [ ] Generate Dynamic QR called — `qrString` displayed on soundbox
-- [ ] Customer scanned QR and paid
-- [ ] Check BQR Status polled until terminal state
