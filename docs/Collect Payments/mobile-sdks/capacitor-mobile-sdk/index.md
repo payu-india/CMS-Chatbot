@@ -15,8 +15,8 @@ PayU provides two primary SDK integrations for Capacitor apps depending on your 
 
 The ideal SDK depends on your supported payment methods, user experience requirements, and available engineering resources:
 
-* **Choose Checkout Pro SDK** if you want an out-of-the-box, comprehensive payment suite that supports cards, net banking, wallets, and UPI with minimal setup.
-* **Choose UPI Bolt SDK** if your checkout primarily focuses on UPI and you want to maximize conversions by eliminating app switching with an embedded, 1-click in-app payment and registration flow.
+* [**Choose Checkout Pro SDK**](doc:capacitor-checkout-pro-integration) if you want an out-of-the-box, comprehensive payment suite that supports cards, net banking, wallets, and UPI with minimal setup.
+* [**Choose UPI Bolt SDK**](doc:upi-bolt-sdk-ionic) if your checkout primarily focuses on UPI and you want to maximize conversions by eliminating app switching with an embedded, 1-click in-app payment and registration flow.
 
 ### SDK Comparison
 
