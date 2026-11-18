@@ -145,9 +145,9 @@ The API Reference is categorized into following:
       <td>
         * [Model 2-Zero Code Change](ref:model-2-zero-code-change-for-vault-integration)
 
-            *[Get User Cards API](ref:get_user_cards_api)
+            \*[Get User Cards API](ref:get_user_cards_api)
 
-            *[Process Transaction with a Saved Card](ref:process-transaction-with-a-saved-card)
+            \*[Process Transaction with a Saved Card](ref:process-transaction-with-a-saved-card)
       </td>
     </tr>
 
@@ -167,17 +167,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        * [Split During Transaction using _payment](ref:split-during-transaction-using-_payment)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **Hexa Wallet APIs**
-      </td>
-
-      <td>
-        * [Fetch Balance API](https://docs.payu.in/reference/fetch-balance-api)
+        * [Split During Transaction using \_payment](ref:split-during-transaction-using-_payment)
       </td>
     </tr>
 
