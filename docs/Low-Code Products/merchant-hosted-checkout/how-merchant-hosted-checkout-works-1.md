@@ -103,6 +103,25 @@ PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure 
 
 ***
 
+## Responsibilities
+
+<Accordion title="What Does PayU Handle?" icon="fa-server">
+  - **Payment processing** — PayU receives the form POST to `_payment` and processes the transaction with the bank, card network, UPI provider, or wallet.
+  - **Authentication** — PayU sends the customer to the bank ACS, net banking login, wallet, or UPI step when that method requires it.
+  - **Returning the result** — PayU posts the payment outcome to your `surl` or `furl` and redirects the customer's browser back to your site.
+</Accordion>
+
+<Accordion title="What Does Your Application Handle?" icon="fa-code">
+  - **The payment form** — Your website collects the payment details. For cards, that includes the card number, expiry, and CVV. You choose the method with `pg` and `bankcode`.
+  - **Securing the request** — Your server generates the SHA-512 hash. The salt stays on the server.
+  - **Posting the payment** — The browser posts the form to `_payment` with the parameters and the hash.
+  - **Receiving the payment result** — Your `surl` and `furl` accept the POST PayU sends after the transaction.
+  - **Verifying the result** — Your server checks the reverse hash, then confirms the payment with the Verify Payment API. The browser redirect alone is not enough.
+  - **Updating order state** — After verification, your application marks the order from the PayU status.
+</Accordion>
+
+***
+
 ## Key Concepts
 
 | Concept      | Definition                                                                                                  |
