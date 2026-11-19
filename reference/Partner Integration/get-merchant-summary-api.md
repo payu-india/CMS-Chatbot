@@ -14,20 +14,26 @@ metadata:
   robots: index
 ---
 
-## Overview
-
 The **Get Merchant Summary API** enables partners to query the onboarding and verification status of a merchant's product account. 
 
 Partners can use this server-to-server endpoint to identify which onboarding steps, KYC verifications, address submissions, stakeholder disclosures, or compliance documents are completed or still pending for a merchant linked to their partner account.
 
 ---
 
-## Environments & Endpoints
+## Base URLs
 
-| Environment | Method | Endpoint URL |
-| :--- | :--- | :--- |
-| **Production** | `GET` | `<redacted URL>` |
-| **Sandbox / UAT** | `GET` | `<redacted URL>` |
+| Environment | Host |
+| :--- | :--- |
+| **Production** | `https://partner.payu.in` |
+| **UAT** | `https://uat-partner.payu.in` |
+
+---
+
+## Endpoint
+
+```http
+GET /api/v3/merchants/:merchant_id/get_merchant_summary
+```
 
 ---
 
@@ -63,8 +69,8 @@ This API requires OAuth 2.0 Bearer token authentication with the `refer_merchant
 ## Sample Request
 
 ```bash cURL
-curl --location --request GET '<redacted URL>' \
---header 'Authorization: Bearer <access_token>'
+curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0ad5848e0da3/get_merchant_summary" \
+  -H "Authorization: Bearer <access_token>"
 ```
 
 ---
@@ -195,10 +201,10 @@ curl --location --request GET '<redacted URL>' \
 
 ---
 
-## Status & Error Codes
+## Errors & Status Codes
 
-| HTTP Status | Condition / Trigger | Sample Error Response |
+| Status Code | Condition / Trigger | Error Response Body |
 | :--- | :--- | :--- |
-| **401 Unauthorized** | The OAuth access token is missing, expired, invalid, or lacks the `refer_merchant` scope. | ```json\n{\n  "status": "Unauthorized"\n}\n``` |
-| **404 Not Found** | The provided `merchant_id` does not exist or belongs to an account not linked to the calling partner. | ```json\n{\n  "data": {\n    "message": "Reseller is not allowed to modify merchant with uuid: <uuid>"\n  }\n}\n``` |
-| **422 Unprocessable Entity** | The `merchant_id` path parameter is missing or blank. | ```json\n{\n  "data": {\n    "message": "product_account_uuid cannot be blank"\n  }\n}\n``` |
+| **401 Unauthorized** | Token is missing, invalid, or does not have `refer_merchant` scope | ```json\n{\n  "status": "Unauthorized"\n}\n``` |
+| **404 Not Found** | Product account is not linked to this partner | ```json\n{\n  "data": {\n    "message": "Reseller is not allowed to modify merchant with uuid: <uuid>"\n  }\n}\n``` |
+| **422 Unprocessable Entity** | `merchant_id` path parameter is blank | ```json\n{\n  "data": {\n    "message": "product_account_uuid cannot be blank"\n  }\n}\n``` |
