@@ -34,7 +34,7 @@ agentTools:
   fontWeight="bold"
  />
 
-## ## How Does Merchant Hosted Checkout Simplify My Business?
+## How Does Merchant Hosted Checkout Simplify My Business?
 
 <Accordion title="Complete control over the payment UI and customer experience">
 
