@@ -82,5 +82,5 @@ Supported payment options
 
 For the recommended integration workflow, refer to [Integration Steps](doc:integration-steps-android-checkout-pro). After you integrate with the above steps, you can use the APIs listed in the following to integrate web services or TPV integration:
 
-* [Web Services for Core SDK](<redacted URL>)
-* [TPV with Android Core SDK](<redacted URL>)
+* [Web Services for Core SDK](doc:web-services-for-android-core-sdk)
+* [TPV with Android Core SDK](doc:android-coresdk-tpv-integration)
