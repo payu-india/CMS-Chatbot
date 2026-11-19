@@ -105,8 +105,6 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
   You have to pass the following parameters:
 
-    
-
   <HTMLBlock>{`
   <table style="width: 100%; border-collapse: collapse;">
   <thead>
@@ -137,8 +135,6 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
   `}</HTMLBlock>
 
   #### config JSON Fields Description
-
-    
 
   <HTMLBlock>{`
   <table style="width: 100%; border-collapse: collapse;">
@@ -268,19 +264,23 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
      config: PayU3DS2Config): PayU3DSResponse
     ```
 
-    > 🚧 Callout
-    >
-    > If auto-read is false, auto-submit will not work whereas auto-read will work in case of auto-submit is false.
+    <Callout icon="🚧" theme="warn">
+      ### Callout
+
+      If auto-read is false, auto-submit will not work whereas auto-read will work in case of auto-submit is false.
+    </Callout>
+
+        
 
     <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-  <thead>
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
       <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Key</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>The key provided to merchant by PayU.</p></td>
@@ -293,8 +293,8 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       <td style="border: 1px solid #ddd; padding: 8px;"><p>AppCompatActivity</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Required to initialise SDK.</p></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+    </table>
     `}</HTMLBlock>
 
     <Accordion title="GUI customisation" icon="fa-code">
@@ -362,29 +362,31 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     <Accordion title="PayU3DS2Response:" icon="fa-code">
       The response includes the following parameters:
 
+            
+
       <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-  <thead>
-    <tr>
+      <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+      <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
       <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:</p><p>0 - If the web service call succeeded</p><p>1 - If the web service call failed.</p></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p></td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p></td>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+      </tbody>
+      </table>
       `}</HTMLBlock>
 
       The following items are in the response:
@@ -419,15 +421,17 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
     **PayU3DS2Response**: Three items are in the response:
 
+        
+
     <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-  <thead>
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
       <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:</p><p>0 - If the web service call succeeded</p><p>1 - If the web service call failed.</p></td>
@@ -440,8 +444,8 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+    </table>
     `}</HTMLBlock>
 
     ```kotlin Kotlin
@@ -469,15 +473,17 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     PayU3DS2.initiateChallenge(activity: Activity, challengeParameter: ChallengeParameter, listener: PayU3DS2BaseCallback)
     ```
 
+        
+
     <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-  <thead>
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
       <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p></td>
@@ -486,8 +492,8 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters:</p><p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)</p><p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes</p><p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes</p><p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes</p><p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+    </table>
     `}</HTMLBlock>
 
     Before invoking this method, generate the authentication request through any aggregator and pass the above-defined challenge parameters to initiate challenges.
@@ -522,6 +528,8 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     mPaymentParams.udf3 = "<User Defined Fields>"         // User-defined field 3
     mPaymentParams.udf4 = "<User Defined Fields>"         // User-defined field 4
     mPaymentParams.udf5 = "<User Defined Fields>"         // User-defined field 5
+    mPaymentParams.forcePgId = "<pg_id_from_merchant>"  // optional - payment routing to specific gateway
+    mPaymentParams.altId = altId  // posts as "alt_id" in payment POST
     ```
 
     <Accordion title="Credit/Debit Card Payment" icon="fa-code">
@@ -550,6 +558,25 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
        
       mPaymentParam.setUserCredentials(userCredentials);
       mPaymentParam.setStoreCard(1);
+      ```
+    </Accordion>
+
+    <Accordion title="Pay with ALTID">
+      To make payments using ALTID, you need to pass below details&#x20;
+
+      ```kotlin
+      mPaymentParams.altId = altId
+      mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
+      mPaymentParams.expiryYear = "XXXX"            // Card expiry Year (YYYYY)
+      mPaymentParams.cvv = "<cvv>"
+      private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
+          var token = TokenizedCardAdditionalParam()
+          token.last4Digits = "XXXX"                // Last 4 digits of the card
+          token.tavv = "XXXXXXXXXXXXXX"             // Transaction authorization verification value
+          token.tokenRefNo = "XXXXXXXXXXXXXX"       // Reference number for tokenized card
+          token.trid = "XXXXXXXXXXXXXX"             // optional - Transaction ID for this payment
+          return token
+      }
       ```
     </Accordion>
 
@@ -643,15 +670,17 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
   ```
 
   <Accordion title="Parameters" icon="fa-code">
+        
+
     <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-  <thead>
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
       <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p><strong>activity</strong></p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Pass the current <code>Activity</code> instance where the WebView will be launched.</p></td>
@@ -668,8 +697,8 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       <td style="border: 1px solid #ddd; padding: 8px;"><p><strong>callback</strong></p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Callback interface to receive the payment status: success, failure, or error.</p></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+    </table>
     `}</HTMLBlock>
   </Accordion>
 
@@ -702,15 +731,15 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
             override fun onError(errorCode: Int, errorMessage: String) {
                 // Handle error
             }
-    				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+                    override fun onPaymentCancel(isTxnInitiated: Boolean) {	
               // Handle erro
             }
-    				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+                    override fun onPaymentCancel(isTxnInitiated: Boolean) {	
               // Handle erro
             }
-    				override fun generateHash(map: HashMap<String, String>,hashGenerationListener: 			 PayUHashGeneratedListener) {
+                    override fun generateHash(map: HashMap<String, String>,hashGenerationListener: 			 PayUHashGeneratedListener) {
               //// Handle Hash
-    				}	
+                    }	
         }
     )
     ```
@@ -737,8 +766,10 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 </Accordion>
 
 <Accordion title="Error codes" icon="fa-code">
+    
+
   <HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
+  <table style="width: 100%; border-collapse: collapse;">
   <thead>
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px;">Code</th>
@@ -762,7 +793,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>500</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Something went wrong</p></td></tr>
     <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>504</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Gateway timeout</p></td></tr>
   </tbody>
-</table>
+  </table>
   `}</HTMLBlock>
 </Accordion>
 
