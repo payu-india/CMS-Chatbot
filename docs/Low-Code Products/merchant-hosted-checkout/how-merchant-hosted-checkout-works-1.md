@@ -122,11 +122,16 @@ PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure 
 
 ## Next Steps
 
-<Cards columns={2}>
-  <Card title="Quick Start" icon="fa-play" href="./quick-start">
+<Cards columns="2">
+  <Card title="Merchant Hosted Checkout" icon="fab fa-readme">
+    Go through and understand the Merchant Hosted Checkout.
+  </Card>
+
+  <Card title="Quick Start" href="./quick-start" icon="fa-play">
     Make your first test card payment in minutes — hash generation, form POST, and callback handling.
   </Card>
-  <Card title="APIs" icon="fa-rectangle-api" href="./merchant-hosted-checkout-apis">
-    API reference index for _payment, Verify Payment, and transaction management.
+
+  <Card title="APIs" href="./merchant-hosted-checkout-apis" icon="fa-rectangle-api">
+    API reference index for \_payment, Verify Payment, and transaction management.
   </Card>
 </Cards>
