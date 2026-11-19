@@ -96,7 +96,7 @@ compileOptions {
   ### Compatibility:
 
   1. **Android SDK** — Version 21 and above.
-  2. **Compile SDK** — version 31 and above.
+  2. **Compile SDK** — version 36 and above.
 </Callout>
 
 <Accordion title="2.1 Import Runtime Issue" icon="fa-code">
