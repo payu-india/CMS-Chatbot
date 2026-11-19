@@ -6,6 +6,8 @@ excerpt: >-
   for you.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: PayU Hosted Checkout — Overview
   description: 'PayU Hosted Checkout: redirect customers to a secure PayU-hosted payment '
@@ -113,7 +115,7 @@ next:
 
 ***
 
-## What DO I Need to Get Started?
+## What Do I Need to Get Started?
 
 Before you integrate, make sure you have:<br />
 
