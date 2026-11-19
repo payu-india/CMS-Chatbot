@@ -54,7 +54,7 @@ PCI-DSS (Payment Card Industry Data Security Standard) scope is one of the most 
 
 **PCI scope for other payment methods:**<br />
 
-Wallets, UPI, and Net Banking integrations do not involve raw card data — your PCI-DSS obligations for those methods are significantly reduced.
+Wallets, UPI, and Net Banking integrations do not involve raw card data — your PCI-DSS obligations for those methods are significantly reduced.<br />
 
 <Callout icon="ℹ️" theme="info">
   ### **Tips:**
