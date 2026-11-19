@@ -768,10 +768,6 @@ The **Check Balance** API can be used to fetch detail of the Sodexo card with th
 
 You can store and get stored card details from the vault. The tokenized payments for Android Core SDK includes the following APIs:
 
-* [Get Tokenized Stored Cards API](#get-tokenized-stored-cards-api)
-* [Get Tokenized Stored Card Details API](#get-tokenized-stored-card-details-api)
-* [Delete Tokenized Stored Cards API](#delete-tokenized-stored-cards-api)
-
 <Accordion title="Get Tokenized Stored Cards API" icon="fa-code">
   The **Get Tokenized Stored Cards** API is helpful in getting all the stored cards for a particular user. For this API, you need to set the`userCredentials` in the payment params similar to the following:
 
