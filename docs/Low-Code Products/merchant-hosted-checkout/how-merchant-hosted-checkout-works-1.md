@@ -43,7 +43,7 @@ Your website collects raw card numbers and CVV directly from the customer in you
 
 <br />
 
-### **What this Means in Practice?**
+### **What This Means in Practice?**
 
 - HTTPS is required on all pages of your checkout — not just the payment page
 - CVV must never be stored — not in databases, logs, or caches
