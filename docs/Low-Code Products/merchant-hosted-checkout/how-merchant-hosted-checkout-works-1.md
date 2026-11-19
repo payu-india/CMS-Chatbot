@@ -19,7 +19,73 @@ The following diagram depicts the merchant Hosted Checkout flow.
 
 <Image src="https://files.readme.io/b0d79404a9835b750ae97ca34bdfc6b4d1b5c98bbfe14d56901e72f785fd4296-payu-payment-flow.png" align="center" caption="Merchant Hosted Checkout Flow" framed={true} />
 
-Your website and backend handle everything before and after PayU. PayU handles only the payment processing, bank authentication, and the redirect back to your `surl` or `furl`.
+
+<AccordionOpen title="Step 1 — Customer fills the payment form">
+
+The customer enters their payment details — card number, UPI ID, or netbanking credentials — directly on a payment form hosted on your website.
+
+This step happens entirely in the customer's browser. Your backend is not involved yet. The form is typically rendered using your own UI, which is what distinguishes Merchant Hosted Checkout from PayU Hosted Checkout.
+</AccordionOpen>
+
+<AccordionOpen title="Step 2 — Your backend collects fields and builds the hash">
+
+Once the customer submits the form, your backend receives the payment parameters: `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, and optional UDF fields.
+
+Before sending anything to PayU, your backend must generate a **SHA-512 hash** using the formula:
+
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+```
+
+This hash acts as a tamper-proof signature. PayU will reject any request where the hash does not match, so this step must always happen server-side — never in the browser where the SALT could be exposed.
+</AccordionOpen>
+
+<AccordionOpen title="Step 3 — Your backend POSTs to PayU">
+
+Your backend submits the payment parameters and the hash to PayU's payment endpoint (`/_payment`) via an HTTP POST. This is the handoff from your system to PayU.
+
+At this point, control of the payment flow passes to PayU. The customer may be redirected to a PayU-hosted page for 3DS authentication, depending on the payment method.
+</AccordionOpen>
+
+<AccordionOpen title="Step 4 — PayU validates and routes the payment">
+
+PayU receives the request and immediately re-computes the hash on its own side. If the hash matches, the request is considered authentic and processing begins.
+
+PayU then determines the correct payment route — card network, UPI rail, netbanking gateway — and initiates the authentication flow with the issuing bank. If the card requires 3DS verification, PayU triggers that process now.
+</AccordionOpen>
+
+<AccordionOpen title="Step 5 — Bank authenticates the customer">
+
+The issuing bank (or the 3DS server) sends an OTP or biometric challenge to the customer. The customer completes the verification step — entering their OTP, approving via their banking app, or passing the biometric check.
+
+Once the customer responds, the bank sends an authentication result back to PayU. A successful authentication does not mean the payment is approved yet — it means the customer's identity has been verified.
+</AccordionOpen>
+
+<AccordionOpen title="Step 6 — PayU sends the callback to your backend">
+
+After processing the payment result, PayU sends an HTTP POST to either your `surl` (success URL) or `furl` (failure URL), depending on the outcome. This callback contains the payment status and all relevant transaction parameters.
+
+This is a **server-to-server notification**. It arrives at your backend, not the customer's browser.
+
+> **Important:** Do not treat this callback as the final word on payment status. Callbacks can be tampered with or replayed. Always verify independently (see Step 7).
+</AccordionOpen>
+
+<AccordionOpen title="Step 7 — Your backend verifies the payment">
+
+When the callback arrives, your backend must do two things before updating your order:
+
+1. **Re-verify the hash** in the callback parameters to confirm the response has not been tampered with.
+2. **Call the Verify Payment API** to independently confirm the transaction status directly from PayU's servers.
+
+Skipping this step is a security risk. A fraudulent actor could forge a success callback and claim a payment was completed when it was not. Server-side verification is the only reliable way to confirm a payment.
+</AccordionOpen>
+
+<AccordionOpen title="Step 8 — Your backend redirects the customer to the result page">
+
+Once the payment status is confirmed server-side, your backend sends an HTTP redirect to the customer's browser — to your success page if the payment went through, or to your failure page if it did not.
+
+The customer sees the final outcome on a page you control, giving you full flexibility over the post-payment experience: order confirmation, download links, error messages, or retry options.
+</AccordionOpen>
 
 ***
 
@@ -146,3 +212,5 @@ PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure 
     API reference index for \_payment, Verify Payment, and transaction management.
   </Card>
 </Cards>
+
+/accor
