@@ -205,5 +205,3 @@ PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure 
     API reference index for \_payment, Verify Payment, and transaction management.
   </Card>
 </Cards>
-
-/accor
