@@ -56,9 +56,9 @@ For most payment methods, the customer never leaves your website until the bank'
 
 <Accordion title="PCI-DSS scope: Card data handled by you">
 
-Because your website collects raw card numbers and CVV directly from the customer, your servers and infrastructure are in scope for PCI-DSS. If you store, process, or transmit cardholder data, you must complete the [PCI-DSS Self-Assessment Questionnaire A-EP](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf).
+Because your website collects raw card numbers and CVV directly from the customer, your servers and infrastructure are in scope for PCI-DSS. If you store, process, or transmit cardholder data, you must complete the [PCI-DSS Self-Assessment Questionnaire A-EP](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf).<br/>
 
-PCI-DSS scope applies only to card payment methods and not for wallets and UPI. 
+PCI-DSS scope applies only to card payment methods and not for wallets and UPI.
 
 </Accordion>
 
