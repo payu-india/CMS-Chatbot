@@ -12,7 +12,7 @@ Merchant Hosted Checkout is a direct form POST integration. Your website builds 
 
 ***
 
-## Architecture Overview
+## Checkout Flow
 
 ![](https://files.readme.io/b0d79404a9835b750ae97ca34bdfc6b4d1b5c98bbfe14d56901e72f785fd4296-payu-payment-flow.png)
 
