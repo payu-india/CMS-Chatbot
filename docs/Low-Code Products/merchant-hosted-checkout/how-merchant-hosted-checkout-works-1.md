@@ -33,7 +33,7 @@ Your website and backend handle everything before and after PayU. PayU handles o
 
 ## PCI-DSS Scope
 
-PCI-DSS (Payment Card Industry Data Security Standard) scope is one of the most important architectural considerations for Merchant Hosted Checkout card integrations.
+The PCI-DSS (Payment Card Industry Data Security Standard) scope is one of the most important architectural considerations for Merchant Hosted Checkout card integrations.
 
 <br />
 
