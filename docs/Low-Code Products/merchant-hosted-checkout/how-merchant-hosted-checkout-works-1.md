@@ -123,3 +123,16 @@ PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure 
 | `mihpayid`   | PayU's unique transaction reference, returned in the callback. Use this for refunds and support queries.    |
 | Reverse hash | Hash computed from the callback response to verify PayU sent it. Formula is reversed from the request hash. |
 | BIN          | First 6 digits of a card number. Used to identify card type, network, and issuing bank.                     |
+
+***
+
+## Next Steps
+
+<Cards columns={2}>
+  <Card title="Quick Start" icon="fa-play" href="./quick-start">
+    Make your first test card payment in minutes — hash generation, form POST, and callback handling.
+  </Card>
+  <Card title="APIs" icon="fa-rectangle-api" href="./merchant-hosted-checkout-apis">
+    API reference index for _payment, Verify Payment, and transaction management.
+  </Card>
+</Cards>
