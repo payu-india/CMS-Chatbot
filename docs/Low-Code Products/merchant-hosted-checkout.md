@@ -35,27 +35,27 @@ next:
 
 ## How Does Merchant Hosted Checkout Simplify My Business?
 
-<Accordion title="Complete control over the payment UI and customer experience" icon="fa-paintbrush">
+<Accordion title="Complete control over the payment UI and customer experience">
   You design and build the entire payment form. PayU does not inject any UI elements into your page. Card number fields, UPI input, NetBanking drop-downs, wallet selectors, everything built by you, styled to match your brand, integrated into your existing checkout flow.
 
   No redirect and modal anywhere in the customer journey.
 </Accordion>
 
-<Accordion title="One API, all payment methods" icon="fa-credit-card">
+<Accordion title="One API, all payment methods">
   A single endpoint, `POST https://secure.payu.in/_payment` , accepts payments across all methods. The payment method is determined by the `pg` and `bankcode` parameters you send. Cards, UPI, NetBanking, Wallets, EMI, and BNPL all use the same endpoint with different parameter sets.
 </Accordion>
 
-<Accordion title="Seamless payment flow, no bank redirect unless required" icon="fa-arrow-right-arrow-left">
+<Accordion title="Seamless payment flow, no bank redirect unless required">
   For most payment methods, the customer never leaves your website until the bank's 3DS or authentication page opens. After authentication completes, the customer is redirected back to your `surl` or `furl`. You control what they see at every point before and after.
 </Accordion>
 
-<Accordion title="PCI-DSS scope, card data handled by you" icon="fa-shield-halved">
+<Accordion title="PCI-DSS scope, card data handled by you">
   Because your website collects raw card numbers and CVV directly from the customer, your servers and infrastructure are in scope for PCI-DSS. If you store, process, or transmit cardholder data, you must complete the [PCI-DSS Self-Assessment Questionnaire A-EP](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf).
 
   For wallets and UPI, card data is not collected, PCI-DSS scope applies only to card payment methods.
 </Accordion>
 
-<Accordion title="Per-method integration, each payment type has specific parameters" icon="fa-list-check">
+<Accordion title="Per-method integration, each payment type has specific parameters">
   Unlike PayU Hosted Checkout or Checkout Plus where a single form handles all payment methods, Merchant Hosted Checkout requires a separate integration for each payment method. Cards, net banking, UPI collect, UPI intent, wallets, EMI, and BNPL each have their own required parameters and flows.
 </Accordion>
 
@@ -87,23 +87,23 @@ next:
 ## Common Use Cases
 
 <Cards columns="3">
-  <Card title="E-commerce with Custom Checkout" icon="fa-bag-shopping">
+  <Card title="E-commerce with Custom Checkout">
     Full-brand checkout where card fields, UPI input, and NetBanking selectors match your site's design, no redirects until bank authentication.
   </Card>
 
-  <Card title="Financial Services and Lending" icon="fa-building-columns">
+  <Card title="Financial Services and Lending">
     Loan repayments, insurance premiums, and investment platforms that need tight integration with their own KYC and account management flows.
   </Card>
 
-  <Card title="Enterprise B2B Payments" icon="fa-briefcase">
+  <Card title="Enterprise B2B Payments">
     Invoice payments via net banking or NEFT/RTGS with full control over the payer experience and post-payment workflow.
   </Card>
 
-  <Card title="Travel and Hospitality" icon="fa-plane">
+  <Card title="Travel and Hospitality">
     Booking platforms that need EMI on cards and specific bank offers surfaced directly in the payment UI, not in a third-party modal.
   </Card>
 
-  <Card title="EdTech and Healthcare" icon="fa-graduation-cap">
+  <Card title="EdTech and Healthcare">
     Fee collection platforms that need branded, accessible payment flows with UPI and wallet support tailored to their user base.
   </Card>
 </Cards>
@@ -184,19 +184,19 @@ Merchant Hosted Checkout places significant security responsibility on you more 
 
 ## How Does My Customer Pay?
 
-<Accordion title="1. Customer fills your payment form" icon="fa-circle-1">
+<Accordion title="1. Customer fills your payment form">
   Your website presents the payment form you built. The customer enters their payment details such as card number, UPI VPA, or selects their bank directly on your page.
 </Accordion>
 
-<Accordion title="2. Your backend generates the hash and posts to PayU" icon="fa-circle-2">
+<Accordion title="2. Your backend generates the hash and posts to PayU">
   Your server generates the transaction hash and submits a form POST to `https://secure.payu.in/_payment` with the payment parameters and hash. PayU receives and validates the request.
 </Accordion>
 
-<Accordion title="3. Bank authentication (if required)" icon="fa-circle-3">
+<Accordion title="3. Bank authentication (if required)">
   For card payments, PayU redirects the customer to the issuing bank's 3DS authentication page. For NetBanking, the customer is redirected to their bank's login page. For UPI intent, the customer's UPI app opens. For wallets, PayU handles the redirect.
 </Accordion>
 
-<Accordion title="4. Customer returns and your server handles the callback" icon="fa-circle-4">
+<Accordion title="4. Customer returns and your server handles the callback">
   After authentication, the customer is redirected to your `surl` or `furl`. PayU POSTs the transaction response to that URL. Your server verifies the response hash and calls the Verify Payment API before updating the order state.
 </Accordion>
 
