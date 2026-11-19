@@ -226,7 +226,7 @@ For card payments, PayU redirects the customer to the issuing bank's 3DS authent
 
 <Accordion title="4. Customer returns and your server handles the callback">
 
-After authentication, the customer is redirected to your `surl` or `furl`. PayU POSTs the transaction response to that URL. Your server verifies the response hash and calls the Verify Payment API before updating the order state.
+After authentication, the customer is redirected to your `surl` or `furl`. PayU POSTs the transaction response to that URL. Your server verifies the response hash and calls the Verify Payment API before updating the order state
 
 </Accordion>
 
