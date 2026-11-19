@@ -73,7 +73,7 @@ Unlike PayU Hosted Checkout or Checkout Plus where a single form handles all pay
 ## Is Merchant Hosted Checkout Right for Me?
 
 | I want to… | Works? |
-|---|:---:|
+|---|---|
 | Full design control over every field and step of the payment UI | ✅ |
 | Custom-branded checkout without PayU UI on my page | ✅ |
 | Cards, UPI, net banking, wallets, EMI, and BNPL from one endpoint | ✅ |
