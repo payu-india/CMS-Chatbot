@@ -19,10 +19,10 @@ The following diagram depicts the merchant Hosted Checkout flow.
 
 <Image src="https://files.readme.io/b0d79404a9835b750ae97ca34bdfc6b4d1b5c98bbfe14d56901e72f785fd4296-payu-payment-flow.png" align="center" caption="Merchant Hosted Checkout Flow" framed={true} />
 
-
+<br />
 
 <Accordion title="Step 1: Customer fills the payment form">
-  The customer enters their payment details: card number, UPI ID, or netbanking credentials: directly on a payment form hosted on your website.
+  The customer enters their payment details: card number, UPI ID, or netbanking credentials directly on a payment form hosted on your website.
 
   This step happens entirely in the customer's browser. Your backend is not involved yet. The form is typically rendered using your own UI, which is what distinguishes Merchant Hosted Checkout from PayU Hosted Checkout.
 </Accordion>
@@ -52,9 +52,9 @@ The following diagram depicts the merchant Hosted Checkout flow.
 </Accordion>
 
 <Accordion title="Step 5: Bank authenticates the customer">
-  The issuing bank (or the 3DS server) sends an OTP or biometric challenge to the customer. The customer completes the verification step: entering their OTP, approving via their banking app, or passing the biometric check.
+  The issuing bank (or the 3DS server) sends an OTP or biometric challenge to the customer. The customer completes the verification step by entering their OTP, approving via their banking app, or passing the biometric check.
 
-  Once the customer responds, the bank sends an authentication result back to PayU. A successful authentication does not mean the payment is approved yet: it means the customer's identity has been verified.
+  Once the customer responds, the bank sends an authentication result back to PayU. A successful authentication does not mean the payment is approved yet. It means the customer's identity has been verified.
 </Accordion>
 
 <Accordion title="Step 6: PayU sends the callback to your backend">
