@@ -113,7 +113,7 @@ next:
 
 ***
 
-## What All I Need to Get Started?
+## What DO I Need to Get Started?
 
 Before you integrate, make sure you have:<br />
 
