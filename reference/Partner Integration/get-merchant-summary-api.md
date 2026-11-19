@@ -77,7 +77,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 
 ## Response Parameters
 
-### Top-Level Parameters
+\###
 
 | Parameter                   | Description                                                                                                                                                                                                                         |
 | :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -148,7 +148,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 
 ## Sample Response
 
-### 200 OK (Success Response)
+### Success Response
 
 ```json
 {
