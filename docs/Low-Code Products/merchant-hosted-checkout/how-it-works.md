@@ -38,19 +38,19 @@ Your website and backend handle everything before and after PayU. PayU handles o
 
 ## PCI-DSS Scope
 
-PCI-DSS (Payment Card Industry Data Security Standard) scope is one of the most important architectural considerations for Merchant Hosted Checkout card integrations.
+PCI-DSS (Payment Card Industry Data Security Standard) scope is one of the most important architectural considerations for Merchant Hosted Checkout card integrations.<br/>
 
-**Why you are in scope:** Your website collects raw card numbers and CVV directly from the customer in your own HTML form. Because cardholder data passes through your browser and backend, your infrastructure is in PCI-DSS scope.
+**Why you are in scope:** Your website collects raw card numbers and CVV directly from the customer in your own HTML form. Because cardholder data passes through your browser and backend, your infrastructure is in PCI-DSS scope.<br/>
 
-**What this means in practice:**
+**What this means in practice:**<br/>
 
-- HTTPS is required on all pages of your checkout
-- CVV should never be stored
-- Card numbers should not be stored without tokenization
-- Your servers should meet PCI-DSS requirements or use a compliant hosting provider
-- You should complete the **[PCI-DSS SAQ A-EP](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)** assessment
+  - HTTPS is required on all pages of your checkout
+  - CVV should never be stored
+  - Card numbers should not be stored without tokenization
+  - Your servers should meet PCI-DSS requirements or use a compliant hosting provider
+  - You should complete the **[PCI-DSS SAQ A-EP](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)** assessment<br/>
 
-**PCI scope for other payment methods:**
+**PCI scope for other payment methods:**<br/>
 
 Wallets, UPI, and Net Banking integrations do not involve raw card data — your PCI-DSS obligations for those methods are significantly reduced.
 
@@ -80,12 +80,13 @@ Wallets, UPI, and Net Banking integrations do not involve raw card data — your
 
 ## BIN Validation (Cards)
 
-For card integrations, you can optionally call the `getBinInfo` API before submitting the payment. This returns card type (credit/debit), issuing bank, card network, and EMI eligibility for the BIN (first 6 digits of the card number).
+For card integrations, you can optionally call the `getBinInfo` API before submitting the payment. This returns card type (credit/debit), issuing bank, card network, and EMI eligibility for the BIN (first 6 digits of the card number).<br/>
 
-This is used to:
-- Display the correct card network logo
-- Show EMI options for eligible cards
-- Confirm accepted card types before the customer submits
+This is used to:<br/>
+
+  - Display the correct card network logo
+  - Show EMI options for eligible cards
+  - Confirm accepted card types before the customer submits<br/>
 
 See [Build Integration — Cards](./integration-guide/build-integration/cards) for the full BIN validation flow.
 
@@ -95,9 +96,9 @@ See [Build Integration — Cards](./integration-guide/build-integration/cards) f
 
 PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure URL). Both URLs must:
 
-- Be publicly reachable over HTTPS in production
-- Accept POST requests
-- Return a 200 HTTP status after processing
+  - Be publicly reachable over HTTPS in production
+  - Accept POST requests
+  - Return a 200 HTTP status after processing<br/>
 
 **Recommendation:** Implement a webhook handler as a fallback. If the customer closes the browser before the redirect completes, your `surl`/`furl` may not receive the callback. Configure PayU webhooks in the Dashboard to receive server-to-server notifications as a backup.
 
