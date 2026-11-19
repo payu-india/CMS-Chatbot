@@ -74,10 +74,10 @@ Unlike PayU Hosted Checkout or Checkout Plus where a single form handles all pay
 
 | I want to… | Works? |
 |---|---|
-| Full design control over every field and step of the payment UI | ✅ |
-| Custom-branded checkout without PayU UI on my page | ✅ |
-| Cards, UPI, net banking, wallets, EMI, and BNPL from one endpoint | ✅ |
-| Accept card payments (PCI-DSS compliance acceptable) | ✅ |
+| Full design control over every field and step of the payment UI |✅ |
+| Custom-branded checkout without PayU UI on my page |✅ |
+| Cards, UPI, net banking, wallets, EMI, and BNPL from one endpoint |✅ |
+| Accept card payments (PCI-DSS compliance acceptable) |✅ |
 | A prebuilt PayU-branded payment page with minimal code | ⚠️ Use [PayU Hosted Checkout](../prebuilt-checkout-payu-hosted) instead |
 | Payment modal that opens on my website without redirect | ⚠️ Use [Checkout Plus](../checkout-plus-integration) instead |
 | Accept payments without a website or technical setup | ⚠️ Use [Payment Links](../../introduction-no-code-payments-integration/payment-links-dashboard) instead |
