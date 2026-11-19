@@ -92,7 +92,15 @@ flowchart TD
 
 ## Step 1: Set Up Your Environment
 
-**What you need:** Xcode 14.0+ project, CocoaPods or Swift Package Manager, merchant credentials from PayU Dashboard.
+**What you need:** Xcode 14.0+ project, CocoaPods or Swift Package Manager, merchant credentials from PayU Dashboard.&#x20;
+
+<Callout icon="far fa-triangle-exclamation" theme="warn">
+  ### Swift Package Manager (SPM) Download Location
+
+  Download SPM from the following GitHub location:
+
+  [https://github.com/payu-india/PayUWebviewIOS](https://github.com/payu-india/PayUWebviewIOS "https://github.com/payu-india/PayUWebviewIOS")
+</Callout>
 
 Choose one of the following installation methods:
 
@@ -1470,7 +1478,7 @@ Before switching to production, complete these test scenarios:
 
   4. **Open workspace, not project:** After `pod install`, always open `YourApp.xcworkspace`.
 
-  5. **SPM product not linked:** If you installed via Swift Package Manager, confirm the **PayUWebView** product is added to your app target (Target → General → Frameworks, Libraries, and Embedded Content).
+  5. **SPM product not linked:** If you installed via Swift Package Manager, confirm the **PayUWebView** product is added to your app target (Target → General → Frameworks, Libraries, and Embedded Content). Download SPM from the following GitHub location:<br />[https://github.com/payu-india/PayUWebviewIOS](https://github.com/payu-india/PayUWebviewIOS "https://github.com/payu-india/PayUWebviewIOS")
 
   6. **Framework search paths:** In Xcode → Build Settings → Framework Search Paths, make sure `$(inherited)` is present.
 
