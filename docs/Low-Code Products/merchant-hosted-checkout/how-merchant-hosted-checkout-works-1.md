@@ -53,9 +53,7 @@ Your website collects raw card numbers and CVV directly from the customer in you
 
 <br />
 
-### **PCI Scope for Other Payment Methods:**
-
-<br />
+### **PCI Scope for Other Payment Methods**
 
 Wallets, UPI, and Net Banking integrations do not involve raw card data — your PCI-DSS obligations for those methods are significantly reduced.
 
@@ -85,11 +83,7 @@ Wallets, UPI, and Net Banking integrations do not involve raw card data — your
 
 ## BIN Validation (Cards)
 
-For card integrations, you can optionally call the `getBinInfo` API before submitting the payment. This returns card type (credit/debit), issuing bank, card network, and EMI eligibility for the BIN (first 6 digits of the card number).
-
-<br />
-
-This is used to:
+For card integrations, you can optionally call the `getBinInfo` API before submitting the payment. This returns card type (credit/debit), issuing bank, card network, and EMI eligibility for the BIN (first 6 digits of the card number). This is used to:
 
 - Display the correct card network logo
 - Show EMI options for eligible cards
