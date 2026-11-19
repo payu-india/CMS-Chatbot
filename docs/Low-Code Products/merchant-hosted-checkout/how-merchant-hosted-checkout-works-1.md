@@ -35,13 +35,9 @@ Your website and backend handle everything before and after PayU. PayU handles o
 
 The PCI-DSS (Payment Card Industry Data Security Standard) scope is one of the most important architectural considerations for Merchant Hosted Checkout card integrations.
 
-<br />
-
 ### **Why are You in Scope?**&#x20;
 
 Your website collects raw card numbers and CVV directly from the customer in your own HTML form. Because cardholder data passes through your browser and backend, your infrastructure is in PCI-DSS scope.
-
-<br />
 
 ### **What This Means in Practice?**
 
@@ -50,8 +46,6 @@ Your website collects raw card numbers and CVV directly from the customer in you
 - Card numbers must not be stored without tokenization
 - Your servers must meet PCI-DSS requirements or use a compliant hosting provider
 - You must complete the [PCI-DSS SAQ A-EP](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf) assessment
-
-<br />
 
 ### **PCI Scope for Other Payment Methods**
 
