@@ -176,7 +176,7 @@ Use this endpoint to collect payments using PayU Hosted Checkout for all the Web
     ```
   </Tab>
 
-  <Tab title="Tab 2">
+  <Tab title="Parameters and Description">
 
   </Tab>
 </Tabs>
@@ -312,5 +312,3 @@ Use this endpoint to collect payments using PayU Hosted Checkout for all the Web
 </Callout>
 
 <TransactionStages />
-
-<Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
