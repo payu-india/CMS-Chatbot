@@ -53,7 +53,7 @@ Your website collects raw card numbers and CVV directly from the customer in you
 
 <br />
 
-**PCI scope for other payment methods:**
+### **PCI Scope for Other Payment Methods:**
 
 <br />
 
