@@ -37,11 +37,13 @@ PCI-DSS (Payment Card Industry Data Security Standard) scope is one of the most 
 
 <br />
 
-**Why you are in scope:** Your website collects raw card numbers and CVV directly from the customer in your own HTML form. Because cardholder data passes through your browser and backend, your infrastructure is in PCI-DSS scope.
+### **Why are You in Scope?**&#x20;
+
+Your website collects raw card numbers and CVV directly from the customer in your own HTML form. Because cardholder data passes through your browser and backend, your infrastructure is in PCI-DSS scope.
 
 <br />
 
-**What this means in practice:**<br />
+### **What This Means in Practice?**
 
 - HTTPS is required on all pages of your checkout — not just the payment page
 - CVV must never be stored — not in databases, logs, or caches
