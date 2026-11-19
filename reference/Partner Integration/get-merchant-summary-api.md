@@ -108,7 +108,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 
 ---
 
-### Nested Object: `all_doc_statuses[]`
+### all_doc_statuses Object Fields Description
 
 | Parameter | Description |
 | :--- | :--- |
@@ -117,7 +117,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 
 ---
 
-### Nested Object: `business_members[]`
+### business_members Object Fields Description
 
 | Parameter | Description |
 | :--- | :--- |
@@ -127,7 +127,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 
 ---
 
-### Nested Object: `ultimate_beneficiaries[]`
+###ultimate_beneficiaries Object Fields Description
 
 | Parameter | Description |
 | :--- | :--- |
@@ -136,7 +136,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 
 ---
 
-### Nested Object: `ubo_statuses`
+### ubo_statuses Object Fields Description
 
 | Parameter | Description |
 | :--- | :--- |
