@@ -118,7 +118,9 @@ Merchant Hosted Checkout supports the following payment methods. Each method req
 | EFTNET (NEFT/RTGS) | [Other Methods](./integration-guide/build-integration/other-methods) |
 
 <Callout icon="📘" theme="info">
-  Not all payment methods are enabled by default. Some methods including Apple Pay, Flipkart SuperCoins, Rewards SPLITPAY, and Closed-Loop Wallet require explicit activation by your PayU account manager. Check with your key account manager before building an integration for these methods.
+    ### **Tips**
+
+    Not all payment methods are enabled by default. Some methods including Apple Pay, Flipkart SuperCoins, Rewards SPLITPAY, and Closed-Loop Wallet require explicit activation by your PayU account manager. Check with your key account manager before building an integration for these methods.
 </Callout>
 
 ***
@@ -198,13 +200,13 @@ Before you integrate, make sure you have:
 
 Merchant Hosted Checkout places significant security responsibility on you as your website handles raw payment data directly.<br/>
 
-**Hash generation is always server-side.** Your backend generates the SHA-512 hash using your merchant salt. The salt must never appear in any frontend code, HTML, or client-accessible endpoint.
+    - **Hash generation is always server-side.** Your backend generates the SHA-512 hash using your merchant salt. The salt must never appear in any frontend code, HTML, or client-accessible endpoint.
 
-**PCI-DSS is required for card integrations.** If your website collects card numbers and CVV, your servers are in PCI-DSS scope. Ensure HTTPS on all pages, never store CVV, and complete the SAQ A-EP assessment.
+    - **PCI-DSS is required for card integrations.** If your website collects card numbers and CVV, your servers are in PCI-DSS scope. Ensure HTTPS on all pages, never store CVV, and complete the SAQ A-EP assessment.
 
-**Verify every payment server-side.** The `surl`/`furl` callback can be replayed or tampered with. Always verify the response hash and call the [Verify Payment API](https://docs.payu.in/reference/verify_payment_api) before fulfilling any order.
+    - **Verify every payment server-side.** The `surl`/`furl` callback can be replayed or tampered with. Always verify the response hash and call the [Verify Payment API](https://docs.payu.in/reference/verify_payment_api) before fulfilling any order.
 
-**Implement reverse hash verification.** For every response received at `surl`/`furl`, recompute the hash using the reverse formula and compare it to the `hash` field in the response. Reject any response where they don't match.
+    - **Implement reverse hash verification.** For every response received at `surl`/`furl`, recompute the hash using the reverse formula and compare it to the `hash` field in the response. Reject any response where they don't match.
 
 ***
 
