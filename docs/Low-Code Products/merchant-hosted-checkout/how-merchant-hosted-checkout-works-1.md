@@ -14,18 +14,7 @@ Merchant Hosted Checkout is a direct form POST integration. Your website builds 
 
 ## Architecture Overview
 
-```
-Customer Browser         Your Website / Backend         PayU
-─────────────────────────────────────────────────────────────
-1. Fills payment form  ──► Collect payment fields
-                           Generate SHA-512 hash  ──────────►
-                           POST to _payment endpoint ────────►
-                                                    Process payment
-                                                    Handle bank auth ◄── Bank 3DS
-                           surl/furl callback  ◄────────────
-2. Lands on your       ◄── Verify hash + call
-   success/failure page     Verify Payment API
-```
+![](https://files.readme.io/b0d79404a9835b750ae97ca34bdfc6b4d1b5c98bbfe14d56901e72f785fd4296-payu-payment-flow.png)
 
 Your website and backend handle everything before and after PayU. PayU handles only the payment processing, bank authentication, and the redirect back to your `surl` or `furl`.
 
