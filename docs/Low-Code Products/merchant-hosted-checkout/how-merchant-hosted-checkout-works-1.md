@@ -83,9 +83,13 @@ Wallets, UPI, and Net Banking integrations do not involve raw card data — your
 
 ## BIN Validation (Cards)
 
-For card integrations, you can optionally call the `getBinInfo` API before submitting the payment. This returns card type (credit/debit), issuing bank, card network, and EMI eligibility for the BIN (first 6 digits of the card number).<br />
+For card integrations, you can optionally call the `getBinInfo` API before submitting the payment. This returns card type (credit/debit), issuing bank, card network, and EMI eligibility for the BIN (first 6 digits of the card number).
 
-This is used to:<br />
+<br />
+
+This is used to:
+
+<br />
 
 - Display the correct card network logo
 - Show EMI options for eligible cards
@@ -97,11 +101,15 @@ See [Build Integration — Cards](./integration-guide/build-integration/cards) f
 
 ## Callback URLs
 
-PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure URL). Both URLs must:<br />
+PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure URL). Both URLs must:
+
+<br />
 
 - Be publicly reachable over HTTPS in production
 - Accept POST requests
-- Return a 200 HTTP status after processing<br />
+- Return a 200 HTTP status after processing
+
+<br />
 
 **Recommendation:** Implement a webhook handler as a fallback. If the customer closes the browser before the redirect completes, your `surl`/`furl` may not receive the callback. Configure PayU webhooks in the Dashboard to receive server-to-server notifications as a backup.
 
