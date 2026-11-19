@@ -212,13 +212,13 @@ Here is a comparison table that summarizes the key features of the different SDK
 
 | SDK Name                                                     | Latest SDK Version | SDK Size |
 | :----------------------------------------------------------- | :----------------- | :------- |
-| [CheckoutPro SDK](<redacted URL>)                            | 3.4.0              | 293KB    |
-| [Core PG SDK](<redacted URL>)                                | 7.13.0             | 163KB    |
-| [CustomBrowser SDK](<redacted URL>)                          | 7.17.0             | 386KB    |
+| [Checkout Pro SDK](doc:android-checkoutpro-sdk)              | 3.4.0              | 293KB    |
+| [Android Core SDK](doc:android-core-sdk)                     | 7.13.0             | 163KB    |
+| [Custom Browser SDK](doc:custom-browser-sdk)                 | 7.17.0             | 386KB    |
 | [UPI SDK](doc:android-upi-sdk)                               | 1.9.0              | 163KB    |
 | [UPI Bolt UI SDK](doc:upi-bolt-native-integration-procedure) | 1.4.2              | \-       |
-| [PhonePe SDK](<redacted URL>)                                | 1.8.9              | 68KB     |
+| [PhonePe SDK](doc:android-phonepe-sdk)                       | 1.8.9              | 68KB     |
 | [Google Pay SDK](doc:android-google-pay-sdk)                 | 4.0.2              | 94KB     |
-| [OlaMoney SDK](<redacted URL>)                               | 1.3.14             | 47KB     |
-| [Native OTP SDK](<redacted URL>)                             | 1.6.5              | 194Kb    |
-| [3DS 2.0 SDK](<redacted URL>)                                | 3.1.0              | 80KB     |
+| [Ola Money SDK](doc:ola-money-sdk)                           | 1.3.14             | 47KB     |
+| [Native OTP Assist SDK](doc:native-otp-assist-sdk)           | 1.6.5              | 194Kb    |
+| [3DS 2.0 SDK](doc:android-3ds20-sdk)                         | 3.1.0              | 80KB     |
