@@ -182,6 +182,38 @@ Merchant Hosted Checkout places significant security responsibility on you more 
 
 ***
 
+## What Happens After a Payment
+
+After the customer completes a payment:
+
+- PayU determines the transaction result.
+- PayU redirects the customer to your `surl` if the payment succeeds, or to your `furl` if it fails.
+- PayU posts the payment response to that URL, including `mihpayid`, `status`, `txnid`, `amount`, `hash`, `error`, and `error_Message`.
+
+<Callout icon="fad fa-bell-exclamation" theme="warn">
+  ### **Important**
+
+  Do not treat the browser redirect alone as confirmation that a payment succeeded. Check the reverse hash on the response, then confirm the transaction with the Verify Payment API before you fulfil the order. If the callback does not arrive, use webhooks and confirm the status on your server.
+
+  Learn how to verify the response and confirm the payment in the Integration Guide.
+</Callout>
+
+## What If My Customer Wants the Money Back?
+
+<Tabs>
+  <Tab title="Refunds">
+    Use PayU refunds to initiate. Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API
+  </Tab>
+
+  <Tab title="Settlements">
+    You are waiting for the amount to reach your account. PayU settlements can help you find out when the amount will be settled.
+  </Tab>
+
+  <Tab title="Disputes and Chargebacks">
+    Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard.
+  </Tab>
+</Tabs>
+
 ## How Does My Customer Pay?
 
 <Accordion title="1. Customer fills your payment form">
