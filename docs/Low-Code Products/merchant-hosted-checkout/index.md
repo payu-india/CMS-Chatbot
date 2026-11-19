@@ -192,7 +192,7 @@ Before you integrate, make sure you have:
 
 ## Is My Integration Secure?
 
-Merchant Hosted Checkout places significant security responsibility on you as your website handles raw payment data directly.
+Merchant Hosted Checkout places significant security responsibility on you as your website handles raw payment data directly.<br/>
 
 **Hash generation is always server-side.** Your backend generates the SHA-512 hash using your merchant salt. The salt must never appear in any frontend code, HTML, or client-accessible endpoint.
 
