@@ -94,7 +94,7 @@ Unlike PayU Hosted Checkout or Checkout Plus where a single form handles all pay
 Merchant Hosted Checkout supports the following payment methods. Each method requires a separate integration with its own parameters. You should use the `pg` and `bankcode` values to identify the correct method in your POST request. Refer to the respective document for more information.
 
 | Payment Method | Guide |
-|---|---|---|---|
+|---|---|
 | Credit / Debit / Prepaid Cards | [Cards](./integration-guide/build-integration/cards) |
 | Net Banking | `NB` | Bank-specific code (e.g. `HDFCB`, `ICICI`) | [Net Banking](./integration-guide/build-integration/net-banking) |
 | UPI Collect | [UPI](./integration-guide/build-integration/upi) |
