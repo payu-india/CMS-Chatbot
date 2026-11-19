@@ -4,7 +4,7 @@ excerpt: >-
   Understand the _payment API architecture, the form POST flow, PCI-DSS scope,
   and how Merchant Hosted Checkout differs from PayU's other checkout products.
 deprecated: false
-hidden: false
+hidden: true
 updatedAt: "2026-11-05T00:00:00.000Z"
 metadata:
   title: How Merchant Hosted Checkout Works | PayU Developer Docs
@@ -56,7 +56,7 @@ Wallets, UPI, and Net Banking integrations do not involve raw card data — your
 
 <Callout icon="ℹ️" theme="info">
   ### **Tips:**
-  
+
   If reducing PCI-DSS scope is a priority, consider [Checkout Plus](../checkout-plus-integration) — card data is collected in PayU's Bolt-hosted fields, keeping your servers out of PCI scope.
 </Callout>
 
