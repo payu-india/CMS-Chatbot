@@ -67,7 +67,7 @@ Wallets, UPI, and Net Banking integrations do not involve raw card data — your
 
 ***
 
-## MHC vs Other PayU Checkout Products
+## Merchant Hosted Checkout vs Other Checkout Products
 
 | Feature                   | PayU Hosted Checkout             | Checkout Plus (Bolt SDK)              | Merchant Hosted Checkout            |
 | ------------------------- | -------------------------------- | ------------------------------------- | ----------------------------------- |
@@ -91,8 +91,6 @@ For card integrations, you can optionally call the `getBinInfo` API before submi
 
 This is used to:
 
-<br />
-
 - Display the correct card network logo
 - Show EMI options for eligible cards
 - Confirm accepted card types before the customer submits
@@ -105,21 +103,21 @@ See [Build Integration — Cards](./integration-guide/build-integration/cards) f
 
 PayU POSTs the payment response to your `surl` (success URL) or `furl` (failure URL). Both URLs must:
 
-<br />
-
 - Be publicly reachable over HTTPS in production
 - Accept POST requests
 - Return a 200 HTTP status after processing
 
-<br />
+<Callout icon="far fa-circle-info" theme="info">
+  ### **Tips:**
 
-**Recommendation:** Implement a webhook handler as a fallback. If the customer closes the browser before the redirect completes, your `surl`/`furl` may not receive the callback. Configure PayU webhooks in the Dashboard to receive server-to-server notifications as a backup.
+  Implement a webhook handler as a fallback. If the customer closes the browser before the redirect completes, your `surl`/`furl` may not receive the callback. Configure PayU webhooks in the Dashboard to receive server-to-server notifications as a backup.
+</Callout>
 
 ***
 
 ## Key Concepts
 
-| Term         | Definition                                                                                                  |
+| Concept      | Definition                                                                                                  |
 | ------------ | ----------------------------------------------------------------------------------------------------------- |
 | `_payment`   | PayU's payment processing endpoint. All MHC payments POST here.                                             |
 | `pg`         | Payment gateway parameter. Specifies the payment method type (`CC`, `NB`, `UPI`, `CASH`, `PAYPAL`, `MC`).   |
