@@ -88,7 +88,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 | auto_kyc_status | _Boolean_<br>Indicates whether automated KYC verification has been completed. |
 | aadhaar_kyc_status | _Boolean_<br>Indicates whether Aadhaar-based KYC verification has been completed. |
 | document_status | _String_<br>Overall document verification status (e.g., `Pending`, `Success`). |
-| all_doc_statuses | _Array of Objects_<br>Itemized status list of individual onboarding documents submitted by the merchant. |
+| all_doc_statuses | _Array of Objects_<br>Itemized status list of individual onboarding documents submitted by the merchant. For more information, refer to [all_doc_statuses Object Fields Description](all_doc_statuses-object-fields-description) |
 | doc_reviewer_assigned | _Boolean_<br>Indicates whether an operations/compliance reviewer has been assigned to verify uploaded documents. |
 | vkyc_status | _String_<br>Status of Video KYC verification (e.g., `skipped`, `Pending`, `Success`). |
 | ckyc_status | _String_<br>Status of Central KYC (CKYC) registry verification.<br>**Possible values:** `Success`, `Failed`, `Pending`, `skipped` |
@@ -99,12 +99,12 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 | signatory_present | _Boolean_<br>Indicates whether signing authority details have been submitted. |
 | lob_status | _String_ or _Null_<br>Line of Business (LOB) / category verification status. Returns `null` if not applicable or not evaluated. |
 | cpv_status | _String_<br>Contact Point Verification (CPV) status (e.g., `pending`, `Success`). |
-| business_members | _Array of Objects_<br>List of declared business stakeholders, partners, or directors. |
+| business_members | _Array of Objects_<br>List of declared business stakeholders, partners, or directors. For more information, refer to [business_members Object Fields Description](#business_members-object-fields-description) |
 | business_members_required | _Boolean_<br>Indicates whether declaring business members is mandatory for the merchant's business entity type. |
 | director_or_partner_present | _Boolean_<br>Indicates whether details for at least one director or partner have been submitted. |
 | kmp_present | _Boolean_<br>Indicates whether Key Managerial Personnel (KMP) details are submitted. |
-| ultimate_beneficiaries | _Array of Objects_<br>List of declared Ultimate Beneficial Owners (UBOs). |
-| ubo_statuses | _Object_<br>Container holding UBO declaration and verification status flags. |
+| ultimate_beneficiaries | _Array of Objects_<br>List of declared Ultimate Beneficial Owners (UBOs). For more information, refer to [ultimate_beneficiaries Object Fields Description](#ultimate_beneficiaries-object-fields-description)|
+| ubo_statuses | _Object_<br>Container holding UBO declaration and verification status flags. For more information, refer to [ubo_statuses Object Fields Description](#ubo_statuses-object-fields-description)|
 
 ---
 
@@ -127,7 +127,7 @@ curl -X GET "https://partner.payu.in/api/v3/merchants/11f1-addc-1cc7ed88-9770-0a
 
 ---
 
-###ultimate_beneficiaries Object Fields Description
+### ultimate_beneficiaries Object Fields Description
 
 | Parameter | Description |
 | :--- | :--- |
