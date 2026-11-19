@@ -182,6 +182,26 @@ Merchant Hosted Checkout places significant security responsibility on you more 
 
 ***
 
+## How Does My Customer Pay?
+
+<Accordion title="1. Customer fills your payment form">
+  Your website presents the payment form you built. The customer enters their payment details such as card number, UPI VPA, or selects their bank directly on your page.
+</Accordion>
+
+<Accordion title="2. Your backend generates the hash and posts to PayU">
+  Your server generates the transaction hash and submits a form POST to `https://secure.payu.in/_payment` with the payment parameters and hash. PayU receives and validates the request.
+</Accordion>
+
+<Accordion title="3. Bank authentication (if required)">
+  For card payments, PayU redirects the customer to the issuing bank's 3DS authentication page. For NetBanking, the customer is redirected to their bank's login page. For UPI intent, the customer's UPI app opens. For wallets, PayU handles the redirect.
+</Accordion>
+
+<Accordion title="4. Customer returns and your server handles the callback">
+  After authentication, the customer is redirected to your `surl` or `furl`. PayU POSTs the transaction response to that URL. Your server verifies the response hash and calls the Verify Payment API before updating the order state.
+</Accordion>
+
+***
+
 ## What Happens After a Payment
 
 After the customer completes a payment:
@@ -213,46 +233,6 @@ After the customer completes a payment:
     Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard.
   </Tab>
 </Tabs>
-
-## How Does My Customer Pay?
-
-<Accordion title="1. Customer fills your payment form">
-  Your website presents the payment form you built. The customer enters their payment details such as card number, UPI VPA, or selects their bank directly on your page.
-</Accordion>
-
-<Accordion title="2. Your backend generates the hash and posts to PayU">
-  Your server generates the transaction hash and submits a form POST to `https://secure.payu.in/_payment` with the payment parameters and hash. PayU receives and validates the request.
-</Accordion>
-
-<Accordion title="3. Bank authentication (if required)">
-  For card payments, PayU redirects the customer to the issuing bank's 3DS authentication page. For NetBanking, the customer is redirected to their bank's login page. For UPI intent, the customer's UPI app opens. For wallets, PayU handles the redirect.
-</Accordion>
-
-<Accordion title="4. Customer returns and your server handles the callback">
-  After authentication, the customer is redirected to your `surl` or `furl`. PayU POSTs the transaction response to that URL. Your server verifies the response hash and calls the Verify Payment API before updating the order state.
-</Accordion>
-
-***
-
-## Post-Payment Actions
-
-<Cards columns="2">
-  <Card title="Refunds" href="https://docs.payu.in/docs/introduction-refunds" icon="fa-rotate-left" target="_blank">
-    Initiate full or partial refunds from the PayU Dashboard or via the Refund API. Supports instant refunds for eligible transactions.
-  </Card>
-
-  <Card title="Settlements Dashboard" href="https://docs.payu.in/docs/settlements-dashboard" icon="fa-building-columns" target="_blank">
-    View settlement records, download TDR reports, and track UTR details from the PayU Dashboard.
-  </Card>
-
-  <Card title="Chargeback" href="https://docs.payu.in/docs/chargeback" icon="fad fa-arrow-right-to-bracket" target="_blank">
-    Understand the chargeback process, contest or accept chargebacks via the PayU Dashboard, and set up webhook notifications for chargeback events.
-  </Card>
-
-  <Card title="Webhooks" href="https://docs.payu.in/docs/webhooks" icon="fa-plug" target="_blank">
-    Receive server-to-server payment and refund notifications. Use as a fallback when `surl`/`furl` callbacks fail.
-  </Card>
-</Cards>
 
 ***
 
