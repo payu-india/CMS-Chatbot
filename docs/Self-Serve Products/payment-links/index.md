@@ -214,7 +214,7 @@ You will need:
   Click **Create and Send Payment Link**. The link is created instantly. If you enabled notifications, it goes to the customer right away. Otherwise, copy the URL from your Dashboard and share it manually.
 </Accordion>
 
-Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link">Create Payment Links</Anchor> page for a full walkthrough with screenshots.
+Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link">Create Payment Links</Anchor> pagefor a full walkthrough with screenshots.
 
 <Columns layout="fixed">
   <Column>
@@ -225,8 +225,8 @@ Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-pa
 <Callout icon="fad fa-list-timeline" theme="info">
   ### **Other Ways to Create Payment Links:**
 
-  - Create links programmatically via REST API: [Payment Links API](doc:api-create-share)
-  - Send a Pay Now button natively inside WhatsApp: [Enhanced Payment Links (EPL)](doc:enhanced-payment-links-on-whatsapp)
+  - Create links programmatically via REST API: <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">Payment Links API</Anchor>
+  - Send a Pay Now button natively inside WhatsApp: <Anchor target="_blank" href="https://docs.payu.in/docs/enhanced-payment-links-on-whatsapp">Enhanced Payment Links (EPL)</Anchor>
 </Callout>
 
 ***
@@ -284,15 +284,15 @@ Your customer does not need a PayU account or any special app. The link works in
 
 <Tabs>
   <Tab title="Refunds">
-    Use PayU refunds to initiate. Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API
+    Use <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-refunds">PayU refunds</Anchor> to initiate. Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API
   </Tab>
 
   <Tab title="Settlements">
-    You are waiting for the amount to reach your account. PayU settlements can help you find out when the amount will be settled.
+    You are waiting for the amount to reach your account. <Anchor target="_blank" href="https://docs.payu.in/docs/priority-settlements">PayU settlements</Anchor> can help you find out when the amount will be settled.
   </Tab>
 
   <Tab title="Disputes and Chargebacks">
-    Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard.
+    Respond to customer [disputes and chargebacks](https://docs.payu.in/docs/chargeback) raised through their bank. Track status and submit evidence from the Dashboard.
   </Tab>
 </Tabs>
 
@@ -303,29 +303,29 @@ Your customer does not need a PayU account or any special app. The link works in
 Once your customer completes the payment:
 
 <Accordion title="Filter and search">
-  View links by status such as **Active**, **Paid**, **Expired**, or **Deactivated**, or narrow by creation date. Use the calendar picker to set a custom date range.
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#how-do-i-search-for-a-payment-link">View links</Anchor> by status such as **Active**, **Paid**, **Expired**, or **Deactivated**, or narrow by creation date. Use the calendar picker to set a custom date range.
 </Accordion>
 
 <Accordion title="Edit a link">
-  Open a link's Detail view and click **Edit** to update the amount, expiry date, partial payment settings, or customer details after the link has been created.
+  Open a link's Detail view and click <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#edit-payment-link-details">**Edit**</Anchor> to update the amount, expiry date, partial payment settings, or customer details after the link has been created.
 </Accordion>
 
 <Accordion title="Duplicate a link">
-  Create a new link pre-filled with the same settings such as amount, purpose, and options. Use it to reuse a configuration, correct a mistake, or send the same request to a different customer.<br />
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#duplicate-a-payment-link">Create a new link</Anchor> pre-filled with the same settings such as amount, purpose, and options. Use it to reuse a configuration, correct a mistake, or send the same request to a different customer.<br />
 
   Whether a link can be reused for multiple payments depends on how you configured it at creation. Specifically the **Max Transactions Allowed** and **Single-use** settings. A link with no transaction cap accepts payments until it expires or is deactivated.
 </Accordion>
 
 <Accordion title="Resend a link">
-  Share any Active link again via SMS, email, or by copying the URL and sending it over WhatsApp or any channel without any limit on how many times you can resend.
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#share-or-resend-a-payment-link">Share any Active link again</Anchor> via SMS, email, or by copying the URL and sending it over WhatsApp or any channel without any limit on how many times you can resend.
 </Accordion>
 
 <Accordion title="Export records">
-  Download your payment link history as CSV or Excel with either a link-level summary or a transaction-level detail report for reconciliation or reporting.
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#how-do-i-download-my-payment-link-records">Download</Anchor> your payment link history as CSV or Excel with either a link-level summary or a transaction-level detail report for reconciliation or reporting.
 </Accordion>
 
 <Accordion title="Deactivate a link">
-  When a link is no longer needed, stop it from accepting further payments, either from the Dashboard or via the [Deactivate API](doc:api-cancel-status). To re-activate a deactivated or expired link, use the same API with `active: true`.
+  When a link is no longer needed, stop it from accepting further payments, either from the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#deactivate-a-payment-link">Dashboard</Anchor> or via the [Deactivate API](doc:api-cancel-status). To re-activate a deactivated or expired link, use the same API with `active: true`.
 </Accordion>
 
 Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links">Manage Payment Links</Anchor> page for more information.
