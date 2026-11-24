@@ -38,6 +38,9 @@ next:
     - slug: payment-links-faqs
       title: FAQs (Frequently Asked Questions)
       type: basic
+    - slug: payment-links-apis
+      title: Payment Links APIs
+      type: basic
 ---
 <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">PayU Payment Links</Anchor> let you collect payments without a website or technical integration. Here is a step-by-step look at how a link moves from creation to settlement.
 
