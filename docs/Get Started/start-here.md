@@ -38,7 +38,7 @@ Whether you are a business owner who wants to start accepting payments today wit
 <Callout icon="far fa-lightbulb-on" theme="default">
   ### **No Technical Setup? No problem!**
 
-  If you just want to start accepting payments today without any coding, [Payment Links](doc:payment-links-dashboard) and [Payment](doc:integrate-upi-qr) Buttons work straight from the PayU Dashboard without the need of a developer.
+  If you just want to start accepting payments today without any coding, <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links-dashboard">Payment Links</Anchor> and <Anchor target="_blank" href="https://docs.payu.in/docs/payment-buttons-dashboard">Payment Buttons</Anchor> work straight from the PayU Dashboard without the need of a developer.
 </Callout>
 
 If you want to find the right fit, tell us about your business and technical capability for this wizard to recommend you the PayU product that fits. Not sure where to start? Answer a few questions and we will point you to the right path. It takes about a minute.
@@ -57,18 +57,17 @@ If you want to find the right fit, tell us about your business and technical cap
 
 If you already know what you need, go directly to the right guide.
 
-| What you want to do                      | PayU solution            | Effort                  |
-| ---------------------------------------- | ------------------------ | ----------------------- |
-| Share a payment link — no website needed | Payment Links            | 🟢 No coding required   |
-| Accept payments in person via QR         | UPI QR Code              | 🟢 No coding required   |
-| Add checkout to a Shopify store          | Shopify Plugin           | 🟡 Some technical setup |
-| Add checkout to a WooCommerce store      | WooCommerce Plugin       | 🟡 Some technical setup |
-| Add checkout to a Magento store          | Magento Plugin           | 🟡 Some technical setup |
-| Add checkout to a custom-built website   | PayU Hosted Checkout     | 🟡 Some technical setup |
-| Build a fully custom payment page        | Merchant Hosted Checkout | 🔴 Developer required   |
-| Set up subscription or recurring billing | Recurring Payments       | 🔴 Developer required   |
-| Split payments across multiple sellers   | Split Settlement         | 🔴 Developer required   |
-| Accept payments on a mobile app          | Mobile SDKs              | 🔴 Developer required   |
+| What you want to do                                | PayU solution            | Effort                  |
+| -------------------------------------------------- | ------------------------ | ----------------------- |
+| Share a payment link without the need of a website | Payment Links            | 🟢 No coding required   |
+| Add checkout to a Shopify store                    | Shopify Plugin           | 🟡 Some technical setup |
+| Add checkout to a WooCommerce store                | WooCommerce Plugin       | 🟡 Some technical setup |
+| Add checkout to a Magento store                    | Magento Plugin           | 🟡 Some technical setup |
+| Add checkout to a custom-built website             | PayU Hosted Checkout     | 🟡 Some technical setup |
+| Build a fully custom payment page                  | Merchant Hosted Checkout | 🔴 Developer required   |
+| Set up subscription or recurring billing           | Recurring Payments       | 🔴 Developer required   |
+| Split payments across multiple sellers             | Split Settlement         | 🔴 Developer required   |
+| Accept payments on a mobile app                    | Mobile SDKs              | 🔴 Developer required   |
 
 {/* NEW CONTENT — the "What you'll need before you begin" callout below
      is new. It surfaces the two universal prerequisites (account + credentials)
