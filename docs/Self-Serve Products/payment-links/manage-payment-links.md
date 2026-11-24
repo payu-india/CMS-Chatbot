@@ -27,6 +27,25 @@ metadata:
   robots: index
 next:
   description: Explore related information and resources.
+  pages:
+    - slug: create-a-payment-link
+      title: Create Payment Links
+      type: basic
+    - slug: create-a-payment-link-with-ai-assistant
+      title: Create a Payment Link with AI Coding Assistants
+      type: basic
+    - slug: invoices-errors-troubleshooting
+      title: Errors and Troubleshooting
+      type: basic
+    - slug: payment-links-faqs
+      title: FAQs (Frequently Asked Questions)
+      type: basic
+    - slug: payment-links-apis
+      title: Payment Links APIs
+      type: basic
+    - slug: payment-links-workflow
+      title: How Payment Links Works
+      type: basic
 ---
 {/* EXISTING CONTENT: adapted from categorize-the-payment-links-view.md, export-the-payment-link-history.md, customize-the-calendar-view-for-payment-links.md */}
 
