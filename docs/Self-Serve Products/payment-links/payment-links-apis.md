@@ -42,10 +42,10 @@ You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/pay
 
 ## Authentication
 
-| API                                                                                                                       | Description                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">**Generate an Access Token**</Anchor> | API to generate an access token           |
-| [**Revoke a Token**](https://docs.payu.in/reference/revoke-token)                                                         | API to revoke/deactivate the access token |
+| API                                                                                                                       | Description                                 |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">**Generate an Access Token**</Anchor> | API to generate an access token             |
+| [**Revoke a Token**](https://docs.payu.in/reference/revoke-token)                                                         | API to revoke or deactivate an access token |
 
 ## Payment Link APIs
 
