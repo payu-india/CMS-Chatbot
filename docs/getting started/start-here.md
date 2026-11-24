@@ -24,6 +24,13 @@ metadata:
   robots: index
 next:
   description: Explore related topics and resources.
+  pages:
+    - title: Register with PayU
+      type: link
+      url: ''
+    - slug: payu-dashboard
+      title: Explore Dashboard
+      type: basic
 ---
 Whether you are a business owner who wants to start accepting payments today with no coding, or a developer building a fully custom checkout, this is where you start. PayU supports UPI, cards, net banking, wallets, EMI, and more across India. The sections below will help you find the right product and get to your first payment as quickly as possible.
 
