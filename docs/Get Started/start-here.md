@@ -55,7 +55,7 @@ If you want to find the right fit, tell us about your business and technical cap
 
 ## Prefer to Browse? Common Integration Paths
 
-If you already know what you need, go directly to the right guide.
+This is a quick gist of the most common paths, not an exhaustive list. If you already know what you need, go directly to the right guide.
 
 | What you want to do                                | PayU solution            | Effort                  |
 | -------------------------------------------------- | ------------------------ | ----------------------- |
