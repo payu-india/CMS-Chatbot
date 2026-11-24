@@ -66,16 +66,15 @@ Create <Anchor target="_blank" href="https://docs.payu.in/update/docs/payment-li
 
 Follow these steps to create and send a <Glossary>payment link</Glossary>:
 
-<Accordion title="1. Open Payment Links on the Dashboard" icon="far fa-grid-2">
+<Accordion title="1. Open Payment Links on the Dashboard">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor>.
   2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
-
 
   <Image src="https://files.readme.io/35fe8235c387b22f93c4af37425c7ce2077534a981c17a8abb22d037f98486a1-Screenshot_2026-09-18_at_11.04.00_AM.png" align="center" caption="Go to Payment Links" border={true} />
 
 </Accordion>
 
-<Accordion title="2. Create a new link" icon="far fa-link">
+<Accordion title="2. Create a new link">
   1. Click **Create New Payment Links** displayed in the top-right corner of the **Payment Links** page.
 
   <Image src="https://files.readme.io/889bdf1e584b7531c1f79d1396230fbbfcb7ae0c6beaa5789d764d57c95aef8f-Screenshot_2026-09-18_at_11.06.18_AM.png" align="center" caption="Create New Payment Link panel" border={true} />
@@ -185,7 +184,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
   </Callout>
 </Accordion>
 
-<Accordion title="3. Add More Details (optional)" icon="far fa-file-invoice">
+<Accordion title="3. Add More Details (optional)">
   1. Click **Add More Details** to include these additional configuration fields:
 
   | Field                         | Description                                  |
@@ -197,14 +196,13 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
   | **Add UDF Details**           | Custom key-value fields for your own records |
   | **Add Merchant Reference ID** | Your internal order or booking reference     |
 
-
   <Image src="https://files.readme.io/c73e2f1739d759815cf7503096e7c971927f4986c8b0dddafc6951b4a760cff2-dashboard_create_new_payment_link_step2.png" border={true} />
 
 
   2. Click **Add Fields** to apply your selection and return to the main panel.
 </Accordion>
 
-<Accordion title="4. Customer Targeting" icon="far fa-user">
+<Accordion title="4. Customer Targeting">
   Add these details under the **Customer Targeting&#x20;**&#x73;ection:
 
   | Fields           | Description                                               |
@@ -216,7 +214,6 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
   | **Send Email**   | Select for PayU to send the link automatically via email. |
   |                  |                                                           |
 
-
   <Image src="https://files.readme.io/e152dd0ea2bea18f00fd03a354e0fdecce071b2d84e4e54cd3fba858ac5400fb-Screenshot_2026-09-18_at_1.54.47_PM.png" align="center" caption="Enter Customer Details" border={true} />
 
 
@@ -227,7 +224,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
   </Callout>
 </Accordion>
 
-<Accordion title="5. Customer Data Capture (optional)" icon="far fa-list-check">
+<Accordion title="5. Customer Data Capture (optional)">
   Specify what PayU collects from your customer at checkout under the **Customer Data Capture&#x20;**&#x73;ection:
 
   - Standard fields: Customer Email and Phone
@@ -236,14 +233,12 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
     - **Field Name**: the label the customer sees
     - **Mark as Mandatory**: Select to require the field before payment can proceed
 
-
   <Image src="https://files.readme.io/2448391dfa55fcd56969ab1a3d5ba09c542d7caefe3ecb5181aa14cb19e5ce25-Screenshot_2026-09-18_at_2.09.25_PM.png" align="center" caption="Capture Customer Data" border={true} />
 
 </Accordion>
 
-<Accordion title="6. Create and send" icon="far fa-paper-plane">
+<Accordion title="6. Create and send">
   Click **Create and Send Payment link** in the top-right corner.
-
 
   <Image src="https://files.readme.io/14e447953ba5f3a9c4c0cabaf852255600b8ca63288b8f422a7ce90ca784efbd-Screenshot_2026-09-18_at_2.14.45_PM.png" align="center" caption="Create and Send a Payment Link" border={true} />
 
@@ -265,12 +260,10 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
   2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
 
-
      <Image src="https://files.readme.io/bc6fe9da1a24dc6d7bd3bf46b29fc136aa19c59a37319a5c5bdea81f01cfc566-image.png" align="center" caption="Go to Payment Links" border={true} />
 
 
   3. Click **Bulk Create** displayed at the top-right.
-
 
      <Image src="https://files.readme.io/b5ef3ea428e4c976ec9d8c8cbac1e1add683047cb998485b984b0885595b21db-Screenshot_2026-09-18_at_3.12.38_PM.png" align="center" caption="Go to Bulk Create" border={true} />
 
@@ -432,12 +425,12 @@ After your customer makes the payment:
 
 1. PayU updates the link status to **Paid** in your Dashboard.
 2. The transaction appears in the **Transactions&#x20;**&#x74;ab in your Dashboard.
-3. If you have webhooks configured, PayU sends a `payment.success` event to your server.
+3. If you have webhooks configured, PayU <Anchor target="_blank" href="https://docs.payu.in/docs/webhook-events-and-sample-payloads#payment-successful">sends</Anchor> a `payment.success` event to your server.
 
 <Callout icon="📘" theme="info">
   ### **Webhooks**
 
-  Webhooks are optional. Your Dashboard always reflects the current payment status without any webhook setup.
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks</Anchor> are optional. Your Dashboard always reflects the current payment status without any webhook setup.
 </Callout>
 
 ***
