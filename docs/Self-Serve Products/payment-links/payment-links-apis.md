@@ -37,6 +37,9 @@ next:
     - slug: payment-links-faqs
       title: FAQs (Frequently Asked Questions)
       type: basic
+    - slug: payment-links-workflow
+      title: How Payment Links Works
+      type: basic
 ---
 You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">Payment Links APIs</Anchor> to perform various actions on payment links programmatically.
 
