@@ -78,7 +78,6 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
 <Accordion title="2. Create a new link" icon="far fa-link">
   1. Click **Create New Payment Links** displayed in the top-right corner of the **Payment Links** page.
 
-
   <Image src="https://files.readme.io/889bdf1e584b7531c1f79d1396230fbbfcb7ae0c6beaa5789d764d57c95aef8f-Screenshot_2026-09-18_at_11.06.18_AM.png" align="center" caption="Create New Payment Link panel" border={true} />
 
 
@@ -87,7 +86,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
   <Callout icon="📘" theme="info">
     ### **Required Fields**
 
-      <RequiredStar legend />
+    <RequiredStar legend />
   </Callout>
 
   <Table>
@@ -120,7 +119,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
         </td>
 
         <td>
-          The total amount you want to collect. You can choose to leave this field for the open payments. Add an amount if you wan to allow partial payments.
+          The total amount you want to collect. You can choose to leave this field for the open payments. Add an amount if you want to allow partial payments.
         </td>
       </tr>
 
@@ -175,7 +174,6 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
       </tr>
     </tbody>
   </Table>
-
 
   <Image src="https://files.readme.io/7eb57e5f6f3a938989a98e19f63d223fe049d2f1d5b8e4258693879e27ac47b8-Screenshot_2026-09-18_at_1.36.52_PM.png" align="center" caption="Provide Payment Link Details" border={true} />
 
