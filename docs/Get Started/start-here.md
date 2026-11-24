@@ -1,6 +1,8 @@
 ---
 title: Start Here
-excerpt: Answer a couple of quick questions and we'll show you exactly what to do next.
+excerpt: >-
+  Find the right PayU integration for your business, from no-code payment links
+  and UPI QR to hosted checkout, mobile SDKs, and recurring payments.
 deprecated: false
 hidden: true
 metadata:
@@ -23,14 +25,6 @@ metadata:
 next:
   description: Explore related topics and resources.
 ---
-<br />
-
-{/* NEW CONTENT — the existing introduction/index.md opens with a generic
-     "what is a payment gateway" definition and a bullet list of benefits.
-     That content is too generic and marketing-heavy for a decision-making
-     entry point. The paragraphs below are rewritten to be lean, honest,
-     and action-oriented. Needs SME review for accuracy and brand tone. */}
-
 Whether you are a business owner who wants to start accepting payments today with no coding, or a developer building a fully custom checkout — this is where you start. PayU supports UPI, cards, net banking, wallets, EMI, and more across India. The sections below will help you find the right product and get to your first payment as quickly as possible.
 
 ***
@@ -47,7 +41,7 @@ Whether you are a business owner who wants to start accepting payments today wit
   If you just want to start accepting payments today without any coding, [Payment Links](doc:payment-links-dashboard) and [UPI QR](doc:integrate-upi-qr) work straight from the PayU Dashboard — no developer needed.
 </Callout>
 
-If you want to explore more products or choose a product for you, tell us about your business setup and technical capability, this wizard then recommends the PayU product that fits. Not sure where to start? Answer few questions and we will point you to the right path — takes about a minute.
+If you want to find the right fit, tell us about your business and technical capability for this wizard to recommend you the PayU product that fits. Not sure where to start? Answer few questions and we will point you to the right path, takes about a minute.
 
 <PayUQuickStartWizard />
 
