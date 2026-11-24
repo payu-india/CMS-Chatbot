@@ -1,0 +1,129 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Initiate payment
+  version: "1.0.0"
+  description: >
+    POST /partner/initiatePayment. Headers required by PartnerController are
+    X-PayU-Reseller-UUID, X-Partner-Token, and Authorization.
+    The body must include accountId (merchant key, or a numeric merchant id).
+    PartnerService also reads txnId, amount, and callBackActions.successAction and failureAction.
+    The published field list is the Partner QR initiate-payment page.
+    The body is forwarded to Core Payments POST /v2/payments.
+    Partner QR guides also document UAT https://apitest.payu.in/apilayer and production https://api.payu.in/apilayer.
+paths:
+  /partner/initiatePayment:
+    post:
+      operationId: partnerInitiatePayment
+      summary: Initiate an omnichannel payment
+      security:
+        - resellerUuid: []
+          partnerToken: []
+          hmacAuth: []
+      parameters:
+        - name: date
+          in: header
+          required: false
+          schema:
+            type: string
+          description: GMT timestamp used by the Partner QR HMAC examples.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [accountId, txnId, amount, currency, order, additionalInfo, callBackActions, billingDetails]
+              properties:
+                accountId:
+                  type: string
+                  description: Merchant key, or a numeric merchant id. Required by extractAccountId.
+                txnId:
+                  type: string
+                amount:
+                  type: integer
+                  description: Amount in paise on the Partner QR page (10000 = ₹100.00).
+                currency:
+                  type: string
+                  example: INR
+                order:
+                  type: object
+                  properties:
+                    productInfo:
+                      type: string
+                    paymentChargeSpecification:
+                      type: object
+                      properties:
+                        price:
+                          type: integer
+                additionalInfo:
+                  type: object
+                  properties:
+                    txnFlow:
+                      type: string
+                    createOrder:
+                      type: string
+                callBackActions:
+                  type: object
+                  properties:
+                    successAction:
+                      type: string
+                    failureAction:
+                      type: string
+                    cancelAction:
+                      type: string
+                    returnAction:
+                      type: string
+                billingDetails:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                    phone:
+                      type: string
+                    email:
+                      type: string
+                    address1:
+                      type: string
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    country:
+                      type: string
+                    zipCode:
+                      type: string
+      responses:
+        '200':
+          description: Core Payments V2 response, passed through. The Partner QR guide returns mihpayId for the next QR call.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: accountId is missing or the JSON is invalid.
+          content:
+            application/json:
+              example:
+                error: accountId is required in request body
+components:
+  securitySchemes:
+    resellerUuid:
+      type: apiKey
+      in: header
+      name: X-PayU-Reseller-UUID
+    partnerToken:
+      type: apiKey
+      in: header
+      name: X-Partner-Token
+      description: Partner access token. The Partner QR guides send this as `Bearer <token>`.
+    hmacAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HMAC value. Partner QR guides use `hmac username="<client_id>", algorithm="sha512", headers="date", signature="<signature>"`.

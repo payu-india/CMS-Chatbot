@@ -1,0 +1,150 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Bolt generate hash
+  version: "1.0.0"
+  description: >
+    POST /partner/bolt/generateHash. BoltConstants.API_BASE_PATH is /partner/bolt.
+    Headers: Authorization, X-PayU-Reseller-UUID, and X-PayU-Merchant-ID.
+    The 200 body is BoltLaunchPayloadDTO (the object passed to bolt.launch), not a status wrapper.
+    Hash preimage, quoted from BoltHashUtil: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT,
+    with |additional_charges and |paisa_mecode appended only when those values are present.
+    This is the payment hash in custom_blocks/HashingSample.md.
+paths:
+  /partner/bolt/generateHash:
+    post:
+      operationId: partnerBoltGenerateHash
+      summary: Generate the Checkout Plus launch payload
+      security:
+        - bearerAuth: []
+          resellerUuid: []
+          merchantId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [txnid, amount, productinfo, firstname, email, phone, surl, furl]
+              properties:
+                txnid:
+                  type: string
+                amount:
+                  type: string
+                productinfo:
+                  type: string
+                firstname:
+                  type: string
+                  description: Letters and spaces, 1 to 128 characters.
+                lastname:
+                  type: string
+                  description: Letters and spaces, up to 128 characters.
+                email:
+                  type: string
+                phone:
+                  type: string
+                  description: 5 to 16 digits.
+                surl:
+                  type: string
+                furl:
+                  type: string
+                udf1:
+                  type: string
+                  maxLength: 255
+                udf2:
+                  type: string
+                  maxLength: 255
+                udf3:
+                  type: string
+                  maxLength: 255
+                udf4:
+                  type: string
+                  maxLength: 255
+                udf5:
+                  type: string
+                  maxLength: 255
+                additional_charges:
+                  type: string
+                paisa_mecode:
+                  type: string
+                pg:
+                  type: string
+                bankcode:
+                  type: string
+                drop_category:
+                  type: string
+                enforce_paymethod:
+                  type: string
+                custom_note:
+                  type: string
+                note_category:
+                  type: string
+      responses:
+        '200':
+          description: Checkout Plus launch payload. Only non-null fields are serialized.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  hash:
+                    type: string
+                  txnid:
+                    type: string
+                  amount:
+                    type: string
+                  productinfo:
+                    type: string
+                  firstname:
+                    type: string
+                  email:
+                    type: string
+                  phone:
+                    type: string
+                  surl:
+                    type: string
+                  furl:
+                    type: string
+              example:
+                key: YOUR_MERCHANT_KEY
+                hash: YOUR_SHA512_HASH
+                txnid: TXN1001
+                amount: "10.00"
+                productinfo: Order
+                firstname: John
+                email: customer@example.com
+                phone: "9999999999"
+                surl: https://merchant.example.com/success
+                furl: https://merchant.example.com/failure
+        '400':
+          description: Bean validation failed. The body is errors, a list of messages.
+          content:
+            application/json:
+              example:
+                errors:
+                  - txnid is mandatory param.
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    resellerUuid:
+      type: apiKey
+      in: header
+      name: X-PayU-Reseller-UUID
+    merchantId:
+      type: apiKey
+      in: header
+      name: X-PayU-Merchant-ID

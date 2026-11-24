@@ -1,0 +1,64 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Resend card OTP
+  version: "1.0.0"
+  description: >
+    ResendCardOtpDTO requires merchant_id, reseller_id, hash, and reference_id.
+    On success the message is "OTP resent successfully".
+paths:
+  /partner/resendCardOtp:
+    post:
+      operationId: partnerResendCardOtp
+      summary: Resend a card OTP
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [merchant_id, reseller_id, hash, reference_id]
+              properties:
+                merchant_id:
+                  type: integer
+                reseller_id:
+                  type: string
+                hash:
+                  type: string
+                reference_id:
+                  type: string
+      responses:
+        '200':
+          description: OTP resent.
+          content:
+            application/json:
+              example:
+                status: success
+                message: OTP resent successfully
+                attemptsLeft: 2
+                isSupported: true
+        '400':
+          description: Validation failed or the resend was rejected.
+          content:
+            application/json:
+              example:
+                errors:
+                  - reference_id is mandatory.
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

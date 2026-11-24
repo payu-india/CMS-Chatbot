@@ -1,0 +1,77 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Submit card OTP
+  version: "1.0.0"
+  description: >
+    SubmitCardOtpDTO requires merchant_id, reseller_id, hash, reference_id, and otp.
+    txnid is not a field. A verified OTP adds txnStatus, mihpayid, and message
+    "OTP verified successfully". Failures use status "failed" and message.
+paths:
+  /partner/submitCardOtp:
+    post:
+      operationId: partnerSubmitCardOtp
+      summary: Submit a card OTP
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [merchant_id, reseller_id, hash, reference_id, otp]
+              properties:
+                merchant_id:
+                  type: integer
+                reseller_id:
+                  type: string
+                hash:
+                  type: string
+                reference_id:
+                  type: string
+                  description: PayU reference id for the in-progress card transaction.
+                otp:
+                  type: string
+      responses:
+        '200':
+          description: OTP accepted.
+          content:
+            application/json:
+              example:
+                status: success
+                attemptsLeft: 2
+                isSupported: true
+                txnStatus: success
+                mihpayid: "403993715521855092"
+                message: OTP verified successfully
+        '400':
+          description: Validation failed, or the OTP was rejected with attempts left.
+          content:
+            application/json:
+              examples:
+                validation:
+                  value:
+                    errors:
+                      - reference_id is mandatory.
+                otp:
+                  value:
+                    status: failed
+                    message: Invalid OTP
+                    attemptsLeft: 2
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

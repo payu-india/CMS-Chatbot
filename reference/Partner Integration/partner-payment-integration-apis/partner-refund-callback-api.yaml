@@ -1,0 +1,79 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Partner Refund Callback
+  version: "1.0.0"
+  description: >
+    PayU receives the refund notification at POST /partner/refundCallback.
+    PartnerController accepts a JSON object. RefundCallbackDTO is the non-migrated
+    shape. RefundCallbackMigratedDTO is the migrated shape (paymentId, refundId,
+    refundAmount, refundStatus). Both sets are listed. No field is required by the controller.
+paths:
+  /partner/refundCallback:
+    post:
+      operationId: partnerRefundCallback
+      summary: Refund status callback
+      security: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mihpayid:
+                  type: string
+                request_id:
+                  type: string
+                amt:
+                  type: string
+                  description: Refunded amount on the non-migrated payload.
+                status:
+                  type: string
+                  description: Non-migrated status. PartnerService treats success, queued, and failure.
+                token:
+                  type: string
+                bank_ref_num:
+                  type: string
+                bank_arn:
+                  type: string
+                refund_mode:
+                  type: string
+                action:
+                  type: string
+                merchantTxnId:
+                  type: string
+                partnerName:
+                  type: string
+                remark:
+                  type: string
+                key:
+                  type: string
+                additionalValue1:
+                  type: string
+                additionalValue2:
+                  type: string
+                paymentId:
+                  type: string
+                  description: Migrated payload. Same role as mihpayid.
+                refundId:
+                  type: string
+                  description: Migrated payload. Same role as request_id.
+                refundAmount:
+                  type: string
+                refundStatus:
+                  type: string
+                  description: Migrated payload. Code comment says the value is Refund Completed.
+                notificationId:
+                  type: string
+                completedOn:
+                  type: string
+                addedOn:
+                  type: string
+      responses:
+        '200':
+          description: processRefundCallbackResponse returns void. PayU does not document a JSON acknowledgement body.

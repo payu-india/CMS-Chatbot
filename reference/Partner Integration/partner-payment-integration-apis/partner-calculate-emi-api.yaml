@@ -1,0 +1,65 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Calculate EMI
+  version: "1.0.0"
+  description: >
+    PartnerService.calculateEmi requires merchant_id (digits).
+    reseller_id is removed before the downstream call. Other fields are forwarded
+    after merchant_id is removed. amount and bankcode are not validated here.
+paths:
+  /partner/calculateEmi:
+    post:
+      operationId: partnerCalculateEmi
+      summary: Calculate EMI options
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [merchant_id]
+              properties:
+                merchant_id:
+                  type: string
+                amount:
+                  type: string
+                  description: Forwarded. Not validated in PartnerService.calculateEmi.
+                bankcode:
+                  type: string
+                  description: Forwarded. Not validated in PartnerService.calculateEmi.
+                reseller_id:
+                  type: string
+                  description: Removed before the downstream EMI call.
+      responses:
+        '200':
+          description: EMI calculator JSON, passed through.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: merchant_id is missing or not digits.
+          content:
+            application/json:
+              example:
+                error: merchant_id param is missing in the body
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

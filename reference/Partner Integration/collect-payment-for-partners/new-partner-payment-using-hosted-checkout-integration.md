@@ -128,7 +128,12 @@ Content-Type: application/json
 | `state`         | string — Customer state          | Maharashtra                                                                |
 | `country`       | string — Customer country        | India                                                                      |
 | `zipcode`       | string — Customer postal code    | 400001                                                                     |
-| `udf1` - `udf5` | string — User-defined fields     | custom_value                                                               |
+| `udf1` - `udf5` | string — User-defined fields. `udf5` is optional | custom_value                                                               |
+| `merchant_webhook_success` | string — Merchant webhook URL for payment success notifications | https://merchant.example.com/webhook/success |
+| `merchant_webhook_failure` | string — Merchant webhook URL for payment failure notifications | https://merchant.example.com/webhook/failure |
+| `display_lang` | string — Language code for the checkout display, for example `en` or `hi` | en |
+| `cart_details` | string — Cart line items for the checkout page, sent as a JSON string | {"items":[{"sku":"SKU1","name":"Item","quantity":"1"}]} |
+| `custom_note` | string — Note shown to the customer on the checkout page | Deliver before 6 PM |
 | `curl`          | string — Cancel redirect URL     | [https://merchant.example.com/cancel](https://merchant.example.com/cancel) |
 
 ***

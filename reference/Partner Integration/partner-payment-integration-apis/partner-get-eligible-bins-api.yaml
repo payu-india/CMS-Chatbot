@@ -1,0 +1,62 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Get eligible EMI bins
+  version: "1.0.0"
+  description: >
+    PartnerService.getEligibleBins requires merchant_id, type, and var2.
+    pg and offer_type are not read by this method. The map is forwarded to the eligible-bins service.
+paths:
+  /partner/getEligibleBins:
+    post:
+      operationId: partnerGetEligibleBins
+      summary: Get EMI bins eligible for a merchant
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [merchant_id, type, var2]
+              properties:
+                merchant_id:
+                  type: string
+                  description: Digits only.
+                type:
+                  type: string
+                  description: Required by PartnerService. Forwarded to the eligible-bins service.
+                var2:
+                  type: string
+                  description: Required by PartnerService. Forwarded to the eligible-bins service.
+      responses:
+        '200':
+          description: Eligible-bins service JSON, passed through.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: merchant_id, type, or var2 is missing.
+          content:
+            application/json:
+              example:
+                error: merchant_id, type and var2 param are mandatory params
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

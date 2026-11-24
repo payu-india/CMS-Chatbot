@@ -1,0 +1,78 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Verify omnichannel transaction status
+  version: "1.0.0"
+  description: >
+    POST /partner/transaction/verifyStatus.
+    Required headers: X-PayU-Reseller-UUID, X-Partner-Token, Authorization.
+    Optional headers on the controller: X-PayU-Merchant-Key, X-PayU-Merchant-ID.
+    The published request body is txnId, an array of transaction ids.
+    The body is forwarded to the Bharat QR status command.
+paths:
+  /partner/transaction/verifyStatus:
+    post:
+      operationId: partnerTransactionVerifyStatus
+      summary: Verify Bharat QR transaction status
+      security:
+        - resellerUuid: []
+          partnerToken: []
+          hmacAuth: []
+      parameters:
+        - name: X-PayU-Merchant-Key
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: X-PayU-Merchant-ID
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Header name in PartnerConstants is X-PayU-Merchant-ID.
+        - name: date
+          in: header
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [txnId]
+              properties:
+                txnId:
+                  type: array
+                  items:
+                    type: string
+                  description: Transaction ids to verify. Published on the Partner QR status page.
+      responses:
+        '200':
+          description: Bharat QR status JSON, passed through.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    resellerUuid:
+      type: apiKey
+      in: header
+      name: X-PayU-Reseller-UUID
+    partnerToken:
+      type: apiKey
+      in: header
+      name: X-Partner-Token
+      description: Partner access token. The Partner QR guides send this as `Bearer <token>`.
+    hmacAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HMAC value. Partner QR guides use `hmac username="<client_id>", algorithm="sha512", headers="date", signature="<signature>"`.

@@ -1,0 +1,79 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Verify payment link transaction
+  version: "1.0.0"
+  description: >
+    GET /partner/payment-link/verifyPayment.
+    Query parameters read by PartnerService are order_ref_id and payment_link_id.
+    Both are required. The response keys are order_ref_id, payment_link_id, order_status, and payments.
+    Each payment item is PaymentLinkVerifyPaymentResponseDTO: payment_id, status, method, pg_error_message.
+paths:
+  /partner/payment-link/verifyPayment:
+    get:
+      operationId: partnerPaymentLinkVerifyPayment
+      summary: Verify a payment-link transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: order_ref_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: payment_link_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Verification result from processVerifyPaymentLinkResponse.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order_ref_id:
+                    type: string
+                  payment_link_id:
+                    type: string
+                  order_status:
+                    type: string
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        payment_id:
+                          type: string
+                        status:
+                          type: string
+                        method:
+                          type: string
+                        pg_error_message:
+                          type: string
+              example:
+                order_ref_id: ORDER1001
+                payment_link_id: https://u.payu.in/PAYUID
+                order_status: success
+                payments:
+                  - payment_id: "403993715521855092"
+                    status: success
+                    method: UPI
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

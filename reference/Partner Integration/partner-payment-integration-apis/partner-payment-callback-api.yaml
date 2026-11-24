@@ -1,0 +1,87 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Payment S2S Callback
+  version: "1.0.0"
+  description: >
+    Server-to-server postback to PayU at POST /partner/paymentCallback. PartnerService.paymentCallback returns HTTP 200 with an empty body after it notifies the partner webhook. The partner webhook URL is configured for the reseller. It is not this path.
+paths:
+  /partner/paymentCallback:
+    post:
+      operationId: partnerPaymentCallback
+      summary: Payment S2S Callback
+      description: >
+        Server-to-server postback to PayU at POST /partner/paymentCallback. PartnerService.paymentCallback returns HTTP 200 with an empty body after it notifies the partner webhook. The partner webhook URL is configured for the reseller. It is not this path.
+      security: []
+      requestBody:
+        required: false
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                mihpayid:
+                  type: string
+                  description: PayU payment id.
+                txnid:
+                  type: string
+                  description: Merchant transaction id. The handler also accepts `txnId`.
+                amount:
+                  type: string
+                status:
+                  type: string
+                  description: Payment status posted by PayU, such as success or failure.
+                mode:
+                  type: string
+                productinfo:
+                  type: string
+                firstname:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                hash:
+                  type: string
+                  description: Response hash. Verify with SHA-512 before trusting the postback. See custom_blocks/HashingSample.md for the payment hash preimage.
+                bankcode:
+                  type: string
+                bank_ref_num:
+                  type: string
+                udf1:
+                  type: string
+                udf2:
+                  type: string
+                udf3:
+                  type: string
+                udf4:
+                  type: string
+                udf5:
+                  type: string
+                error:
+                  type: string
+                error_Message:
+                  type: string
+                net_amount_debit:
+                  type: string
+                PG_TYPE:
+                  type: string
+                unmappedstatus:
+                  type: string
+                  description: Read by PartnerService.paymentCallback when verifying status.
+                key:
+                  type: string
+                  description: Merchant key. Used to look up the partner transaction.
+
+      responses:
+        '200':
+          description: PayU accepted the postback. paymentCallback returns an empty 200 body.
+        '400':
+          description: paymentCallback returns this when payment status validation fails.
+          content:
+            text/plain:
+              example: payment status validation failed

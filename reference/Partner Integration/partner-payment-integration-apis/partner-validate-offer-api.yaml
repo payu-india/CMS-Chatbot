@@ -1,0 +1,126 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Validate offer
+  version: "1.0.0"
+  description: >
+    Validate an offer. Fields are ValidateOfferDTO.
+    Required: merchant_id, reseller_id, hash, paymentDetail (category is required inside it),
+    and userDetail (userToken is required inside it).
+    txnid, offerKey, and bankcode are not fields on this DTO. Offer keys are offerKeys.
+    The response is the Offers validate endpoint JSON, passed through.
+paths:
+  /partner/validateOffer:
+    post:
+      operationId: partnerValidateOffer
+      summary: Validate a payment offer
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [merchant_id, reseller_id, hash, paymentDetail, userDetail]
+              properties:
+                merchant_id:
+                  type: integer
+                reseller_id:
+                  type: string
+                hash:
+                  type: string
+                amount:
+                  type: string
+                autoApply:
+                  type: boolean
+                merchantNceParamActive:
+                  type: boolean
+                offerKeys:
+                  type: array
+                  items:
+                    type: string
+                paymentId:
+                  type: integer
+                paymentDetail:
+                  type: object
+                  required: [category]
+                  properties:
+                    category:
+                      type: string
+                    paymentCode:
+                      type: string
+                    cardNumber:
+                      type: integer
+                    cardHash:
+                      type: string
+                    cardToken:
+                      type: string
+                    cardTokenType:
+                      type: integer
+                    cardMask:
+                      type: integer
+                    vpa:
+                      type: string
+                userDetail:
+                  type: object
+                  required: [userToken]
+                  properties:
+                    userToken:
+                      type: string
+                    email:
+                      type: string
+                    phoneNo:
+                      type: string
+                skusDetail:
+                  type: object
+                  properties:
+                    skus:
+                      type: array
+                      items:
+                        type: object
+                        required: [skuId]
+                        properties:
+                          skuId:
+                            type: string
+                          skuAmount:
+                            type: string
+                          quantity:
+                            type: string
+                          offerKeys:
+                            type: array
+                            items:
+                              type: string
+                          autoApply:
+                            type: boolean
+      responses:
+        '200':
+          description: Offers validate JSON, passed through.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: Bean validation failed.
+          content:
+            application/json:
+              example:
+                errors:
+                  - paymentDetail is mandatory
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

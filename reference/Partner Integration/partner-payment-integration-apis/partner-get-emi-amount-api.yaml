@@ -1,0 +1,65 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Get EMI amount
+  version: "1.0.0"
+  description: >
+    PartnerService.getEmiAmount requires merchant_id and amount.
+    merchant_id must be digits. The map is forwarded to the EMI-as-per-interest service.
+    bankcode and tenure are not checked in this method.
+paths:
+  /partner/getEmiAmount:
+    post:
+      operationId: partnerGetEmiAmount
+      summary: Get EMI amount for an interest rate
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [merchant_id, amount]
+              properties:
+                merchant_id:
+                  type: string
+                  description: Digits only. Parsed to an integer after the format check.
+                amount:
+                  type: string
+                bankcode:
+                  type: string
+                  description: Forwarded with the map. Not validated in PartnerService.getEmiAmount.
+                tenure:
+                  type: string
+                  description: Forwarded with the map. The method signature is Map of strings, so send tenure as a string.
+      responses:
+        '200':
+          description: EMI interest service JSON, passed through.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: merchant_id or amount is missing, or merchant_id is not digits.
+          content:
+            application/json:
+              example:
+                error: merchant_id or amount param is missing in body
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

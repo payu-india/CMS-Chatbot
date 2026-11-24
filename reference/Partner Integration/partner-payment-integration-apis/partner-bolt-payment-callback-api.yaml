@@ -1,0 +1,82 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Bolt payment callback
+  version: "1.0.0"
+  description: >
+    PayU receives the Checkout Plus postback at POST /partner/bolt/paymentCallback. BoltHashController accepts the same form postback fields as the standard payment callback. The handler returns an empty body.
+paths:
+  /partner/bolt/paymentCallback:
+    post:
+      operationId: partnerBoltPaymentCallback
+      summary: Bolt payment callback
+      description: >
+        PayU receives the Checkout Plus postback at POST /partner/bolt/paymentCallback. BoltHashController accepts the same form postback fields as the standard payment callback. The handler returns an empty body.
+      security: []
+      requestBody:
+        required: false
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                mihpayid:
+                  type: string
+                  description: PayU payment id.
+                txnid:
+                  type: string
+                  description: Merchant transaction id. The handler also accepts `txnId`.
+                amount:
+                  type: string
+                status:
+                  type: string
+                  description: Payment status posted by PayU for Checkout Plus.
+                mode:
+                  type: string
+                productinfo:
+                  type: string
+                firstname:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                hash:
+                  type: string
+                  description: Response hash. Verify with SHA-512 before trusting the postback. See custom_blocks/HashingSample.md for the payment hash preimage.
+                bankcode:
+                  type: string
+                bank_ref_num:
+                  type: string
+                udf1:
+                  type: string
+                udf2:
+                  type: string
+                udf3:
+                  type: string
+                udf4:
+                  type: string
+                udf5:
+                  type: string
+                error:
+                  type: string
+                error_Message:
+                  type: string
+                net_amount_debit:
+                  type: string
+                PG_TYPE:
+                  type: string
+                unmappedstatus:
+                  type: string
+                  description: PayU status field on the Checkout Plus postback.
+                key:
+                  type: string
+                  description: Merchant key. Used to look up the partner transaction.
+
+      responses:
+        '200':
+          description: BoltHashController.paymentCallback returns an empty body.

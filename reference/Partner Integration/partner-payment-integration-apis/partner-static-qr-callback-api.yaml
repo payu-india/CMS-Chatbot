@@ -1,0 +1,56 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Static QR callback
+  version: "1.0.0"
+  description: >
+    POST /partner/staticQrCallback is received by PayU.
+    The handler requires txnid for idempotency, field4 as the merchant VPA, and key
+    as the merchant key. The hash is the standard PayU response hash checked with
+    validatePayUBizResponseHash and the merchant salt.
+paths:
+  /partner/staticQrCallback:
+    post:
+      operationId: partnerStaticQrCallback
+      summary: Static QR payment callback
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [txnid, field4, key]
+              properties:
+                txnid:
+                  type: string
+                field4:
+                  type: string
+                  description: Merchant VPA. The handler rejects the call when this is blank.
+                key:
+                  type: string
+                  description: Merchant key used to load the salt for hash verification.
+                mihpayid:
+                  type: string
+                amount:
+                  type: string
+                status:
+                  type: string
+                mode:
+                  type: string
+                hash:
+                  type: string
+                bank_ref_num:
+                  type: string
+      responses:
+        '200':
+          description: Accepted, including a duplicate txnid. Empty body.
+        '400':
+          description: field4 or key is missing, or no static QR is registered for the VPA.
+          content:
+            text/plain:
+              example: field4 (merchantVpa) is required

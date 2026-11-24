@@ -1,0 +1,67 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Payment link metadata
+  version: "1.0.0"
+  description: >
+    GET /partner/payment-link/metadata. The query parameter PartnerService reads is payment_link.
+    merchant_id and txnid are not read. The JSON returned to the partner is amount, currency,
+    description, payment_link_id, payment_link_status, and expiry_time.
+paths:
+  /partner/payment-link/metadata:
+    get:
+      operationId: partnerPaymentLinkMetadata
+      summary: Get payment link metadata
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: payment_link
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Payment link URL. Empty values raise a bad-request MetaException.
+      responses:
+        '200':
+          description: Metadata mapped by processMetaDataResponse.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+                  description:
+                    type: string
+                  payment_link_id:
+                    type: string
+                  payment_link_status:
+                    type: string
+                  expiry_time:
+                    type: integer
+                    description: Expiry converted to epoch by convertStringDateToEpoch.
+              example:
+                amount: 1000.0
+                currency: INR
+                description: Order 1001
+                payment_link_id: https://u.payu.in/PAYUID
+                payment_link_status: active
+                expiry_time: 1735689600
+        '401':
+          description: Invalid bearer token.
+          content:
+            application/json:
+              example:
+                error: Invalid Auth token
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: "Partner access token. Send as Authorization Bearer token."

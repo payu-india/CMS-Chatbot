@@ -1,0 +1,91 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: UAT
+info:
+  title: Static QR
+  version: "1.0.0"
+  description: >
+    POST /partner/staticQr. Creates a reusable static QR for a merchant VPA.
+    Required headers from PartnerController: X-PayU-Reseller-UUID, X-PayU-Merchant-ID,
+    X-Partner-Token, X-Partner-Hash, X-Partner-Request-ID.
+    Hash input, quoted from PartnerUtils.validateStaticQrHash:
+    merchantId|rawRequestBody|clientSecret, then SHA-512.
+    That is not sha512(key|reseller_id|merchant_id|salt).
+    The JSON body must include merchantVpa. qrType and udf5 are stored when present.
+    A cached success returns qrString, qrId, and merchantVpa.
+paths:
+  /partner/staticQr:
+    post:
+      operationId: partnerStaticQr
+      summary: Generate a static QR
+      security:
+        - resellerUuid: []
+          merchantId: []
+          partnerToken: []
+          partnerHash: []
+          partnerRequestId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [merchantVpa]
+              properties:
+                merchantVpa:
+                  type: string
+                  description: Uniqueness key for the static QR.
+                qrType:
+                  type: string
+                udf5:
+                  type: string
+                amount:
+                  type: string
+                  description: Passed through in the raw body to generateInstaAccount when you set it. Not validated in generateStaticQr.
+      responses:
+        '200':
+          description: Stored or newly created QR. Cache payload fields are qrString, qrId, and merchantVpa.
+          content:
+            application/json:
+              example:
+                qrString: merchant@payu
+                qrId: QR_1001
+                merchantVpa: merchant@payu
+        '400':
+          description: merchantVpa is missing, or the merchant id is unknown.
+          content:
+            application/json:
+              example:
+                error: merchantVpa is required in request body
+        '403':
+          description: X-Partner-Hash did not match.
+          content:
+            application/json:
+              example:
+                error: Invalid Hash
+components:
+  securitySchemes:
+    resellerUuid:
+      type: apiKey
+      in: header
+      name: X-PayU-Reseller-UUID
+    merchantId:
+      type: apiKey
+      in: header
+      name: X-PayU-Merchant-ID
+    partnerToken:
+      type: apiKey
+      in: header
+      name: X-Partner-Token
+    partnerHash:
+      type: apiKey
+      in: header
+      name: X-Partner-Hash
+      description: SHA-512 of `merchantId|rawRequestBody|clientSecret`. See PartnerUtils.validateStaticQrHash.
+    partnerRequestId:
+      type: apiKey
+      in: header
+      name: X-Partner-Request-ID
