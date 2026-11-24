@@ -103,15 +103,15 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Link.
 </Accordion>
 
 <Accordion title="Step 6: Funds Are Settled to Your Account" icon="far fa-building-columns">
-  After a successful payment, PayU settles the funds to your registered bank account as per the settlement schedule — minus applicable fees and taxes. You can track settlement reports from the PayU Dashboard.
+  After a successful payment, PayU settles the funds to your registered bank account as per the settlement schedule without applicable fees and taxes. You can track settlement reports from the PayU Dashboard.
 
   <Callout icon="💡" theme="info">
     ### **Note:**
 
     If a customer requests a refund or raises a dispute with their bank, PayU has a process for each.
 
-    - [Refunds](doc:introduction-refunds)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-refunds">Refunds</Anchor>
     - <Anchor target="_blank" href="https://docs.payu.in/docs/split-settlments">Settlements</Anchor>
-    - [Disputes and Chargebacks](doc:chargeback)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/chargeback">Disputes and Chargebacks</Anchor>
   </Callout>
 </Accordion>
