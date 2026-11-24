@@ -385,7 +385,7 @@ You can filter the <Glossary>payment links</Glossary> list using the following o
      <Image src="https://files.readme.io/16f19c44171f05b7d9ce1394576e538eb0e5459b9f54c3f1f0a2355c46e03974-image.png" align="center" caption="Access Payment Links" border={true} />
 
 
-  2. Use the drop-down next to the search to select the search type. Below are the available options:
+  2. Use the drop-down next to the search bar to select the search type. Below are the available options:
 
      - **Purpose**
      - **InvoiceNumber**
