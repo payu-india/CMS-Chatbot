@@ -18,6 +18,10 @@ metadata:
   fontWeight="bold"
 />
 
+The prompt below is a complete integration spec for PayU Payment Links. Fill in your credentials, paste the entire block into Cursor, Claude Code, or any AI coding assistant, and the assistant will build token caching, a create-link endpoint, a verified webhook handler, and error handling, matched to your project's existing stack.
+
+***
+
 ## AI Prompt
 
 Copy the entire block below into your AI coding assistant of choice. Fill in your credentials where indicated, then let the assistant write the integration for you.
