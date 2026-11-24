@@ -348,7 +348,7 @@ If you are a **developer** building a backend service or AI agent that manages p
     **Automate Payment Links with APIs:** Create and manage payment links programmatically.
   </Card>
 
-  <Card title="How Payment Links Works" href="https://docs.payu.in/docs/payment-links-workflow" icon="fa-diagram-project" target="_blank">
+  <Card title="How Payment Links Work" href="https://docs.payu.in/docs/payment-links-workflow" icon="fa-diagram-project" target="_blank">
     See the end-to-end flow; From creating a link to receiving funds in your bank.
   </Card>
 </Cards>
