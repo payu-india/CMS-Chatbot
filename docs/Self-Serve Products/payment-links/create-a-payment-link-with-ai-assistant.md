@@ -32,7 +32,7 @@ Copy the entire block below into your AI coding assistant of choice. Fill in you
   You need your **Client ID**, **Client Secret**, and **Merchant ID** from the PayU Dashboard before starting. To get them:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU Dashboard</Anchor>.
-  2. Go to **Developers** → **API Keys.**
+  2. Go to **Developer** → **API Keys&#x20;**&#x69;n the test mod&#x65;**.**
   3. Click **View details&#x20;**&#x75;nder the **Client ID & Client secret details&#x20;**&#x73;ection.
 </Callout>
 
@@ -481,7 +481,7 @@ Begin integration now.
 ```
 
 <Callout icon="fad fa-brake-warning" theme="error">
-  ### **Confidential!**
+  ### **Never Share Your CLIENT_SECRET!**
 
   Never share your `CLIENT_SECRET` or paste it into a public chat, a GitHub issue, or any client-side code. It is used both to authenticate API calls and to verify incoming webhook signatures.
 </Callout>
@@ -550,7 +550,7 @@ The AI will list these, but they always apply:
 1. **Set environment variables**: Add `PAYU_CLIENT_ID`, `PAYU_CLIENT_SECRET`, `PAYU_MERCHANT_ID`, and `PAYU_ENVIRONMENT` to your environment (`.env` on local, secrets manager in production)
 2. **Run the install command**: If the AI added a new HTTP dependency, it will give you the exact command to run
 3. **Register the webhook URL**: Go to **PayU Dashboard** → **Developers** → **Webhooks** and add your endpoint URL
-4. **Start a Tunnel for Local Testing** — use `ngrok` or `cloudflared` so PayU can reach your local webhook endpoint during development
+4. **Start a Tunnel for Local Testing**: use `ngrok` or `cloudflared` so PayU can reach your local webhook endpoint during development
 
 <Callout icon="📘" theme="info">
   ### **Tips:**
