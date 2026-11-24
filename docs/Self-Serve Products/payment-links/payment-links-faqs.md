@@ -91,7 +91,7 @@ next:
 5. #### Why is UPI not showing on the customer's payment page?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  UPI must be enabled on your merchant account. If you can see UPI when you test the link and not your customer while making the payment, ask them to try a different browser or device.<br />
+  UPI must be enabled on your merchant account. If UPI is visible when you test the link but not to your customers, ask them to try a different browser or device.<br />
 
   If UPI is missing for all customers, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to confirm that UPI is active on your merchant account.<br />
 
