@@ -147,7 +147,7 @@ next:
 1. #### Can I set a custom amount for each link?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout You can use this use case for donations or open-ended collections.
+  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout. You can use this use case for donations or open-ended collections.
 </Accordion>
 
 ***
