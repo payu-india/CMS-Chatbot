@@ -256,23 +256,23 @@ When your customer receives the payment link:
   Clicks the URL you sent them
 </Accordion>
 
-<Accordion title="Sees the payment details">
+<Accordion title="2. Sees the payment details">
   Amount, purpose, and any message you included
 </Accordion>
 
-<Accordion title="Fills in any required information (optional)">
+<Accordion title="3. Fills in any required information (optional)">
   If you have set up a form to collect details like name, or delivery address
 </Accordion>
 
-<Accordion title="Chooses a payment method">
+<Accordion title="4. Chooses a payment method">
   UPI, cards, net banking, or wallets
 </Accordion>
 
-<Accordion title="Completes payment">
+<Accordion title="5. Completes payment">
   enters payment details and confirms
 </Accordion>
 
-<Accordion title="Receives confirmation">
+<Accordion title="6. Receives confirmation">
   sees a success or failure message
 </Accordion>
 
