@@ -214,11 +214,11 @@ You will need:
   Click **Create and Send Payment Link**. The link is created instantly. If you enabled notifications, it goes to the customer right away. Otherwise, copy the URL from your Dashboard and share it manually.
 </Accordion>
 
-Refer to the [Create a Payment Link](doc:send-a-payment-link) for a full walkthrough with screenshots.
+Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link">Create Payment Links</Anchor> page for a full walkthrough with screenshots.
 
 <Columns layout="fixed">
   <Column>
-    You can create payment links one at a time, or upload multiple links at once if you need to send payment requests to many customers.
+    You can create payment links one at a time, or <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-many-links-at-once">upload multiple links</Anchor> at once if you need to send payment requests to many customers.
   </Column>
 </Columns>
 
