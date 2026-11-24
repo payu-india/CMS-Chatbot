@@ -2,7 +2,7 @@
 title: Start Here
 excerpt: >-
   Find the right PayU integration for your business, from no-code payment links
-  and UPI QR to hosted checkout, mobile SDKs, and recurring payments.
+  and Payment Buttons to hosted checkout, mobile SDKs, and recurring payments.
 deprecated: false
 hidden: true
 metadata:
