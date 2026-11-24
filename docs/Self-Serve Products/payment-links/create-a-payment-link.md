@@ -246,7 +246,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
   **What happens next:**
 
   - **If notifications are on** → PayU sends the link to the customer immediately via SMS/email.
-  - **If not** → the link appears in your Payment Links Dashboard. Copy the URL from the **Payment Link** column and share it over WhatsApp, email, or any channel.
+  - **If not** → the link appears in your Payment Links dashboard. Copy the URL from the **Payment Link** column and share it over WhatsApp, email, or any channel.
 </Accordion>
 
 ***
