@@ -350,7 +350,7 @@ You can manage Payment Links by conversation instead of navigating the Dashboard
   For more context, prefix your prompt with: `You are a PayU merchant assistant. I am using PayU Payment Links.`
 </Callout>
 
-If you are a **developer** building a backend service or AI agent that manages payment links programmatically, see [Integrate with AI Coding Assistants](doc:use-with-ai) (direct API) or [Use with AI Agents via MCP](doc:use-with-mcp) (MCP tool calls).
+If you are a **developer** building a backend service or AI agent that manages payment links programmatically, see <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link-with-ai-assistant">Integrate with AI Coding Assistants</Anchor> (direct API) or <Anchor target="_blank" href="https://docs.payu.in/docs/payu-remote-mcp-server-integration">Use with AI Agents via MCP</Anchor> (MCP tool calls).
 
 ***
 
