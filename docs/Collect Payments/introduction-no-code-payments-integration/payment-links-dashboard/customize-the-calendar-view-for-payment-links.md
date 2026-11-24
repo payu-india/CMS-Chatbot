@@ -2,7 +2,7 @@
 title: Customize the Calendar View for Payment Links
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

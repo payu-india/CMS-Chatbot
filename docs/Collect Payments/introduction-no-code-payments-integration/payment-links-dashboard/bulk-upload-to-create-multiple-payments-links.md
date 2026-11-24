@@ -2,7 +2,7 @@
 title: Create Payments links in Bulk
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

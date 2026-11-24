@@ -2,7 +2,7 @@
 title: Export the Payment Link History
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

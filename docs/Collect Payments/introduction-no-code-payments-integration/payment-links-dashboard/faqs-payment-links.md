@@ -2,7 +2,7 @@
 title: FAQs - Payment Links
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

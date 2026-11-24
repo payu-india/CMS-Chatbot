@@ -4,7 +4,7 @@ excerpt: >-
   The **Filter** menu enables you to filter the link results using the status of
   the payment link.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
