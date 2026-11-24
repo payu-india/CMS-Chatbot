@@ -5,7 +5,7 @@ excerpt: >-
   anyone without a website or checkout page. Create a link in minutes and share
   it over WhatsApp, SMS, or email.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
