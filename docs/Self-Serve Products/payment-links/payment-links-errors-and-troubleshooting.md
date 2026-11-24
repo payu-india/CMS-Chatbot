@@ -46,7 +46,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 <Callout icon="📘" theme="info">
   ### **Payment Links**
 
-  Have not created a payment link yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">Create a Payment Link</Anchor>
+  Have you not created a payment link yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">Create a Payment Link</Anchor>
 </Callout>
 
 ***
@@ -54,7 +54,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 ## Why Is My Customer's Link Not Opening?
 
 <Accordion title="Check the Link Status First" icon="far fa-magnifying-glass">
-  Open the [Payment Links Dashboard](https://onboarding.payu.in/) and find the link. Check the **Status** column:
+  Open the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness&last_visit_url=https%3A%2F%2Fpayu.in%2F">Payment Links Dashboard</Anchor> and find the link. Check the **Status** column:
 
   | Status          | What it Means                                                      | What to Do                                                                                                                                                                 |
   | --------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -100,7 +100,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
   <Callout icon="📘" theme="info">
     ### **Webhooks**
 
-    If you have configured webhooks, a missing webhook event is a reliable sign the payment did not complete on PayU's side.
+    If you have <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">configured webhooks</Anchor>, a missing webhook event is a reliable sign the payment did not complete on PayU's side.
   </Callout>
 </Accordion>
 
