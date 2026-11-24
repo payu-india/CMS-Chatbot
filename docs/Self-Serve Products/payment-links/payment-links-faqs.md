@@ -434,7 +434,7 @@ next:
   Ensure you are using the SALT that corresponds to the `key` in the response.
 
   **4. Split payment payload.**
-  If you are using `aggregatorSplitInfo` or `aggregatorCharges` in your create-link request, verify that **split settlement is enabled on your account**. Attempting split settlement on an account that hasn't been onboarded for it can produce unexpected response fields that break hash verification. Contact your PayU account manager to confirm it is activated.
+  If you are using `aggregatorSplitInfo` or `aggregatorCharges` in your create-link request, verify that **split settlement is enabled on your account**. Attempting <Anchor target="_blank" href="https://docs.payu.in/docs/split-settlments">split settlement</Anchor> on an account that hasn't been onboarded for it can produce unexpected response fields that break hash verification. Contact your PayU account manager to confirm it is activated.
 </Accordion>
 
 ***
@@ -582,7 +582,7 @@ next:
 9. #### The Fetch All Payment Links API requires `fromDate` and `toDate` — can I skip them to fetch a specific link? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
-  The `fromDate` and `toDate` parameters are mandatory for the **Fetch All Payment Links** API because the API retrieves a list of links across a date range. Without these bounds, the response could include thousands of records and become prohibitively large.
+  The `fromDate` and `toDate` parameters are mandatory for the <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-all-payment-links">Fetch All Payment Links</Anchor> API because the API retrieves a list of links across a date range. Without these bounds, the response could include thousands of records and become prohibitively large.
 
   **To fetch a specific link without date parameters**, use the <Anchor target="_blank" href="doc:api-fetch">Fetch Single Payment Link API</Anchor> instead — it takes only the `invoiceNumber` as a path parameter and returns that link's full details immediately, with no date range required.
 </Accordion>
