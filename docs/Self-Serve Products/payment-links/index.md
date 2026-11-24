@@ -264,7 +264,7 @@ When your customer receives the payment link:
   If you have set up a form to collect details like name, or delivery address
 </Accordion>
 
-<Accordion title="Chooses payment method">
+<Accordion title="Chooses a payment method">
   UPI, cards, net banking, or wallets
 </Accordion>
 
