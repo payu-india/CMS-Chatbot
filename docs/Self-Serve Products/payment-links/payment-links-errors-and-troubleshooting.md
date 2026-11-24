@@ -114,7 +114,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
   1. Confirm the customer's phone or email was entered correctly. To verify, open the link **Details** view in the Dashboard and check the details under the **Customer Details&#x20;**&#x73;ection.&#x20;
 
      **You Can:** Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Edit Payment Link Details</Anchor>**&#x20;**&#x66;or steps to edit information if they are incorrect.
-  2. Confirm the **Send via SMS** or **Send Email** toggles were turned on at the time of the link creation. Notifications fire once, at creation — they cannot be re-triggered for an existing link.
+  2. Confirm the **Send via SMS** or **Send Email** toggles were turned on at the time of link creation. Notifications fire once, at creation — they cannot be re-triggered for an existing link.
 
      **You can:&#x20;**<Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Share or resend the link</Anchor> to the customer.
   3. Ask the customer to:
