@@ -9,10 +9,6 @@ hidden: true
 metadata:
   robots: index
 ---
-{/* NEW CONTENT */}
-
-
-
 When a customer pays via a Payment Link, PayU sends a webhook POST to your registered endpoint. Webhooks notify your server the moment a payment status changes.
 
 ***
