@@ -34,9 +34,6 @@ next:
     - slug: manage-payment-links
       title: Manage Payment Links
       type: basic
-    - slug: payment-button-errors-troubleshooting
-      title: Errors and Troubleshooting
-      type: basic
     - slug: payment-links-faqs
       title: FAQs (Frequently Asked Questions)
       type: basic
@@ -45,6 +42,9 @@ next:
       type: basic
     - slug: payment-links-workflow
       title: How Payment Links Works
+      type: basic
+    - slug: payment-links-errors-and-troubleshooting
+      title: Errors and Troubleshooting
       type: basic
 ---
 {/* NEW CONTENT */}
