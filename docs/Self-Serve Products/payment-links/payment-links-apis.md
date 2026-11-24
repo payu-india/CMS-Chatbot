@@ -60,5 +60,5 @@ You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/pay
 | <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-payment-link">**Fetch a Payment Link**</Anchor>             | API to fetch a particular payment link                  |
 | <Anchor target="_blank" href="https://docs.payu.in/reference/update-payment-link">**Update a Payment Link**</Anchor>           | API to update payment link details                      |
 | <Anchor target="_blank" href="https://docs.payu.in/reference/cancel-payment-link">**Cancel a Payment Link**</Anchor>           | API to deactivate a payment link                        |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/share-payment-link">**Share a Payment Link**</Anchor>             | API to share the payment link                           |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/share-payment-link">**Share a Payment Link**</Anchor>             | API to share a payment link                             |
 | <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-transaction-details">**Fetch Transaction Details**</Anchor> | API to fetch transaction details made on a payment link |
