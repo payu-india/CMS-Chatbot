@@ -65,7 +65,7 @@ next:
   Create <Glossary>payment links</Glossary> in a few clicks and start collecting money right away. No website, no developer, no waiting.
 </Accordion>
 
-<Accordion title="Automatically Delivers Link to Your Customers">
+<Accordion title="Automatically Delivers the Link to Your Customers">
   Toggle on SMS and email delivery to send the link to your customer the moment it's created. No copy-pasting or manual sharing needed.
 </Accordion>
 
