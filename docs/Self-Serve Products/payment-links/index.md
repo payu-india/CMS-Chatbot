@@ -183,7 +183,7 @@ You do not need a website or developer to get started.<br />
 
 You will need:
 
-- **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
+- **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard">Sign up here</Anchor> if you do not have an account.
 - **Access to the PayU Dashboard:** Where you will create and manage your <Glossary>payment links</Glossary>.
 - **Customer contact details**: Required details such as a phone number, email address, or WhatsApp contact.
 - **Payment details**: Such as the amount, purpose, and any additional information you want to collect.
