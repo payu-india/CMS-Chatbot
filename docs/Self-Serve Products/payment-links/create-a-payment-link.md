@@ -349,14 +349,13 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 </Accordion>
 
 <Accordion title="6. Configure Customer Data Capture" icon="far fa-list-check">
-  1. Under **Customer Data Capture**, select which information should PayU collect from customers on the checkout page. Below are the available options:
+  1. Under **Customer Data Capture**, select which information PayU should collect from customers on the checkout page. Below are the available options:
      - **Customer Name**
      - **Customer Address**
      - **Customer Email** _(checked by default)_
      - **Customer Phone** _(checked by default)_
   2. To add custom fields beyond these, click **+ Add New Fields** and configure the field type, label, and whether it is mandatory.
   3. Once done, click **Generate Payment Links** (or the upload/submit button) to process your batch.
-
 
      <Image src="https://files.readme.io/417233ce58e80c0b8af084094b475e307f574347144789853c3f70a90c30c728-Screenshot_2026-10-12_at_9.28.02_AM.png" align="center" caption="Create and Send Payment Links" border={true} />
 
