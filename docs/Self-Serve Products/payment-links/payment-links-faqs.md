@@ -323,8 +323,9 @@ next:
   The three most common causes:
 
   **1. Mobile number was not included.**
-  For Dashboard links: confirm you entered the customer's mobile number in the Customer Details section and toggled **Notify via SMS** on before creating the link.
-  For API links: confirm your request payload includes the `mobileNumber` field. PayU triggers SMS only when the mobile number is present in the create-link request — it is not optional if you want SMS delivery.
+
+  - **For Dashboard links:** Confirm you entered the customer's mobile number in the Customer Details section and toggled **Notify via SMS** on before creating the link.
+  - **For API links:** Confirm your request payload includes the `mobileNumber` field. PayU triggers SMS only when the mobile number is present in the create-link request.
 
   **2. DND (Do Not Disturb) is active on the customer's number.**
   DND blocks all promotional and transactional SMS from every sender. Ask the customer to check their DND status with their mobile operator, or share the link via WhatsApp or email instead.
@@ -604,7 +605,7 @@ next:
 
   To restrict a payment link's checkout to TPV-verified accounts (for example, accepting Net Banking only from a customer's registered account), use the `enforcePayMethod` parameter when creating the link. TPV must be enabled on your merchant account before you can use it.
 
-  TPV is primarily used for subscription or mandate-based flows (SI / UPI Autopay), not standard one-time payment links. Contact your PayU account manager to confirm whether TPV is active for your MID and to understand the applicable payment methods.
+  TPV is primarily used for subscription or mandate-based flows (SI / UPI Autopay), not standard one-time payment links. Contact your PayU account manager to confirm whether TPV is active for your Merchant ID (MID) and to understand the applicable payment methods.
 </Accordion>
 
 ***
