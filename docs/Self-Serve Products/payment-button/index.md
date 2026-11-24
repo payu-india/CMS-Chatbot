@@ -95,7 +95,7 @@ PayU Payment Buttons let you collect payments on a site you already have, withou
 
 ***
 
-## Is a Payment Button Right for Me?
+## Is Payment Buttons Right for Me?
 
 | I want to…                                                  |                                            Works?                                            |
 | ----------------------------------------------------------- | :------------------------------------------------------------------------------------------: |
@@ -145,7 +145,7 @@ PayU Payment Buttons let you collect payments on a site you already have, withou
 
 ***
 
-## What All I Need to Get Started?
+## What Do I Need to Get Started?
 
 You do not need a developer or any coding experience to get started.<br />
 
