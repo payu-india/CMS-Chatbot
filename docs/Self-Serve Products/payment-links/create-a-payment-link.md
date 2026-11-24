@@ -365,6 +365,8 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
 </Accordion>
 
+### Common Errors and Troubleshooting
+
 <Accordion title="Common Errors: File and Format Issues">
   These errors stop the entire upload before any rows are processed.
 
