@@ -111,7 +111,7 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Link.
     If a customer requests a refund or raises a dispute with their bank, PayU has a process for each.
 
     - [Refunds](doc:introduction-refunds)
-    - [Settlements](doc:split-settlments)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/split-settlments">Settlements</Anchor>
     - [Disputes and Chargebacks](doc:chargeback)
   </Callout>
 </Accordion>
