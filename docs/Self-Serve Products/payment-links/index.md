@@ -214,7 +214,7 @@ You will need:
   Click **Create and Send Payment Link**. The link is created instantly. If you enabled notifications, it goes to the customer right away. Otherwise, copy the URL from your Dashboard and share it manually.
 </Accordion>
 
-Refer to the [Create a Payment Link](doc:send-a-payment-link) for full walkthrough with screenshots.
+Refer to the [Create a Payment Link](doc:send-a-payment-link) for a full walkthrough with screenshots.
 
 <Columns layout="fixed">
   <Column>
