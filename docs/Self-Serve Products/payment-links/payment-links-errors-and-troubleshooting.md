@@ -36,6 +36,15 @@ next:
     - slug: manage-payment-links
       title: Manage Payment Links
       type: basic
+    - slug: payment-links-faqs
+      title: FAQs (Frequently Asked Questions)
+      type: basic
+    - slug: payment-links-apis
+      title: Payment Links APIs
+      type: basic
+    - slug: payment-links-workflow
+      title: How Payment Links Works
+      type: basic
 ---
 Something not right after creating a <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">payment link</Anchor>? Go through the most common issues such as links not opening, payments not reflecting in your Dashboard, notifications not delivered, and errors in bulk uploads and ways to resolve them.
 
