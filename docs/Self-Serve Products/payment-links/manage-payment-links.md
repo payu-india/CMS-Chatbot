@@ -71,7 +71,6 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
-
      <Image src="https://files.readme.io/53215c3e4e7294d15669cb34cd231730787e24e86505214a8d80d48cb5b67c19-image.png" align="center" caption="Access Payment Links" border={true} />
 
 
@@ -87,11 +86,10 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
      - **Status**
   2. Click the Payment Link you want to view the details.
 
-
      <Image src="https://files.readme.io/fada3c576d9d091f8a41e2cefe2ce555ff3878f8debea9b8ddc1e08b76191d43-Screenshot_2026-09-21_at_10.21.28_AM.png" align="center" caption="Click to view details" border={true} />
 
 
-  The link details are divided in to the following sections:<br />
+  The link details are divided into the following sections:<br />
 
   <Accordion title="Link Details" icon="fad fa-link">
     The link and customer details are displayed in two sub-sections.
@@ -106,7 +104,6 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
         - **Type:&#x20;**&#x54;he payment type. The value can be either **Partial&#x20;**&#x6F;r **Full**.
         - **Share:&#x20;**&#x4F;ptions to copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID.
 
-
           <Image src="https://files.readme.io/18374beecc40c725bf806f3eea419f259e50c0928a43a7573e94c8a661280637-Screenshot_2026-09-21_at_10.40.08_AM.png" border={true} />
 
       </Tab>
@@ -114,7 +111,6 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
       <Tab title="Customer Details">
         - **Email**
         - **Phone Number**
-
 
         <Image src="https://files.readme.io/4b110954b53faf10c794ef87abc99530181f9de6a892369ba8a942c526bd9e9a-Screenshot_2026-09-21_at_11.51.29_AM.png" align="center" caption="Customer Details" border={true} />
 
@@ -139,7 +135,6 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
         - **Status:&#x20;**&#x53;tatus of the payment.
         - **Auto Reminder**
 
-
         <Image src="https://files.readme.io/575f5f4799fc68845cea4977f74665bddb91165fd06ddf4a8e18d11bafc0fa43-Screenshot_2026-09-21_at_11.22.45_AM.png" align="center" caption="Link Details" border={true} />
 
       </Tab>
@@ -152,7 +147,6 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
         - **Customer Email**
         - **Amount:&#x20;**&#x54;he amount of the transaction.
         - **Status:&#x20;**&#x54;he status of the transaction.
-
 
         <Image src="https://files.readme.io/b60e913b8bd066fb40ca89de88be1bf31dfe0469a98502b6b53a5aa20a5ec9dd-Screenshot_2026-09-21_at_11.29.48_AM.png" align="center" caption="Transaction Details" border={true} />
 
