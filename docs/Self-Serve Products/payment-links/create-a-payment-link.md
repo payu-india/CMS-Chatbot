@@ -461,7 +461,7 @@ After your customer makes the payment:
   </Card>
 
   <Card title="Errors and Troubleshooting" href="https://docs.payu.in/docs/payment-links-errors-and-troubleshooting" icon="fa-sliders" target="_blank">
-    Go through common errors and their troubleshooting steps.
+    Find common errors and their fixes.
   </Card>
 
   <Card title="Payment Links Overview" href="https://docs.payu.in/docs/payment-links" icon="far fa-file-lines" target="_blank">
