@@ -67,7 +67,7 @@ To add a payment button:
 
 <Accordion title="1. Open Payment Buttons on the Dashboard" icon="far fa-grid-2">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
-  2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
+  2. Expand **Payment Tools** and click **Payment Links** displayed in the left navigation.
 
   All your existing buttons are listed here.
 
@@ -152,7 +152,7 @@ To add a payment button:
            </td>
 
            <td>
-             The size of the button. Choose any of these from the drop-down:&#x20;
+             The size of the button. Choose any of these from the drop-down:
 
              - **Small**
              - **Medium**
@@ -246,14 +246,14 @@ To add a payment button:
 After your customer clicks the button and completes a payment:
 
 1. PayU updates the payment status in your Dashboard right away.
-2. The payment appears in the **Transactions** tab in your PayU Dashboard.
+2. The payment appears in the <Anchor target="_blank" href="doc:transactions">**Transactions** tab</Anchor> in your PayU Dashboard.
 3. Your customer is taken to your success page or your failure page if the payment did not go through.
-4. The money is settled to your bank account on the standard settlement cycle.
+4. The money is settled to your bank account on the standard <Anchor target="_blank" href="doc:settlements-dashboard">settlement</Anchor> cycle.
 
 <Callout icon="📘" theme="info">
   ### **Webhooks for Notification**
 
-  Webhooks are optional. Your Dashboard always reflects the current payment status without any webhook setup.
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks</Anchor> are optional. Your Dashboard always reflects the current payment status without any webhook setup.
 </Callout>
 
 ***
@@ -277,7 +277,7 @@ After your customer clicks the button and completes a payment:
     Return all or part of a payment to your customer — directly from the PayU Dashboard.
   </Card>
 
-  <Card title="Settlements" href="doc:split-settlments" icon="fad fa-building-columns">
+  <Card title="Settlements" href="doc:settlements-dashboard" icon="fad fa-building-columns">
     Find out when your money will reach your bank account and see your settlement history.
   </Card>
 

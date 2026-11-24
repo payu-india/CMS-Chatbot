@@ -34,7 +34,7 @@ next:
   fontWeight="bold"
 />
 
-##
+PayU Payment Buttons let you collect payments on a site you already have, without a developer or a checkout integration. Use this page to see when a button fits, what you need before you start, and what your customer does when they pay.
 
 ## How Does Payment Button Simplify My Business?
 
@@ -175,7 +175,7 @@ Here is how it works:
 
 <Accordion title="1. Create a Button in the Dashboard" icon="far fa-grid-2">
   1. Log in to your <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU Dashboard</Anchor> and go to **Payment Tools** → **Payment Buttons** from the menu on the left.
-  2. Click **Create Payment Button** and and enter the button details.
+  2. Click **Create Payment Button** and enter the button details.
 </Accordion>
 
 <Accordion title="2. Get Your Button Code" icon="far fa-code">

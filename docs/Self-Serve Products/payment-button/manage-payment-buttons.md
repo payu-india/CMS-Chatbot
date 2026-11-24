@@ -75,22 +75,22 @@ You can perform the following actions after a button is created:<br />
   - **Button Text**
   - **Item Name**
   - **Amount**
-  - **Actions:&#x20;**&#x43;ontains buttons to perform varios actions.
+  - **Actions:** Contains buttons to perform various actions.
 
   2. Click the button you want to view.
 
   The details are split into the following sections:
 
   <Accordion title="Button Details" icon="fad fa-tablet-button">
-    The upper half of the **Button Details&#x20;**&#x70;age displays the following information:
+    The upper half of the **Button Details** page displays the following information:
 
-    - **Button ID:&#x20;**&#x54;he unique button ID.
+    - **Button ID:** The unique button ID.
 
-    - **Created On:&#x20;**&#x54;he date and time on which the payment button was created.
+    - **Created On:** The date and time on which the payment button was created.
 
-    - **Button Text:&#x20;**&#x54;he button text you have selected while creating the payment button.
+    - **Button Text:** The button text you have selected while creating the payment button.
 
-    - **Action Buttons:&#x20;**&#x41;ction buttons to edit, duplicate and view the code of the payment button.
+    - **Action Buttons:** Action buttons to edit, duplicate and view the code of the payment button.
 
 
       <Image src="https://files.readme.io/c5ce7b7324ea3e725ccaefce214c591f5d59fcddbc1b3b6fd787e94a9249cfe8-Screenshot_2026-09-30_at_11.35.04_AM.png" align="center" caption="Payment Button Details" border={true} />
@@ -100,14 +100,14 @@ You can perform the following actions after a button is created:<br />
   <Accordion title="Details and Transactions" icon="fad fa-money-bills">
     <Tabs>
       <Tab title="Details">
-        The **Details&#x20;**&#x74;ab displays the following information in two sections:
+        The **Details** tab displays the following information in two sections:
 
         **Button Details:**
 
         - **Button Text:** The label on the button — Buy Now, Pay Now, Book Now, or Donate Now.
         - **Button Color:** The button you have selected while creating the payment button
         - **Amount:** The fixed amount, or blank if the customer enters it themselves.
-        - **Button Size:&#x20;**&#x54;he button size you have selected while creating the payment button.
+        - **Button Size:** The button size you have selected while creating the payment button.
         - **Status:** Whether the button is active or turned off.
         - **Button Code:** The code you added to your website. Copy it from here if you need to add it to another page.
 
@@ -129,10 +129,10 @@ You can perform the following actions after a button is created:<br />
 
         - **Amount Requested:** The requested amount you have added while creating the payment button.
         - **Revenue:** The total amount collected using the payment button.
-        - **Total Clicks:&#x20;**&#x54;he number of recorded clicks on the payment button.
-        - **Date:&#x20;**&#x54;ransaction date
-        - **PayU ID (Transaction ID):&#x20;**&#x54;he unique transaction ID of the payment.
-        - **Settled Amount:&#x20;**&#x54;he amount settled.
+        - **Total Clicks:** The number of recorded clicks on the payment button.
+        - **Date:** Transaction date
+        - **PayU ID (Transaction ID):** The unique transaction ID of the payment.
+        - **Settled Amount:** The amount settled.
         - **Customer Email**
 
 
@@ -162,7 +162,7 @@ You can perform the following actions after a button is created:<br />
      <Image src="https://files.readme.io/f3f00cad4fda45b296e63406c1f249b3b5a00eb1b799be08660f4be37f4bead9-Screenshot_2026-09-30_at_1.37.14_PM.png" align="center" caption="Edit Payment Button" border={true} />
 
 
-  3. Enter the required details in the **Update Button&#x20;**&#x70;age. You can edit all the information you have provided while creating the button.
+  3. Enter the required details in the **Update Button** page. You can edit all the information you have provided while creating the button.
 
 
      <Image src="https://files.readme.io/358b239dae8ca88a857d4eeb9d43fe88365c538624dc57c88131c42f1226a5b6-Screenshot_2026-09-30_at_1.42.43_PM.png" align="center" caption="Edit Payment Button Details" border={true} />
@@ -276,7 +276,7 @@ You can filter the payment buttons list using the following options:
   <Image src="https://files.readme.io/400c188d7def54848393bc47a2eacd74bdd999efe241727fb3a27e9433fe58e7-Screenshot_2026-09-30_at_2.18.32_PM.png" align="center" caption="Downlaod reports" border={true} />
 
 
-  3. Click **Downloaded Reports** on the **Generating Report&#x20;**&#x70;op-up when your report is ready.
+  3. Click **Downloaded Reports** on the **Generating Report** pop-up when your report is ready.
 </Accordion>
 
 ***

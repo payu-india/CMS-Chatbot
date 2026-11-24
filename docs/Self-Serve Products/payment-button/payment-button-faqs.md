@@ -42,7 +42,7 @@ next:
 1. #### What is a Payment Button and how does it work?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  A PayU <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> is a **Buy Now**, **Pay Now**, **Book Now**, or **Donate Now** button you add to your website or blog. You create and configure it in the PayU Dashboard. We give you a short piece of code to paste on your page. When a visitor clicks the button, PayU's payment page opens and they can complete their payment. Once done, they are sent back to your website. No developer or server setup is required. Refer to <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button">Add a Payment Button</Anchor> for steps top add a payment button
+  A PayU <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> is a **Buy Now**, **Pay Now**, **Book Now**, or **Donate Now** button you add to your website or blog. You create and configure it in the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>. We give you a short piece of code to paste on your page. When a visitor clicks the button, PayU's payment page opens and they can complete their payment. Once done, they are sent back to your website. No developer or server setup is required. Refer to <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button">Add a Payment Button</Anchor> for steps to add a payment button
 </Accordion>
 
 ***
@@ -152,7 +152,7 @@ next:
 5. #### Can I edit a Payment Button after creating it?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. You can <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons#edit-payment-button-details">edit a Payment Button</Anchor> settings cannot be changed after it is created. Afer you save the new btton configuration, a new code will be generated. You should copy and paste the new code in your website.
+  Yes. You can <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons#edit-payment-button-details">edit a Payment Button</Anchor>. After you save the new button configuration, a new code will be generated. You should copy and paste the new code on your website.
 </Accordion>
 
 ***
@@ -226,7 +226,7 @@ next:
   - Update your success page to read POST parameters from the request body instead of URL parameters.
   - If your success page just shows a thank-you message and does not need to read payment data, it should load without issues. Check for any server-side errors on the page itself.<br />
 
-  You can confirm the payment went through by checking the **Transactions** tab in your PayU Dashboard.
+  You can confirm the payment went through by checking the <Anchor target="_blank" href="doc:transactions">**Transactions** tab</Anchor> in your PayU Dashboard.
 </Accordion>
 
 ***
@@ -236,7 +236,7 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   This can happen for one of these reasons:
 
-  1. **The button code is inside a&#x20;**`<form>`**&#x20;tag.** If the surrounding page has a form that submits on load, it can trigger the button. Move the button code outside any `<form>` element.
+  1. **The button code is inside a `<form>` tag.** If the surrounding page has a form that submits on load, it can trigger the button. Move the button code outside any `<form>` element.
   2. **A JavaScript conflict on your page.** Another script on your website may be triggering a click event on the button automatically. Check your browser console (`F12 → Console`) for JavaScript errors and test the page with other scripts temporarily disabled.
   3. **The page is caching an old session.** Clear your browser cache and test again in a private or incognito window.
 
@@ -250,7 +250,7 @@ next:
 1. #### How will I know when a customer has paid via a button?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  The payment appears in the **Transactions** tab of your PayU Dashboard right away. For instant notifications, set up a webhook under **Settings → Webhooks** in the Dashboard. PayU will send a `payment.success` event to your server each time a payment is completed.
+  The payment appears in the **Transactions** tab of your PayU Dashboard right away. For instant notifications, set up a webhook under **Settings → Webhooks** in the Dashboard. PayU will send a <Anchor target="_blank" href="https://docs.payu.in/docs/webhook-events-and-sample-payloads#payment-successful">`payment.success`</Anchor> event to your server each time a payment is completed.
 
   → <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks for Payments</Anchor>
 </Accordion>
@@ -290,7 +290,7 @@ next:
 5. #### When will I receive the money in my bank account?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  PayU settles successful payments to your registered bank account within **T+1 or T+2 business days** where T is the date the payment was received. Most transactions settle the next business day.<br />
+  PayU settles successful payments to your registered bank account within **T+1 or T+2 business days**, where T is the date the payment was received. Most transactions settle the next business day.<br />
 
-  You can view the settlement status, track each UTR, and download reports from the **Settlements** section of your PayU Dashboard.
+  You can view the <Anchor target="_blank" href="doc:settlements-dashboard">settlement</Anchor> status, track each Unique Transaction Reference (UTR), and download reports from the **Settlements** section of your PayU Dashboard.
 </Accordion>
