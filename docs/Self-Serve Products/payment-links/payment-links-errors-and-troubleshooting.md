@@ -4,7 +4,7 @@ excerpt: >-
   Diagnose and fix common Payment Links problems such as links not opening,
   payments not reflecting, notifications not delivered, and API errors.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:

@@ -4,7 +4,7 @@ excerpt: >-
   Understand the complete end-to-end lifecycle of a PayU Payment Link, from
   creating an account to receiving funds in your bank account.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: How Payment Links Works | PayU Developer Docs
   description: >-

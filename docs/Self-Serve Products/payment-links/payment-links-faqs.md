@@ -4,7 +4,7 @@ excerpt: >-
   Answers to common questions about PayU Payment Links creation, limits,
   customisation, payment methods, security, and API usage.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Payment Links FAQs | PayU Developer Docs
   description: >-

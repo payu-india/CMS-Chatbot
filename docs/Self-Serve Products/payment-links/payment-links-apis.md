@@ -4,7 +4,7 @@ excerpt: >-
   Complete reference for all PayU Payment Links API endpoints such as create,
   share, fetch, update, and cancel payment links programmatically using OAuth2.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Payment Links API Reference | PayU Developer Docs
   description: >-

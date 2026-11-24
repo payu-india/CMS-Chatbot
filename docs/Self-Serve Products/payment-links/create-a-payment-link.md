@@ -4,7 +4,7 @@ excerpt: >-
   Create a payment link in the PayU Dashboard and share it with your customer in
   under 5 minutes. No code required.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Create a Payment Link — 5-Minute Quickstart | PayU Docs
   description: >-

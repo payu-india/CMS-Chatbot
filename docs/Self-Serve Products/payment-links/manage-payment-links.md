@@ -5,7 +5,7 @@ excerpt: >-
   deactivate, activate and export your Payment Links, all from the PayU
   Dashboard.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
