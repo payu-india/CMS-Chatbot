@@ -38,7 +38,9 @@ next:
       title: FAQs (Frequently Asked Questions)
       type: basic
 ---
-You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">Payment Links APIs</Anchor> to perform various actions on payment links programmatically. You can perform all of these actions from the Dashboard as well.
+You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">Payment Links APIs</Anchor> to perform various actions on payment links programmatically. All these actions are also available from the PayU Dashboard.
+
+***
 
 ## Authentication
 
@@ -46,6 +48,8 @@ You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/pay
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">**Generate an Access Token**</Anchor> | API to generate an access token             |
 | [**Revoke a Token**](https://docs.payu.in/reference/revoke-token)                                                         | API to revoke or deactivate an access token |
+
+***
 
 ## Payment Link APIs
 
