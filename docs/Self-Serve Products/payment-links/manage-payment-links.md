@@ -39,7 +39,7 @@ next:
   fontWeight="bold"
 />
 
-You can manage <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">payment links</Anchor> from the PayU Dashboard once they are live.
+Once a <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">payment link</Anchor> is live, you can view its details and transactions, edit select fields, filter and search your links list, duplicate, share, deactivate, reactivate, and export records, all from the PayU Dashboard without any code.
 
 ***
 
