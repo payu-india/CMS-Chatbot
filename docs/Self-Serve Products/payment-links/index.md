@@ -190,7 +190,7 @@ You will need:
 
 ***
 
-## How do I Create a Payment Link?
+## How Do I Create a Payment Link?
 
 <Accordion title="1. Open Payment Links">
   Log in to the [PayU Dashboard](https://onboarding.payu.in/) and go to **Payment Tools > Payment Links**.
@@ -248,7 +248,7 @@ You control additional fraud exposure through two settings available at link cre
 
 ***
 
-## How does My Customer Pay?
+## How Does My Customer Pay?
 
 When your customer receives the payment link:
 
@@ -280,7 +280,7 @@ Your customer does not need a PayU account or any special app. The link works in
 
 ***
 
-## How do I Manage Payments?
+## How Do I Manage Payments?
 
 Once your customer completes the payment:
 
