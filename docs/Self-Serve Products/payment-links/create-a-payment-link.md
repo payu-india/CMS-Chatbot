@@ -129,7 +129,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
         </td>
 
         <td>
-          Use this field to limit the payment link to number of customers or transactions.
+          Use this field to limit the payment link to a number of customers or transactions.
         </td>
       </tr>
 
