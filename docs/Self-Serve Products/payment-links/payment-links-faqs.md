@@ -1,15 +1,15 @@
 ---
 title: FAQs (Frequently Asked Questions)
 excerpt: >-
-  Answers to common questions about PayU Payment Links — creation, limits,
+  Answers to common questions about PayU Payment Links creation, limits,
   customisation, payment methods, security, and API usage.
 deprecated: false
 hidden: true
 metadata:
   title: Payment Links FAQs | PayU Developer Docs
   description: >-
-    Answers to common PayU Payment Links questions — how they work, expiry,
-    partial payments, supported methods, API authentication, and token scopes.
+    Answers to common questions about PayU Payment Links creation, limits,
+    customisation, payment methods, security, and API usage.
   keywords:
     - payu payment links faq
     - payment link questions answers
@@ -33,6 +33,12 @@ next:
       type: basic
     - slug: payment-links-errors-and-troubleshooting
       title: Errors and Troubleshooting
+      type: basic
+    - slug: payment-links-apis
+      title: Payment Links APIs
+      type: basic
+    - slug: payment-links-workflow
+      title: How Payment Links Works
       type: basic
 ---
 ## General
