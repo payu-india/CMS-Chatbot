@@ -41,7 +41,7 @@ Whether you are a business owner who wants to start accepting payments today wit
   If you just want to start accepting payments today without any coding, [Payment Links](doc:payment-links-dashboard) and [UPI QR](doc:integrate-upi-qr) work straight from the PayU Dashboard — no developer needed.
 </Callout>
 
-If you want to find the right fit, tell us about your business and technical capability for this wizard to recommend you the PayU product that fits. Not sure where to start? Answer few questions and we will point you to the right path, takes about a minute.
+If you want to find the right fit, tell us about your business and technical capability for this wizard to recommend you the PayU product that fits. Not sure where to start? Answer a few questions and we will point you to the right path. It takes about a minute.
 
 <PayUQuickStartWizard />
 
@@ -117,9 +117,13 @@ If you already know what you need, go directly to the right guide.
   Every PayU integration requires two things:<br />
 
   1. A registered and activated PayU merchant account
-  2. Your Merchant Key and Salt for the environment you are integrating (Test or Production)<br />
+  2. Your Merchant Key and Salt for the environment you are integrating (Test or Production)
 
-  **Do not have an account yet?** [Set Up Your Account →<br />](doc:set-up-your-account)
+  <br />
+
+  **Do not have an account yet?** [Set Up Your Account →](doc:set-up-your-account)
+
+  <br />
 
   **Already have an account?** Your credentials are in the PayU Dashboard under **Developer → API Details**.
 </Callout>
