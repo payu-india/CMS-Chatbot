@@ -51,7 +51,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 <Callout icon="📘" theme="info">
   ### **Payment Links**
 
-  Have you not created a payment link yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">Create a Payment Link</Anchor>
+  Have you not created a <Glossary>Payment Links</Glossary> yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">Create a Payment Link</Anchor>
 </Callout>
 
 ***
