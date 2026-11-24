@@ -25,7 +25,7 @@ metadata:
 next:
   description: Explore related topics and resources.
 ---
-Whether you are a business owner who wants to start accepting payments today with no coding, or a developer building a fully custom checkout — this is where you start. PayU supports UPI, cards, net banking, wallets, EMI, and more across India. The sections below will help you find the right product and get to your first payment as quickly as possible.
+Whether you are a business owner who wants to start accepting payments today with no coding, or a developer building a fully custom checkout, this is where you start. PayU supports UPI, cards, net banking, wallets, EMI, and more across India. The sections below will help you find the right product and get to your first payment as quickly as possible.
 
 ***
 
@@ -38,7 +38,7 @@ Whether you are a business owner who wants to start accepting payments today wit
 <Callout icon="far fa-lightbulb-on" theme="default">
   ### **No Technical Setup? No problem!**
 
-  If you just want to start accepting payments today without any coding, [Payment Links](doc:payment-links-dashboard) and [UPI QR](doc:integrate-upi-qr) work straight from the PayU Dashboard — no developer needed.
+  If you just want to start accepting payments today without any coding, [Payment Links](doc:payment-links-dashboard) and [Payment](doc:integrate-upi-qr) Buttons work straight from the PayU Dashboard without the need of a developer.
 </Callout>
 
 If you want to find the right fit, tell us about your business and technical capability for this wizard to recommend you the PayU product that fits. Not sure where to start? Answer a few questions and we will point you to the right path. It takes about a minute.
