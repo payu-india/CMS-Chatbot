@@ -1,5 +1,5 @@
 ---
-title: AI Coding Assistants to Create a Payment Link
+title: Create a Payment Link with AI Coding Assistants
 deprecated: false
 hidden: true
 link:
