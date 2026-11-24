@@ -8,8 +8,9 @@ hidden: true
 metadata:
   title: Payment Links FAQs | PayU Developer Docs
   description: >-
-    Answers to common questions about PayU Payment Links creation, limits,
-    customisation, payment methods, security, and API usage.
+    Common questions about PayU Payment Links: creating, configuring, and
+    sharing links, payment methods, reconciliation, webhooks, and API
+    authentication.
   keywords:
     - payu payment links faq
     - payment link questions answers
