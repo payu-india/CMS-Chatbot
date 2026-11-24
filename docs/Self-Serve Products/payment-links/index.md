@@ -298,7 +298,7 @@ Your customer does not need a PayU account or any special app. The link works in
 
 ***
 
-## How Do I Manage Payments?
+## How Do I Manage Payment Links?
 
 Once your customer completes the payment:
 
