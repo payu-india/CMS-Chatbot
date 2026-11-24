@@ -12,16 +12,16 @@ metadata:
     sharing links, payment methods, reconciliation, webhooks, and API
     authentication.
   keywords:
-    - payu payment links faq
-    - payment link questions answers
-    - payu payment link how it works
-    - payment link partial payment faq
-    - payment link expiry faq
-    - payment link api faq
-    - payu oauth token faq
-    - payment link supported methods
-    - payment link security payu
-    - payu payment link limits
+    - payment links FAQ
+    - PayU payment link questions
+    - payment link API authentication
+    - OAuth2 payment links
+    - split settlement payment link
+    - recurring payment link
+    - UPI payment link
+    - webhook payment notification
+    - payment link troubleshooting
+    - payment link expiry
   robots: index
 next:
   description: Explore related information and resources.
