@@ -28,8 +28,6 @@ metadata:
 next:
   description: Explore related information and resources.
 ---
-{/* NEW CONTENT: Template B1 — T1 Dashboard Walkthrough (V2 format) */}
-
 {/* EXISTING CONTENT: adapted from categorize-the-payment-links-view.md, export-the-payment-link-history.md, customize-the-calendar-view-for-payment-links.md */}
 
 <Banner
