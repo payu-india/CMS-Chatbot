@@ -280,6 +280,24 @@ Your customer does not need a PayU account or any special app. The link works in
 
 ***
 
+## What If My Customer Wants The Money Back?
+
+<Tabs>
+  <Tab title="Refunds">
+    Use PayU refunds to initiate. Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API
+  </Tab>
+
+  <Tab title="Settlements">
+    You are waiting for the amount to reach your account. PayU settlements can help you find out when the amount will be settled.
+  </Tab>
+
+  <Tab title="Disputes and Chargebacks">
+    Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard.
+  </Tab>
+</Tabs>
+
+***
+
 ## How Do I Manage Payments?
 
 Once your customer completes the payment:
