@@ -269,11 +269,11 @@ When your customer receives the payment link:
 </Accordion>
 
 <Accordion title="5. Completes payment">
-  enters payment details and confirms
+  Enters payment details and confirms
 </Accordion>
 
 <Accordion title="6. Receives confirmation">
-  sees a success or failure message
+  Sees a success or failure message
 </Accordion>
 
 Your customer does not need a PayU account or any special app. The link works in any browser.
