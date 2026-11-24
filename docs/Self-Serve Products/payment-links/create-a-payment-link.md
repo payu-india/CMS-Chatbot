@@ -255,7 +255,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
 
 Use bulk upload to create hundreds of payment links in one go. Each row in the CSV becomes a separate link. Maximum file size allowed is 20 MB.
 
-<Accordion title="1. Open Bulk Uploads" icon="far fa-folder-open">
+<Accordion title="1. Open Bulk Uploads">
   1. Log in to the [PayU Dashboard](https://onboarding.payu.in/).
 
   2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
@@ -269,7 +269,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
 </Accordion>
 
-<Accordion title="2. Download the sample file and review column definitions" icon="far fa-file-csv">
+<Accordion title="2. Download the sample file and review column definitions">
   1. On the **Generate Bulk Payment links&#x20;**&#x70;age, click **Download Sample File** to get the CSV template with the correct column structure.
 
      The CSV accepts the following columns:
@@ -296,7 +296,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   </Callout>
 </Accordion>
 
-<Accordion title="3. Fill in your CSV" icon="far fa-table">
+<Accordion title="3. Fill in your CSV">
   Open the downloaded sample file and fill in one row per payment link.
 
   <Callout icon="📘" theme="success">
@@ -316,7 +316,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   </Callout>
 </Accordion>
 
-<Accordion title="4. Upload your File and Set Batch Details" icon="far fa-upload">
+<Accordion title="4. Upload your File and Set Batch Details">
   Back on the **Generate Bulk Payment links** page:
 
   1. Click **Select file from your library** and choose your completed CSV. Maximum file size allowed is 20 MB.
@@ -327,7 +327,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
 </Accordion>
 
-<Accordion title="5. Choose Communication Channel Type" icon="far fa-bell">
+<Accordion title="5. Choose Communication Channel Type">
   Under **Communication Channel Type**, select how PayU should notify customers when their link is created. You can select all, one, or neither. If neither is selected, links are created but not sent. You can share them manually from the Payment Links Dashboard.
 
   - **Email**: Sends the link to the customer's email address (if provided in the CSV)
@@ -341,7 +341,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   </Callout>
 </Accordion>
 
-<Accordion title="6. Configure Customer Data Capture" icon="far fa-list-check">
+<Accordion title="6. Configure Customer Data Capture">
   1. Under **Customer Data Capture**, select which information PayU should collect from customers on the checkout page. Below are the available options:
      - **Customer Name**
      - **Customer Address**
@@ -354,19 +354,18 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
 </Accordion>
 
-<Accordion title="7. Review Upload Results" icon="far fa-magnifying-glass">
+<Accordion title="7. Review Upload Results">
   After upload, PayU processes each row and creates the links. To check results:
 
   1. Go to the **Bulk Uploads** tab in the Payment Links Dashboard.
   2. Find your batch in the history list. Each batch shows the total links created and any errors.
   3. Click into a batch to see per-row results. Rows with errors are flagged with the specific issue.
 
-
   <Image src="https://files.readme.io/10ae907f614ea7970e1dcc010fd4e3c3707e570fe055beeaec4d11e607908e97-Screenshot_2026-09-18_at_3.44.35_PM.png" align="center" caption="Check Bulk Upload Status" border={true} />
 
 </Accordion>
 
-<Accordion title="Common Errors: File and Format Issues" icon="far fa-triangle-exclamation">
+<Accordion title="Common Errors: File and Format Issues">
   These errors stop the entire upload before any rows are processed.
 
   | Error                                             | Cause                                    | Fix                                                                |
@@ -377,7 +376,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   | Batch created but 0 links generated               | File has a header row but no data rows   | Make sure at least one data row is filled below the header         |
 </Accordion>
 
-<Accordion title="Common Errors: Row Data Issues" icon="far fa-circle-exclamation">
+<Accordion title="Common Errors: Row Data Issues">
   These errors are reported per row — the rest of the batch may still succeed.
 
   | Error                                                 | Cause                                                    | Fix                                                                  |
