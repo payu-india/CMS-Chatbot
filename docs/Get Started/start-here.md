@@ -57,17 +57,17 @@ If you want to find the right fit, tell us about your business and technical cap
 
 This is a quick gist of the most common paths, not an exhaustive list. If you already know what you need, go directly to the right guide.
 
-| What you want to do                                | PayU solution            | Effort                  |
-| -------------------------------------------------- | ------------------------ | ----------------------- |
-| Share a payment link without the need of a website | Payment Links            | 🟢 No coding required   |
-| Add checkout to a Shopify store                    | Shopify Plugin           | 🟡 Some technical setup |
-| Add checkout to a WooCommerce store                | WooCommerce Plugin       | 🟡 Some technical setup |
-| Add checkout to a Magento store                    | Magento Plugin           | 🟡 Some technical setup |
-| Add checkout to a custom-built website             | PayU Hosted Checkout     | 🟡 Some technical setup |
-| Build a fully custom payment page                  | Merchant Hosted Checkout | 🔴 Developer required   |
-| Set up subscription or recurring billing           | Recurring Payments       | 🔴 Developer required   |
-| Split payments across multiple sellers             | Split Settlement         | 🔴 Developer required   |
-| Accept payments on a mobile app                    | Mobile SDKs              | 🔴 Developer required   |
+| What you want to do                      | PayU solution                                                                               | Effort                  |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------- |
+| Share a payment link — no website needed | [Payment Links](https://docs.payu.in/docs/payment-links-dashboard)                          | 🟢 No coding required   |
+| Add checkout to a Shopify store          | [Shopify Plugin](https://docs.payu.in/docs/shopify)                                         | 🟡 Some technical setup |
+| Add checkout to a WooCommerce store      | [WooCommerce Plugin](https://docs.payu.in/docs/woocommerce)                                 | 🟡 Some technical setup |
+| Add checkout to a Magento store          | [Magento Plugin](https://docs.payu.in/docs/magento)                                         | 🟡 Some technical setup |
+| Add checkout to a custom-built website   | [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted)             | 🟡 Some technical setup |
+| Build a fully custom payment page        | [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted)       | 🔴 Developer required   |
+| Set up subscription or recurring billing | [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) | 🔴 Developer required   |
+| Split payments across multiple sellers   | [Split Settlement](https://docs.payu.in/docs/split-settlments)                              | 🔴 Developer required   |
+| Accept payments on a mobile app          | [Mobile SDKs](https://docs.payu.in/docs/mobile-sdks)                                        | 🔴 Developer required   |
 
 {/* NEW CONTENT — the "What you'll need before you begin" callout below
      is new. It surfaces the two universal prerequisites (account + credentials)
