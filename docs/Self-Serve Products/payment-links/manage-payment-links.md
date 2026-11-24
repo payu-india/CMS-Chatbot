@@ -405,20 +405,15 @@ You can filter the <Glossary>payment links</Glossary> list using the following o
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
-
      <Image src="https://files.readme.io/f435da3d1c07338957b79786bc9f159f1d9a7c6f3aa38d8856be45865b01712d-image.png" align="center" caption="Access Payment Links" border={true} />
 
 
-  2. Click the **Download** drop-down at the top of the table and select any of the following format:
-     \| Format                           | Contents                             |
-     \| -------------------------------- | ------------------------------------ |
-     \| **csv**                          | Summary of all payment links         |
+  2. Click the **Download** drop-down at the top of the table and select any of the following formats:<br />| Format                           | Contents                             |<br />| -------------------------------- | ------------------------------------ |<br />| **csv**                          | Summary of all payment links         |
      \| **xlsx**                         | Summary of all payment links (Excel) |
      \| **Txns - csv**                   | Transaction-level detail per link    |
      \| **Txns - xlsx**                  | Transaction-level detail (Excel)     |
      \| **Old Payment Link Data - csv**  | Legacy link data                     |
      \| **Old Payment Link Data - xlsx** | Legacy link data (Excel)             |
-
 
   <Image src="https://files.readme.io/725bfcf87501665e6d3b5b15b9c5838fd12377c1b4966ee7a636c88ace4e1d89-Screenshot_2026-09-21_at_3.18.03_PM.png" align="center" caption="Select the Format" border={true} />
 
