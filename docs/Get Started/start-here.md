@@ -64,10 +64,10 @@ This is a quick gist of the most common paths, not an exhaustive list. If you al
 | Add checkout to a WooCommerce store      | [WooCommerce Plugin](https://docs.payu.in/docs/woocommerce)                                 | 🟡 Some technical setup |
 | Add checkout to a Magento store          | [Magento Plugin](https://docs.payu.in/docs/magento)                                         | 🟡 Some technical setup |
 | Add checkout to a custom-built website   | [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted)             | 🟡 Some technical setup |
-| Build a fully custom payment page        | [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted)       | 🔴 Developer required   |
-| Set up subscription or recurring billing | [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) | 🔴 Developer required   |
-| Split payments across multiple sellers   | [Split Settlement](https://docs.payu.in/docs/split-settlments)                              | 🔴 Developer required   |
-| Accept payments on a mobile app          | [Mobile SDKs](https://docs.payu.in/docs/mobile-sdks)                                        | 🔴 Developer required   |
+| Build a fully custom payment page        | [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted)       | 🔵 Developer required   |
+| Set up subscription or recurring billing | [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) | 🔵 Developer required   |
+| Split payments across multiple sellers   | [Split Settlement](https://docs.payu.in/docs/split-settlments)                              | 🔵 Developer required   |
+| Accept payments on a mobile app          | [Mobile SDKs](https://docs.payu.in/docs/mobile-sdks)                                        | 🔵 Developer required   |
 
 {/* NEW CONTENT — the "What you'll need before you begin" callout below
      is new. It surfaces the two universal prerequisites (account + credentials)
