@@ -1,15 +1,21 @@
 ---
 title: Customer Journey
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: ''
   description: ''
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+
+**This page has moved.** The updated guide is at [How Checkout Plus Works](../../../../Low-Code%20Products/checkout-plus/how-it-works).
+
+</Callout>
+
 This document demonstrates the checkout plus workflow for an UPI payment.
 
 <Callout icon="📘" theme="info">

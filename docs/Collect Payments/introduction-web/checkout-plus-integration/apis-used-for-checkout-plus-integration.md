@@ -1,12 +1,18 @@
 ---
 title: APIs used for Integration
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 icon: far fa-rectangle-api
 metadata:
   title: APIs Used for Checkout Plus Integration
-  robots: index
+  robots: noindex
 ---
+<Callout icon="🔀" theme="warn">
+
+**This page has moved.** The updated guide is at [Checkout Plus APIs](../../../../Low-Code%20Products/checkout-plus/checkout-plus-apis).
+
+</Callout>
+
 Use these references to embed Checkout Plus and manage the payments completed through its PayU-hosted modal.
 
 ### Checkout Plus setup

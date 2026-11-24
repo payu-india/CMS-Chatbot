@@ -1,8 +1,8 @@
 ---
 title: Checkout Plus
 excerpt: ''
-deprecated: false
-hidden: false
+deprecated: true
+hidden: true
 metadata:
   title: Checkout Plus
   description: >-
@@ -20,10 +20,16 @@ metadata:
     - pci dss payment gateway checkout payu
     - payu collect payments web integration guide
     - payment gateway integration for ecommerce payu
-  robots: index
+  robots: noindex
 next:
   description: ''
 ---
+<Callout icon="🔀" theme="warn">
+
+**This page has moved.** The updated guide is at [Checkout Plus](../../../../Low-Code%20Products/checkout-plus/index).
+
+</Callout>
+
 Checkout Plus offers your customers a simplified checkout experience that keeps them in the context of your website throughout the payment process and enables them to use a [wide-range of payment methods](https://docs.payu.in/docs/configure-user-settings#checkout-payment-modes) to pay without sharing or entering any sensitive information on your site.
 
 PayU’s Checkout Plus is the easiest way to collect The payment page opens as a pop-up (aka modal) on your website which is a completely redirectionless payment experience. The modal is served from PayU servers which ensures that you need not get into the complications of a PCI-DSS compliance, all the while providing a world-class payment experience as shown in the image below.
