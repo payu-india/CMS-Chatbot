@@ -5,7 +5,43 @@ hidden: true
 link:
   new_tab: false
 metadata:
+  description: >-
+    Learn how to use AI coding assistants to integrate PayU Payment Links. Paste
+    a ready-made prompt into Cursor, Claude Code, or any AI tool to generate
+    token caching, link creation, and webhook verification for your stack.
+  keywords:
+    - PayU Payment Links integration
+    - AI coding assistant PayU
+    - Cursor PayU integration
+    - Claude Code PayU
+    - payment links API
+    - PayU OAuth2 token
+    - PayU webhook verification
+    - SHA-512 webhook PayU
+    - create payment link API
+    - PayU developer integration
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: create-a-payment-link
+      title: Create Payment Links
+      type: basic
+    - slug: manage-payment-links
+      title: Manage Payment Links
+      type: basic
+    - slug: payment-button-errors-troubleshooting
+      title: Errors and Troubleshooting
+      type: basic
+    - slug: payment-links-faqs
+      title: FAQs (Frequently Asked Questions)
+      type: basic
+    - slug: payment-links-apis
+      title: Payment Links APIs
+      type: basic
+    - slug: payment-links-workflow
+      title: How Payment Links Works
+      type: basic
 ---
 {/* NEW CONTENT */}
 
