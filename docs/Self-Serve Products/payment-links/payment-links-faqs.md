@@ -584,7 +584,7 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   The `fromDate` and `toDate` parameters are mandatory for the <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-all-payment-links">Fetch All Payment Links</Anchor> API because the API retrieves a list of links across a date range. Without these bounds, the response could include thousands of records and become prohibitively large.
 
-  **To fetch a specific link without date parameters**, use the <Anchor target="_blank" href="doc:api-fetch">Fetch Single Payment Link API</Anchor> instead — it takes only the `invoiceNumber` as a path parameter and returns that link's full details immediately, with no date range required.
+  **To fetch a specific link without date parameters**, use the <Anchor target="_blank" href="doc:api-fetch">Fetch Single Payment Link API</Anchor> instead, it takes only the `invoiceNumber` as a path parameter and returns that link's full details immediately, with no date range required.
 </Accordion>
 
 ***
