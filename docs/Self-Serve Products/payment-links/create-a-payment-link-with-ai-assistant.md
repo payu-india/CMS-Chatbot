@@ -1,5 +1,9 @@
 ---
 title: Create a Payment Link with AI Coding Assistants
+excerpt: >-
+  Learn how to use AI coding assistants to integrate PayU Payment Links. Paste a
+  ready-made prompt into Cursor, Claude Code, or any AI tool to generate token
+  caching, link creation, and webhook verification for your stack.
 deprecated: false
 hidden: true
 link:
