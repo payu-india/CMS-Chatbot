@@ -1,8 +1,8 @@
 ---
 title: Errors and Troubleshooting
 excerpt: >-
-  Diagnose and fix common Payment Links problems — links not opening, payments
-  not reflecting, notifications not delivered, and API errors.
+  Diagnose and fix common Payment Links problems such as links not opening,
+  payments not reflecting, notifications not delivered, and API errors.
 deprecated: false
 hidden: true
 link:
@@ -72,7 +72,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 
 ***
 
-## Why Is not the Payment Showing in My Dashboard?
+## Why Is My Payment Not Showing in My Dashboard?
 
 <Accordion title="Payment Not Reflecting After Customer Paid" icon="far fa-clock">
   Follow these troubleshooting steps:
