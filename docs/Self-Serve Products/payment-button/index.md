@@ -114,6 +114,8 @@ PayU Payment Buttons let you collect payments on a site you already have, withou
 
   Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.
 
+  <br />
+
   <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the right solution</Anchor> →
 </Callout>
 
