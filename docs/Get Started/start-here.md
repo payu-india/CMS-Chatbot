@@ -53,7 +53,7 @@ If you want to find the right fit, tell us about your business and technical cap
      data). The table structure and "prefer to browse" framing are new.
      Needs SME review to confirm doc URLs and effort labels are current. */}
 
-## Prefer to Browse? All Integration Paths at a Glance
+## Prefer to Browse? Common Integration Paths
 
 If you already know what you need, go directly to the right guide.
 
