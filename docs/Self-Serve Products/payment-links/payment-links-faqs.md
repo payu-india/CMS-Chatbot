@@ -35,17 +35,6 @@ next:
       title: Errors and Troubleshooting
       type: basic
 ---
-<Banner
-  isInline={true}
-  message="Integration effort: No code or website required"
-  color="#15C614"
-  textColor="#ffffff"
-  fontSize="14px"
-  fontWeight="bold"
-/>
-
-***
-
 ## General
 
 1. #### What is a payment link and how does it work?
