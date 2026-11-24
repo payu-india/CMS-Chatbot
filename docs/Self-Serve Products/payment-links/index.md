@@ -142,7 +142,7 @@ Watch this video to see how PayU Payment Links work:
 
   Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.<br />
 
-  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
+  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here#find-the-right-product-for-you">Find the Right Product for You</Anchor> →
 </Callout>
 
 ***
