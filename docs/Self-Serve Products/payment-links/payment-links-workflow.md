@@ -85,7 +85,7 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Link.
   <Callout icon="💡" theme="info">
     ### **Webhooks:**
 
-    Webhooks are optional — your Dashboard always reflects the current payment status without any webhook setup.
+    <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks</Anchor> are optional. Your Dashboard always reflects the current payment status without any webhook setup.
   </Callout>
 </Accordion>
 
