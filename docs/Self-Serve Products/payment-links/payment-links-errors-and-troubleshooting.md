@@ -77,7 +77,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 <Accordion title="Payment Not Reflecting After Customer Paid" icon="far fa-clock">
   Follow these troubleshooting steps:
 
-  1. Wait for 5–10 minutes: Dashboard updates are near-real-time but occasionally delayed.
+  1. Wait 5–10 minutes: Dashboard updates are near-real-time but occasionally delayed.
   2. Check in the **Transactions** (not Payment Links) tab: The transaction may appear there before the link status updates.
   3. Search for the transactio&#x6E;**&#x20;**&#x75;sing th&#x65;**&#x20;**&#x61;mount or date.
 
