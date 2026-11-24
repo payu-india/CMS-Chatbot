@@ -1,7 +1,7 @@
 ---
 title: How Payment Links Works
 excerpt: >-
-  Understand the complete end-to-end lifecycle of a PayU Payment Link — from
+  Understand the complete end-to-end lifecycle of a PayU Payment Link, from
   creating an account to receiving funds in your bank account.
 deprecated: false
 hidden: true
@@ -39,7 +39,7 @@ next:
       title: FAQs (Frequently Asked Questions)
       type: basic
 ---
-Understand the complete end-to-end flow of how PayU <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor> works. Starting from creating your account to receiving funds in your bank account.
+<Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">PayU Payment Links</Anchor> let you collect payments without a website or technical integration. Here is a step-by-step look at how a link moves from creation to settlement.
 
 ***
 
@@ -53,7 +53,7 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Link.
   <Callout icon="💡" theme="info">
     ### **Already Have an Account?**
 
-    &#x20;You can skip to the Step 2
+    You can skip to Step 2
   </Callout>
 </Accordion>
 
