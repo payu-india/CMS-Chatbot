@@ -106,7 +106,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 
 ***
 
-## Why Did not My Customer Receive the SMS or Email?
+## Why Didn't My Customer Receive the SMS or Email?
 
 <Accordion title="Notification Not Delivered" icon="far fa-envelope">
   Check these:
