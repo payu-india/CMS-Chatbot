@@ -11,7 +11,7 @@ metadata:
 
 <Banner
   isInline={true}
-  message="For developers — paste this prompt into Cursor, Claude Code, or GitHub Copilot"
+  message="For developers — Paste this prompt into Cursor, Claude Code, or GitHub Copilot"
   color="#FFC107"
   textColor="#ffffff"
   fontSize="14px"
