@@ -97,7 +97,7 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
     <Tabs>
       <Tab title="Link Details">
         - **Name:&#x20;**&#x4E;ame of the Payment Link you entered during creation.
-        - **Status:&#x20;**&#x53;tatus of the payment link. Refer to the Payment Link statuses for more information.
+        - **Status:&#x20;**&#x53;tatus of the payment link. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#what-are-the-different-statuses-of-a-payment-link">Payment Link statuses</Anchor> for more information.
         - **Link:&#x20;**&#x54;he payment with options to copy and share via WhatsApp and Facebook.
         - **Invoice ID:&#x20;**&#x54;he auto generated invoice ID. For example, **INV331178996540608300.**
         - **Total Amount:&#x20;**&#x54;he total amount for which the link is created.
