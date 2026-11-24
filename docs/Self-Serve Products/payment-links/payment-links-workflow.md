@@ -97,8 +97,8 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Link.
 
     To retrieve link data programmatically — for reconciliation or reporting — use the Fetch API.
 
-    - [Manage Payment Links — Dashboard](doc:manage-payment-links)
-    - [Fetch Payment Links API](doc:api-fetch)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links">Manage Payment Links — Dashboard</Anchor>
+    - <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links#fetch">Fetch Payment Links API</Anchor>
   </Callout>
 </Accordion>
 
