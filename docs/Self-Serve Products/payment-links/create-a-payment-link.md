@@ -139,7 +139,7 @@ Follow these steps to create and send a <Glossary>payment link</Glossary>:
         </td>
 
         <td>
-          Use this field if you want to set the expiry of the link. Post this date and time the link stops working and customers cannot make the payment using this link.
+          Use this field if you want to set the expiry of the link. After this date and time, the link stops working and customers cannot make the payment using this link.
         </td>
       </tr>
 
@@ -330,8 +330,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   2. Enter a **Batch ID (Optional)**: Your internal reference for this upload batch.
   3. Enter a **Batch description&#x20;**(optional): A label to help you identify this batch later.
 
-
-     <Image src="https://files.readme.io/39cc54ab1250e092ecda7bd4abf92fc3680665db9645b7d79cd8133326dfe64d-Screenshot_2026-10-12_at_9.23.53_AM.png" align="center" caption="Upload and Set Batch Detials" border={true} />
+     <Image src="https://files.readme.io/39cc54ab1250e092ecda7bd4abf92fc3680665db9645b7d79cd8133326dfe64d-Screenshot_2026-10-12_at_9.23.53_AM.png" align="center" caption="Upload and Set Batch Details" border={true} />
 
 </Accordion>
 
