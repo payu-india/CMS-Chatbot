@@ -2,7 +2,7 @@
 title: Manage Payment Links
 excerpt: >-
   View link details and transactions, edit, filter, duplicate, share,
-  deactivate, activte and export your Payment Links, all from the PayU
+  deactivate, activate and export your Payment Links, all from the PayU
   Dashboard.
 deprecated: false
 hidden: true
