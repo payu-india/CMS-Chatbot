@@ -191,12 +191,10 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
-
      <Image src="https://files.readme.io/16cc602d7fea50b82cf305a021d8ec949b3f3ca9219a632f468ab9745bbdc5dd-image.png" align="center" caption="Access Payment Links" border={true} />
 
 
   2. Click the menu icon against a required payment link and click **Duplicate.**
-
 
      <Image src="https://files.readme.io/ba9d25a123f142ce6b98c768421c302cd0d3486ac7351ca72555f27624801fc5-Screenshot_2026-09-21_at_12.02.28_PM.png" align="center" caption="Click Duplicate" border={true} />
 
@@ -207,7 +205,6 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
 
   5. Click **Create and Send Payment link**.
 
-
      <Image src="https://files.readme.io/eb3a59aa72227334bc5d2e66dd3f100eef9594aa8cbc4084e3c93dd19a9f2d46-screen-recording.gif" align="center" caption="Duplicate a Payment Link" border={true} />
 
 
@@ -217,7 +214,7 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
        Duplicating does not deactivate the original link. If you want to replace a link (e.g., wrong amount was set), duplicate it with the correct details first, then deactivate the original.
      </Callout>
 
-     The link is created and sent to the customer. You can see it in the **Payment Links&#x20;**&#x70;age.
+     The link is created and sent to the customer. You can see it on the **Payment Links&#x20;**&#x70;age.
 </Accordion>
 
 ***
