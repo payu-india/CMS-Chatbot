@@ -59,10 +59,10 @@ next:
   fontWeight="bold"
  />
 
-## How Does Payment Links Simplfies My Business?
+## How Does Payment Links Simplify My Business?
 
 <Accordion title="Create-to-Collect in Minutes">
-  Create a <Glossary>payment links</Glossary> in a few clicks and start collecting money right away. No website, no developer, no waiting.
+  Create <Glossary>payment links</Glossary> in a few clicks and start collecting money right away. No website, no developer, no waiting.
 </Accordion>
 
 <Accordion title="Automatically Delivers Link to Your Customers">
@@ -177,7 +177,7 @@ Check this video to see how PayU Payment Links work
 
 ***
 
-## What All I Need to Get Started?
+## What Do I Need to Get Started?
 
 You do not need a website or developer to get started.<br />
 
@@ -299,7 +299,7 @@ Once your customer completes the payment:
 </Accordion>
 
 <Accordion title="Resend a link">
-  Share any Active link again via SMS, email, or by copying the URL and sending it over WhatsApp or any channel withiut any limit on how many times you can resend.
+  Share any Active link again via SMS, email, or by copying the URL and sending it over WhatsApp or any channel without any limit on how many times you can resend.
 </Accordion>
 
 <Accordion title="Export records">
