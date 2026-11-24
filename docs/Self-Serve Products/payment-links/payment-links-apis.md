@@ -38,7 +38,7 @@ next:
       title: FAQs (Frequently Asked Questions)
       type: basic
 ---
-You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">Payment Links APIs</Anchor> to perform various actions on payment links programmatically. All these actions are also available from the PayU Dashboard.
+You can use the <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">Payment Links APIs</Anchor> to perform various actions on payment links programmatically.
 
 ***
 
