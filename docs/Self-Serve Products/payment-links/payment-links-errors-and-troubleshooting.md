@@ -151,7 +151,7 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 <Accordion title="Wrong amount, description, or customer details" icon="far fa-pen-to-square">
   You cannot edit the payment link configuration after creation.
 
-  **What Next:&#x20;**&#x59;ou should <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">duplicate</Anchor> the existing payment link by correcting the details and send the new link to the customer. Also, we recommend you to deactivate the link with incorrect details if not in use.
+  **What Next:&#x20;**&#x59;ou should <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">duplicate</Anchor> the existing payment link by correcting the details and send the new link to the customer. Also, we recommend deactivating the link with incorrect details if no longer needed.
 </Accordion>
 
 ***
