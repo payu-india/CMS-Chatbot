@@ -56,12 +56,12 @@ Something not right after creating a <Anchor target="_blank" href="https://docs.
 <Accordion title="Check the Link Status First" icon="far fa-magnifying-glass">
   Open the [Payment Links Dashboard](https://onboarding.payu.in/) and find the link. Check the **Status** column:
 
-  | Status          | What it Means                                                      | What to Do                                                   |
-  | --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
-  | **Active**      | Link should work                                                   | Check for device or browser issues.                          |
-  | **Expired**     | Link has expired                                                   | Duplicate the link with a new expiry date                    |
-  | **Deactivated** | Manually disabled                                                  | Reactivate the link if you still need to collect payments    |
-  | **Paid**        | Max transactions reached or the customer has paid the full amount. | Create a new link if you want to collect additional payments |
+  | Status          | What it Means                                                      | What to Do                                                                                                                                                                 |
+  | --------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Active**      | Link should work                                                   | Check for device or browser issues.                                                                                                                                        |
+  | **Expired**     | Link has expired                                                   | <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#duplicate-a-payment-link">Duplicate</Anchor> the link with a new expiry date                  |
+  | **Deactivated** | Manually disabled                                                  | <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#reactivate-a-payment-link">Reactivate</Anchor> the link if you still need to collect payments |
+  | **Paid**        | Max transactions reached or the customer has paid the full amount. | <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">Create a new link</Anchor> if you want to collect additional payments                       |
 
   **If status is Active but the link still doesn't open:**
 
@@ -197,4 +197,4 @@ Contact PayU support with these details:&#x20;
 - [x] Date and time of the issue
 - [x] Screenshot of any error message
 
-Contact PayU Support via the Dashboard **Help** section, or email `support@payu.in`.
+Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> via the Dashboard **Help** section, or email `support@payu.in`.
