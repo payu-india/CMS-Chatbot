@@ -60,6 +60,7 @@ This is a quick gist of the most common paths, not an exhaustive list. If you al
 | What you want to do                      | PayU solution                                                                                                                    | Effort                  |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | Share a payment link — no website needed | <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links-dashboard">Payment Links</Anchor>                          | 🟢 No coding required   |
+| Embed a buy button on any webpage        | [Payment Buttons](https://docs.payu.in/docs/payment-buttons)                                                                     | 🟢 No coding required   |
 | Add checkout to a Shopify store          | <Anchor target="_blank" href="https://docs.payu.in/docs/shopify">Shopify Plugin</Anchor>                                         | 🟡 Some technical setup |
 | Add checkout to a WooCommerce store      | <Anchor target="_blank" href="https://docs.payu.in/docs/woocommerce">WooCommerce Plugin</Anchor>                                 | 🟡 Some technical setup |
 | Add checkout to a Magento store          | <Anchor target="_blank" href="https://docs.payu.in/docs/magento">Magento Plugin</Anchor>                                         | 🟡 Some technical setup |
