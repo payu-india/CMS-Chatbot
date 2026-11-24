@@ -4,7 +4,7 @@ excerpt: >-
   Find the right PayU integration for your business, from no-code payment links
   and Payment Buttons to hosted checkout, mobile SDKs, and recurring payments.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Start Here — PayU Developer Docs
   description: >-
