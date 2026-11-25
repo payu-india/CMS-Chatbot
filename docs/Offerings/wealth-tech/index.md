@@ -25,12 +25,12 @@ Wealth Tech lets SEBI-registered investment platforms collect payments for equit
 
 Find your merchant type and their guides in the following table.
 
-| Merchant type                        | What you sell                              | `type`                | `mf_partner`       | Where PayU sends the funds | Guide                                        |
-| ------------------------------------ | ------------------------------------------ | --------------------- | ------------------ | -------------------------- | -------------------------------------------- |
-| Stock broker                         | Equity trading                             | _(no product object)_ | _(not applicable)_ | Your bank account          | [Equity](doc:wealth-tech-equity)             |
-| Mutual fund broker                   | Mutual funds and other investment products | `mutual_fund`         | `bse`, `bse2`      | ICCL or NCL                | [Mutual Funds](doc:wealth-tech-mutual-funds) |
-| Direct AMC                           | Mutual fund schemes of your own AMC        | `mutual_fund`         | `kfin`             | Your bank account          | [Mutual Funds](doc:wealth-tech-mutual-funds) |
-| Online Bond Platform Provider (OBPP) | Bonds                                      | `bond`                | `nse_bonds`        | NSE Clearing Ltd (NCL)     | [Bonds](doc:wealth-tech-bonds)               |
+| Merchant type                        | What you sell                              | `type`                | `mf_partner`       | Where PayU sends the funds | Guide                                                                                       |
+| ------------------------------------ | ------------------------------------------ | --------------------- | ------------------ | -------------------------- | ------------------------------------------------------------------------------------------- |
+| Stock broker                         | Equity trading                             | _(no product object)_ | _(not applicable)_ | Your bank account          | [Equity](doc:wealth-tech-equity)                                                            |
+| Mutual fund broker                   | Mutual funds and other investment products | `mutual_fund`         | `bse`, `bse2`      | ICCL or NCL                | <Anchor target="_blank" href="https://docs.payu.in/docs/mutual-funds">Mutual Funds</Anchor> |
+| Direct AMC                           | Mutual fund schemes of your own AMC        | `mutual_fund`         | `kfin`             | Your bank account          | [Mutual Funds](https://docs.payu.in/docs/mutual-funds)                                      |
+| Online Bond Platform Provider (OBPP) | Bonds                                      | `bond`                | `nse_bonds`        | NSE Clearing Ltd (NCL)     | [Bonds](doc:wealth-tech-bonds)                                                              |
 
 PayU sets your merchant type when it opens your account. Your merchant type determines which `mf_partner` values you can use. Use a separate merchant account for each merchant type.
 
