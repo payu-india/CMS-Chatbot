@@ -1,26 +1,34 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Static QR
-  version: "1.0.0"
-  description: >
-    POST /partner/staticQr. Creates a reusable static QR for a merchant VPA.
-    Required headers from PartnerController: X-PayU-Reseller-UUID, X-PayU-Merchant-ID,
-    X-Partner-Token, X-Partner-Hash, X-Partner-Request-ID.
-    Hash input, quoted from PartnerUtils.validateStaticQrHash:
-    merchantId|rawRequestBody|clientSecret, then SHA-512.
-    That is not sha512(key|reseller_id|merchant_id|salt).
-    The JSON body must include merchantVpa. qrType and udf5 are stored when present.
-    A cached success returns qrString, qrId, and merchantVpa.
+  description: 'POST /partner/staticQr. Creates a reusable static QR for a merchant VPA. Required
+    headers from PartnerController: X-PayU-Reseller-UUID, X-PayU-Merchant-ID, X-Partner-Token,
+    X-Partner-Hash, X-Partner-Request-ID. Hash input, quoted from PartnerUtils.validateStaticQrHash:
+    merchantId|rawRequestBody|clientSecret, then SHA-512. That is not sha512(key|reseller_id|merchant_id|salt).
+    The JSON body must include merchantVpa. qrType and udf5 are stored when present. A cached
+    success returns qrString, qrId, and merchantVpa.'
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/staticQr:
     post:
-      operationId: partnerStaticQr
       summary: Generate a static QR
+      description: 'POST /partner/staticQr. Creates a reusable static QR for a merchant VPA.
+        Required headers from PartnerController: X-PayU-Reseller-UUID, X-PayU-Merchant-ID,
+        X-Partner-Token, X-Partner-Hash, X-Partner-Request-ID. Hash input, quoted from PartnerUtils.validateStaticQrHash:
+        merchantId|rawRequestBody|clientSecret, then SHA-512. That is not sha512(key|reseller_id|merchant_id|salt).
+        The JSON body must include merchantVpa. qrType and udf5 are stored when present. A
+        cached success returns qrString, qrId, and merchantVpa.'
+      tags:
+        - Partner Payment APIs
       security:
         - resellerUuid: []
           merchantId: []
@@ -33,39 +41,61 @@ paths:
           application/json:
             schema:
               type: object
-              required: [merchantVpa]
+              required:
+                - merchantVpa
               properties:
                 merchantVpa:
                   type: string
                   description: Uniqueness key for the static QR.
+                  example: merchant@payu
                 qrType:
                   type: string
+                  description: qrType
                 udf5:
                   type: string
+                  description: udf5
                 amount:
                   type: string
-                  description: Passed through in the raw body to generateInstaAccount when you set it. Not validated in generateStaticQr.
+                  description: Passed through in the raw body to generateInstaAccount when
+                    you set it. Not validated in generateStaticQr.
+                  example: '1000.00'
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  merchantVpa: merchant@payu
       responses:
         '200':
-          description: Stored or newly created QR. Cache payload fields are qrString, qrId, and merchantVpa.
+          description: Stored or newly created QR. Cache payload fields are qrString, qrId,
+            and merchantVpa.
           content:
             application/json:
-              example:
-                qrString: merchant@payu
-                qrId: QR_1001
-                merchantVpa: merchant@payu
+              examples:
+                success:
+                  summary: Successful Response
+                  value:
+                    qrString: merchant@payu
+                    qrId: QR_1001
+                    merchantVpa: merchant@payu
         '400':
           description: merchantVpa is missing, or the merchant id is unknown.
           content:
             application/json:
-              example:
-                error: merchantVpa is required in request body
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: merchantVpa is required in request body
         '403':
           description: X-Partner-Hash did not match.
           content:
             application/json:
-              example:
-                error: Invalid Hash
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Hash
+      operationId: partnerStaticQr
 components:
   securitySchemes:
     resellerUuid:

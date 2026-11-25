@@ -3,8 +3,9 @@ api:
   file: partner-refund-callback-api.yaml
   operationId: partnerRefundCallback
 hidden: false
+link:
+  new_tab: false
 ---
-
 <Cards>
   <Card title="Method">
     POST
@@ -15,42 +16,39 @@ hidden: false
   </Card>
 </Cards>
 
+## Environments
 
-## Environment
+|                        |                                                        |
+| :--------------------- | :----------------------------------------------------- |
+| Test Environment       | `https://test-partnerapilayer.payu.in/apilayer` |
+| Production Environment | `https://api.payu.in` |
 
-| Environment | Base URL |
-| --- | --- |
-| Production | `https://api.payu.in` |
-| UAT | `https://test-partnerapilayer.payu.in/apilayer` |
+## Sample Request
 
+<Accordion title="Request Payload" icon="fa-code">
+  ```curl
+  curl -X POST "https://test-partnerapilayer.payu.in/apilayer/partner/refundCallback"
+  ```
+</Accordion>
 
+<Callout icon="📘" theme="info">
+  ### **Request Parameter Description**
 
-> 📘 **PayU receives this postback**
->
-> PayU receives this on POST /partner/refundCallback. Field names follow RefundCallbackDTO and RefundCallbackMigratedDTO. The outline names txnid, amount, refund_amount, hash, error, and merchantId are not fields on those DTOs.
-
-## Callback Parameters
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `mihpayid` | String | PayU payment id (non-migrated) |
-| `request_id` | String | Refund request id (non-migrated) |
-| `amt` | String | Refund amount (non-migrated) |
-| `status` | String | `success`, `queued`, or `failure` (non-migrated) |
-| `token` | String | Refund token |
-| `bank_ref_num` | String | Bank reference |
-| `bank_arn` | String | Acquirer reference |
-| `merchantTxnId` | String | Merchant transaction id |
-| `paymentId` | String | Migrated payment id |
-| `refundId` | String | Migrated refund id |
-| `refundAmount` | String | Migrated refund amount |
-| `refundStatus` | String | Migrated status |
-
+  Refer to the [Request Body](https://docs.payu.in/reference/partner-refund-callback-api#body-params) section for request parameter description.
+</Callout>
 
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-```json
-{ "note": "The handler returns void." }
-```
+  ```json Success Response
+  {
+    "note": "processRefundCallbackResponse returns void. PayU does not document a JSON acknowledgement body."
+  }
+  ```
 </Accordion>
+
+<Callout icon="📘" theme="info">
+  ### **Response Parameter Description**
+
+  Refer to the [Responses](https://docs.payu.in/reference/partner-refund-callback-api#response-schemas) section for response parameter description.
+</Callout>

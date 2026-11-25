@@ -1,21 +1,28 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Submit card OTP
-  version: "1.0.0"
-  description: >
-    SubmitCardOtpDTO requires merchant_id, reseller_id, hash, reference_id, and otp.
-    txnid is not a field. A verified OTP adds txnStatus, mihpayid, and message
-    "OTP verified successfully". Failures use status "failed" and message.
+  description: SubmitCardOtpDTO requires merchant_id, reseller_id, hash, reference_id, and
+    otp. txnid is not a field. A verified OTP adds txnStatus, mihpayid, and message "OTP verified
+    successfully". Failures use status "failed" and message.
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/submitCardOtp:
     post:
-      operationId: partnerSubmitCardOtp
       summary: Submit a card OTP
+      description: SubmitCardOtpDTO requires merchant_id, reseller_id, hash, reference_id,
+        and otp. txnid is not a field. A verified OTP adds txnStatus, mihpayid, and message
+        "OTP verified successfully". Failures use status "failed" and message.
+      tags:
+        - Partner Payment APIs
       security:
         - bearerAuth: []
       requestBody:
@@ -24,31 +31,57 @@ paths:
           application/json:
             schema:
               type: object
-              required: [merchant_id, reseller_id, hash, reference_id, otp]
+              required:
+                - merchant_id
+                - reseller_id
+                - hash
+                - reference_id
+                - otp
               properties:
                 merchant_id:
                   type: integer
+                  description: merchant id
+                  example: 8739528
                 reseller_id:
                   type: string
+                  description: reseller id
+                  example: YOUR_RESELLER_UUID
                 hash:
                   type: string
+                  description: hash
+                  example: YOUR_HASH
                 reference_id:
                   type: string
                   description: PayU reference id for the in-progress card transaction.
+                  example: REFERENCE_ID
                 otp:
                   type: string
+                  description: otp
+                  example: '123456'
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  merchant_id: 8739528
+                  reseller_id: YOUR_RESELLER_UUID
+                  hash: YOUR_HASH
+                  reference_id: REFERENCE_ID
+                  otp: '123456'
       responses:
         '200':
           description: OTP accepted.
           content:
             application/json:
-              example:
-                status: success
-                attemptsLeft: 2
-                isSupported: true
-                txnStatus: success
-                mihpayid: "403993715521855092"
-                message: OTP verified successfully
+              examples:
+                success:
+                  summary: Successful Response
+                  value:
+                    status: success
+                    attemptsLeft: 2
+                    isSupported: true
+                    txnStatus: success
+                    mihpayid: '403993715521855092'
+                    message: OTP verified successfully
         '400':
           description: Validation failed, or the OTP was rejected with attempts left.
           content:
@@ -67,11 +100,15 @@ paths:
           description: Invalid bearer token.
           content:
             application/json:
-              example:
-                error: Invalid Auth token
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Auth token
+      operationId: partnerSubmitCardOtp
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: "Partner access token. Send as Authorization Bearer token."
+      description: Partner access token. Send as Authorization Bearer token.

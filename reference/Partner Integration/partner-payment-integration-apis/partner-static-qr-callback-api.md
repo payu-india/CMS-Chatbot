@@ -3,8 +3,9 @@ api:
   file: partner-static-qr-callback-api.yaml
   operationId: partnerStaticQrCallback
 hidden: false
+link:
+  new_tab: false
 ---
-
 <Cards>
   <Card title="Method">
     POST
@@ -15,39 +16,48 @@ hidden: false
   </Card>
 </Cards>
 
+## Environments
 
-## Environment
+|                        |                                                        |
+| :--------------------- | :----------------------------------------------------- |
+| Test Environment       | `https://test-partnerapilayer.payu.in/apilayer` |
+| Production Environment | `https://api.payu.in` |
 
-| Environment | Base URL |
-| --- | --- |
-| Production | `https://api.payu.in` |
-| UAT | `https://test-partnerapilayer.payu.in/apilayer` |
+## Sample Request
 
+<Accordion title="Request Payload" icon="fa-code">
+  ```curl
+  curl -X POST "https://test-partnerapilayer.payu.in/apilayer/partner/staticQrCallback" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "txnid": "TXN1001",
+      "field4": "merchant@payu",
+      "key": "YOUR_MERCHANT_KEY"
+    }'
+  ```
+</Accordion>
 
+<Callout icon="📘" theme="info">
+  ### **Request Parameter Description**
 
-> 📘 **PayU receives this postback**
->
-> PayU receives this post on POST /partner/staticQrCallback. `field4` is the merchant VPA. `key` is the merchant key used to verify the response hash.
-
-## Callback Parameters
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `txnid` | String | Transaction id. A repeat txnid returns HTTP 200 |
-| `field4` | String | Merchant VPA. Required |
-| `key` | String | Merchant key. Required for hash verification |
-| `mihpayid` | String | PayU payment id |
-| `amount` | String | Amount |
-| `status` | String | Payment status |
-| `mode` | String | Payment mode |
-| `hash` | String | PayU response hash |
-| `bank_ref_num` | String | Bank reference |
-
+  Refer to the [Request Body](https://docs.payu.in/reference/partner-static-qr-callback-api#body-params) section for request parameter description.
+</Callout>
 
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-```json
-{ "note": "HTTP 200 with an empty body." }
-```
+  ```json Success Response
+  {
+    "note": "Accepted, including a duplicate txnid. Empty body."
+  }
+  ```
+  ```json Error Response
+  "field4 (merchantVpa) is required"
+  ```
 </Accordion>
+
+<Callout icon="📘" theme="info">
+  ### **Response Parameter Description**
+
+  Refer to the [Responses](https://docs.payu.in/reference/partner-static-qr-callback-api#response-schemas) section for response parameter description.
+</Callout>

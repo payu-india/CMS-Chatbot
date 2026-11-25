@@ -1,27 +1,32 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Dynamic Bharat QR
-  version: "1.0.0"
-  description: >
-    POST /partner/dbqr. Generates a dynamic Bharat QR for one transaction.
-    Headers match verifyStatus. PartnerUtils.updateOmniChannelTransactionForDbqr reads
-    vendorTransactionId, soundBoxTerminalId, expiryTime, and optional mihpayId.
-    Those names match the published Generate Dynamic QR page. The response on that page
-    includes result.qrString. The body is forwarded to POST /v1/partner/qr/dbqr.
+  description: POST /partner/dbqr. Generates a dynamic Bharat QR for one transaction. Headers
+    match verifyStatus. PartnerUtils.updateOmniChannelTransactionForDbqr reads vendorTransactionId,
+    soundBoxTerminalId, expiryTime, and optional mihpayId. Those names match the published
+    Generate Dynamic QR page. The response on that page includes result.qrString. The body
+    is forwarded to POST /v1/partner/qr/dbqr.
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/dbqr:
     post:
-      operationId: partnerDbqr
       summary: Generate a dynamic Bharat QR
-      security:
-        - resellerUuid: []
-          partnerToken: []
-          hmacAuth: []
+      description: POST /partner/dbqr. Generates a dynamic Bharat QR for one transaction.
+        Headers match verifyStatus. PartnerUtils.updateOmniChannelTransactionForDbqr reads
+        vendorTransactionId, soundBoxTerminalId, expiryTime, and optional mihpayId. Those
+        names match the published Generate Dynamic QR page. The response on that page includes
+        result.qrString. The body is forwarded to POST /v1/partner/qr/dbqr.
+      tags:
+        - Partner Payment APIs
       parameters:
         - name: X-PayU-Merchant-Key
           in: header
@@ -38,35 +43,65 @@ paths:
           required: false
           schema:
             type: string
+      security:
+        - resellerUuid: []
+          partnerToken: []
+          hmacAuth: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [mihpayId, vendorTransactionId, transactionAmount, expiryTime, soundBoxTerminalId]
+              required:
+                - mihpayId
+                - vendorTransactionId
+                - transactionAmount
+                - expiryTime
+                - soundBoxTerminalId
               properties:
                 mihpayId:
                   type: string
+                  description: mihpayId
+                  example: '403993715529984752'
                 vendorTransactionId:
                   type: string
+                  description: vendorTransactionId
+                  example: PARTNER_TXN_001
                 transactionAmount:
                   type: string
                   description: Decimal rupee string, for example "100.00".
+                  example: '100.00'
                 expiryTime:
                   type: string
                   description: QR validity in seconds.
+                  example: '3600'
                 soundBoxTerminalId:
                   type: string
+                  description: soundBoxTerminalId
+                  example: ABCD1234
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  mihpayId: '403993715529984752'
+                  vendorTransactionId: PARTNER_TXN_001
+                  transactionAmount: '100.00'
+                  expiryTime: '3600'
+                  soundBoxTerminalId: ABCD1234
       responses:
         '200':
           description: Dynamic QR payload. The published page returns status and result.qrString.
           content:
             application/json:
-              example:
-                status: success
-                result:
-                  qrString: "000201010212..."
+              examples:
+                success:
+                  summary: Successful Response
+                  value:
+                    status: success
+                    result:
+                      qrString: 000201010212...
+      operationId: partnerDbqr
 components:
   securitySchemes:
     resellerUuid:
@@ -82,4 +117,5 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: HMAC value. Partner QR guides use `hmac username="<client_id>", algorithm="sha512", headers="date", signature="<signature>"`.
+      description: HMAC value. Partner QR guides use `hmac username="<client_id>", algorithm="sha512",
+        headers="date", signature="<signature>"`.

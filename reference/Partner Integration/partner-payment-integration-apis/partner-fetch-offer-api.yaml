@@ -1,23 +1,33 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Fetch offers
-  version: "1.0.0"
-  description: >
-    Fetch payment offers for a merchant. Request fields are FetchOfferDTO.
-    Required fields are merchant_id, reseller_id, and hash.
-    amount, offerKeys, paymentId, userToken, and skusDetail are optional.
-    The handler forwards the body to the PayU Offers service and returns that JSON.
-    Hash input in PartnerUtils.getWhatsappOfferRequestHashSequence is merchant_id, then the client secret is appended (`merchant_id|` + client secret), SHA-512.
+  description: Fetch payment offers for a merchant. Request fields are FetchOfferDTO. Required
+    fields are merchant_id, reseller_id, and hash. amount, offerKeys, paymentId, userToken,
+    and skusDetail are optional. The handler forwards the body to the PayU Offers service
+    and returns that JSON. Hash input in PartnerUtils.getWhatsappOfferRequestHashSequence
+    is merchant_id, then the client secret is appended (`merchant_id|` + client secret), SHA-512.
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/fetchOffer:
     post:
-      operationId: partnerFetchOffer
       summary: Fetch available payment offers
+      description: Fetch payment offers for a merchant. Request fields are FetchOfferDTO.
+        Required fields are merchant_id, reseller_id, and hash. amount, offerKeys, paymentId,
+        userToken, and skusDetail are optional. The handler forwards the body to the PayU
+        Offers service and returns that JSON. Hash input in PartnerUtils.getWhatsappOfferRequestHashSequence
+        is merchant_id, then the client secret is appended (`merchant_id|` + client secret),
+        SHA-512.
+      tags:
+        - Partner Payment APIs
       security:
         - bearerAuth: []
       requestBody:
@@ -26,16 +36,27 @@ paths:
           application/json:
             schema:
               type: object
-              required: [merchant_id, reseller_id, hash]
+              required:
+                - merchant_id
+                - reseller_id
+                - hash
               properties:
                 merchant_id:
                   type: integer
+                  description: merchant id
+                  example: 8739528
                 reseller_id:
                   type: string
+                  description: reseller id
+                  example: YOUR_RESELLER_UUID
                 hash:
                   type: string
+                  description: hash
+                  example: YOUR_HASH
                 amount:
                   type: string
+                  description: amount
+                  example: '1000.00'
                 offerKeys:
                   type: array
                   items:
@@ -43,27 +64,41 @@ paths:
                 paymentId:
                   type: integer
                   format: int64
+                  description: paymentId
                 userToken:
                   type: string
+                  description: userToken
                 skusDetail:
                   type: array
                   items:
                     type: object
-                    required: [skuId]
+                    required:
+                      - skuId
                     properties:
                       skuId:
                         type: string
+                        description: skuId
                       skuAmount:
                         type: string
+                        description: skuAmount
                       quantity:
                         type: string
+                        description: quantity
                       offerKeys:
                         type: array
                         items:
                           type: string
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  merchant_id: 8739528
+                  reseller_id: YOUR_RESELLER_UUID
+                  hash: YOUR_HASH
       responses:
         '200':
-          description: Offers service JSON, passed through. The partner layer does not define an offers array schema.
+          description: Offers service JSON, passed through. The partner layer does not define
+            an offers array schema.
           content:
             application/json:
               schema:
@@ -73,18 +108,25 @@ paths:
           description: Validation failed. Body is `errors`, a list of bean-validation messages.
           content:
             application/json:
-              example:
-                errors:
-                  - merchant_id is mandatory
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    errors:
+                      - merchant_id is mandatory
         '401':
           description: Invalid bearer token.
           content:
             application/json:
-              example:
-                error: Invalid Auth token
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Auth token
+      operationId: partnerFetchOffer
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: "Partner access token. Send as Authorization Bearer token."
+      description: Partner access token. Send as Authorization Bearer token.

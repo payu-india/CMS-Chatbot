@@ -1,23 +1,30 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Partner Refund Callback
-  version: "1.0.0"
-  description: >
-    PayU receives the refund notification at POST /partner/refundCallback.
-    PartnerController accepts a JSON object. RefundCallbackDTO is the non-migrated
-    shape. RefundCallbackMigratedDTO is the migrated shape (paymentId, refundId,
-    refundAmount, refundStatus). Both sets are listed. No field is required by the controller.
+  description: PayU receives the refund notification at POST /partner/refundCallback. PartnerController
+    accepts a JSON object. RefundCallbackDTO is the non-migrated shape. RefundCallbackMigratedDTO
+    is the migrated shape (paymentId, refundId, refundAmount, refundStatus). Both sets are
+    listed. No field is required by the controller.
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/refundCallback:
     post:
-      operationId: partnerRefundCallback
       summary: Refund status callback
-      security: []
+      description: PayU receives the refund notification at POST /partner/refundCallback.
+        PartnerController accepts a JSON object. RefundCallbackDTO is the non-migrated shape.
+        RefundCallbackMigratedDTO is the migrated shape (paymentId, refundId, refundAmount,
+        refundStatus). Both sets are listed. No field is required by the controller.
+      tags:
+        - Partner Payment APIs
       requestBody:
         required: false
         content:
@@ -27,36 +34,54 @@ paths:
               properties:
                 mihpayid:
                   type: string
+                  description: mihpayid
+                  example: '403993715521855092'
                 request_id:
                   type: string
+                  description: request id
                 amt:
                   type: string
                   description: Refunded amount on the non-migrated payload.
                 status:
                   type: string
-                  description: Non-migrated status. PartnerService treats success, queued, and failure.
+                  description: Non-migrated status. PartnerService treats success, queued,
+                    and failure.
+                  example: success
                 token:
                   type: string
+                  description: token
+                  example: refund_token_001
                 bank_ref_num:
                   type: string
+                  description: bank ref num
                 bank_arn:
                   type: string
+                  description: bank arn
                 refund_mode:
                   type: string
+                  description: refund mode
                 action:
                   type: string
+                  description: action
                 merchantTxnId:
                   type: string
+                  description: merchantTxnId
                 partnerName:
                   type: string
+                  description: partnerName
                 remark:
                   type: string
+                  description: remark
                 key:
                   type: string
+                  description: key
+                  example: YOUR_MERCHANT_KEY
                 additionalValue1:
                   type: string
+                  description: additionalValue1
                 additionalValue2:
                   type: string
+                  description: additionalValue2
                 paymentId:
                   type: string
                   description: Migrated payload. Same role as mihpayid.
@@ -65,15 +90,21 @@ paths:
                   description: Migrated payload. Same role as request_id.
                 refundAmount:
                   type: string
+                  description: refundAmount
                 refundStatus:
                   type: string
                   description: Migrated payload. Code comment says the value is Refund Completed.
                 notificationId:
                   type: string
+                  description: notificationId
                 completedOn:
                   type: string
+                  description: completedOn
                 addedOn:
                   type: string
+                  description: addedOn
       responses:
         '200':
-          description: processRefundCallbackResponse returns void. PayU does not document a JSON acknowledgement body.
+          description: processRefundCallbackResponse returns void. PayU does not document
+            a JSON acknowledgement body.
+      operationId: partnerRefundCallback

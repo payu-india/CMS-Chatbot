@@ -3,8 +3,9 @@ api:
   file: partner-payment-cancelled-api.yaml
   operationId: partnerPaymentCancelled
 hidden: false
+link:
+  new_tab: false
 ---
-
 <Cards>
   <Card title="Method">
     POST
@@ -15,49 +16,37 @@ hidden: false
   </Card>
 </Cards>
 
+## Environments
 
-## Environment
+|                        |                                                        |
+| :--------------------- | :----------------------------------------------------- |
+| Test Environment       | `https://test-partnerapilayer.payu.in/apilayer` |
+| Production Environment | `https://api.payu.in` |
 
-| Environment | Base URL |
-| --- | --- |
-| Production | `https://api.payu.in` |
-| UAT | `https://test-partnerapilayer.payu.in/apilayer` |
+## Sample Request
 
+<Accordion title="Request Payload" icon="fa-code">
+  ```curl
+  curl -X POST "https://test-partnerapilayer.payu.in/apilayer/partner/paymentCancelled"
+  ```
+</Accordion>
 
+<Callout icon="📘" theme="info">
+  ### **Request Parameter Description**
 
-> 📘 **PayU receives this postback**
->
-> PayU receives the hosted-checkout result on this route when the customer cancels. PartnerService.processPaymentCancelled handles this post.
-
-## Callback Parameters
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `mihpayid` | String | PayU payment id |
-| `txnid` | String | Transaction id posted by the merchant |
-| `amount` | String | Transaction amount |
-| `status` | String | `cancelled` on this route |
-| `mode` | String | Payment mode |
-| `productinfo` | String | Product description |
-| `firstname` | String | Customer first name |
-| `email` | String | Customer email |
-| `phone` | String | Customer phone |
-| `hash` | String | SHA-512 response hash. Verify before updating the order |
-| `bankcode` | String | Bank or instrument code |
-| `bank_ref_num` | String | Bank reference number |
-| `udf1` to `udf5` | String | User-defined fields echoed from the request |
-| `error` | String | Error code when the payment did not succeed |
-| `error_Message` | String | Error description |
-| `net_amount_debit` | String | Amount debited |
-| `PG_TYPE` | String | Payment gateway type |
-| `unmappedstatus` | String | PayU status used by the callback handler |
-| `key` | String | Merchant key |
-
+  Refer to the [Form Data](https://docs.payu.in/reference/partner-payment-cancelled-api#body-params) section for request parameter description.
+</Callout>
 
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-```json
-{ "note": "No JSON body. PayU redirects the customer onward." }
-```
+  ```json Success Response
+  {}
+  ```
 </Accordion>
+
+<Callout icon="📘" theme="info">
+  ### **Response Parameter Description**
+
+  Refer to the [Responses](https://docs.payu.in/reference/partner-payment-cancelled-api#response-schemas) section for response parameter description.
+</Callout>

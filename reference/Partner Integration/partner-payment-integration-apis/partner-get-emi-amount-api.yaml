@@ -1,21 +1,28 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Get EMI amount
-  version: "1.0.0"
-  description: >
-    PartnerService.getEmiAmount requires merchant_id and amount.
-    merchant_id must be digits. The map is forwarded to the EMI-as-per-interest service.
-    bankcode and tenure are not checked in this method.
+  description: PartnerService.getEmiAmount requires merchant_id and amount. merchant_id must
+    be digits. The map is forwarded to the EMI-as-per-interest service. bankcode and tenure
+    are not checked in this method.
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/getEmiAmount:
     post:
-      operationId: partnerGetEmiAmount
       summary: Get EMI amount for an interest rate
+      description: PartnerService.getEmiAmount requires merchant_id and amount. merchant_id
+        must be digits. The map is forwarded to the EMI-as-per-interest service. bankcode
+        and tenure are not checked in this method.
+      tags:
+        - Partner Payment APIs
       security:
         - bearerAuth: []
       requestBody:
@@ -24,19 +31,33 @@ paths:
           application/json:
             schema:
               type: object
-              required: [merchant_id, amount]
+              required:
+                - merchant_id
+                - amount
               properties:
                 merchant_id:
                   type: string
                   description: Digits only. Parsed to an integer after the format check.
+                  example: '8739528'
                 amount:
                   type: string
+                  description: amount
+                  example: '1000.00'
                 bankcode:
                   type: string
                   description: Forwarded with the map. Not validated in PartnerService.getEmiAmount.
+                  example: HDFC
                 tenure:
                   type: string
-                  description: Forwarded with the map. The method signature is Map of strings, so send tenure as a string.
+                  description: Forwarded with the map. The method signature is Map of strings,
+                    so send tenure as a string.
+                  example: '3'
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  merchant_id: '8739528'
+                  amount: '1000.00'
       responses:
         '200':
           description: EMI interest service JSON, passed through.
@@ -49,17 +70,24 @@ paths:
           description: merchant_id or amount is missing, or merchant_id is not digits.
           content:
             application/json:
-              example:
-                error: merchant_id or amount param is missing in body
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: merchant_id or amount param is missing in body
         '401':
           description: Invalid bearer token.
           content:
             application/json:
-              example:
-                error: Invalid Auth token
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Auth token
+      operationId: partnerGetEmiAmount
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: "Partner access token. Send as Authorization Bearer token."
+      description: Partner access token. Send as Authorization Bearer token.

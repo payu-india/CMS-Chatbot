@@ -1,23 +1,31 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Validate offer
-  version: "1.0.0"
-  description: >
-    Validate an offer. Fields are ValidateOfferDTO.
-    Required: merchant_id, reseller_id, hash, paymentDetail (category is required inside it),
-    and userDetail (userToken is required inside it).
-    txnid, offerKey, and bankcode are not fields on this DTO. Offer keys are offerKeys.
-    The response is the Offers validate endpoint JSON, passed through.
+  description: 'Validate an offer. Fields are ValidateOfferDTO. Required: merchant_id, reseller_id,
+    hash, paymentDetail (category is required inside it), and userDetail (userToken is required
+    inside it). txnid, offerKey, and bankcode are not fields on this DTO. Offer keys are offerKeys.
+    The response is the Offers validate endpoint JSON, passed through.'
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/validateOffer:
     post:
-      operationId: partnerValidateOffer
       summary: Validate a payment offer
+      description: 'Validate an offer. Fields are ValidateOfferDTO. Required: merchant_id,
+        reseller_id, hash, paymentDetail (category is required inside it), and userDetail
+        (userToken is required inside it). txnid, offerKey, and bankcode are not fields on
+        this DTO. Offer keys are offerKeys. The response is the Offers validate endpoint JSON,
+        passed through.'
+      tags:
+        - Partner Payment APIs
       security:
         - bearerAuth: []
       requestBody:
@@ -26,56 +34,86 @@ paths:
           application/json:
             schema:
               type: object
-              required: [merchant_id, reseller_id, hash, paymentDetail, userDetail]
+              required:
+                - merchant_id
+                - reseller_id
+                - hash
+                - paymentDetail
+                - userDetail
               properties:
                 merchant_id:
                   type: integer
+                  description: merchant id
+                  example: 8739528
                 reseller_id:
                   type: string
+                  description: reseller id
+                  example: YOUR_RESELLER_UUID
                 hash:
                   type: string
+                  description: hash
+                  example: YOUR_HASH
                 amount:
                   type: string
+                  description: amount
+                  example: '1000.00'
                 autoApply:
                   type: boolean
+                  description: autoApply
                 merchantNceParamActive:
                   type: boolean
+                  description: merchantNceParamActive
                 offerKeys:
                   type: array
                   items:
                     type: string
                 paymentId:
                   type: integer
+                  description: paymentId
                 paymentDetail:
                   type: object
-                  required: [category]
+                  required:
+                    - category
                   properties:
                     category:
                       type: string
+                      description: category
                     paymentCode:
                       type: string
+                      description: paymentCode
                     cardNumber:
                       type: integer
+                      description: cardNumber
                     cardHash:
                       type: string
+                      description: cardHash
                     cardToken:
                       type: string
+                      description: cardToken
                     cardTokenType:
                       type: integer
+                      description: cardTokenType
                     cardMask:
                       type: integer
+                      description: cardMask
                     vpa:
                       type: string
+                      description: vpa
                 userDetail:
                   type: object
-                  required: [userToken]
+                  required:
+                    - userToken
                   properties:
                     userToken:
                       type: string
+                      description: userToken
                     email:
                       type: string
+                      description: email
+                      example: customer@example.com
                     phoneNo:
                       type: string
+                      description: phoneNo
                 skusDetail:
                   type: object
                   properties:
@@ -83,20 +121,32 @@ paths:
                       type: array
                       items:
                         type: object
-                        required: [skuId]
+                        required:
+                          - skuId
                         properties:
                           skuId:
                             type: string
+                            description: skuId
                           skuAmount:
                             type: string
+                            description: skuAmount
                           quantity:
                             type: string
+                            description: quantity
                           offerKeys:
                             type: array
                             items:
                               type: string
                           autoApply:
                             type: boolean
+                            description: autoApply
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  merchant_id: 8739528
+                  reseller_id: YOUR_RESELLER_UUID
+                  hash: YOUR_HASH
       responses:
         '200':
           description: Offers validate JSON, passed through.
@@ -109,18 +159,25 @@ paths:
           description: Bean validation failed.
           content:
             application/json:
-              example:
-                errors:
-                  - paymentDetail is mandatory
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    errors:
+                      - paymentDetail is mandatory
         '401':
           description: Invalid bearer token.
           content:
             application/json:
-              example:
-                error: Invalid Auth token
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Auth token
+      operationId: partnerValidateOffer
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: "Partner access token. Send as Authorization Bearer token."
+      description: Partner access token. Send as Authorization Bearer token.

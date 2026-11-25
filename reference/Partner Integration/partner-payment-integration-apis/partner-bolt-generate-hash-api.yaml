@@ -1,24 +1,34 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Bolt generate hash
-  version: "1.0.0"
-  description: >
-    POST /partner/bolt/generateHash. BoltConstants.API_BASE_PATH is /partner/bolt.
-    Headers: Authorization, X-PayU-Reseller-UUID, and X-PayU-Merchant-ID.
-    The 200 body is BoltLaunchPayloadDTO (the object passed to bolt.launch), not a status wrapper.
-    Hash preimage, quoted from BoltHashUtil: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT,
+  description: 'POST /partner/bolt/generateHash. BoltConstants.API_BASE_PATH is /partner/bolt.
+    Headers: Authorization, X-PayU-Reseller-UUID, and X-PayU-Merchant-ID. The 200 body is
+    BoltLaunchPayloadDTO (the object passed to bolt.launch), not a status wrapper. Hash preimage,
+    quoted from BoltHashUtil: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT,
     with |additional_charges and |paisa_mecode appended only when those values are present.
-    This is the payment hash in custom_blocks/HashingSample.md.
+    This is the payment hash in custom_blocks/HashingSample.md.'
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/bolt/generateHash:
     post:
-      operationId: partnerBoltGenerateHash
       summary: Generate the Checkout Plus launch payload
+      description: 'POST /partner/bolt/generateHash. BoltConstants.API_BASE_PATH is /partner/bolt.
+        Headers: Authorization, X-PayU-Reseller-UUID, and X-PayU-Merchant-ID. The 200 body
+        is BoltLaunchPayloadDTO (the object passed to bolt.launch), not a status wrapper.
+        Hash preimage, quoted from BoltHashUtil: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT,
+        with |additional_charges and |paisa_mecode appended only when those values are present.
+        This is the payment hash in custom_blocks/HashingSample.md.'
+      tags:
+        - Partner Payment APIs
       security:
         - bearerAuth: []
           resellerUuid: []
@@ -29,60 +39,109 @@ paths:
           application/json:
             schema:
               type: object
-              required: [txnid, amount, productinfo, firstname, email, phone, surl, furl]
+              required:
+                - txnid
+                - amount
+                - productinfo
+                - firstname
+                - email
+                - phone
+                - surl
+                - furl
               properties:
                 txnid:
                   type: string
+                  description: txnid
+                  example: TXN1001
                 amount:
                   type: string
+                  description: amount
+                  example: '1000.00'
                 productinfo:
                   type: string
+                  description: productinfo
+                  example: Order
                 firstname:
                   type: string
                   description: Letters and spaces, 1 to 128 characters.
+                  example: John
                 lastname:
                   type: string
                   description: Letters and spaces, up to 128 characters.
+                  example: Doe
                 email:
                   type: string
+                  description: email
+                  example: customer@example.com
                 phone:
                   type: string
                   description: 5 to 16 digits.
+                  example: '9999999999'
                 surl:
                   type: string
+                  description: surl
+                  example: https://merchant.example.com/success
                 furl:
                   type: string
+                  description: furl
+                  example: https://merchant.example.com/failure
                 udf1:
                   type: string
+                  description: udf1
                   maxLength: 255
                 udf2:
                   type: string
+                  description: udf2
                   maxLength: 255
                 udf3:
                   type: string
+                  description: udf3
                   maxLength: 255
                 udf4:
                   type: string
+                  description: udf4
                   maxLength: 255
                 udf5:
                   type: string
+                  description: udf5
                   maxLength: 255
                 additional_charges:
                   type: string
+                  description: additional charges
                 paisa_mecode:
                   type: string
+                  description: paisa mecode
                 pg:
                   type: string
+                  description: pg
                 bankcode:
                   type: string
+                  description: bankcode
+                  example: HDFC
                 drop_category:
                   type: string
+                  description: drop category
                 enforce_paymethod:
                   type: string
+                  description: enforce paymethod
                 custom_note:
                   type: string
+                  description: custom note
                 note_category:
                   type: string
+                  description: note category
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  txnid: TXN1001
+                  amount: '1000.00'
+                  productinfo: Order
+                  firstname: John
+                  email: customer@example.com
+                  phone: '9999999999'
+                  surl: https://merchant.example.com/success
+                  furl: https://merchant.example.com/failure
       responses:
         '200':
           description: Checkout Plus launch payload. Only non-null fields are serialized.
@@ -93,48 +152,78 @@ paths:
                 properties:
                   key:
                     type: string
+                    description: key
+                    example: YOUR_MERCHANT_KEY
                   hash:
                     type: string
+                    description: hash
+                    example: YOUR_HASH
                   txnid:
                     type: string
+                    description: txnid
+                    example: TXN1001
                   amount:
                     type: string
+                    description: amount
+                    example: '1000.00'
                   productinfo:
                     type: string
+                    description: productinfo
+                    example: Order
                   firstname:
                     type: string
+                    description: firstname
+                    example: John
                   email:
                     type: string
+                    description: email
+                    example: customer@example.com
                   phone:
                     type: string
+                    description: phone
+                    example: '9999999999'
                   surl:
                     type: string
+                    description: surl
+                    example: https://merchant.example.com/success
                   furl:
                     type: string
-              example:
-                key: YOUR_MERCHANT_KEY
-                hash: YOUR_SHA512_HASH
-                txnid: TXN1001
-                amount: "10.00"
-                productinfo: Order
-                firstname: John
-                email: customer@example.com
-                phone: "9999999999"
-                surl: https://merchant.example.com/success
-                furl: https://merchant.example.com/failure
+                    description: furl
+                    example: https://merchant.example.com/failure
+              examples:
+                success:
+                  summary: Successful Response
+                  value:
+                    key: YOUR_MERCHANT_KEY
+                    hash: YOUR_SHA512_HASH
+                    txnid: TXN1001
+                    amount: '10.00'
+                    productinfo: Order
+                    firstname: John
+                    email: customer@example.com
+                    phone: '9999999999'
+                    surl: https://merchant.example.com/success
+                    furl: https://merchant.example.com/failure
         '400':
           description: Bean validation failed. The body is errors, a list of messages.
           content:
             application/json:
-              example:
-                errors:
-                  - txnid is mandatory param.
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    errors:
+                      - txnid is mandatory param.
         '401':
           description: Invalid bearer token.
           content:
             application/json:
-              example:
-                error: Invalid Auth token
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Auth token
+      operationId: partnerBoltGenerateHash
 components:
   securitySchemes:
     bearerAuth:

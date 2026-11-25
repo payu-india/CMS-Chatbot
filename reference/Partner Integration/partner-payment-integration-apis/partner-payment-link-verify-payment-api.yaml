@@ -1,24 +1,30 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Verify payment link transaction
-  version: "1.0.0"
-  description: >
-    GET /partner/payment-link/verifyPayment.
-    Query parameters read by PartnerService are order_ref_id and payment_link_id.
-    Both are required. The response keys are order_ref_id, payment_link_id, order_status, and payments.
-    Each payment item is PaymentLinkVerifyPaymentResponseDTO: payment_id, status, method, pg_error_message.
+  description: 'GET /partner/payment-link/verifyPayment. Query parameters read by PartnerService
+    are order_ref_id and payment_link_id. Both are required. The response keys are order_ref_id,
+    payment_link_id, order_status, and payments. Each payment item is PaymentLinkVerifyPaymentResponseDTO:
+    payment_id, status, method, pg_error_message.'
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/payment-link/verifyPayment:
     get:
-      operationId: partnerPaymentLinkVerifyPayment
       summary: Verify a payment-link transaction
-      security:
-        - bearerAuth: []
+      description: 'GET /partner/payment-link/verifyPayment. Query parameters read by PartnerService
+        are order_ref_id and payment_link_id. Both are required. The response keys are order_ref_id,
+        payment_link_id, order_status, and payments. Each payment item is PaymentLinkVerifyPaymentResponseDTO:
+        payment_id, status, method, pg_error_message.'
+      tags:
+        - Partner Payment APIs
       parameters:
         - name: order_ref_id
           in: query
@@ -30,6 +36,8 @@ paths:
           required: true
           schema:
             type: string
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Verification result from processVerifyPaymentLinkResponse.
@@ -40,10 +48,15 @@ paths:
                 properties:
                   order_ref_id:
                     type: string
+                    description: order ref id
+                    example: ORDER1001
                   payment_link_id:
                     type: string
+                    description: payment link id
+                    example: https://u.payu.in/PAYUID
                   order_status:
                     type: string
+                    description: order status
                   payments:
                     type: array
                     items:
@@ -51,29 +64,41 @@ paths:
                       properties:
                         payment_id:
                           type: string
+                          description: payment id
                         status:
                           type: string
+                          description: status
+                          example: success
                         method:
                           type: string
+                          description: method
                         pg_error_message:
                           type: string
-              example:
-                order_ref_id: ORDER1001
-                payment_link_id: https://u.payu.in/PAYUID
-                order_status: success
-                payments:
-                  - payment_id: "403993715521855092"
-                    status: success
-                    method: UPI
+                          description: pg error message
+              examples:
+                success:
+                  summary: Successful Response
+                  value:
+                    order_ref_id: ORDER1001
+                    payment_link_id: https://u.payu.in/PAYUID
+                    order_status: success
+                    payments:
+                      - payment_id: '403993715521855092'
+                        status: success
+                        method: UPI
         '401':
           description: Invalid bearer token.
           content:
             application/json:
-              example:
-                error: Invalid Auth token
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Auth token
+      operationId: partnerPaymentLinkVerifyPayment
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: "Partner access token. Send as Authorization Bearer token."
+      description: Partner access token. Send as Authorization Bearer token.

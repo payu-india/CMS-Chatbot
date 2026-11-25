@@ -1,29 +1,35 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Initiate payment
-  version: "1.0.0"
-  description: >
-    POST /partner/initiatePayment. Headers required by PartnerController are
-    X-PayU-Reseller-UUID, X-Partner-Token, and Authorization.
-    The body must include accountId (merchant key, or a numeric merchant id).
-    PartnerService also reads txnId, amount, and callBackActions.successAction and failureAction.
-    The published field list is the Partner QR initiate-payment page.
-    The body is forwarded to Core Payments POST /v2/payments.
-    Partner QR guides also document UAT https://apitest.payu.in/apilayer and production https://api.payu.in/apilayer.
+  description: POST /partner/initiatePayment. Headers required by PartnerController are X-PayU-Reseller-UUID,
+    X-Partner-Token, and Authorization. The body must include accountId (merchant key, or
+    a numeric merchant id). PartnerService also reads txnId, amount, and callBackActions.successAction
+    and failureAction. The published field list is the Partner QR initiate-payment page. The
+    body is forwarded to Core Payments POST /v2/payments. Partner QR guides also document
+    UAT https://apitest.payu.in/apilayer and production https://api.payu.in/apilayer.
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/initiatePayment:
     post:
-      operationId: partnerInitiatePayment
       summary: Initiate an omnichannel payment
-      security:
-        - resellerUuid: []
-          partnerToken: []
-          hmacAuth: []
+      description: POST /partner/initiatePayment. Headers required by PartnerController are
+        X-PayU-Reseller-UUID, X-Partner-Token, and Authorization. The body must include accountId
+        (merchant key, or a numeric merchant id). PartnerService also reads txnId, amount,
+        and callBackActions.successAction and failureAction. The published field list is the
+        Partner QR initiate-payment page. The body is forwarded to Core Payments POST /v2/payments.
+        Partner QR guides also document UAT https://apitest.payu.in/apilayer and production
+        https://api.payu.in/apilayer.
+      tags:
+        - Partner Payment APIs
       parameters:
         - name: date
           in: header
@@ -31,75 +37,120 @@ paths:
           schema:
             type: string
           description: GMT timestamp used by the Partner QR HMAC examples.
+      security:
+        - resellerUuid: []
+          partnerToken: []
+          hmacAuth: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [accountId, txnId, amount, currency, order, additionalInfo, callBackActions, billingDetails]
+              required:
+                - accountId
+                - txnId
+                - amount
+                - currency
+                - order
+                - additionalInfo
+                - callBackActions
+                - billingDetails
               properties:
                 accountId:
                   type: string
                   description: Merchant key, or a numeric merchant id. Required by extractAccountId.
+                  example: YOUR_MERCHANT_KEY
                 txnId:
                   type: string
+                  description: txnId
+                  example: PARTNER_TXN_001
                 amount:
                   type: integer
                   description: Amount in paise on the Partner QR page (10000 = ₹100.00).
+                  example: '1000.00'
                 currency:
                   type: string
+                  description: currency
                   example: INR
                 order:
                   type: object
                   properties:
                     productInfo:
                       type: string
+                      description: productInfo
                     paymentChargeSpecification:
                       type: object
                       properties:
                         price:
                           type: integer
+                          description: price
                 additionalInfo:
                   type: object
                   properties:
                     txnFlow:
                       type: string
+                      description: txnFlow
                     createOrder:
                       type: string
+                      description: createOrder
                 callBackActions:
                   type: object
                   properties:
                     successAction:
                       type: string
+                      description: successAction
                     failureAction:
                       type: string
+                      description: failureAction
                     cancelAction:
                       type: string
+                      description: cancelAction
                     returnAction:
                       type: string
+                      description: returnAction
                 billingDetails:
                   type: object
                   properties:
                     firstName:
                       type: string
+                      description: firstName
+                      example: John
                     phone:
                       type: string
+                      description: phone
+                      example: '9999999999'
                     email:
                       type: string
+                      description: email
+                      example: customer@example.com
                     address1:
                       type: string
+                      description: address1
                     city:
                       type: string
+                      description: city
                     state:
                       type: string
+                      description: state
                     country:
                       type: string
+                      description: country
                     zipCode:
                       type: string
+                      description: zipCode
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  accountId: YOUR_MERCHANT_KEY
+                  txnId: PARTNER_TXN_001
+                  amount: '1000.00'
+                  currency: INR
       responses:
         '200':
-          description: Core Payments V2 response, passed through. The Partner QR guide returns mihpayId for the next QR call.
+          description: Core Payments V2 response, passed through. The Partner QR guide returns
+            mihpayId for the next QR call.
           content:
             application/json:
               schema:
@@ -109,8 +160,12 @@ paths:
           description: accountId is missing or the JSON is invalid.
           content:
             application/json:
-              example:
-                error: accountId is required in request body
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: accountId is required in request body
+      operationId: partnerInitiatePayment
 components:
   securitySchemes:
     resellerUuid:
@@ -126,4 +181,5 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: HMAC value. Partner QR guides use `hmac username="<client_id>", algorithm="sha512", headers="date", signature="<signature>"`.
+      description: HMAC value. Partner QR guides use `hmac username="<client_id>", algorithm="sha512",
+        headers="date", signature="<signature>"`.

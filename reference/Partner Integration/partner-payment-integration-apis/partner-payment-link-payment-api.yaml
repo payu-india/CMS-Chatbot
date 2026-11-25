@@ -1,23 +1,30 @@
 openapi: 3.0.0
-servers:
-  - url: https://api.payu.in
-    description: Production
-  - url: https://test-partnerapilayer.payu.in/apilayer
-    description: UAT
 info:
   title: Payment link payment
-  version: "1.0.0"
-  description: >
-    POST /partner/payment-link/payment. PartnerPaymentLinkTxnDTO fields are
-    payment_link_id, phone_number, and redirect_url.
-    validatePaymentLinkRequest requires payment_link_id and phone_number.
-    phone_number must match (^$|[0-9]{5,16}).
-    merchant_id, txnid, pg, bankcode, and card fields are not on this DTO.
+  description: POST /partner/payment-link/payment. PartnerPaymentLinkTxnDTO fields are payment_link_id,
+    phone_number, and redirect_url. validatePaymentLinkRequest requires payment_link_id and
+    phone_number. phone_number must match (^$|[0-9]{5,16}). merchant_id, txnid, pg, bankcode,
+    and card fields are not on this DTO.
+  version: 1.0.0
+servers:
+  - url: https://api.payu.in
+    description: Production Environment
+  - url: https://test-partnerapilayer.payu.in/apilayer
+    description: Test Environment
+tags:
+  - name: Partner Payment APIs
+    description: Partner payment, refund, offer, EMI, payment link, OTP, QR, and Checkout
+      Plus APIs.
 paths:
   /partner/payment-link/payment:
     post:
-      operationId: partnerPaymentLinkPayment
       summary: Start a payment-link transaction
+      description: POST /partner/payment-link/payment. PartnerPaymentLinkTxnDTO fields are
+        payment_link_id, phone_number, and redirect_url. validatePaymentLinkRequest requires
+        payment_link_id and phone_number. phone_number must match (^$|[0-9]{5,16}). merchant_id,
+        txnid, pg, bankcode, and card fields are not on this DTO.
+      tags:
+        - Partner Payment APIs
       security:
         - bearerAuth: []
       requestBody:
@@ -26,16 +33,29 @@ paths:
           application/json:
             schema:
               type: object
-              required: [payment_link_id, phone_number]
+              required:
+                - payment_link_id
+                - phone_number
               properties:
                 payment_link_id:
                   type: string
+                  description: payment link id
+                  example: https://u.payu.in/PAYUID
                 phone_number:
                   type: string
-                  description: 5 to 16 digits, or empty. Empty is rejected by the required check.
+                  description: 5 to 16 digits, or empty. Empty is rejected by the required
+                    check.
+                  example: '9999999999'
                 redirect_url:
                   type: string
                   description: Optional in the DTO. When present, the domain is validated.
+                  example: https://merchant.example.com/return
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  payment_link_id: https://u.payu.in/PAYUID
+                  phone_number: '9999999999'
       responses:
         '200':
           description: Downstream payment-link transaction response, after processTxnDataResponseAndInitiatePayment.
@@ -48,11 +68,15 @@ paths:
           description: Invalid bearer token.
           content:
             application/json:
-              example:
-                error: Invalid Auth token
+              examples:
+                error:
+                  summary: Error Response
+                  value:
+                    error: Invalid Auth token
+      operationId: partnerPaymentLinkPayment
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: "Partner access token. Send as Authorization Bearer token."
+      description: Partner access token. Send as Authorization Bearer token.
