@@ -27,7 +27,7 @@ Find your merchant type and their guides in the following table.
 
 | Merchant type                        | What you sell                              | `type`                | `mf_partner`       | Where PayU sends the funds | Guide                                                                                       |
 | ------------------------------------ | ------------------------------------------ | --------------------- | ------------------ | -------------------------- | ------------------------------------------------------------------------------------------- |
-| Stock broker                         | Equity trading                             | _(no product object)_ | _(not applicable)_ | Your bank account          | [Equity](doc:wealth-tech-equity)                                                            |
+| Stock broker                         | Equity trading                             | _(no product object)_ | _(not applicable)_ | Your bank account          | <Anchor target="_blank" href="https://docs.payu.in/docs/equity">Equity</Anchor>             |
 | Mutual fund broker                   | Mutual funds and other investment products | `mutual_fund`         | `bse`, `bse2`      | ICCL or NCL                | <Anchor target="_blank" href="https://docs.payu.in/docs/mutual-funds">Mutual Funds</Anchor> |
 | Direct AMC                           | Mutual fund schemes of your own AMC        | `mutual_fund`         | `kfin`             | Your bank account          | [Mutual Funds](https://docs.payu.in/docs/mutual-funds)                                      |
 | Online Bond Platform Provider (OBPP) | Bonds                                      | `bond`                | `nse_bonds`        | NSE Clearing Ltd (NCL)     | [Bonds](doc:wealth-tech-bonds)                                                              |
@@ -49,7 +49,7 @@ PayU sets your merchant type when it opens your account. Your merchant type dete
 ## Choose Your Dev Guide
 
 <Cards>
-  <Card title="Equity" href="doc:wealth-tech-equity" icon="far fa-chart-line">
+  <Card title="Equity" href="https://docs.payu.in/docs/equity" icon="far fa-chart-line" target="_blank">
     For stock brokers. Collect payments for equity trading with TPV. No product object required.
   </Card>
 
