@@ -53,7 +53,7 @@ PayU sets your merchant type when it opens your account. Your merchant type dete
     For stock brokers. Collect payments for equity trading with TPV. No product object required.
   </Card>
 
-  <Card title="Mutual Funds" href="doc:wealth-tech-mutual-funds" icon="far fa-coins">
+  <Card title="Mutual Funds" href="https://docs.payu.in/docs/mutual-funds" icon="far fa-coins" target="_blank">
     For mutual fund brokers and direct AMCs. Send fund details in a product object with each payment.
   </Card>
 
