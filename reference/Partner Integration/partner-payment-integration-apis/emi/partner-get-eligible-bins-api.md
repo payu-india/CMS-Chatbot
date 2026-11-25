@@ -1,7 +1,7 @@
 ---
-title: Get eligible EMI bins API
+title: Get eligible EMI bins API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

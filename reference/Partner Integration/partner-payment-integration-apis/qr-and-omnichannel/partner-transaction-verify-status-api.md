@@ -1,7 +1,7 @@
 ---
-title: Verify omnichannel transaction status API
+title: Verify omnichannel transaction status API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

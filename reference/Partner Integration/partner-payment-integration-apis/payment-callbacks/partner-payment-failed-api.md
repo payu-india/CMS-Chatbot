@@ -1,20 +1,20 @@
 ---
-title: Payment Cancelled Redirect Callback API
+title: Payment Failure Redirect Callback API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
   robots: index
 ---
-PayU receives the hosted-checkout result on this route when the customer cancels. PartnerService.processPaymentCancelled handles this post.
+PayU receives the hosted-checkout result on this route when the payment fails. error and error_Message carry the gateway reason. The customer is then sent to furl.
 
 ## Environment
 
 | Environment    | Method | URL |
 | :------------- | :----- | :-- |
-| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/paymentCancelled` |
-| **Production** | `POST` | `https://api.payu.in/partner/paymentCancelled` |
+| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/paymentFailed` |
+| **Production** | `POST` | `https://api.payu.in/partner/paymentFailed` |
 
 ## Request parameters
 
@@ -31,7 +31,7 @@ PayU receives the hosted-checkout result on this route when the customer cancels
 | mihpayid | `String` PayU payment id. | 403993715521855092 |
 | txnid | `String` Merchant transaction id. The handler also accepts `txnId`. | TXN1001 |
 | amount | `String` Amount | 1000.00 |
-| status | `String` Status | cancelled |
+| status | `String` Status | failure |
 | mode | `String` Mode | CC |
 | productinfo | `String` Productinfo | Order |
 | firstname | `String` Firstname | John |
@@ -55,12 +55,12 @@ PayU receives the hosted-checkout result on this route when the customer cancels
 ## Sample request
 
 ```curl
-curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/paymentCancelled' \
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/paymentFailed' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data 'mihpayid=403993715521855092' \
 --data 'txnid=TXN1001' \
 --data 'amount=1000.00' \
---data 'status=cancelled' \
+--data 'status=failure' \
 --data 'mode=CC' \
 --data 'productinfo=Order' \
 --data 'firstname=John' \

@@ -1,7 +1,7 @@
 ---
-title: Calculate EMI API
+title: Calculate EMI API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

@@ -1,7 +1,7 @@
 ---
-title: Submit card OTP API
+title: Submit card OTP API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

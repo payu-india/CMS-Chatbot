@@ -1,7 +1,7 @@
 ---
-title: Payment link metadata API
+title: Payment link metadata API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

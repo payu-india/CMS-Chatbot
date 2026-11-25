@@ -1,0 +1,5 @@
+- partner-initiate-payment-api
+- partner-transaction-verify-status-api
+- partner-dbqr-api
+- partner-static-qr-api
+- partner-static-qr-callback-api
