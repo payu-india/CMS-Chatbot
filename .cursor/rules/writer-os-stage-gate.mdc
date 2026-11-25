@@ -1,0 +1,48 @@
+---
+description: Writer OS stage sequencing and confirmation checkpoints for documentation work
+alwaysApply: true
+---
+
+# Writer OS — Stage-gate
+
+Skill catalog and motions: `.cursor/skills/writer-os/collaboration-map.md`. Artefact shape: `writer-os-execution-rigor.mdc`. This rule governs start, context, and handoff.
+
+## 0. Intent resolution
+
+When Writer OS applies and the user did not name a skill, infer one skill from the collaboration map. First line of the reply, before any draft:
+
+`Reading this as writer-<skill> — say if that's wrong.`
+
+If two skills are plausible, name both and ask. An explicit `Using writer-<skill>:` prefix wins; do not restate it.
+
+## 1. Context check
+
+Read that skill's **Inputs required** before drafting. Each input must be in chat, in `writer-os/work/<slug>/`, or waived because the user said this stage starts cold and supplied the missing facts.
+
+If an input is missing, stop and ask one batch of specific questions. Do not invent a source, a scope cut, or a spec field and mark it UNVERIFIED as a substitute for asking.
+
+A complete context brief already in the conversation is not re-asked.
+
+## 2. Sequencing
+
+Do not run a skill as if its predecessor does not exist. If the predecessor is missing and the user has not said the stage starts cold, ask.
+
+After the artefact, state the handoff and **stop**. Do not start the next skill in the same turn.
+
+Exception: the user explicitly asks for a chain ("run source brief through page draft"). Still pause at each handoff for confirmation.
+
+**Delivery motions.** `writer-doc-update` and `writer-restructure` are one stage each. The JIRA ticket, or the IA or reference doc, is the confirmation to branch from `v1`, edit, commit, push that feature branch, and open a pull request. Name the branch `v1_{branch}` so it syncs to ReadMe (`v1_<ISSUE-KEY>-<short-slug>` or `v1_restructure-<slug>`). Do not use `update/`. Do not pause between those steps. Do not merge, and do not push `v1`. The user's review of the pull request is the publish gate.
+
+**Scoped-edit exemption.** A named file plus a typo, link, or wording fix, with no request for a branch or a pull request, does not enter this gate. Say: `Treating this as a scoped edit, not a Writer OS stage.`
+
+## 3. Confirmation
+
+Ask the user to confirm, correct, or redo. Name the single claim most likely to be wrong. Silence is not confirmation. Only a confirmation makes the artefact a valid input for the next stage.
+
+## Refuse
+
+- A multi-stage chain with no pause, because the user "probably wants the whole thing."
+- A page that cites parameters not read from a spec or an existing page.
+- Skipping the context check because the change looks small, once Writer OS applies.
+- Treating an unconfirmed draft as ready to merge into `v1`. Opening a pull request is allowed only inside `writer-doc-update` and `writer-restructure`.
+- Adding Writer OS files to the docs navigation or giving them a docs.payu.in page.

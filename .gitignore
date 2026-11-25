@@ -1,2 +1,6 @@
 .DS_Store
 Thumbs.db
+
+# Writer OS working notes are local only. They are not docs pages.
+writer-os/work/*
+!writer-os/work/README.md

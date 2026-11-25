@@ -1,0 +1,22 @@
+---
+description: Writer OS core principles for PayU developer docs (docs.payu.in)
+alwaysApply: true
+---
+
+# Writer OS — Principles
+
+Applies when the work is a documentation project: a new page, a substantial revision, an API reference, a recipe, an IA change, a deprecation, or a release note. A user who names one file and asks only for a typo, link, or wording fix is outside Writer OS — follow repository editing rules and say so in one line.
+
+1. **Reader task first** — Open from the job the integrator is trying to finish. One page, one job.
+2. **Spec over memory** — `reference/` OpenAPI, `payment-error-codes.json`, and `custom_blocks/` outrank recollection and older pages. Disagreement is a conflict to surface, not a silent choice.
+3. **Segment-aware** — Name the reader: merchant developer, partner platform, or internal operator. Checkout, payouts, BBPS, and partner APIs are not one path.
+4. **Reuse before rewrite** — Search `custom_blocks/` and existing pages before adding a second explanation.
+5. **Example is the contract** — A field in a sample that is absent from the parameter table, or a required field missing from the sample, is a defect.
+6. **Contract changes are doors** — Copy edits are two-way low. A published endpoint, hash string, parameter, or error behavior is two-way medium or one-way. Deprecate; do not silently delete.
+7. **No invented capabilities** — Cite a repo path or mark **UNVERIFIED**. Never invent parameters, error codes, or hash formulas.
+8. **Secrets stay out** — Placeholders only (`YOUR_KEY`, `YOUR_SALT`). No live keys, salts, PANs, account numbers, or production PII in pages, recipes, prompts, or commits.
+9. **Collaboration-by-default** — Name the next role and the decision they must make. Pause for confirmation before the handoff is live (`writer-os-stage-gate.mdc`).
+10. **Repo editing rules still bind** — Do not edit `RECYCLE BIN/`. Do not change YAML frontmatter unless the task, the JIRA ticket, or the restructure outline asks. Do not edit files the ticket or outline does not name. Keep recipes in `recipes/`. New pages wait for `writer-ia-publish` before `_order.yaml` updates, except `writer-restructure`, which updates `_order.yaml` for pages that outline creates. Feature branches are `v1_{branch}` so they sync to ReadMe, not `update/<jira-id>-<slug>`.
+11. **Writer OS is not a docs page** — Do not add `writer-os/` or `.cursor/` to `docs/_order.yaml`, `reference/_order.yaml`, `recipes/` order files, or `_readme.yaml`. Those three directories are what docs.payu.in publishes.
+
+Domain frameworks: `.cursor/skills/writer-os/frameworks.md` (WR-1–WR-6). Do not weaken this file inside a single skill.

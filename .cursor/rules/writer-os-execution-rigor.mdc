@@ -1,0 +1,73 @@
+---
+description: Writer OS mandatory artefact structure for every documentation skill output
+alwaysApply: true
+---
+
+# Writer OS — Execution rigor
+
+Every substantive Writer OS artefact includes these sections **by name**. Missing a section fails the skill.
+
+Working artefacts (briefs, canvases, annexures, reviews) go in `writer-os/work/<slug>/`. Published pages go only under `docs/`, `reference/` docs, `recipes/`, or `custom_blocks/` after the user confirms that stage. Do not commit or push unless the user asks in this conversation, except `writer-doc-update` and `writer-restructure`: those two commit, push a `v1_{branch}` branch, and open a pull request into `v1`. They still do not merge.
+
+`writer-os/` is internal. Never list it in `_order.yaml` or `_readme.yaml`.
+
+## 1. Decision summary
+
+- **Decision being made:** one sentence.
+- **Decider:** Content lead, Technical writer, Editor, or Publisher.
+- **Reversibility:** two-way low (wording on an existing page) / two-way medium (new page or revised public parameter) / one-way (published endpoint, hash string, error behavior, or removal of a live contract).
+- **Cost if wrong:** doc rework, merchant rework, or money-movement risk. Do not invent amounts.
+
+## 2. Cognitive pre-work
+
+- **Reader base rate:** segment and what they already know.
+- **Falsifiers:** the spec line, error code, or block that would prove this wrong.
+- **Pre-mortem:** one paragraph — "An integrator shipped the wrong flow because this page…"
+- **Inversion:** the page shape that guarantees failure, and how this draft avoids it.
+
+## 3. Quantitative method
+
+State counts, or "not applicable because…" with a reason:
+
+- Parameters documented / parameters in the named spec
+- Error codes documented / matching entries in `payment-error-codes.json`
+- Recipe fields that match the parameter table (parity)
+- Internal links checked against repo paths
+
+## 4. Red-team pass
+
+- **Wrong integrator:** the step a merchant would implement incorrectly.
+- **Stale contract:** the claim that can drift from `reference/` or `payment-error-codes.json`.
+- **Secret leakage:** live keys, salts, PANs, or PII. Placeholders only.
+- **Support load:** the omission that creates a ticket (test vs live, hash, error, missing required field).
+
+Mark a lens not applicable only with a reason. A customer-facing page does not get "wrong integrator: not applicable."
+
+## 5. Tripwires and rollback
+
+- 2–4 measurable tripwires (contradiction with spec, recipe/table mismatch, broken link, duplicated `custom_blocks/` explanation).
+- **Rollback owner** and revert path (restore the previous markdown). Before merge if found in review; same day if found after publish.
+
+## 6. Frameworks applied
+
+- WR-# from `.cursor/skills/writer-os/frameworks.md`.
+- Counter-metric (what "wrong" looks like in production behavior or support).
+- Decision requested of the next role — a specific decision, not "please review."
+- `Writer-OS-Metrics: skill_id=<id>, date=<YYYY-MM-DD>`
+
+## Split artefacts
+
+`writer-page-draft`, `writer-api-reference`, `writer-recipe`, and `writer-release-note` split:
+
+- Functional file: the page or recipe a reader could ship. No decision summary, pre-work, red team, or tripwires in the body.
+- `<name>-ANNEXURE.md` in `writer-os/work/<slug>/`: all six sections above.
+
+Each file names the other. Score the pair together (`.cursor/skills/writer-os/quality-rubric.md`). Source briefs, scope canvases, and reviews keep the six sections inline. They are internal.
+
+## Refuse
+
+- A north-star claim ("this will reduce tickets") with no counter-metric.
+- A hash formula that is not the payment hash, the general hash, or a quote from a file you opened.
+- Compliance or legal conclusions. Questions only, routed to a human.
+- UNVERIFIED used to skip reading a spec that exists in the repo.
+- Decisioning sections pasted into a page under `docs/`.
