@@ -45,21 +45,21 @@ Send a `POST` request with form data (`application/x-www-form-urlencoded`).
 | Production  | `https://secure.payu.in/_payment` |
 
 <Accordion title="Request Parameters" icon="far fa-table">
-  | Parameter           | Required | Description                                                                                                     |
-  | ------------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
-  | `key`               | Yes      | Your merchant key.                                                                                              |
-  | `txnid`             | Yes      | Your unique transaction ID.                                                                                     |
-  | `amount`            | Yes      | Order amount. Must equal the `amount` in the product object.                                                    |
-  | `productinfo`       | Yes      | Short description of the order.                                                                                 |
-  | `firstname`         | Yes      | First name of the customer.                                                                                     |
-  | `email`             | Yes      | Email address of the customer.                                                                                  |
-  | `phone`             | Yes      | Phone number of the customer.                                                                                   |
-  | `surl`              | Yes      | URL that receives the response for a successful payment.                                                        |
-  | `furl`              | Yes      | URL that receives the response for a failed payment.                                                            |
-  | `api_version`       | Yes      | Set to `21`.                                                                                                    |
-  | `beneficiarydetail` | Yes      | Bank accounts and IFSC codes of the customer, for TPV. JSON object. Max. 4 accounts. See format below.          |
-  | `products`          | Yes      | Bond product object, as a JSON array with exactly one object. See [Product Object](#bond-product-object) below. |
-  | `hash`              | Yes      | SHA-512 hash. See formula below.                                                                                |
+  | Parameter           | Required | Description                                                                                                                                    |
+  | ------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `key`               | Yes      | Your merchant key.                                                                                                                             |
+  | `txnid`             | Yes      | Your unique transaction ID.                                                                                                                    |
+  | `amount`            | Yes      | Order amount. Must equal the `amount` in the product object.                                                                                   |
+  | `productinfo`       | Yes      | Short description of the order.                                                                                                                |
+  | `firstname`         | Yes      | First name of the customer.                                                                                                                    |
+  | `email`             | Yes      | Email address of the customer.                                                                                                                 |
+  | `phone`             | Yes      | Phone number of the customer.                                                                                                                  |
+  | `surl`              | Yes      | URL that receives the response for a successful payment.                                                                                       |
+  | `furl`              | Yes      | URL that receives the response for a failed payment.                                                                                           |
+  | `api_version`       | Yes      | Set to `21`.                                                                                                                                   |
+  | `beneficiarydetail` | Yes      | Bank accounts and IFSC codes of the customer, for TPV. JSON object. Max. 4 accounts. See format below.                                         |
+  | `products`          | Yes      | Bond product object, as a JSON array with exactly one object. See [Product Object](https://docs.payu.in/docs/bonds#bond-product-object) below. |
+  | `hash`              | Yes      | SHA-512 hash. See formula below.                                                                                                               |
 </Accordion>
 
 ### Hash Formula
@@ -229,7 +229,7 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 
 Before you confirm the order, verify the payment status with PayU using one of these methods:
 
-- **Webhooks:** PayU sends the payment status to your server in real time. See [Webhooks for Payments](doc:webhooks).
+- **Webhooks:** PayU sends the payment status to your server in real time. See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks for Payments</Anchor>.
 - **Verify Payment API:** Send a `POST` request with `command=verify_payment` and `var1=<txnid>`. Hash: `sha512(key|command|var1|SALT)`.
 
 | Environment | Verify Payment API endpoint                            |
