@@ -1,5 +1,8 @@
 ---
 title: Mutual Funds
+excerpt: >-
+  Collect mutual fund payments as a broker or direct AMC through PayU. Send fund
+  details in a product object with each payment request.
 deprecated: false
 hidden: true
 metadata:
