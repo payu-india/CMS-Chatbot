@@ -1,8 +1,8 @@
 ---
 title: QR and Omnichannel [New]
 excerpt: >-
-  Start an omnichannel payment, check its status, or create a dynamic Bharat
-  QR or a static QR.
+  Initiate an omnichannel payment, verify it, create a dynamic Bharat QR, or
+  create and receive a static QR.
 deprecated: false
 hidden: true
 link:
@@ -28,7 +28,7 @@ next:
       title: Static QR callback API [New]
       type: basic
 ---
-Omnichannel and QR endpoints on the partner layer. This section is separate from the <Anchor target="_blank" href="https://docs.payu.in/reference/partner-qr-integration-apis">Partner QR soundbox guide</Anchor>.
+These five pages cover omnichannel payment and QR on the partner layer. Initiate Payment starts the payment. Verify Omnichannel Transaction Status checks it. Dynamic Bharat QR creates a dynamic QR. Static QR creates a reusable QR for a merchant VPA, and Static QR Callback is the result PayU receives for that QR.
 
 ***
 
@@ -39,35 +39,37 @@ Omnichannel and QR endpoints on the partner layer. This section is separate from
 | Test        | `https://test-partnerapilayer.payu.in/apilayer` |
 | Production  | `https://api.payu.in` |
 
-Initiate payment, verify status, and dynamic Bharat QR use `X-PayU-Reseller-UUID`, `X-Partner-Token`, and `Authorization`. `X-PayU-Merchant-Key` and `X-PayU-Merchant-ID` are optional on verify status and dynamic Bharat QR. Do not send `X-PayU-Merchant-Key` on initiate payment. The merchant key is `accountId` in the body.
+| Page | Route | Headers |
+| :--- | :---- | :------ |
+| Initiate Payment | `POST /partner/initiatePayment` | `X-PayU-Reseller-UUID`, `X-Partner-Token`, `Authorization`. Body field `accountId` is required. |
+| Verify Omnichannel Transaction Status | `POST /partner/transaction/verifyStatus` | `X-PayU-Reseller-UUID`, `X-Partner-Token`, `Authorization`. `X-PayU-Merchant-Key` and `X-PayU-Merchant-ID` are optional. |
+| Dynamic Bharat QR | `POST /partner/dbqr` | Same headers as Verify Omnichannel Transaction Status. |
+| Static QR | `POST /partner/staticQr` | `X-PayU-Reseller-UUID`, `X-PayU-Merchant-ID`, `X-Partner-Token`, `X-Partner-Hash`, `X-Partner-Request-ID`. |
+| Static QR Callback | `POST /partner/staticQrCallback` | PayU calls this route. `field4` (merchant VPA) and `key` are required on the post. |
 
-Static QR also requires `X-PayU-Merchant-ID`, `X-Partner-Hash`, and `X-Partner-Request-ID`. `X-Partner-Hash` is the SHA-512 of `merchantId|rawRequestBody|clientSecret`.
-
-<Callout icon="📘" theme="info">
-  ### **QR signing**
-
-  For the soundbox OAuth and HMAC pattern, see <Anchor target="_blank" href="https://docs.payu.in/reference/authentication-for-partner-qr-apis">Authentication for Partner QR APIs</Anchor>.
-</Callout>
+`X-Partner-Hash` on Static QR is the SHA-512 of `merchantId|rawRequestBody|clientSecret`.
 
 ***
 
 ## Endpoints
 
+These are the QR and Omnichannel pages.
+
 <Cards>
   <Card title="Initiate Payment" href="https://docs.payu.in/reference/partner-initiate-payment-api" target="_blank">
-    Start an omnichannel payment. accountId is required. The body is forwarded to Core Payments.
+    POST /partner/initiatePayment. Requires accountId, a merchant key or a numeric merchant id. txnId, amount, and callBackActions are read when sent. The body is forwarded to Core Payments POST /v2/payments.
   </Card>
   <Card title="Verify Omnichannel Transaction Status" href="https://docs.payu.in/reference/partner-transaction-verify-status-api" target="_blank">
-    Check status for an omnichannel transaction. txnId is forwarded when you send it.
+    POST /partner/transaction/verifyStatus. Forwards the body, including txnId when you send it, to the Bharat QR status command.
   </Card>
   <Card title="Dynamic Bharat QR" href="https://docs.payu.in/reference/partner-dbqr-api" target="_blank">
-    Create a dynamic Bharat QR. The partner layer reads the terminal, expiry, and transaction id when they are present.
+    POST /partner/dbqr. Reads vendorTransactionId, soundBoxTerminalId, expiryTime, and mihpayId when they are sent. The body is forwarded to POST /v1/partner/qr/dbqr.
   </Card>
   <Card title="Static QR" href="https://docs.payu.in/reference/partner-static-qr-api" target="_blank">
-    Create a reusable static QR. merchantVpa is required.
+    POST /partner/staticQr. Requires merchantVpa. Creates a reusable static QR. A cached success returns qrString, qrId, and merchantVpa.
   </Card>
   <Card title="Static QR Callback" href="https://docs.payu.in/reference/partner-static-qr-callback-api" target="_blank">
-    PayU receives the static QR payment result. field4 (merchant VPA) and key are required.
+    POST /partner/staticQrCallback. PayU receives the static QR result. field4 (merchant VPA) and key are required. txnid is used to detect a duplicate.
   </Card>
 </Cards>
 
@@ -75,14 +77,18 @@ Static QR also requires `X-PayU-Merchant-ID`, `X-Partner-Hash`, and `X-Partner-R
 
 ## How It Works
 
-<Accordion title="Start the payment or the QR" icon="fad fa-qrcode">
-  Call Initiate Payment with `accountId`, or create a dynamic Bharat QR or a static QR.
+<Accordion title="Start an omnichannel payment" icon="fad fa-credit-card">
+  Call Initiate Payment with `accountId`. The page reads `txnId`, `amount`, and `callBackActions` when you send them.
 </Accordion>
 
-<Accordion title="Let the customer pay" icon="fad fa-credit-card">
-  The customer pays from the omnichannel response or by scanning the QR.
+<Accordion title="Check that payment" icon="fab fa-searchengin">
+  Call Verify Omnichannel Transaction Status. `txnId` is forwarded with the rest of the body.
 </Accordion>
 
-<Accordion title="Confirm the result" icon="fab fa-searchengin">
-  Call Verify Omnichannel Transaction Status, or let PayU post the static QR result to the static QR callback.
+<Accordion title="Create a dynamic Bharat QR" icon="fad fa-qrcode">
+  Call Dynamic Bharat QR. The page reads `vendorTransactionId`, `soundBoxTerminalId`, `expiryTime`, and `mihpayId` when they are present.
+</Accordion>
+
+<Accordion title="Create a static QR and receive the result" icon="fad fa-hand-point-left">
+  Call Static QR with `merchantVpa` and `X-Partner-Hash`. PayU later posts the payment result to Static QR Callback, which requires `field4` and `key`.
 </Accordion>

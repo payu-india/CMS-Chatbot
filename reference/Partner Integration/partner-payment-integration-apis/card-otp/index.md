@@ -1,7 +1,7 @@
 ---
 title: Card OTP [New]
 excerpt: >-
-  Submit or resend the OTP for a partner card payment.
+  Submit a card OTP for a reference id, or resend that OTP.
 deprecated: false
 hidden: true
 link:
@@ -18,37 +18,38 @@ next:
       title: Resend card OTP API [New]
       type: basic
 ---
-Verify a card OTP, or send it again, for a partner card payment. Both calls use the same `reference_id`.
+These two pages complete a card OTP. Submit Card OTP checks the OTP for a `reference_id`. Resend Card OTP sends a new OTP for that same `reference_id`.
 
 ***
 
 ## Authentication
 
-All Card OTP APIs use a **Bearer token**.
+Both pages use a **Bearer token**.
 
 | Environment | Base URL |
 | :---------- | :------- |
 | Test        | `https://test-partnerapilayer.payu.in/apilayer` |
 | Production  | `https://api.payu.in` |
 
-Send the token on every call as `Authorization: Bearer {access_token}`.
+Send `Authorization: Bearer {access_token}` on both calls. Both also require `merchant_id`, `reseller_id`, `hash`, and `reference_id`.
 
-<Callout icon="📘" theme="info">
-  ### **Access token**
-
-  Older partner accounts generate this token with the <Anchor target="_blank" href="https://docs.payu.in/reference/token-generation-flow-for-old-partner-merchants">token generation flow for partner payments</Anchor>.
-</Callout>
+| Page | Route | Required body |
+| :--- | :---- | :------------ |
+| Submit Card OTP | `POST /partner/submitCardOtp` | `merchant_id`, `reseller_id`, `hash`, `reference_id`, `otp` |
+| Resend Card OTP | `POST /partner/resendCardOtp` | `merchant_id`, `reseller_id`, `hash`, `reference_id` |
 
 ***
 
 ## Endpoints
 
+These are the Card OTP pages.
+
 <Cards>
   <Card title="Submit Card OTP" href="https://docs.payu.in/reference/partner-submit-card-otp-api" target="_blank">
-    Submit the OTP for a reference id. A verified OTP returns the transaction status and mihpayid.
+    POST /partner/submitCardOtp. Send the OTP with the reference id. A verified OTP returns txnStatus, mihpayid, and the message "OTP verified successfully". A failure uses status "failed".
   </Card>
   <Card title="Resend Card OTP" href="https://docs.payu.in/reference/partner-resend-card-otp-api" target="_blank">
-    Resend the OTP for the same reference id.
+    POST /partner/resendCardOtp. Send the same reference id without an OTP. On success the message is "OTP resent successfully".
   </Card>
 </Cards>
 
@@ -60,10 +61,10 @@ Send the token on every call as `Authorization: Bearer {access_token}`.
   Call Submit Card OTP with `merchant_id`, `reseller_id`, `hash`, `reference_id`, and `otp`.
 </Accordion>
 
-<Accordion title="Read the result" icon="fab fa-searchengin">
-  A verified OTP adds `txnStatus`, `mihpayid`, and the message "OTP verified successfully". A failure returns status `failed`.
+<Accordion title="Read the submit result" icon="fab fa-searchengin">
+  A verified OTP on Submit Card OTP adds `txnStatus`, `mihpayid`, and "OTP verified successfully". Failures return status `failed` and a message.
 </Accordion>
 
-<Accordion title="Resend when the customer needs a new OTP" icon="fad fa-rotate-left">
-  Call Resend Card OTP with the same `reference_id`. Do not send `otp` on the resend request.
+<Accordion title="Resend the OTP" icon="fad fa-rotate-left">
+  Call Resend Card OTP with the same `reference_id`. Do not send `otp`. The success message is "OTP resent successfully".
 </Accordion>

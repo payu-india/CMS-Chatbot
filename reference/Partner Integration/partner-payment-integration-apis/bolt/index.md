@@ -1,7 +1,8 @@
 ---
 title: Bolt [New]
 excerpt: >-
-  Create the Bolt checkout hash payload and receive the Bolt payment postback.
+  Generate the Bolt checkout hash payload, and receive the Bolt payment
+  postback.
 deprecated: false
 hidden: true
 link:
@@ -18,31 +19,36 @@ next:
       title: Bolt payment callback API [New]
       type: basic
 ---
-Hash and callback endpoints for Bolt checkout. Generate Hash returns the payload passed to `bolt.launch`. PayU receives the checkout postback on the payment callback route.
+These two pages cover Bolt checkout on the partner layer. Bolt Generate Hash returns the payload passed to `bolt.launch`. Bolt Payment Callback is the route where PayU receives the checkout postback.
 
 ***
 
 ## Authentication
-
-Generate Hash uses these headers on every call: `Authorization`, `X-PayU-Reseller-UUID`, and `X-PayU-Merchant-ID`.
 
 | Environment | Base URL |
 | :---------- | :------- |
 | Test        | `https://test-partnerapilayer.payu.in/apilayer` |
 | Production  | `https://api.payu.in` |
 
-The payment callback is a PayU route. The partner does not call it.
+| Page | Route | What the page uses |
+| :--- | :---- | :----------------- |
+| Bolt Generate Hash | `POST /partner/bolt/generateHash` | `Authorization`, `X-PayU-Reseller-UUID`, and `X-PayU-Merchant-ID` |
+| Bolt Payment Callback | `POST /partner/bolt/paymentCallback` | PayU receives the postback. The response is an empty body. |
+
+Generate Hash requires `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, and `furl`.
 
 ***
 
 ## Endpoints
 
+These are the Bolt pages.
+
 <Cards>
   <Card title="Bolt Generate Hash" href="https://docs.payu.in/reference/partner-bolt-generate-hash-api" target="_blank">
-    Build the payload that is passed to bolt.launch. txnid, amount, productinfo, firstname, email, phone, surl, and furl are required.
+    POST /partner/bolt/generateHash. Returns the bolt.launch payload, not a status wrapper. The hash is the payment hash: key, txnid, amount, productinfo, firstname, email, udf1 to udf5, then the salt.
   </Card>
   <Card title="Bolt Payment Callback" href="https://docs.payu.in/reference/partner-bolt-payment-callback-api" target="_blank">
-    PayU receives the Bolt checkout postback and returns an empty body.
+    POST /partner/bolt/paymentCallback. PayU receives the same form postback fields as the standard payment callback and returns an empty body.
   </Card>
 </Cards>
 
@@ -51,13 +57,13 @@ The payment callback is a PayU route. The partner does not call it.
 ## How It Works
 
 <Accordion title="Generate the hash" icon="fad fa-key-skeleton-left-right">
-  Call Bolt Generate Hash with the transaction fields. The response is the payload passed to `bolt.launch`.
+  Call Bolt Generate Hash with `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, and `furl`. The 200 body is the payload passed to `bolt.launch`.
 </Accordion>
 
 <Accordion title="Open Bolt checkout" icon="fad fa-credit-card">
-  Pass that payload to `bolt.launch`. The customer pays on Bolt checkout.
+  Pass that payload to `bolt.launch`. This step uses the response from Bolt Generate Hash.
 </Accordion>
 
 <Accordion title="Receive the postback" icon="fad fa-hand-point-left">
-  PayU receives the checkout postback at the Bolt payment callback and returns an empty body.
+  PayU receives the checkout result at Bolt Payment Callback and returns an empty body.
 </Accordion>
