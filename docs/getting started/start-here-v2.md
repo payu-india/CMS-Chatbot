@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-You've set up your PayU account. This page gets you from zero to your first payment — find the right integration, grab your credentials, and start building.
+You've set up your PayU account. This page gets you from zero to your first payment. Find the right integration, get your credentials, and start building.
 
 ***
 
