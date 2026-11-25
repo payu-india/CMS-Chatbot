@@ -10,7 +10,7 @@ metadata:
 ---
 ## Overview
 
-Use this guide to collect bond payments as an Online Bond Platform Provider (OBPP). With each payment request, you send the bond details in a `products` object. PayU uses these details to report the payment to NSE Clearing Ltd (NCL).
+Collect bond payments as an Online Bond Platform Provider (OBPP). With each payment request, you send the bond details in a `products` object. PayU uses these details to report the payment to NSE Clearing Ltd (NCL).
 
 <Callout icon="⚠️" theme="warning">
   ### Settlement goes to NSE Clearing, not to your account
