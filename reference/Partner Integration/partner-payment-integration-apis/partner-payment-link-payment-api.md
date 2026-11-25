@@ -1,66 +1,68 @@
 ---
-api:
-  file: partner-payment-link-payment-api.yaml
-  operationId: partnerPaymentLinkPayment
+title: Payment link payment API
+deprecated: false
 hidden: false
 link:
   new_tab: false
+metadata:
+  robots: index
 ---
-<Cards>
-  <Card title="Method">
-    POST
-  </Card>
+POST /partner/payment-link/payment. PartnerPaymentLinkTxnDTO fields are payment_link_id, phone_number, and redirect_url. validatePaymentLinkRequest requires payment_link_id and phone_number. phone_number must match (^$|[0-9]{5,16}). merchant_id, txnid, pg, bankcode, and card fields are not on this DTO.
 
-  <Card title="Endpoint">
-    /partner/payment-link/payment
-  </Card>
-</Cards>
+## Environment
 
-## Environments
+| Environment    | Method | URL |
+| :------------- | :----- | :-- |
+| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/payment` |
+| **Production** | `POST` | `https://api.payu.in/partner/payment-link/payment` |
 
-|                        |                                                        |
-| :--------------------- | :----------------------------------------------------- |
-| Test Environment       | `https://test-partnerapilayer.payu.in/apilayer` |
-| Production Environment | `https://api.payu.in` |
+## Request parameters
 
-## Sample Request
+### Request headers
 
-<Accordion title="Request Payload" icon="fa-code">
-  ```curl
-  curl -X POST "https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/payment" \
-    -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "payment_link_id": "https://u.payu.in/PAYUID",
-      "phone_number": "9999999999",
-      "redirect_url": "https://merchant.example.com/return"
-    }'
+| **Parameter** | **Description** | **Example** |
+| :------------ | :-------------- | :---------- |
+| Content-Type<br />**mandatory** | `String` Send the body as `application/json`. | application/json |
+| Authorization<br />**mandatory** | `String` Partner access token. Send as Authorization Bearer token. | Bearer YOUR_ACCESS_TOKEN |
+
+### Request body
+
+| **Parameter** | **Description** | **Example** |
+| :------------ | :-------------- | :---------- |
+| payment_link_id<br />**mandatory** | `String` Payment link id | https://u.payu.in/PAYUID |
+| phone_number<br />**mandatory** | `String` 5 to 16 digits, or empty. Empty is rejected by the required check. | 9999999999 |
+| redirect_url<br />**optional** | `String` Optional in the DTO. When present, the domain is validated. | https://merchant.example.com/return |
+
+## Sample request
+
+```curl
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/payment' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_ACCESS_TOKEN' \
+--data '{
+  "payment_link_id": "https://u.payu.in/PAYUID",
+  "phone_number": "9999999999",
+  "redirect_url": "https://merchant.example.com/return"
+}'
 ```
-</Accordion>
 
-<Callout icon="📘" theme="info">
-  ### **Request Parameter Description**
+## Response parameters
 
-  Refer to the [Request Body](https://docs.payu.in/reference/partner-payment-link-payment-api#body-params) section for request parameter description.
-</Callout>
+| HTTP status | Description |
+| :---------- | :---------- |
+| `200` | Downstream payment-link transaction response, after processTxnDataResponseAndInitiatePayment. |
+| `401` | Invalid bearer token. |
 
-## Sample Response
+## Sample response
 
-<Accordion title="Response Payload" icon="fa-code">
-  ```json Success Response
-  {
-    "note": "Downstream payment-link transaction response, after processTxnDataResponseAndInitiatePayment."
-  }
-  ```
-  ```json Error Response
-  {
-    "error": "Invalid Auth token"
-  }
-  ```
-</Accordion>
+### HTTP 200
 
-<Callout icon="📘" theme="info">
-  ### **Response Parameter Description**
+Downstream payment-link transaction response, after processTxnDataResponseAndInitiatePayment.
 
-  Refer to the [Responses](https://docs.payu.in/reference/partner-payment-link-payment-api#response-schemas) section for response parameter description.
-</Callout>
+### HTTP 401 — error
+
+```json
+{
+  "error": "Invalid Auth token"
+}
+```

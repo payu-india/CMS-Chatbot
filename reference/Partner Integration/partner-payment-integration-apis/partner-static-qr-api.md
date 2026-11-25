@@ -1,73 +1,93 @@
 ---
-api:
-  file: partner-static-qr-api.yaml
-  operationId: partnerStaticQr
+title: Static QR API
+deprecated: false
 hidden: false
 link:
   new_tab: false
+metadata:
+  robots: index
 ---
-<Cards>
-  <Card title="Method">
-    POST
-  </Card>
+POST /partner/staticQr. Creates a reusable static QR for a merchant VPA. Required headers from PartnerController: X-PayU-Reseller-UUID, X-PayU-Merchant-ID, X-Partner-Token, X-Partner-Hash, X-Partner-Request-ID. Hash input, quoted from PartnerUtils.validateStaticQrHash: merchantId|rawRequestBody|clientSecret, then SHA-512. That is not sha512(key|reseller_id|merchant_id|salt). The JSON body must include merchantVpa. qrType and udf5 are stored when present. A cached success returns qrString, qrId, and merchantVpa.
 
-  <Card title="Endpoint">
-    /partner/staticQr
-  </Card>
-</Cards>
+## Environment
 
-## Environments
+| Environment    | Method | URL |
+| :------------- | :----- | :-- |
+| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/staticQr` |
+| **Production** | `POST` | `https://api.payu.in/partner/staticQr` |
 
-|                        |                                                        |
-| :--------------------- | :----------------------------------------------------- |
-| Test Environment       | `https://test-partnerapilayer.payu.in/apilayer` |
-| Production Environment | `https://api.payu.in` |
+## Request parameters
 
-## Sample Request
+### Request headers
 
-<Accordion title="Request Payload" icon="fa-code">
-  ```curl
-  curl -X POST "https://test-partnerapilayer.payu.in/apilayer/partner/staticQr" \
-    -H "X-PayU-Reseller-UUID: YOUR_RESELLER_UUID" \
-    -H "X-PayU-Merchant-ID: 8739528" \
-    -H "X-Partner-Token: Bearer YOUR_ACCESS_TOKEN" \
-    -H "X-Partner-Hash: YOUR_HASH" \
-    -H "X-Partner-Request-ID: REQUEST_001" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "merchantVpa": "merchant@payu",
-      "qrType": "UPI",
-      "udf5": "web",
-      "amount": "1000.00"
-    }'
+| **Parameter** | **Description** | **Example** |
+| :------------ | :-------------- | :---------- |
+| Content-Type<br />**mandatory** | `String` Send the body as `application/json`. | application/json |
+| X-PayU-Reseller-UUID<br />**mandatory** | `String` X-PayU-Reseller-UUID | YOUR_RESELLER_UUID |
+| X-PayU-Merchant-ID<br />**mandatory** | `String` X-PayU-Merchant-ID | VALUE |
+| X-Partner-Token<br />**mandatory** | `String` X-Partner-Token | Bearer YOUR_ACCESS_TOKEN |
+| X-Partner-Hash<br />**mandatory** | `String` SHA-512 of `merchantId\|rawRequestBody\|clientSecret`. See PartnerUtils.validateStaticQrHash. | YOUR_HASH |
+| X-Partner-Request-ID<br />**mandatory** | `String` X-Partner-Request-ID | VALUE |
+
+### Request body
+
+| **Parameter** | **Description** | **Example** |
+| :------------ | :-------------- | :---------- |
+| merchantVpa<br />**mandatory** | `String` Uniqueness key for the static QR. | merchant@payu |
+| qrType<br />**optional** | `String` QrType | UPI |
+| udf5<br />**optional** | `String` Udf5 | web |
+| amount<br />**optional** | `String` Passed through in the raw body to generateInstaAccount when you set it. Not validated in generateStaticQr. | 1000.00 |
+
+## Sample request
+
+```curl
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/staticQr' \
+--header 'Content-Type: application/json' \
+--header 'X-PayU-Reseller-UUID: YOUR_RESELLER_UUID' \
+--header 'X-PayU-Merchant-ID: VALUE' \
+--header 'X-Partner-Token: Bearer YOUR_ACCESS_TOKEN' \
+--header 'X-Partner-Hash: YOUR_HASH' \
+--header 'X-Partner-Request-ID: VALUE' \
+--data '{
+  "merchantVpa": "merchant@payu",
+  "qrType": "UPI",
+  "udf5": "web",
+  "amount": "1000.00"
+}'
 ```
-</Accordion>
 
-<Callout icon="📘" theme="info">
-  ### **Request Parameter Description**
+## Response parameters
 
-  Refer to the [Request Body](https://docs.payu.in/reference/partner-static-qr-api#body-params) section for request parameter description.
-</Callout>
+| HTTP status | Description |
+| :---------- | :---------- |
+| `200` | Stored or newly created QR. Cache payload fields are qrString, qrId, and merchantVpa. |
+| `400` | merchantVpa is missing, or the merchant id is unknown. |
+| `403` | X-Partner-Hash did not match. |
 
-## Sample Response
+## Sample response
 
-<Accordion title="Response Payload" icon="fa-code">
-  ```json Success Response
-  {
-    "qrString": "merchant@payu",
-    "qrId": "QR_1001",
-    "merchantVpa": "merchant@payu"
-  }
-  ```
-  ```json Error Response
-  {
-    "error": "merchantVpa is required in request body"
-  }
-  ```
-</Accordion>
+### HTTP 200 — success
 
-<Callout icon="📘" theme="info">
-  ### **Response Parameter Description**
+```json
+{
+  "qrString": "merchant@payu",
+  "qrId": "QR_1001",
+  "merchantVpa": "merchant@payu"
+}
+```
 
-  Refer to the [Responses](https://docs.payu.in/reference/partner-static-qr-api#response-schemas) section for response parameter description.
-</Callout>
+### HTTP 400 — error
+
+```json
+{
+  "error": "merchantVpa is required in request body"
+}
+```
+
+### HTTP 403 — error
+
+```json
+{
+  "error": "Invalid Hash"
+}
+```

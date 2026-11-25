@@ -1,66 +1,77 @@
 ---
-api:
-  file: partner-get-eligible-bins-api.yaml
-  operationId: partnerGetEligibleBins
+title: Get eligible EMI bins API
+deprecated: false
 hidden: false
 link:
   new_tab: false
+metadata:
+  robots: index
 ---
-<Cards>
-  <Card title="Method">
-    POST
-  </Card>
+PartnerService.getEligibleBins requires merchant_id, type, and var2. pg and offer_type are not read by this method. The map is forwarded to the eligible-bins service.
 
-  <Card title="Endpoint">
-    /partner/getEligibleBins
-  </Card>
-</Cards>
+## Environment
 
-## Environments
+| Environment    | Method | URL |
+| :------------- | :----- | :-- |
+| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/getEligibleBins` |
+| **Production** | `POST` | `https://api.payu.in/partner/getEligibleBins` |
 
-|                        |                                                        |
-| :--------------------- | :----------------------------------------------------- |
-| Test Environment       | `https://test-partnerapilayer.payu.in/apilayer` |
-| Production Environment | `https://api.payu.in` |
+## Request parameters
 
-## Sample Request
+### Request headers
 
-<Accordion title="Request Payload" icon="fa-code">
-  ```curl
-  curl -X POST "https://test-partnerapilayer.payu.in/apilayer/partner/getEligibleBins" \
-    -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "merchant_id": "8739528",
-      "type": "bin",
-      "var2": "EMI"
-    }'
+| **Parameter** | **Description** | **Example** |
+| :------------ | :-------------- | :---------- |
+| Content-Type<br />**mandatory** | `String` Send the body as `application/json`. | application/json |
+| Authorization<br />**mandatory** | `String` Partner access token. Send as Authorization Bearer token. | Bearer YOUR_ACCESS_TOKEN |
+
+### Request body
+
+| **Parameter** | **Description** | **Example** |
+| :------------ | :-------------- | :---------- |
+| merchant_id<br />**mandatory** | `String` Digits only. | 8739528 |
+| type<br />**mandatory** | `String` Required by PartnerService. Forwarded to the eligible-bins service. | bin |
+| var2<br />**mandatory** | `String` Required by PartnerService. Forwarded to the eligible-bins service. | EMI |
+
+## Sample request
+
+```curl
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/getEligibleBins' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer YOUR_ACCESS_TOKEN' \
+--data '{
+  "merchant_id": "8739528",
+  "type": "bin",
+  "var2": "EMI"
+}'
 ```
-</Accordion>
 
-<Callout icon="📘" theme="info">
-  ### **Request Parameter Description**
+## Response parameters
 
-  Refer to the [Request Body](https://docs.payu.in/reference/partner-get-eligible-bins-api#body-params) section for request parameter description.
-</Callout>
+| HTTP status | Description |
+| :---------- | :---------- |
+| `200` | Eligible-bins service JSON, passed through. |
+| `400` | merchant_id, type, or var2 is missing. |
+| `401` | Invalid bearer token. |
 
-## Sample Response
+## Sample response
 
-<Accordion title="Response Payload" icon="fa-code">
-  ```json Success Response
-  {
-    "note": "Eligible-bins service JSON, passed through."
-  }
-  ```
-  ```json Error Response
-  {
-    "error": "merchant_id, type and var2 param are mandatory params"
-  }
-  ```
-</Accordion>
+### HTTP 200
 
-<Callout icon="📘" theme="info">
-  ### **Response Parameter Description**
+Eligible-bins service JSON, passed through.
 
-  Refer to the [Responses](https://docs.payu.in/reference/partner-get-eligible-bins-api#response-schemas) section for response parameter description.
-</Callout>
+### HTTP 400 — error
+
+```json
+{
+  "error": "merchant_id, type and var2 param are mandatory params"
+}
+```
+
+### HTTP 401 — error
+
+```json
+{
+  "error": "Invalid Auth token"
+}
+```
