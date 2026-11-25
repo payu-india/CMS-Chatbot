@@ -3,7 +3,7 @@ title: Payment Links
 excerpt: >-
   Create, share, fetch, and manage shareable payment links programmatically
   using PayU's OneAPI platform.
-hidden: true
+hidden: false
 link:
   new_tab: false
 next:
