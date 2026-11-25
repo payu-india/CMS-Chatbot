@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+      "git-payu": {
+        "command": "node",
+        "args": ["/absolute/path/to/Git MCP/server.js"],
+        "cwd": "/Users/palguna.ms/Library/CloudStorage/OneDrive-PayUPaymentsPvtLtd/Documents/Git_MCP",
+        "env": {
+          "GITLAB_URL": "https://gitlab.payu.in",
+          "GITLAB_USERNAME": "@palguna.ms",
+          "GITLAB_TOKEN": "glpat-JveainNYuKluyDElZq0oy286MQp1OjIwawk.01.0z1f9uo0q"
+        }
+      }
+    }
+  }
