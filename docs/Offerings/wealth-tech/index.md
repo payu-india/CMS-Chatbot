@@ -1,5 +1,9 @@
 ---
 title: Wealth Tech
+excerpt: >-
+  Collect payments for equity, mutual funds, and bonds through PayU. For  
+  SEBI-registered investment platforms — stock brokers, mutual fund brokers,  
+  direct AMCs, and OBPPs.
 deprecated: false
 hidden: true
 metadata:
