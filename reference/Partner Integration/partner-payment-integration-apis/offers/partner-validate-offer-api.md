@@ -1,7 +1,7 @@
 ---
-title: Validate offer API
+title: Validate offer API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

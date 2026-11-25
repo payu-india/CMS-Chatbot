@@ -1,20 +1,20 @@
 ---
-title: Payment S2S Callback API
+title: Bolt payment callback API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
   robots: index
 ---
-Server-to-server postback to PayU at POST /partner/paymentCallback. PartnerService.paymentCallback returns HTTP 200 with an empty body after it notifies the partner webhook. The partner webhook URL is configured for the reseller. It is not this path.
+PayU receives the Checkout Plus postback at POST /partner/bolt/paymentCallback. BoltHashController accepts the same form postback fields as the standard payment callback. The handler returns an empty body.
 
 ## Environment
 
 | Environment    | Method | URL |
 | :------------- | :----- | :-- |
-| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/paymentCallback` |
-| **Production** | `POST` | `https://api.payu.in/partner/paymentCallback` |
+| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/bolt/paymentCallback` |
+| **Production** | `POST` | `https://api.payu.in/partner/bolt/paymentCallback` |
 
 ## Request parameters
 
@@ -31,7 +31,7 @@ Server-to-server postback to PayU at POST /partner/paymentCallback. PartnerServi
 | mihpayid | `String` PayU payment id. | 403993715521855092 |
 | txnid | `String` Merchant transaction id. The handler also accepts `txnId`. | TXN1001 |
 | amount | `String` Amount | 1000.00 |
-| status | `String` Payment status posted by PayU, such as success or failure. | success |
+| status | `String` Payment status posted by PayU for Checkout Plus. | success |
 | mode | `String` Mode | CC |
 | productinfo | `String` Productinfo | Order |
 | firstname | `String` Firstname | John |
@@ -49,13 +49,13 @@ Server-to-server postback to PayU at POST /partner/paymentCallback. PartnerServi
 | error_Message | `String` Error Message | No Error |
 | net_amount_debit | `String` Net amount debit | 1000.00 |
 | PG_TYPE | `String` PG TYPE | CC-PG |
-| unmappedstatus | `String` Read by PartnerService.paymentCallback when verifying status. | captured |
+| unmappedstatus | `String` PayU status field on the Checkout Plus postback. | captured |
 | key | `String` Merchant key. Used to look up the partner transaction. | YOUR_MERCHANT_KEY |
 
 ## Sample request
 
 ```curl
-curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/paymentCallback' \
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/bolt/paymentCallback' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data 'mihpayid=403993715521855092' \
 --data 'txnid=TXN1001' \
@@ -86,17 +86,10 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
 
 | HTTP status | Description |
 | :---------- | :---------- |
-| `200` | PayU accepted the postback. paymentCallback returns an empty 200 body. |
-| `400` | paymentCallback returns this when payment status validation fails. |
+| `200` | BoltHashController.paymentCallback returns an empty body. |
 
 ## Sample response
 
 ### HTTP 200
 
-PayU accepted the postback. paymentCallback returns an empty 200 body.
-
-### HTTP 400 — error
-
-```
-payment status validation failed
-```
+BoltHashController.paymentCallback returns an empty body.

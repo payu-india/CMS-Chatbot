@@ -1,7 +1,7 @@
 ---
-title: Verify payment link transaction API
+title: Verify payment link transaction API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

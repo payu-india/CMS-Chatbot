@@ -1,7 +1,7 @@
 ---
-title: Dynamic Bharat QR API
+title: Dynamic Bharat QR API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

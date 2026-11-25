@@ -1,20 +1,20 @@
 ---
-title: Payment Success Redirect Callback API
+title: Payment Cancelled Redirect Callback API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
   robots: index
 ---
-PayU receives the hosted-checkout result on this route after a successful payment. This is not a URL the partner hosts. The customer is then sent to the surl from the payment request.
+PayU receives the hosted-checkout result on this route when the customer cancels. PartnerService.processPaymentCancelled handles this post.
 
 ## Environment
 
 | Environment    | Method | URL |
 | :------------- | :----- | :-- |
-| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/paymentSuccess` |
-| **Production** | `POST` | `https://api.payu.in/partner/paymentSuccess` |
+| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/paymentCancelled` |
+| **Production** | `POST` | `https://api.payu.in/partner/paymentCancelled` |
 
 ## Request parameters
 
@@ -31,7 +31,7 @@ PayU receives the hosted-checkout result on this route after a successful paymen
 | mihpayid | `String` PayU payment id. | 403993715521855092 |
 | txnid | `String` Merchant transaction id. The handler also accepts `txnId`. | TXN1001 |
 | amount | `String` Amount | 1000.00 |
-| status | `String` Status | success |
+| status | `String` Status | cancelled |
 | mode | `String` Mode | CC |
 | productinfo | `String` Productinfo | Order |
 | firstname | `String` Firstname | John |
@@ -55,12 +55,12 @@ PayU receives the hosted-checkout result on this route after a successful paymen
 ## Sample request
 
 ```curl
-curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/paymentSuccess' \
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/paymentCancelled' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data 'mihpayid=403993715521855092' \
 --data 'txnid=TXN1001' \
 --data 'amount=1000.00' \
---data 'status=success' \
+--data 'status=cancelled' \
 --data 'mode=CC' \
 --data 'productinfo=Order' \
 --data 'firstname=John' \

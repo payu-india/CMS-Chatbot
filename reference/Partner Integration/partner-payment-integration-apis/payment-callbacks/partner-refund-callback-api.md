@@ -1,7 +1,7 @@
 ---
-title: Partner Refund Callback API
+title: Partner Refund Callback API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

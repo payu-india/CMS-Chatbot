@@ -1,7 +1,7 @@
 ---
-title: Static QR API
+title: Static QR API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

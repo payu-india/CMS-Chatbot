@@ -1,7 +1,7 @@
 ---
-title: Bolt generate hash API
+title: Bolt generate hash API [New]
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
