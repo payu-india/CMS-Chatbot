@@ -30,7 +30,7 @@ Find your merchant type and their guides in the following table.
 | Stock broker                         | Equity trading                             | _(no product object)_ | _(not applicable)_ | Your bank account          | <Anchor target="_blank" href="https://docs.payu.in/docs/equity">Equity</Anchor>             |
 | Mutual fund broker                   | Mutual funds and other investment products | `mutual_fund`         | `bse`, `bse2`      | ICCL or NCL                | <Anchor target="_blank" href="https://docs.payu.in/docs/mutual-funds">Mutual Funds</Anchor> |
 | Direct AMC                           | Mutual fund schemes of your own AMC        | `mutual_fund`         | `kfin`             | Your bank account          | [Mutual Funds](https://docs.payu.in/docs/mutual-funds)                                      |
-| Online Bond Platform Provider (OBPP) | Bonds                                      | `bond`                | `nse_bonds`        | NSE Clearing Ltd (NCL)     | [Bonds](doc:wealth-tech-bonds)                                                              |
+| Online Bond Platform Provider (OBPP) | Bonds                                      | `bond`                | `nse_bonds`        | NSE Clearing Ltd (NCL)     | <Anchor target="_blank" href="https://docs.payu.in/docs/bonds">Bonds</Anchor>               |
 
 PayU sets your merchant type when it opens your account. Your merchant type determines which `mf_partner` values you can use. Use a separate merchant account for each merchant type.
 
@@ -57,7 +57,7 @@ PayU sets your merchant type when it opens your account. Your merchant type dete
     For mutual fund brokers and direct AMCs. Send fund details in a product object with each payment.
   </Card>
 
-  <Card title="Bonds" href="doc:wealth-tech-bonds" icon="far fa-file-contract">
+  <Card title="Bonds" href="https://docs.payu.in/docs/bonds" icon="far fa-file-contract" target="_blank">
     For Online Bond Platform Providers (OBPPs). Send bond details in a product object. PayU settles to NSE Clearing.
   </Card>
 </Cards>
