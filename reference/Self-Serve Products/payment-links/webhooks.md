@@ -5,7 +5,7 @@ excerpt: >-
   Payment Links transactions — set up your webhook endpoint and verify the
   signature using your client secret.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---

@@ -2,7 +2,7 @@
 api:
   file: pl-test-oas.yaml
   operationId: GetAccessTokenAPI
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:

@@ -2,7 +2,7 @@
 api:
   file: pl-test-oas.yaml
   operationId: FetchPaymentLinkAPI
-hidden: true
+hidden: false
 metadata:
   title: Fetch a Payment Link | Payment Links API
 next:

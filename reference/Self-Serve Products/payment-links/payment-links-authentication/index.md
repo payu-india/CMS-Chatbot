@@ -1,7 +1,7 @@
 ---
 title: Authentication
 excerpt: Generate and revoke OAuth 2.0 Bearer tokens.
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:

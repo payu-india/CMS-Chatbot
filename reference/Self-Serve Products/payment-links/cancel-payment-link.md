@@ -2,7 +2,7 @@
 api:
   file: pl-test-oas.yaml
   operationId: CancelPaymentLinkAPI
-hidden: true
+hidden: false
 metadata:
   title: Cancel a Payment Link | Payment Links API
 next:

@@ -2,7 +2,7 @@
 api:
   file: pl-test-oas.yaml
   operationId: GetTransactionDetailsAPI
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
