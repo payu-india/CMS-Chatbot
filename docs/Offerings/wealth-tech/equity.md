@@ -1,5 +1,8 @@
 ---
 title: Equity
+excerpt: >-
+  Collect payments for equity trading as a stock broker through PayU. Standard
+  payment request with TPV — no product object required.
 deprecated: false
 hidden: true
 metadata:
