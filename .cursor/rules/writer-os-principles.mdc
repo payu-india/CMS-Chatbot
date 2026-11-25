@@ -11,7 +11,7 @@ Applies when the work is a documentation project: a new page, a substantial revi
 2. **Spec over memory** — `reference/` OpenAPI, `payment-error-codes.json`, and `custom_blocks/` outrank recollection and older pages. Disagreement is a conflict to surface, not a silent choice.
 3. **Segment-aware** — Name the reader: merchant developer, partner platform, or internal operator. Checkout, payouts, BBPS, and partner APIs are not one path.
 4. **Reuse before rewrite** — Search `custom_blocks/` and existing pages before adding a second explanation.
-5. **Example is the contract** — A field in a sample that is absent from the parameter table, or a required field missing from the sample, is a defect.
+5. **Example is the contract** — A request or response sample includes every field in the matching parameter table, required and optional. A sample field that is not in that table is a defect. A new or edited table row uses that table's existing format: same columns, and the same markup for type, required, and optional (bold, backticks, or plain text). Do not invent a second style for the row you just added.
 6. **Contract changes are doors** — Copy edits are two-way low. A published endpoint, hash string, parameter, or error behavior is two-way medium or one-way. Deprecate; do not silently delete.
 7. **No invented capabilities** — Cite a repo path or mark **UNVERIFIED**. Never invent parameters, error codes, or hash formulas.
 8. **Secrets stay out** — Placeholders only (`YOUR_KEY`, `YOUR_SALT`). No live keys, salts, PANs, account numbers, or production PII in pages, recipes, prompts, or commits.

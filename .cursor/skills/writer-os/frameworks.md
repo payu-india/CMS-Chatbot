@@ -23,7 +23,11 @@ Use these strings only when the page is about that hash. Do not invent a third f
 
 ## WR-4 Example is the contract
 
-Every field in a recipe appears in the parameter table with the same name and required flag. Every required field appears in at least one recipe. Recipes live under `recipes/` (Java, PHP, Python, cURL). The guide page links to them instead of becoming the only copy of the sample.
+When a request or response parameter table changes, update the matching sample in the same edit. The sample includes every field on that table, required and optional, using each row's example. A sample field absent from the table is a defect.
+
+A row added to an existing table copies that table's format exactly: same columns, and the same markup for type and for required or optional. If the other rows mark type in bold or in backticks, the new row does too.
+
+Recipes under `recipes/` (Java, PHP, Python, cURL) use the same field names and the same required flag as the table, and they send every table field. The guide page links to them instead of becoming a second, shorter copy of the sample.
 
 ## WR-5 Public contract is a door
 

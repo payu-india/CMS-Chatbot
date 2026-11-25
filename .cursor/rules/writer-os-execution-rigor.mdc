@@ -7,7 +7,7 @@ alwaysApply: true
 
 Every substantive Writer OS artefact includes these sections **by name**. Missing a section fails the skill.
 
-Working artefacts (briefs, canvases, annexures, reviews) go in `writer-os/work/<slug>/`. Published pages go only under `docs/`, `reference/` docs, `recipes/`, or `custom_blocks/` after the user confirms that stage. Do not commit or push unless the user asks in this conversation, except `writer-doc-update` and `writer-restructure`: those two commit, push a `v1_{branch}` branch, and open a pull request into `v1`. They still do not merge.
+Working artefacts (briefs, canvases, annexures, reviews) go in `writer-os/work/<slug>/`. Published pages go only under `docs/`, `reference/` docs, `recipes/`, or `custom_blocks/` after the user confirms that stage. When the user has asked for a documentation change, commit the finished edit and push the `v1_{branch}` feature branch in the same run. Do not wait for a separate push instruction. Do not merge. Do not push `v1`. A question that does not ask for an edit gets no commit. `writer-doc-update` and `writer-restructure` also open a pull request into `v1`.
 
 `writer-os/` is internal. Never list it in `_order.yaml` or `_readme.yaml`.
 

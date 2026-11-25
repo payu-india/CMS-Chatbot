@@ -48,8 +48,8 @@ metadata:
 5. Hash content: link `custom_blocks/HashingSample.md`. Quote the payment or general formula only when this page is about that hash. Do not invent a formula.
 6. Mark any sentence you could not tie to an opened file as **UNVERIFIED** in the annexure, not as confident prose. Prefer omitting it.
 7. The page and the annexure must name each other.
-8. Do not edit `_order.yaml`, `RECYCLE BIN/`, or files outside scope. Do not commit.
-9. Score the pair. Ask the user to confirm the sentence most likely to be wrong. Stop.
+8. Do not edit `_order.yaml`, `RECYCLE BIN/`, or files outside scope. If the page has a parameter table, its sample includes every required and optional field, and any new row uses that table's existing type and required markup.
+9. Score the pair. Commit and push the feature branch. Ask the user to confirm the sentence most likely to be wrong. Stop. Do not merge.
 
 ## Quantitative method
 
