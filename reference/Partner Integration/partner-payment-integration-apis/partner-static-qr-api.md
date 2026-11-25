@@ -35,9 +35,12 @@ link:
     -H "X-Partner-Request-ID: REQUEST_001" \
     -H "Content-Type: application/json" \
     -d '{
-      "merchantVpa": "merchant@payu"
+      "merchantVpa": "merchant@payu",
+      "qrType": "UPI",
+      "udf5": "web",
+      "amount": "1000.00"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

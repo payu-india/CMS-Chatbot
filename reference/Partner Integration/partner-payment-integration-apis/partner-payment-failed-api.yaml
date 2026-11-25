@@ -112,6 +112,33 @@ paths:
                   type: string
                   description: Merchant key. Used to look up the partner transaction.
                   example: YOUR_MERCHANT_KEY
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  mihpayid: '403993715521855092'
+                  txnid: TXN1001
+                  amount: '1000.00'
+                  status: failure
+                  mode: CC
+                  productinfo: Order
+                  firstname: John
+                  email: 'customer@example.com'
+                  phone: '9999999999'
+                  hash: YOUR_HASH
+                  bankcode: HDFC
+                  bank_ref_num: '1234567890'
+                  udf1: custom_value_1
+                  udf2: custom_value_2
+                  udf3: custom_value_3
+                  udf4: custom_value_4
+                  udf5: web
+                  error: E000
+                  error_Message: No Error
+                  net_amount_debit: '1000.00'
+                  PG_TYPE: CC-PG
+                  unmappedstatus: captured
+                  key: YOUR_MERCHANT_KEY
       responses:
         '302':
           description: >

@@ -1,11 +1,10 @@
 openapi: 3.0.0
 info:
   title: Dynamic Bharat QR
-  description: POST /partner/dbqr. Generates a dynamic Bharat QR for one transaction. Headers
-    match verifyStatus. PartnerUtils.updateOmniChannelTransactionForDbqr reads vendorTransactionId,
-    soundBoxTerminalId, expiryTime, and optional mihpayId. Those names match the published
-    Generate Dynamic QR page. The response on that page includes result.qrString. The body
-    is forwarded to POST /v1/partner/qr/dbqr.
+  description: POST /partner/dbqr. Headers match verifyStatus. PartnerService does not
+    reject a missing body field. updateOmniChannelTransactionForDbqr reads vendorTransactionId,
+    soundBoxTerminalId, expiryTime, and mihpayId when they are present, and swallows a parse
+    error. The body is forwarded to POST /v1/partner/qr/dbqr.
   version: 1.0.0
 servers:
   - url: https://api.payu.in
@@ -20,11 +19,10 @@ paths:
   /partner/dbqr:
     post:
       summary: Generate a dynamic Bharat QR
-      description: POST /partner/dbqr. Generates a dynamic Bharat QR for one transaction.
-        Headers match verifyStatus. PartnerUtils.updateOmniChannelTransactionForDbqr reads
-        vendorTransactionId, soundBoxTerminalId, expiryTime, and optional mihpayId. Those
-        names match the published Generate Dynamic QR page. The response on that page includes
-        result.qrString. The body is forwarded to POST /v1/partner/qr/dbqr.
+      description: POST /partner/dbqr. Headers match verifyStatus. PartnerService does not
+        reject a missing body field. updateOmniChannelTransactionForDbqr reads vendorTransactionId,
+        soundBoxTerminalId, expiryTime, and mihpayId when they are present, and swallows a
+        parse error. The body is forwarded to POST /v1/partner/qr/dbqr.
       tags:
         - Partner Payment APIs
       parameters:
@@ -53,12 +51,6 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - mihpayId
-                - vendorTransactionId
-                - transactionAmount
-                - expiryTime
-                - soundBoxTerminalId
               properties:
                 mihpayId:
                   type: string

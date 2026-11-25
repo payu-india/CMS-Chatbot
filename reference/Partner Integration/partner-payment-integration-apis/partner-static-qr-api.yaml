@@ -63,7 +63,10 @@ paths:
               request:
                 summary: Sample request
                 value:
-                  merchantVpa: merchant@payu
+                  merchantVpa: 'merchant@payu'
+                  qrType: UPI
+                  udf5: web
+                  amount: '1000.00'
       responses:
         '200':
           description: Stored or newly created QR. Cache payload fields are qrString, qrId,

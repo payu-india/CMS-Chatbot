@@ -67,18 +67,8 @@ Content-Type: application/json
 <td>Product purchase</td>
 </tr>
 <tr>
-<td><code>firstname</code></td>
-<td>string — Customer first name</td>
-<td>John</td>
-</tr>
-<tr>
-<td><code>email</code></td>
-<td>string — Customer email address</td>
-<td>john@example.com</td>
-</tr>
-<tr>
 <td><code>phone</code></td>
-<td>string — Customer phone number (10 digits)</td>
+<td>string — Customer phone number, 5 to 16 digits</td>
 <td>919876543210</td>
 </tr>
 <tr>
@@ -92,16 +82,6 @@ Content-Type: application/json
 <td>11ee-0e7e-5403fde2-9523-0a696b110fde</td>
 </tr>
 <tr>
-<td><code>surl</code></td>
-<td>string — Success redirect URL (where PayU redirects after successful payment)</td>
-<td>https://merchant.example.com/success</td>
-</tr>
-<tr>
-<td><code>furl</code></td>
-<td>string — Failure redirect URL (where PayU redirects after failed payment)</td>
-<td>https://merchant.example.com/failure</td>
-</tr>
-<tr>
 <td><code>hash</code></td>
 <td>string — SHA-512 hash: merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret</td>
 <td>(computed hash value)</td>
@@ -111,30 +91,66 @@ Content-Type: application/json
 
 <Info>
 **Redirect URLs (surl/furl/curl):**
-- These URLs are where PayU will redirect the customer after payment completion
-- They must be publicly accessible HTTPS URLs
-- PayU will POST the payment response to these URLs
-- You should validate the response hash and update your database
+- These fields are optional on `PartnerTxnDTO`
+- When you send them, PayU redirects the customer to that URL after payment completion and POSTs the payment response
+- Validate the response hash before you update your order
 </Info>
 
 ### Optional Parameters
 
-| Parameter       | Type & Description               | Example                                                                    |
-| --------------- | -------------------------------- | -------------------------------------------------------------------------- |
-| `lastname`      | string — Customer last name      | Doe                                                                        |
-| `address1`      | string — Customer address line 1 | 123 Main Street                                                            |
-| `address2`      | string — Customer address line 2 | Apartment 4B                                                               |
-| `city`          | string — Customer city           | Mumbai                                                                     |
-| `state`         | string — Customer state          | Maharashtra                                                                |
-| `country`       | string — Customer country        | India                                                                      |
-| `zipcode`       | string — Customer postal code    | 400001                                                                     |
-| `udf1` - `udf5` | string — User-defined fields. `udf5` is optional | custom_value                                                               |
-| `merchant_webhook_success` | string — Merchant webhook URL for payment success notifications | https://merchant.example.com/webhook/success |
-| `merchant_webhook_failure` | string — Merchant webhook URL for payment failure notifications | https://merchant.example.com/webhook/failure |
-| `display_lang` | string — Language code for the checkout display, for example `en` or `hi` | en |
-| `cart_details` | string — Cart line items for the checkout page, sent as a JSON string | {"items":[{"sku":"SKU1","name":"Item","quantity":"1"}]} |
-| `custom_note` | string — Note shown to the customer on the checkout page | Deliver before 6 PM |
-| `curl`          | string — Cancel redirect URL     | [https://merchant.example.com/cancel](https://merchant.example.com/cancel) |
+| Parameter                  | Type & Description                                                                                                      | Example                                                                    |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `firstname`                | string — Customer first name. If sent, letters and spaces only, 1 to 128 characters                                     | John                                                                       |
+| `lastname`                 | string — Customer last name. If sent, letters and spaces only, up to 128 characters                                     | Doe                                                                        |
+| `email`                    | string — Customer email address. If sent, it must be a valid email                                                      | john@example.com                                                           |
+| `surl`                     | string — Success redirect URL                                                                                           | https://merchant.example.com/success                                       |
+| `furl`                     | string — Failure redirect URL                                                                                           | https://merchant.example.com/failure                                       |
+| `curl`                     | string — Cancel redirect URL                                                                                            | https://merchant.example.com/cancel                                        |
+| `id`                       | string — Request id                                                                                                     | REQ_1001                                                                   |
+| `partner_udf_3`            | string — Partner field, up to 128 characters. Rejected when it contains #, %, &, >, <, *, ?, $, !, ', +, a backtick, or = | partner_value_3                                                            |
+| `partner_udf_4`            | string — Partner field, up to 128 characters. Same character rule as `partner_udf_3`                                    | partner_value_4                                                            |
+| `shipping_firstname`       | string — Shipping first name, up to 255 characters                                                                      | John                                                                       |
+| `shipping_lastname`        | string — Shipping last name, up to 255 characters                                                                       | Doe                                                                        |
+| `shipping_address1`        | string — Shipping address line 1, up to 255 characters                                                                  | 123 Main Street                                                            |
+| `shipping_address2`        | string — Shipping address line 2, up to 255 characters                                                                  | Apartment 4B                                                               |
+| `shipping_city`            | string — Shipping city, up to 255 characters                                                                            | Mumbai                                                                     |
+| `shipping_state`           | string — Shipping state, up to 255 characters                                                                           | Maharashtra                                                                |
+| `shipping_country`         | string — Shipping country, up to 255 characters                                                                         | India                                                                      |
+| `shipping_zipcode`         | string — Shipping postal code, up to 255 characters                                                                     | 400001                                                                     |
+| `shipping_phone`           | string — Shipping phone, up to 255 characters                                                                           | 919876543210                                                               |
+| `drop_category`            | string — Categories to hide on checkout, up to 255 characters                                                           | NB                                                                         |
+| `enforce_paymethod`        | string — Payment method to enforce, up to 255 characters                                                                | UPI                                                                        |
+| `user_token`               | string — Offer user token, up to 255 characters                                                                         | USER_TOKEN                                                                 |
+| `offer_key`                | string — Offer key, up to 255 characters                                                                                | OFFER_KEY_1                                                                |
+| `offer_auto_apply`         | string — Whether to auto-apply an offer, up to 255 characters                                                           | 1                                                                          |
+| `additional_charges`       | string — Additional charges, up to 255 characters                                                                       | 0.00                                                                       |
+| `codurl`                   | string — Cash-on-delivery URL                                                                                           | https://merchant.example.com/cod                                           |
+| `note_category`            | string — Note category                                                                                                  | delivery                                                                   |
+| `pg`                       | string — Payment gateway, up to 255 characters                                                                          | CC                                                                         |
+| `bankcode`                 | string — Bank code, up to 255 characters                                                                                | CC                                                                         |
+| `txn_s2s_flow`             | string — Set to `4` for the UPI server-to-server flow. When it is `4`, `s2s_client_ip` and `s2s_device_info` are required | 4                                                                          |
+| `s2s_client_ip`            | string — Customer IP. Required when `txn_s2s_flow` is `4`                                                               | 127.0.0.1                                                                  |
+| `s2s_device_info`          | string — Device information. Required when `txn_s2s_flow` is `4`                                                        | Mozilla/5.0                                                                |
+| `beneficiarydetail`        | string — Beneficiary detail. Same rejected characters as `partner_udf_3`                                               | John Doe                                                                   |
+| `encrypted_data`           | string — Encrypted payload                                                                                              | ENCRYPTED_PAYLOAD                                                          |
+| `user_id`                  | string — User id                                                                                                        | USER_1001                                                                  |
+| `si_details`               | string — Standing instruction details, sent as a string                                                                 | {"billingAmount":"1000.00","billingCycle":"MONTHLY"}                       |
+| `address1`                 | string — Customer address line 1                                                                                        | 123 Main Street                                                            |
+| `address2`                 | string — Customer address line 2                                                                                        | Apartment 4B                                                               |
+| `city`                     | string — Customer city                                                                                                  | Mumbai                                                                     |
+| `state`                    | string — Customer state                                                                                                 | Maharashtra                                                                |
+| `country`                  | string — Customer country                                                                                               | India                                                                      |
+| `zipcode`                  | string — Customer postal code                                                                                           | 400001                                                                     |
+| `udf1`                     | string — User-defined field, up to 255 characters                                                                       | custom_value_1                                                             |
+| `udf2`                     | string — User-defined field, up to 255 characters                                                                       | custom_value_2                                                             |
+| `udf3`                     | string — User-defined field, up to 255 characters                                                                       | custom_value_3                                                             |
+| `udf4`                     | string — User-defined field, up to 255 characters                                                                       | custom_value_4                                                             |
+| `udf5`                     | string — User-defined field, up to 255 characters                                                                       | web                                                                        |
+| `merchant_webhook_success` | string — Merchant webhook URL for payment success notifications                                                         | https://merchant.example.com/webhook/success                               |
+| `merchant_webhook_failure` | string — Merchant webhook URL for payment failure notifications                                                         | https://merchant.example.com/webhook/failure                               |
+| `display_lang`             | string — Language code for the checkout display, for example `en` or `hi`                                               | en                                                                         |
+| `cart_details`             | string — Cart line items for the checkout page, sent as a JSON string                                                   | {"items":[{"sku":"SKU1","name":"Item","quantity":"1"}]}                    |
+| `custom_note`              | string — Note shown to the customer on the checkout page                                                                | Deliver before 6 PM                                                        |
 
 ***
 
@@ -198,21 +214,61 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments'
   "txnid": "28471834809170983",
   "amount": "1000.00",
   "productinfo": "Product purchase",
-  "firstname": "John",
-  "lastname": "Doe",
-  "email": "john@example.com",
   "phone": "919876543210",
   "merchant_id": 8739528,
   "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
+  "hash": "YOUR_HASH",
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john@example.com",
   "surl": "https://merchant.example.com/success",
   "furl": "https://merchant.example.com/failure",
   "curl": "https://merchant.example.com/cancel",
-  "udf1": "",
-  "udf2": "",
-  "udf3": "",
-  "udf4": "",
+  "id": "REQ_1001",
+  "partner_udf_3": "partner_value_3",
+  "partner_udf_4": "partner_value_4",
+  "shipping_firstname": "John",
+  "shipping_lastname": "Doe",
+  "shipping_address1": "123 Main Street",
+  "shipping_address2": "Apartment 4B",
+  "shipping_city": "Mumbai",
+  "shipping_state": "Maharashtra",
+  "shipping_country": "India",
+  "shipping_zipcode": "400001",
+  "shipping_phone": "919876543210",
+  "drop_category": "NB",
+  "enforce_paymethod": "UPI",
+  "user_token": "USER_TOKEN",
+  "offer_key": "OFFER_KEY_1",
+  "offer_auto_apply": "1",
+  "additional_charges": "0.00",
+  "codurl": "https://merchant.example.com/cod",
+  "note_category": "delivery",
+  "pg": "CC",
+  "bankcode": "CC",
+  "txn_s2s_flow": "4",
+  "s2s_client_ip": "127.0.0.1",
+  "s2s_device_info": "Mozilla/5.0",
+  "beneficiarydetail": "John Doe",
+  "encrypted_data": "ENCRYPTED_PAYLOAD",
+  "user_id": "USER_1001",
+  "si_details": "{\"billingAmount\":\"1000.00\",\"billingCycle\":\"MONTHLY\"}",
+  "address1": "123 Main Street",
+  "address2": "Apartment 4B",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "country": "India",
+  "zipcode": "400001",
+  "udf1": "custom_value_1",
+  "udf2": "custom_value_2",
+  "udf3": "custom_value_3",
+  "udf4": "custom_value_4",
   "udf5": "web",
-  "hash": "b8f3a5d2e1c7b4a9e6d3c8b1a2f4e7d9c3b6a2e1d5f4c7a8b3e6d2f1c9a5b4e7"
+  "merchant_webhook_success": "https://merchant.example.com/webhook/success",
+  "merchant_webhook_failure": "https://merchant.example.com/webhook/failure",
+  "display_lang": "en",
+  "cart_details": "{\"items\":[{\"sku\":\"SKU1\",\"name\":\"Item\",\"quantity\":\"1\"}]}",
+  "custom_note": "Deliver before 6 PM"
 }'
 ```
 
@@ -231,8 +287,14 @@ def generate_hosted_checkout_payment():
     firstname = "John"
     email = "john@example.com"
     
+    udf1 = "custom_value_1"
+    udf2 = "custom_value_2"
+    udf3 = "custom_value_3"
+    udf4 = "custom_value_4"
+    udf5 = "web"
+
     # Compute hash
-    hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||web||||||YOUR_CLIENT_SECRET"
+    hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||YOUR_CLIENT_SECRET"
     payment_hash = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
     
     headers = {
@@ -244,17 +306,61 @@ def generate_hosted_checkout_payment():
         "txnid": txnid,
         "amount": amount,
         "productinfo": productinfo,
-        "firstname": firstname,
-        "lastname": "Doe",
-        "email": email,
         "phone": "919876543210",
         "merchant_id": merchant_id,
         "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
+        "hash": payment_hash,
+        "firstname": firstname,
+        "lastname": "Doe",
+        "email": email,
         "surl": "https://merchant.example.com/success",
         "furl": "https://merchant.example.com/failure",
         "curl": "https://merchant.example.com/cancel",
-        "udf5": "web",
-        "hash": payment_hash
+        "id": "REQ_1001",
+        "partner_udf_3": "partner_value_3",
+        "partner_udf_4": "partner_value_4",
+        "shipping_firstname": "John",
+        "shipping_lastname": "Doe",
+        "shipping_address1": "123 Main Street",
+        "shipping_address2": "Apartment 4B",
+        "shipping_city": "Mumbai",
+        "shipping_state": "Maharashtra",
+        "shipping_country": "India",
+        "shipping_zipcode": "400001",
+        "shipping_phone": "919876543210",
+        "drop_category": "NB",
+        "enforce_paymethod": "UPI",
+        "user_token": "USER_TOKEN",
+        "offer_key": "OFFER_KEY_1",
+        "offer_auto_apply": "1",
+        "additional_charges": "0.00",
+        "codurl": "https://merchant.example.com/cod",
+        "note_category": "delivery",
+        "pg": "CC",
+        "bankcode": "CC",
+        "txn_s2s_flow": "4",
+        "s2s_client_ip": "127.0.0.1",
+        "s2s_device_info": "Mozilla/5.0",
+        "beneficiarydetail": "John Doe",
+        "encrypted_data": "ENCRYPTED_PAYLOAD",
+        "user_id": "USER_1001",
+        "si_details": "{\"billingAmount\":\"1000.00\",\"billingCycle\":\"MONTHLY\"}",
+        "address1": "123 Main Street",
+        "address2": "Apartment 4B",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India",
+        "zipcode": "400001",
+        "udf1": udf1,
+        "udf2": udf2,
+        "udf3": udf3,
+        "udf4": udf4,
+        "udf5": udf5,
+        "merchant_webhook_success": "https://merchant.example.com/webhook/success",
+        "merchant_webhook_failure": "https://merchant.example.com/webhook/failure",
+        "display_lang": "en",
+        "cart_details": "{\"items\":[{\"sku\":\"SKU1\",\"name\":\"Item\",\"quantity\":\"1\"}]}",
+        "custom_note": "Deliver before 6 PM"
     }
     
     response = requests.post(url, headers=headers, json=payload)
@@ -278,25 +384,75 @@ $productinfo = "Product purchase";
 $firstname = "John";
 $email = "john@example.com";
 
+$udf1 = "custom_value_1";
+$udf2 = "custom_value_2";
+$udf3 = "custom_value_3";
+$udf4 = "custom_value_4";
+$udf5 = "web";
+
 // Compute hash
-$hashString = "{$merchantId}|{$txnid}|{$amount}|{$productinfo}|{$firstname}|{$email}|||||web||||||YOUR_CLIENT_SECRET";
+$hashString = "{$merchantId}|{$txnid}|{$amount}|{$productinfo}|{$firstname}|{$email}|{$udf1}|{$udf2}|{$udf3}|{$udf4}|{$udf5}||||||YOUR_CLIENT_SECRET";
 $paymentHash = hash('sha512', $hashString);
 
 $payload = [
     "txnid" => $txnid,
     "amount" => $amount,
     "productinfo" => $productinfo,
-    "firstname" => $firstname,
-    "lastname" => "Doe",
-    "email" => $email,
     "phone" => "919876543210",
     "merchant_id" => $merchantId,
     "reseller_id" => "11ee-0e7e-5403fde2-9523-0a696b110fde",
+    "hash" => $paymentHash,
+    "firstname" => $firstname,
+    "lastname" => "Doe",
+    "email" => $email,
     "surl" => "https://merchant.example.com/success",
     "furl" => "https://merchant.example.com/failure",
     "curl" => "https://merchant.example.com/cancel",
-    "udf5" => "web",
-    "hash" => $paymentHash
+    "id" => "REQ_1001",
+    "partner_udf_3" => "partner_value_3",
+    "partner_udf_4" => "partner_value_4",
+    "shipping_firstname" => "John",
+    "shipping_lastname" => "Doe",
+    "shipping_address1" => "123 Main Street",
+    "shipping_address2" => "Apartment 4B",
+    "shipping_city" => "Mumbai",
+    "shipping_state" => "Maharashtra",
+    "shipping_country" => "India",
+    "shipping_zipcode" => "400001",
+    "shipping_phone" => "919876543210",
+    "drop_category" => "NB",
+    "enforce_paymethod" => "UPI",
+    "user_token" => "USER_TOKEN",
+    "offer_key" => "OFFER_KEY_1",
+    "offer_auto_apply" => "1",
+    "additional_charges" => "0.00",
+    "codurl" => "https://merchant.example.com/cod",
+    "note_category" => "delivery",
+    "pg" => "CC",
+    "bankcode" => "CC",
+    "txn_s2s_flow" => "4",
+    "s2s_client_ip" => "127.0.0.1",
+    "s2s_device_info" => "Mozilla/5.0",
+    "beneficiarydetail" => "John Doe",
+    "encrypted_data" => "ENCRYPTED_PAYLOAD",
+    "user_id" => "USER_1001",
+    "si_details" => "{\"billingAmount\":\"1000.00\",\"billingCycle\":\"MONTHLY\"}",
+    "address1" => "123 Main Street",
+    "address2" => "Apartment 4B",
+    "city" => "Mumbai",
+    "state" => "Maharashtra",
+    "country" => "India",
+    "zipcode" => "400001",
+    "udf1" => $udf1,
+    "udf2" => $udf2,
+    "udf3" => $udf3,
+    "udf4" => $udf4,
+    "udf5" => $udf5,
+    "merchant_webhook_success" => "https://merchant.example.com/webhook/success",
+    "merchant_webhook_failure" => "https://merchant.example.com/webhook/failure",
+    "display_lang" => "en",
+    "cart_details" => "{\"items\":[{\"sku\":\"SKU1\",\"name\":\"Item\",\"quantity\":\"1\"}]}",
+    "custom_note" => "Deliver before 6 PM"
 ];
 
 $ch = curl_init();
@@ -440,8 +596,7 @@ See [Partner Webhook API](ref:partner-webhook-api#webhook-hash-verification) for
 | ----------- | ----------------------- | ---------------------------------- | ------------------------------------- |
 | 400         | Invalid hash            | Hash validation failed             | Verify hash formula and client_secret |
 | 401         | Auth token is not valid | Access token expired or invalid    | Regenerate OAuth token                |
-| 400         | Missing surl or furl    | Redirect URLs not provided         | Include surl and furl in request      |
-| 400         | Invalid redirect URL    | URL is not HTTPS or not accessible | Use valid HTTPS URLs                  |
+| 400         | `errors` array          | A mandatory `PartnerTxnDTO` field is missing, or `firstname`, `email`, or `phone` fails its pattern | Send `txnid`, `amount`, `productinfo`, `phone`, `merchant_id`, `reseller_id`, and `hash` |
 
 ***
 

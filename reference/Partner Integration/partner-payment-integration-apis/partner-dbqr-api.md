@@ -42,7 +42,7 @@ link:
       "expiryTime": "3600",
       "soundBoxTerminalId": "ABCD1234"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

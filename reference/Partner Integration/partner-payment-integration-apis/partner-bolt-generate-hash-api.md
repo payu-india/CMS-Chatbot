@@ -37,12 +37,26 @@ link:
       "amount": "1000.00",
       "productinfo": "Order",
       "firstname": "John",
+      "lastname": "Doe",
       "email": "customer@example.com",
       "phone": "9999999999",
       "surl": "https://merchant.example.com/success",
-      "furl": "https://merchant.example.com/failure"
+      "furl": "https://merchant.example.com/failure",
+      "udf1": "custom_value_1",
+      "udf2": "custom_value_2",
+      "udf3": "custom_value_3",
+      "udf4": "custom_value_4",
+      "udf5": "web",
+      "additional_charges": "0.00",
+      "paisa_mecode": "paisa_mecode",
+      "pg": "CC",
+      "bankcode": "HDFC",
+      "drop_category": "NB",
+      "enforce_paymethod": "UPI",
+      "custom_note": "Deliver before 6 PM",
+      "note_category": "delivery"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

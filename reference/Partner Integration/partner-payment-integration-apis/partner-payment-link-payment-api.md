@@ -32,9 +32,10 @@ link:
     -H "Content-Type: application/json" \
     -d '{
       "payment_link_id": "https://u.payu.in/PAYUID",
-      "phone_number": "9999999999"
+      "phone_number": "9999999999",
+      "redirect_url": "https://merchant.example.com/return"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

@@ -2,11 +2,10 @@ openapi: 3.0.0
 info:
   title: Initiate payment
   description: POST /partner/initiatePayment. Headers required by PartnerController are X-PayU-Reseller-UUID,
-    X-Partner-Token, and Authorization. The body must include accountId (merchant key, or
-    a numeric merchant id). PartnerService also reads txnId, amount, and callBackActions.successAction
-    and failureAction. The published field list is the Partner QR initiate-payment page. The
-    body is forwarded to Core Payments POST /v2/payments. Partner QR guides also document
-    UAT https://apitest.payu.in/apilayer and production https://api.payu.in/apilayer.
+    X-Partner-Token, and Authorization. extractAccountId requires accountId (merchant key,
+    or a numeric merchant id). PartnerService reads txnId, amount, and callBackActions.successAction
+    and failureAction when they are present, and does not reject the call when they are absent.
+    The body is forwarded to Core Payments POST /v2/payments.
   version: 1.0.0
 servers:
   - url: https://api.payu.in
@@ -22,12 +21,11 @@ paths:
     post:
       summary: Initiate an omnichannel payment
       description: POST /partner/initiatePayment. Headers required by PartnerController are
-        X-PayU-Reseller-UUID, X-Partner-Token, and Authorization. The body must include accountId
-        (merchant key, or a numeric merchant id). PartnerService also reads txnId, amount,
-        and callBackActions.successAction and failureAction. The published field list is the
-        Partner QR initiate-payment page. The body is forwarded to Core Payments POST /v2/payments.
-        Partner QR guides also document UAT https://apitest.payu.in/apilayer and production
-        https://api.payu.in/apilayer.
+        X-PayU-Reseller-UUID, X-Partner-Token, and Authorization. extractAccountId requires
+        accountId (merchant key, or a numeric merchant id). PartnerService reads txnId, amount,
+        and callBackActions.successAction and failureAction when they are present, and does
+        not reject the call when they are absent. The body is forwarded to Core Payments POST
+        /v2/payments.
       tags:
         - Partner Payment APIs
       parameters:
@@ -49,13 +47,6 @@ paths:
               type: object
               required:
                 - accountId
-                - txnId
-                - amount
-                - currency
-                - order
-                - additionalInfo
-                - callBackActions
-                - billingDetails
               properties:
                 accountId:
                   type: string
@@ -147,6 +138,27 @@ paths:
                   txnId: PARTNER_TXN_001
                   amount: '1000.00'
                   currency: INR
+                  order:
+                    productInfo: Product purchase
+                    paymentChargeSpecification:
+                      price: 100000
+                  additionalInfo:
+                    txnFlow: nonseamless
+                    createOrder: 'true'
+                  callBackActions:
+                    successAction: 'https://merchant.example.com/success'
+                    failureAction: 'https://merchant.example.com/failure'
+                    cancelAction: 'https://merchant.example.com/cancel'
+                    returnAction: 'https://merchant.example.com/return'
+                  billingDetails:
+                    firstName: John
+                    phone: '9999999999'
+                    email: 'customer@example.com'
+                    address1: '123 Main Street'
+                    city: Mumbai
+                    state: Maharashtra
+                    country: India
+                    zipCode: '400001'
       responses:
         '200':
           description: Core Payments V2 response, passed through. The Partner QR guide returns

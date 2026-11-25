@@ -35,7 +35,7 @@ link:
       "type": "bin",
       "var2": "EMI"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

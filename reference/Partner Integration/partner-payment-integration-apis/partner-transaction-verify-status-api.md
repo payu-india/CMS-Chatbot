@@ -33,8 +33,14 @@ link:
     -H "Authorization: HMAC YOUR_HMAC" \
     -H "X-PayU-Merchant-Key: VALUE" \
     -H "X-PayU-Merchant-ID: VALUE" \
-    -H "date: VALUE"
-  ```
+    -H "date: VALUE" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "txnId": [
+        "PARTNER_TXN_001"
+      ]
+    }'
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

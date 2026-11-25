@@ -32,9 +32,15 @@ link:
     -d '{
       "txnid": "TXN1001",
       "field4": "merchant@payu",
-      "key": "YOUR_MERCHANT_KEY"
+      "key": "YOUR_MERCHANT_KEY",
+      "mihpayid": "403993715521855092",
+      "amount": "1000.00",
+      "status": "success",
+      "mode": "CC",
+      "hash": "YOUR_HASH",
+      "bank_ref_num": "1234567890"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

@@ -37,9 +37,35 @@ link:
       "accountId": "YOUR_MERCHANT_KEY",
       "txnId": "PARTNER_TXN_001",
       "amount": "1000.00",
-      "currency": "INR"
+      "currency": "INR",
+      "order": {
+        "productInfo": "Product purchase",
+        "paymentChargeSpecification": {
+          "price": 100000
+        }
+      },
+      "additionalInfo": {
+        "txnFlow": "nonseamless",
+        "createOrder": "true"
+      },
+      "callBackActions": {
+        "successAction": "https://merchant.example.com/success",
+        "failureAction": "https://merchant.example.com/failure",
+        "cancelAction": "https://merchant.example.com/cancel",
+        "returnAction": "https://merchant.example.com/return"
+      },
+      "billingDetails": {
+        "firstName": "John",
+        "phone": "9999999999",
+        "email": "customer@example.com",
+        "address1": "123 Main Street",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India",
+        "zipCode": "400001"
+      }
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

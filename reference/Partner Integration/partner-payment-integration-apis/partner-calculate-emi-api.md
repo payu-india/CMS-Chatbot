@@ -31,9 +31,12 @@ link:
     -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
     -d '{
-      "merchant_id": "8739528"
+      "merchant_id": "8739528",
+      "amount": "1000.00",
+      "bankcode": "HDFC",
+      "reseller_id": "YOUR_RESELLER_UUID"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

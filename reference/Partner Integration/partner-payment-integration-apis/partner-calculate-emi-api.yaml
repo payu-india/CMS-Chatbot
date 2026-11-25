@@ -55,6 +55,9 @@ paths:
                 summary: Sample request
                 value:
                   merchant_id: '8739528'
+                  amount: '1000.00'
+                  bankcode: HDFC
+                  reseller_id: YOUR_RESELLER_UUID
       responses:
         '200':
           description: EMI calculator JSON, passed through.

@@ -37,7 +37,7 @@ link:
       "reference_id": "REFERENCE_ID",
       "otp": "123456"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

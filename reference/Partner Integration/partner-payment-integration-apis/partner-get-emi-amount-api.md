@@ -32,9 +32,11 @@ link:
     -H "Content-Type: application/json" \
     -d '{
       "merchant_id": "8739528",
-      "amount": "1000.00"
+      "amount": "1000.00",
+      "bankcode": "HDFC",
+      "tenure": "3"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

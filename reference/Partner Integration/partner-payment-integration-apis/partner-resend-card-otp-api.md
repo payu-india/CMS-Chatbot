@@ -36,7 +36,7 @@ link:
       "hash": "YOUR_HASH",
       "reference_id": "REFERENCE_ID"
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">

@@ -3,8 +3,8 @@ info:
   title: Verify omnichannel transaction status
   description: 'POST /partner/transaction/verifyStatus. Required headers: X-PayU-Reseller-UUID,
     X-Partner-Token, Authorization. Optional headers on the controller: X-PayU-Merchant-Key,
-    X-PayU-Merchant-ID. The published request body is txnId, an array of transaction ids.
-    The body is forwarded to the Bharat QR status command.'
+    X-PayU-Merchant-ID. PartnerService does not validate the body. txnId is forwarded with
+    the rest of the body to the Bharat QR status command.'
   version: 1.0.0
 servers:
   - url: https://api.payu.in
@@ -21,8 +21,8 @@ paths:
       summary: Verify Bharat QR transaction status
       description: 'POST /partner/transaction/verifyStatus. Required headers: X-PayU-Reseller-UUID,
         X-Partner-Token, Authorization. Optional headers on the controller: X-PayU-Merchant-Key,
-        X-PayU-Merchant-ID. The published request body is txnId, an array of transaction ids.
-        The body is forwarded to the Bharat QR status command.'
+        X-PayU-Merchant-ID. PartnerService does not validate the body. txnId is forwarded
+        with the rest of the body to the Bharat QR status command.'
       tags:
         - Partner Payment APIs
       parameters:
@@ -52,15 +52,19 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - txnId
               properties:
                 txnId:
                   type: array
-                  description: Transaction ids to verify. Published on the Partner QR status
-                    page.
+                  description: Transaction ids forwarded to the Bharat QR status command.
+                    PartnerService does not require this field.
                   items:
                     type: string
+            examples:
+              request:
+                summary: Sample request
+                value:
+                  txnId:
+                  - PARTNER_TXN_001
       responses:
         '200':
           description: Bharat QR status JSON, passed through.

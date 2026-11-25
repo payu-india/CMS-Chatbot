@@ -54,8 +54,9 @@ paths:
               request:
                 summary: Sample request
                 value:
-                  payment_link_id: https://u.payu.in/PAYUID
+                  payment_link_id: 'https://u.payu.in/PAYUID'
                   phone_number: '9999999999'
+                  redirect_url: 'https://merchant.example.com/return'
       responses:
         '200':
           description: Downstream payment-link transaction response, after processTxnDataResponseAndInitiatePayment.

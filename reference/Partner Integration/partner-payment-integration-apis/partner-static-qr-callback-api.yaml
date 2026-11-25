@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
   title: Static QR callback
-  description: POST /partner/staticQrCallback is received by PayU. The handler requires txnid
-    for idempotency, field4 as the merchant VPA, and key as the merchant key. The hash is
-    the standard PayU response hash checked with validatePayUBizResponseHash and the merchant
-    salt.
+  description: POST /partner/staticQrCallback is received by PayU. The handler rejects a
+    blank field4 (merchant VPA) or a blank key. txnid is used only to detect a duplicate
+    callback. A blank txnid is not rejected. The hash is the standard PayU response hash
+    checked with validatePayUBizResponseHash and the merchant salt.
   version: 1.0.0
 servers:
   - url: https://api.payu.in
@@ -19,10 +19,10 @@ paths:
   /partner/staticQrCallback:
     post:
       summary: Static QR payment callback
-      description: POST /partner/staticQrCallback is received by PayU. The handler requires
-        txnid for idempotency, field4 as the merchant VPA, and key as the merchant key. The
-        hash is the standard PayU response hash checked with validatePayUBizResponseHash and
-        the merchant salt.
+      description: POST /partner/staticQrCallback is received by PayU. The handler rejects
+        a blank field4 (merchant VPA) or a blank key. txnid is used only to detect a duplicate
+        callback. A blank txnid is not rejected. The hash is the standard PayU response hash
+        checked with validatePayUBizResponseHash and the merchant salt.
       tags:
         - Partner Payment APIs
       requestBody:
@@ -32,13 +32,12 @@ paths:
             schema:
               type: object
               required:
-                - txnid
                 - field4
                 - key
               properties:
                 txnid:
                   type: string
-                  description: txnid
+                  description: Used to detect a duplicate callback. A blank value is not rejected.
                   example: TXN1001
                 field4:
                   type: string
@@ -75,8 +74,14 @@ paths:
                 summary: Sample request
                 value:
                   txnid: TXN1001
-                  field4: merchant@payu
+                  field4: 'merchant@payu'
                   key: YOUR_MERCHANT_KEY
+                  mihpayid: '403993715521855092'
+                  amount: '1000.00'
+                  status: success
+                  mode: CC
+                  hash: YOUR_HASH
+                  bank_ref_num: '1234567890'
       responses:
         '200':
           description: Accepted, including a duplicate txnid. Empty body.

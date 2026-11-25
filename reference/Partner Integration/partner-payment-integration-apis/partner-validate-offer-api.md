@@ -33,9 +33,44 @@ link:
     -d '{
       "merchant_id": 8739528,
       "reseller_id": "YOUR_RESELLER_UUID",
-      "hash": "YOUR_HASH"
+      "hash": "YOUR_HASH",
+      "amount": "1000.00",
+      "autoApply": false,
+      "merchantNceParamActive": false,
+      "offerKeys": [
+        "OFFER_KEY_1"
+      ],
+      "paymentId": 403993715521855092,
+      "paymentDetail": {
+        "category": "creditcard",
+        "paymentCode": "CC",
+        "cardNumber": 411111,
+        "cardHash": "CARD_HASH",
+        "cardToken": "CARD_TOKEN",
+        "cardTokenType": 0,
+        "cardMask": 1111,
+        "vpa": "customer@upi"
+      },
+      "userDetail": {
+        "userToken": "USER_TOKEN",
+        "email": "customer@example.com",
+        "phoneNo": "9999999999"
+      },
+      "skusDetail": {
+        "skus": [
+          {
+            "skuId": "SKU1",
+            "skuAmount": "100.00",
+            "quantity": "1",
+            "offerKeys": [
+              "OFFER_KEY_1"
+            ],
+            "autoApply": false
+          }
+        ]
+      }
     }'
-  ```
+```
 </Accordion>
 
 <Callout icon="📘" theme="info">
