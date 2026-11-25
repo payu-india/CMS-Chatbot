@@ -1,8 +1,8 @@
 ---
 title: Offers [New]
 excerpt: >-
-  Fetch the offers available for a merchant, or validate one offer before
-  payment.
+  Fetch offers for a merchant, or validate one offer against the payment and
+  the customer.
 deprecated: false
 hidden: true
 link:
@@ -19,37 +19,38 @@ next:
       title: Validate offer API [New]
       type: basic
 ---
-Fetch the offers available for a merchant, or validate one offer against the payment and the customer before you collect payment.
+These two pages talk to the PayU Offers service. Fetch Offers returns the offers for a merchant. Validate Offer checks one offer against the payment category and the customer.
 
 ***
 
 ## Authentication
 
-All Offers APIs use a **Bearer token**.
+Both pages use a **Bearer token**.
 
 | Environment | Base URL |
 | :---------- | :------- |
 | Test        | `https://test-partnerapilayer.payu.in/apilayer` |
 | Production  | `https://api.payu.in` |
 
-Send the token on every call as `Authorization: Bearer {access_token}`. `merchant_id`, `reseller_id`, and `hash` are required on both requests.
+Send `Authorization: Bearer {access_token}` on both calls. Both require `merchant_id`, `reseller_id`, and `hash`. The hash input is `merchant_id` followed by the client secret.
 
-<Callout icon="📘" theme="info">
-  ### **Access token**
-
-  Older partner accounts generate this token with the <Anchor target="_blank" href="https://docs.payu.in/reference/token-generation-flow-for-old-partner-merchants">token generation flow for partner payments</Anchor>.
-</Callout>
+| Page | Route | Required besides the token |
+| :--- | :---- | :------------------------- |
+| Fetch Offers | `POST /partner/fetchOffer` | `merchant_id`, `reseller_id`, `hash` |
+| Validate Offer | `POST /partner/validateOffer` | `merchant_id`, `reseller_id`, `hash`, `paymentDetail.category`, `userDetail.userToken` |
 
 ***
 
 ## Endpoints
 
+These are the Offers pages.
+
 <Cards>
   <Card title="Fetch Offers" href="https://docs.payu.in/reference/partner-fetch-offer-api" target="_blank">
-    Return offers for a merchant. Amount, offer keys, payment id, user token, and SKU details are optional.
+    POST /partner/fetchOffer. Returns offers for a merchant. amount, offerKeys, paymentId, userToken, and skusDetail are optional. The response is the Offers service JSON.
   </Card>
   <Card title="Validate Offer" href="https://docs.payu.in/reference/partner-validate-offer-api" target="_blank">
-    Check an offer against the payment category and the customer. userToken is required inside userDetail.
+    POST /partner/validateOffer. Checks an offer against paymentDetail and userDetail. category and userToken are required inside those objects. The response is the Offers validate JSON.
   </Card>
 </Cards>
 
@@ -58,9 +59,9 @@ Send the token on every call as `Authorization: Bearer {access_token}`. `merchan
 ## How It Works
 
 <Accordion title="Fetch the offers" icon="fad fa-tags">
-  Call Fetch Offers with `merchant_id`, `reseller_id`, and `hash`. Add amount, offer keys, or SKU details when you have them.
+  Call Fetch Offers with `merchant_id`, `reseller_id`, and `hash`. Add amount, offer keys, payment id, user token, or SKU details when you have them.
 </Accordion>
 
-<Accordion title="Validate before payment" icon="fad fa-badge-check">
-  Call Validate Offer with the payment category and the customer `userToken`. The partner layer forwards the body to the PayU Offers service.
+<Accordion title="Validate one offer" icon="fad fa-badge-check">
+  Call Validate Offer with the same merchant, reseller, and hash, plus `paymentDetail.category` and `userDetail.userToken`.
 </Accordion>

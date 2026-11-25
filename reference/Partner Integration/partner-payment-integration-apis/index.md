@@ -1,8 +1,8 @@
 ---
 title: Partner Payment Integration APIs [New]
 excerpt: >-
-  Partner-layer APIs for payment callbacks, card OTP, offers, EMI, payment
-  links, QR, and Bolt.
+  Overview of the partner payment pages for callbacks, card OTP, offers, EMI,
+  payment links, QR, and Bolt.
 deprecated: false
 hidden: true
 link:
@@ -34,13 +34,7 @@ next:
       title: Bolt [New]
       type: basic
 ---
-These APIs sit on the partner layer next to <Anchor target="_blank" href="https://docs.payu.in/reference/collect-payment-for-partners">Collect Payment for Partners</Anchor>. Use them for the payment result, card OTP, offers, EMI, payment links, QR, and Bolt.
-
-<Callout icon="📘" theme="info">
-  ### **Where the payment starts**
-
-  Hosted checkout, UPI Intent S2S, and UPI TPV are documented under <Anchor target="_blank" href="https://docs.payu.in/reference/collect-payment-for-partners">Collect Payment for Partners</Anchor>. The pages in this section cover the other partner-layer endpoints.
-</Callout>
+This section lists the partner payment API pages. Payment Callbacks receives the payment and refund result. Card OTP submits or resends a card OTP. Offers fetches and validates offers. EMI reads the EMI amount, eligible bins, and a calculated plan. Payment Links reads a link, starts payment, and verifies it. QR and Omnichannel starts an omnichannel payment, checks its status, and creates a dynamic or static QR. Bolt builds the checkout hash and receives the Bolt postback.
 
 ***
 
@@ -51,124 +45,134 @@ These APIs sit on the partner layer next to <Anchor target="_blank" href="https:
 | Test        | `https://test-partnerapilayer.payu.in/apilayer` |
 | Production  | `https://api.payu.in` |
 
-Each API page has the full path. The header set depends on the API.
+The pages below use the header set in this table. Each page has the full path.
 
-| APIs | What to send |
-| :--- | :----------- |
-| Card OTP, Offers, EMI, Payment links | `Authorization: Bearer {access_token}` |
-| Initiate payment, verify status, dynamic Bharat QR | `X-PayU-Reseller-UUID`, `X-Partner-Token`, and `Authorization` |
-| Static QR | Those QR headers, plus `X-PayU-Merchant-ID`, `X-Partner-Hash`, and `X-Partner-Request-ID` |
-| Bolt generate hash | `Authorization`, `X-PayU-Reseller-UUID`, and `X-PayU-Merchant-ID` |
-| Payment callbacks, static QR callback, Bolt payment callback | PayU calls these routes. They are not requests the partner sends. |
-
-<Callout icon="📘" theme="info">
-  ### **Access token**
-
-  Bearer-token APIs send the partner access token as `Authorization: Bearer {access_token}`. Older partner accounts generate that token with the <Anchor target="_blank" href="https://docs.payu.in/reference/token-generation-flow-for-old-partner-merchants">token generation flow for partner payments</Anchor>.
-</Callout>
+| Pages | What the page uses |
+| :---- | :----------------- |
+| Submit Card OTP, Resend Card OTP, Fetch Offers, Validate Offer, Get EMI Amount, Get Eligible EMI Bins, Calculate EMI, Payment Link Metadata, Payment Link Payment, Verify Payment Link Transaction | `Authorization: Bearer {access_token}` |
+| Initiate Payment, Verify Omnichannel Transaction Status, Dynamic Bharat QR | `X-PayU-Reseller-UUID`, `X-Partner-Token`, and `Authorization` |
+| Static QR | `X-PayU-Reseller-UUID`, `X-PayU-Merchant-ID`, `X-Partner-Token`, `X-Partner-Hash`, and `X-Partner-Request-ID` |
+| Bolt Generate Hash | `Authorization`, `X-PayU-Reseller-UUID`, and `X-PayU-Merchant-ID` |
+| Payment Success, Payment Failure, Payment Cancelled, Payment S2S Callback, Partner Refund Callback, Static QR Callback, Bolt Payment Callback | PayU calls the route. The page documents the post PayU receives. |
 
 ***
 
 ## Endpoints
 
-### Payment callbacks
+These are the pages in this section.
+
+### Payment Callbacks
+
+PayU receives the hosted-checkout result, the server-to-server payment postback, and the refund notification.
 
 <Cards>
   <Card title="Payment Success Redirect Callback" href="https://docs.payu.in/reference/partner-payment-success-api" target="_blank">
-    PayU receives a successful hosted-checkout result, then sends the customer to surl.
+    POST /partner/paymentSuccess. PayU receives the hosted-checkout result after a successful payment, then sends the customer to surl.
   </Card>
   <Card title="Payment Failure Redirect Callback" href="https://docs.payu.in/reference/partner-payment-failed-api" target="_blank">
-    PayU receives a failed hosted-checkout result, then sends the customer to furl.
+    POST /partner/paymentFailed. PayU receives the failed result. error and error_Message carry the gateway reason, then the customer is sent to furl.
   </Card>
   <Card title="Payment Cancelled Redirect Callback" href="https://docs.payu.in/reference/partner-payment-cancelled-api" target="_blank">
-    PayU receives the result when the customer cancels on hosted checkout.
+    POST /partner/paymentCancelled. PayU receives the hosted-checkout result when the customer cancels.
   </Card>
   <Card title="Payment S2S Callback" href="https://docs.payu.in/reference/partner-payment-callback-api" target="_blank">
-    Server-to-server payment postback. PayU returns an empty HTTP 200.
+    POST /partner/paymentCallback. Server-to-server payment postback. PayU returns HTTP 200 with an empty body after it notifies the partner webhook.
   </Card>
   <Card title="Partner Refund Callback" href="https://docs.payu.in/reference/partner-refund-callback-api" target="_blank">
-    Refund notification. The body can be the standard or the migrated refund callback.
+    POST /partner/refundCallback. Refund notification. The body can be the standard refund callback or the migrated callback (paymentId, refundId, refundAmount, refundStatus).
   </Card>
 </Cards>
 
 ### Card OTP
 
+Submit the OTP for a card payment, or send it again for the same reference id.
+
 <Cards>
   <Card title="Submit Card OTP" href="https://docs.payu.in/reference/partner-submit-card-otp-api" target="_blank">
-    Submit the OTP for a reference id. A verified OTP returns the transaction status and mihpayid.
+    POST /partner/submitCardOtp. Requires merchant_id, reseller_id, hash, reference_id, and otp. A verified OTP returns txnStatus, mihpayid, and "OTP verified successfully".
   </Card>
   <Card title="Resend Card OTP" href="https://docs.payu.in/reference/partner-resend-card-otp-api" target="_blank">
-    Resend the OTP for the same reference id.
+    POST /partner/resendCardOtp. Requires merchant_id, reseller_id, hash, and reference_id. A success message is "OTP resent successfully".
   </Card>
 </Cards>
 
 ### Offers
 
+Fetch the offers for a merchant, or validate one offer before payment.
+
 <Cards>
   <Card title="Fetch Offers" href="https://docs.payu.in/reference/partner-fetch-offer-api" target="_blank">
-    Return offers for a merchant. Amount, offer keys, payment id, user token, and SKU details are optional.
+    POST /partner/fetchOffer. Requires merchant_id, reseller_id, and hash. amount, offerKeys, paymentId, userToken, and skusDetail are optional. The response is the Offers service JSON.
   </Card>
   <Card title="Validate Offer" href="https://docs.payu.in/reference/partner-validate-offer-api" target="_blank">
-    Check an offer against the payment category and the customer.
+    POST /partner/validateOffer. Requires merchant_id, reseller_id, hash, paymentDetail.category, and userDetail.userToken. The response is the Offers validate JSON.
   </Card>
 </Cards>
 
 ### EMI
 
+Read an EMI amount, the bins that can use EMI, or a calculated EMI plan.
+
 <Cards>
   <Card title="Get EMI Amount" href="https://docs.payu.in/reference/partner-get-emi-amount-api" target="_blank">
-    EMI amount for a merchant and a transaction amount.
+    POST /partner/getEmiAmount. Requires merchant_id and amount. merchant_id must be digits. bankcode and tenure can be sent with the request.
   </Card>
   <Card title="Get Eligible EMI Bins" href="https://docs.payu.in/reference/partner-get-eligible-bins-api" target="_blank">
-    Bins that are eligible for EMI.
+    POST /partner/getEligibleBins. Requires merchant_id, type, and var2. The request is forwarded to the eligible-bins service.
   </Card>
   <Card title="Calculate EMI" href="https://docs.payu.in/reference/partner-calculate-emi-api" target="_blank">
-    Calculate EMI for a merchant. Amount and bank code can be sent with the request.
+    POST /partner/calculateEmi. Requires merchant_id. amount and bankcode can be sent with the request.
   </Card>
 </Cards>
 
-### Payment links
+### Payment Links
+
+Read a payment link, start payment on it, and verify the transaction.
 
 <Cards>
   <Card title="Payment Link Metadata" href="https://docs.payu.in/reference/partner-payment-link-metadata-api" target="_blank">
-    Amount, currency, description, status, and expiry for a payment link.
+    GET /partner/payment-link/metadata. Query parameter payment_link. Returns amount, currency, description, payment_link_id, payment_link_status, and expiry_time.
   </Card>
   <Card title="Payment Link Payment" href="https://docs.payu.in/reference/partner-payment-link-payment-api" target="_blank">
-    Start payment with the payment link id and the customer phone number.
+    POST /partner/payment-link/payment. Requires payment_link_id and phone_number (5 to 16 digits). redirect_url is optional.
   </Card>
   <Card title="Verify Payment Link Transaction" href="https://docs.payu.in/reference/partner-payment-link-verify-payment-api" target="_blank">
-    Payment status for an order reference and a payment link.
+    GET /partner/payment-link/verifyPayment. Requires order_ref_id and payment_link_id. Returns order_status and the payments on that order.
   </Card>
 </Cards>
 
-### QR and omnichannel
+### QR and Omnichannel
+
+Start an omnichannel payment, check its status, or create a dynamic Bharat QR or a static QR.
 
 <Cards>
   <Card title="Initiate Payment" href="https://docs.payu.in/reference/partner-initiate-payment-api" target="_blank">
-    Start an omnichannel payment for an account id.
+    POST /partner/initiatePayment. Requires accountId. txnId, amount, and callBackActions are read when they are sent. The body is forwarded to Core Payments.
   </Card>
   <Card title="Verify Omnichannel Transaction Status" href="https://docs.payu.in/reference/partner-transaction-verify-status-api" target="_blank">
-    Check the status of an omnichannel transaction.
+    POST /partner/transaction/verifyStatus. txnId is forwarded with the rest of the body to the Bharat QR status command.
   </Card>
   <Card title="Dynamic Bharat QR" href="https://docs.payu.in/reference/partner-dbqr-api" target="_blank">
-    Create a dynamic Bharat QR for a soundbox terminal.
+    POST /partner/dbqr. Reads vendorTransactionId, soundBoxTerminalId, expiryTime, and mihpayId when they are sent. The body is forwarded to the dynamic Bharat QR API.
   </Card>
   <Card title="Static QR" href="https://docs.payu.in/reference/partner-static-qr-api" target="_blank">
-    Create a reusable static QR for a merchant VPA.
+    POST /partner/staticQr. Requires merchantVpa. Returns a reusable QR. X-Partner-Hash is the SHA-512 of merchantId, the raw body, and the client secret.
   </Card>
   <Card title="Static QR Callback" href="https://docs.payu.in/reference/partner-static-qr-callback-api" target="_blank">
-    PayU receives the static QR payment result.
+    POST /partner/staticQrCallback. PayU receives the static QR result. field4 (merchant VPA) and key are required.
   </Card>
 </Cards>
 
 ### Bolt
 
+Build the payload passed to bolt.launch, and receive the Bolt checkout postback.
+
 <Cards>
   <Card title="Bolt Generate Hash" href="https://docs.payu.in/reference/partner-bolt-generate-hash-api" target="_blank">
-    Build the payload that is passed to bolt.launch.
+    POST /partner/bolt/generateHash. Requires txnid, amount, productinfo, firstname, email, phone, surl, and furl. The 200 body is the bolt.launch payload.
   </Card>
   <Card title="Bolt Payment Callback" href="https://docs.payu.in/reference/partner-bolt-payment-callback-api" target="_blank">
-    PayU receives the Bolt checkout postback and returns an empty body.
+    POST /partner/bolt/paymentCallback. PayU receives the Bolt checkout postback and returns an empty body.
   </Card>
 </Cards>
 
@@ -176,18 +180,30 @@ Each API page has the full path. The header set depends on the API.
 
 ## How It Works
 
-<Accordion title="Get an access token" icon="fad fa-key-skeleton-left-right">
-  Send the partner access token as `Authorization: Bearer {access_token}` on Bearer-token APIs. Older partner accounts use the <Anchor target="_blank" href="https://docs.payu.in/reference/token-generation-flow-for-old-partner-merchants">token generation flow for partner payments</Anchor>. QR and Bolt calls also send the reseller headers listed on those pages.
+<Accordion title="Payment Callbacks" icon="fad fa-hand-point-left">
+  Open Payment Callbacks for the five routes PayU calls: payment success, payment failure, payment cancelled, the server-to-server payment callback, and the refund callback.
 </Accordion>
 
-<Accordion title="Collect the payment" icon="fad fa-credit-card">
-  Start the payment with <Anchor target="_blank" href="https://docs.payu.in/reference/collect-payment-for-partners">Collect Payment for Partners</Anchor>, a payment link, QR, or Bolt.
+<Accordion title="Card OTP" icon="fad fa-key-skeleton-left-right">
+  Open Card OTP to submit an OTP for a reference id, or to resend that OTP.
 </Accordion>
 
-<Accordion title="Receive the result" icon="fad fa-hand-point-left">
-  PayU posts the hosted-checkout result to the success, failure, or cancelled route, and posts the server-to-server result to the payment callback. Refunds arrive on the refund callback.
+<Accordion title="Offers" icon="fad fa-tags">
+  Open Offers to fetch offers for a merchant, or to validate one offer against the payment category and the customer.
 </Accordion>
 
-<Accordion title="Check status when you need it" icon="fab fa-searchengin">
-  Use verify payment under Collect Payment for Partners, verify payment link, or verify omnichannel transaction status for the channel you used.
+<Accordion title="EMI" icon="fad fa-calculator">
+  Open EMI to get an EMI amount, list eligible bins, or calculate an EMI plan.
+</Accordion>
+
+<Accordion title="Payment Links" icon="fad fa-link">
+  Open Payment Links to read a link, start payment with a phone number, and verify the transaction.
+</Accordion>
+
+<Accordion title="QR and Omnichannel" icon="fad fa-qrcode">
+  Open QR and Omnichannel to initiate a payment, verify its status, create a dynamic Bharat QR, create a static QR, or receive the static QR callback.
+</Accordion>
+
+<Accordion title="Bolt" icon="fad fa-credit-card">
+  Open Bolt to generate the hash payload for bolt.launch, then receive the Bolt payment callback.
 </Accordion>

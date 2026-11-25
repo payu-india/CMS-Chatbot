@@ -1,7 +1,7 @@
 ---
 title: EMI [New]
 excerpt: >-
-  Read the EMI amount, the bins that can pay by EMI, or a calculated EMI plan.
+  Get an EMI amount, the bins eligible for EMI, or a calculated EMI plan.
 deprecated: false
 hidden: true
 link:
@@ -21,40 +21,42 @@ next:
       title: Calculate EMI API [New]
       type: basic
 ---
-Read EMI pricing and the cards that can pay by EMI. `merchant_id` is required on every call. The other fields depend on the API.
+These three pages answer an EMI question for a merchant. Get EMI Amount returns the EMI for an amount. Get Eligible EMI Bins returns the bins that can pay by EMI. Calculate EMI calculates a plan for that merchant.
 
 ***
 
 ## Authentication
 
-All EMI APIs use a **Bearer token**.
+All three pages use a **Bearer token**.
 
 | Environment | Base URL |
 | :---------- | :------- |
 | Test        | `https://test-partnerapilayer.payu.in/apilayer` |
 | Production  | `https://api.payu.in` |
 
-Send the token on every call as `Authorization: Bearer {access_token}`.
+Send `Authorization: Bearer {access_token}` on every call. `merchant_id` is required on all three pages.
 
-<Callout icon="📘" theme="info">
-  ### **Access token**
-
-  Older partner accounts generate this token with the <Anchor target="_blank" href="https://docs.payu.in/reference/token-generation-flow-for-old-partner-merchants">token generation flow for partner payments</Anchor>.
-</Callout>
+| Page | Route | Required body |
+| :--- | :---- | :------------ |
+| Get EMI Amount | `POST /partner/getEmiAmount` | `merchant_id` (digits), `amount` |
+| Get Eligible EMI Bins | `POST /partner/getEligibleBins` | `merchant_id`, `type`, `var2` |
+| Calculate EMI | `POST /partner/calculateEmi` | `merchant_id` (digits) |
 
 ***
 
 ## Endpoints
 
+These are the EMI pages.
+
 <Cards>
   <Card title="Get EMI Amount" href="https://docs.payu.in/reference/partner-get-emi-amount-api" target="_blank">
-    EMI amount for a merchant and a transaction amount. Bank code and tenure can be sent with the request.
+    POST /partner/getEmiAmount. EMI for a merchant and an amount. bankcode and tenure can be sent with the request. The request is forwarded to the EMI-as-per-interest service.
   </Card>
   <Card title="Get Eligible EMI Bins" href="https://docs.payu.in/reference/partner-get-eligible-bins-api" target="_blank">
-    Bins that are eligible for EMI. merchant_id, type, and var2 are required.
+    POST /partner/getEligibleBins. Bins eligible for EMI. Requires merchant_id, type, and var2. The request is forwarded to the eligible-bins service.
   </Card>
   <Card title="Calculate EMI" href="https://docs.payu.in/reference/partner-calculate-emi-api" target="_blank">
-    Calculate EMI for a merchant. Amount and bank code can be sent with the request.
+    POST /partner/calculateEmi. Calculates EMI for a merchant. amount and bankcode can be sent with the request. reseller_id is not forwarded.
   </Card>
 </Cards>
 
@@ -62,14 +64,14 @@ Send the token on every call as `Authorization: Bearer {access_token}`.
 
 ## How It Works
 
-<Accordion title="Check the amount" icon="fad fa-calculator">
-  Call Get EMI Amount with `merchant_id` and `amount`. `merchant_id` must be digits.
+<Accordion title="Get the EMI amount" icon="fad fa-calculator">
+  Call Get EMI Amount with `merchant_id` and `amount`. Add `bankcode` and `tenure` when you want them included.
 </Accordion>
 
-<Accordion title="Check the card bins" icon="fad fa-credit-card">
+<Accordion title="Check eligible bins" icon="fad fa-credit-card">
   Call Get Eligible EMI Bins with `merchant_id`, `type`, and `var2`.
 </Accordion>
 
 <Accordion title="Calculate a plan" icon="fad fa-list-ol">
-  Call Calculate EMI with `merchant_id`. Amount and bank code are forwarded when you send them.
+  Call Calculate EMI with `merchant_id`. Add `amount` and `bankcode` when you want them included.
 </Accordion>
