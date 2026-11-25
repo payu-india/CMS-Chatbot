@@ -5,7 +5,9 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU helps Indian businesses accept payments online and in-person using UPI, cards, net banking, wallets, EMI, and more. Whether you are a business owner looking to get started today or a developer building a custom checkout, this page gets you to your first payment.
+# Start Here
+
+PayU helps Indian businesses accept payments online and in-person — UPI, cards, net banking, wallets, EMI, and more. Whether you are a business owner looking to get started today or a developer building a custom checkout, this page gets you to your first payment.
 
 ***
 
@@ -53,7 +55,7 @@ PayU helps Indian businesses accept payments online and in-person using UPI, car
 
 ## Not Sure Where to Start?
 
-Tell us a bit about your business and we'll point you to the right integration. It takes about a minute.
+Tell us a bit about your business and we'll point you to the right integration — takes about a minute.
 
 <Callout icon="far fa-lightbulb-on" theme="default">
   ### **No technical setup needed?**
@@ -153,20 +155,17 @@ Explore PayU's payment collection options by channel.
 
 <br />
 
-<details>
-<summary>**Compare all integration options in detail →**</summary>
-
-| Integration Type                                 | Dev Effort    | PCI Compliance Needed                | Customization                           | Best For                                  |
-| :----------------------------------------------- | :------------ | :----------------------------------- | :-------------------------------------- | :---------------------------------------- |
-| **No Code / Low Code** (Payment Links & Buttons) | Very Low      | No                                   | Minimal (branding, logo, colors)        | Small merchants, instant setup            |
-| **eCommerce Plugins**                            | Very Low      | No                                   | Minimal                                 | Shopify, WooCommerce, Magento merchants   |
-| **PayU Hosted Checkout**                         | Low           | No                                   | Minimal (branding, logo, colors)        | SMBs, merchants looking for quick go-live |
-| **Merchant Hosted Checkout**                     | Medium        | Yes (cards handled on merchant site) | High (full UI control)                  | Businesses with PCI DSS compliance        |
-| **Server-to-Server**                             | High          | Yes                                  | Very High (own checkout flow + backend) | Large merchants, marketplaces             |
-| **CommercePro / Checkout Plus**                  | Medium        | No (PayU handles sensitive data)     | Medium (optimised UI)                   | Businesses optimising for conversion      |
-| **Mobile SDKs**                                  | Low to Medium | Dependent on checkout type           | Medium (native customisation)           | Native Android, iOS, and hybrid apps      |
-
-</details>
+<Accordion title="Compare all integration options in detail">
+  | Integration Type                                 | Dev Effort    | PCI Compliance Needed                | Customization                           | Best For                                  |
+  | :----------------------------------------------- | :------------ | :----------------------------------- | :-------------------------------------- | :---------------------------------------- |
+  | **No Code / Low Code** (Payment Links & Buttons) | Very Low      | No                                   | Minimal (branding, logo, colors)        | Small merchants, instant setup            |
+  | **eCommerce Plugins**                            | Very Low      | No                                   | Minimal                                 | Shopify, WooCommerce, Magento merchants   |
+  | **PayU Hosted Checkout**                         | Low           | No                                   | Minimal (branding, logo, colors)        | SMBs, merchants looking for quick go-live |
+  | **Merchant Hosted Checkout**                     | Medium        | Yes (cards handled on merchant site) | High (full UI control)                  | Businesses with PCI DSS compliance        |
+  | **Server-to-Server**                             | High          | Yes                                  | Very High (own checkout flow + backend) | Large merchants, marketplaces             |
+  | **CommercePro / Checkout Plus**                  | Medium        | No (PayU handles sensitive data)     | Medium (optimised UI)                   | Businesses optimising for conversion      |
+  | **Mobile SDKs**                                  | Low to Medium | Dependent on checkout type           | Medium (native customisation)           | Native Android, iOS, and hybrid apps      |
+</Accordion>
 
 ***
 
@@ -212,8 +211,10 @@ Once your core integration is live, explore these to improve checkout, expand re
 * **Payouts** → [Introduction to Payouts](https://docs.payu.in/docs/introduction-to-payouts/)
 * **Bill Payments (BBPS)** → [Connect Agent API](https://docs.payu.in/docs/connect-agent-api-integration) · [Recharge API](https://docs.payu.in/docs/recharge-api-integration)
 
-<Callout icon="📞" theme="default">
-  ### **Contact PayU**
+***
 
+## Contact PayU
+
+<Callout icon="📞" theme="default">
   Facing issues during integration or want to enable a PayU offering? Reach out to [PayU Support](mailto:integration@payu.in). Include your logs, error messages, and steps to reproduce — it speeds up the resolution.
 </Callout>
