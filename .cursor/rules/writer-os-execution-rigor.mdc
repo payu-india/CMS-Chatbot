@@ -9,6 +9,8 @@ Every substantive Writer OS artefact includes these sections **by name**. Missin
 
 Working artefacts (briefs, canvases, annexures, reviews) go in `writer-os/work/<slug>/`. Published pages go only under `docs/`, `reference/` docs, `recipes/`, or `custom_blocks/` after the user confirms that stage. When the user has asked for a documentation change, commit the finished edit and push the `v1_{branch}` feature branch in the same run. Do not wait for a separate push instruction. Do not merge. Do not push `v1`. A question that does not ask for an edit gets no commit. `writer-doc-update` and `writer-restructure` also open a pull request into `v1`.
 
+When the user asks for a PM review, write a decision brief and do not commit it unless asked. Changes are bullet points. Say an agent made the edits, that the same exercise will run on other products, and that issues should be reported back as feedback before the next product. When the user says to update Writer OS with that feedback, add it to these rules and the skills, commit, and push the Writer OS `v1_{branch}`. Do not merge.
+
 `writer-os/` is internal. Never list it in `_order.yaml` or `_readme.yaml`.
 
 ## 1. Decision summary

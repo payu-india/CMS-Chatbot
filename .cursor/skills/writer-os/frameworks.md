@@ -37,6 +37,16 @@ Changing a documented endpoint, parameter, hash string, or error behavior is two
 
 Name how the doc fails in the wild: wrong hash, test key used in live, missing error branch, or a duplicate page that diverges. A change whose only success line is "clearer docs," with no failure signal, is incomplete.
 
+## WR-7 Review shape
+
+A new API page is markdown like the pages beside it. Place it in the existing section it belongs to. Open a new category only when it does not fit, and give that category an `index.md` plus an `_order.yaml` entry.
+
+The category `index.md` is an overview of the pages that category lists. Use the Payment Links overview shape: introduction, authentication when those pages share one, cards that link to each child page, and a how-it-works sequence built from those pages. A summary that describes a different product is a defect.
+
+Until a reviewer accepts the set, each new page is `hidden: true` and the title ends with ` [New]`.
+
+A PM handoff is a decision brief, not a catalogue of equal pages. Changes are bullet points. Name the live pages that changed, the new sections, and the claims that still need a human. Say the work was done by an agent and that reported issues become feedback before the exercise runs on another product.
+
 ## Segment header
 
 Every artefact names one primary reader segment. Merchant-hosted checkout, PayU-hosted checkout, payouts, BBPS, partners, and WhatsApp payment links do not share one integration story. If the scope canvas lists two segments, say what is shared and what is not.

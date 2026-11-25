@@ -32,7 +32,7 @@ Produce a reference page whose tables match a spec file you opened. Reasoning st
 1. Context check. No spec path: stop and ask. Do not choose a similarly named spec on your own.
 2. Read the operation. Extract method, path, required and optional parameters, and documented errors. If the spec and an existing `docs/` page disagree, list the conflict in the annexure and do not pick a winner.
 3. Write `writer-os/work/<slug>/03-api-ANNEXURE.md` first (six rigor sections, coverage counts).
-4. Write or edit only the in-scope page. Preserve frontmatter unless asked. Use tables:
+4. Write or edit only the in-scope page as markdown like the neighboring reference pages, unless the user asks for an OpenAPI page. A new page is `hidden: true` and the title ends with ` [New]`. Preserve frontmatter on a page that already existed unless asked. Match that section's parameter-table columns. Use this table only when the section already uses it:
 
 | Name | In | Type | Required | Description | Source |
 |------|----|------|----------|-------------|--------|
@@ -71,6 +71,7 @@ A required spec field missing from the table. A table field absent from the spec
 - Merging two operations onto one page when the canvas named one.
 - Example JSON that includes a field the table does not list, or that omits a required or optional table field.
 - A new parameter row that uses a different type style than the rest of that table.
+- An OpenAPI file, or a six-column table, in a section whose pages are three-column markdown.
 
 ## Handoff
 
@@ -80,4 +81,4 @@ A required spec field missing from the table. A table field absent from the spec
 
 ## Frameworks applied
 
-WR-2, WR-3, WR-4, WR-5
+WR-2, WR-3, WR-4, WR-5, WR-7

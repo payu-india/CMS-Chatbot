@@ -35,20 +35,22 @@ Write the reader-facing guide, and keep the reasoning in an annexure so the publ
 
 ```yaml
 ---
-title:
+title: Page title [New]
 excerpt:
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
 ```
 
+A page this change creates is markdown like the neighboring pages, not an OpenAPI page, unless the user asks for one. Set `hidden: true` and end the title with ` [New]`. Do not hide or retitle a page that already existed.
+
 4. Page body, in order: the reader task, prerequisites, steps, a parameter table when the page has fields, errors linked from `payment-error-codes.json` when the page has errors, and a link to an existing custom block instead of a pasted duplicate.
 5. Hash content: link `custom_blocks/HashingSample.md`. Quote the payment or general formula only when this page is about that hash. Do not invent a formula.
 6. Mark any sentence you could not tie to an opened file as **UNVERIFIED** in the annexure, not as confident prose. Prefer omitting it.
 7. The page and the annexure must name each other.
-8. Do not edit `_order.yaml`, `RECYCLE BIN/`, or files outside scope. If the page has a parameter table, its sample includes every required and optional field, and any new row uses that table's existing type and required markup.
+8. Do not edit `RECYCLE BIN/` or files outside scope. If the user needs the new pages to appear when they switch the ReadMe branch, add `index.md` for a new category and list that category in the parent `_order.yaml`. The index overviews only the pages in that category, in the shape of `reference/Self-Serve Products/payment-links/index.md`. Place a page in an existing section when it belongs there. If the page has a parameter table, its sample includes every required and optional field, and any new row uses that table's existing type and required markup.
 9. Score the pair. Commit and push the feature branch. Ask the user to confirm the sentence most likely to be wrong. Stop. Do not merge.
 
 ## Quantitative method
@@ -75,7 +77,9 @@ End the page with a single line: `Decision record: writer-os/work/<slug>/03-page
 ## Anti-patterns
 
 - Writing the page before the annexure.
-- Changing `title`, `excerpt`, `deprecated`, `hidden`, or `metadata` when the task did not ask.
+- Changing `title`, `excerpt`, `deprecated`, `hidden`, or `metadata` on a page that already existed, when the task did not ask. A new page still uses `hidden: true` and ` [New]`.
+- A category summary that describes products the category does not contain.
+- An OpenAPI file for a section whose pages are markdown, when the user did not ask for one.
 - A step list with no reader task in the opening.
 - Code samples as the only copy of the example when the scope includes `writer-recipe`. Link the recipe path instead, or leave a placeholder the recipe skill will fill, and say which.
 
@@ -85,4 +89,4 @@ End the page with a single line: `Decision record: writer-os/work/<slug>/03-page
 
 ## Frameworks applied
 
-WR-1, WR-3, WR-4
+WR-1, WR-3, WR-4, WR-7

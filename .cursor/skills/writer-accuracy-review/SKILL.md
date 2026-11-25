@@ -45,7 +45,7 @@ All four lenses are in play. Secret leakage fails the stage on any non-placehold
 
 ## Tripwires and rollback
 
-An UNVERIFIED required field. A hash that does not match `custom_blocks/HashingSample.md`. An error code absent from both the spec and `payment-error-codes.json`. A sample that omits a required or optional table field, or a new table row whose type or required markup does not match the other rows. A recipe field that failed parity.
+An UNVERIFIED required field. A hash that does not match `custom_blocks/HashingSample.md`. An error code absent from both the spec and `payment-error-codes.json`. A sample that omits a required or optional table field, or a new table row whose type or required markup does not match the other rows. A category summary that does not overview its own pages. A new page that is not `hidden: true` or whose title does not end with ` [New]`. An OpenAPI file added for a markdown section. A recipe field that failed parity.
 
 **Rollback owner:** Editor. Page stays as drafted until the technical writer applies a fix the user confirms.
 

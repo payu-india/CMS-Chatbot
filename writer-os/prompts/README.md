@@ -32,3 +32,4 @@ The agent opens `writer-os/prompts/<id>.md`, uses the `skill` named there, and a
 |---|---|---|
 | [doc-update.md](doc-update.md) | `writer-doc-update` | A dev-docs JIRA ticket names an existing page and the change |
 | [restructure.md](restructure.md) | `writer-restructure` | You have an information architecture or a reference doc for a new tree |
+| [product-api-docs.md](product-api-docs.md) | `writer-api-reference` | Document a product's APIs from source, as markdown pages, for a PM review |
