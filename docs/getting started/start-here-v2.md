@@ -5,25 +5,23 @@ hidden: true
 metadata:
   robots: index
 ---
-# Start Here
-
-PayU helps Indian businesses accept payments online and in-person — UPI, cards, net banking, wallets, EMI, and more. Whether you are a business owner looking to get started today or a developer building a custom checkout, this page gets you to your first payment.
+PayU helps Indian businesses accept payments online and in-person — UPI, cards, net banking, wallets, EMI, and more. Use this page to find the right integration for your business and get to your first payment.
 
 ***
 
-<Callout icon="📘" theme="info">
-  ### **Get Your Credentials First**
+## Choose Your Integration
 
-  Every PayU integration needs two things: your **Merchant Key** and **Salt**. You will not be able to test or go live without them.
+Not sure which integration to pick? Start with the goal cards below or answer a few quick questions and we'll recommend the right path for you.
 
-  **Don't have an account yet?** [Set Up Your Account →](https://docs.payu.in/docs/set-up-your-account)
+<Callout icon="far fa-lightbulb-on" theme="default">
+  ### **No technical setup needed?**
 
-  **Already have an account?** Find your credentials in the PayU Dashboard under **Developer → API Details**.
+  [Payment Links](https://docs.payu.in/docs/payment-links-dashboard) and [Payment Buttons](https://docs.payu.in/docs/payment-buttons) work straight from your PayU Dashboard — no developer or website required.
 </Callout>
 
-***
+<br />
 
-## What Would You Like To Do?
+### What Would You Like To Do?
 
 <Cards>
   <Card title="Accept payments on my website" href="https://docs.payu.in/docs/introduction-web" icon="far fa-globe">
@@ -51,27 +49,17 @@ PayU helps Indian businesses accept payments online and in-person — UPI, cards
   </Card>
 </Cards>
 
-***
+<br />
 
-## Not Sure Where to Start?
+### Help Me Choose
 
 Tell us a bit about your business and we'll point you to the right integration — takes about a minute.
 
-<Callout icon="far fa-lightbulb-on" theme="default">
-  ### **No technical setup needed?**
-
-  [Payment Links](https://docs.payu.in/docs/payment-links-dashboard) and [Payment Buttons](https://docs.payu.in/docs/payment-buttons) work straight from your PayU Dashboard — no developer or website required.
-</Callout>
+<PayUQuickStartWizard />
 
 <br />
 
-<PayUQuickStartWizard />
-
-***
-
-## Collect Payments
-
-Explore PayU's payment collection options by channel.
+### Explore by Product
 
 <Tabs>
   <Tab title="Online">
@@ -123,9 +111,9 @@ Explore PayU's payment collection options by channel.
   </Tab>
 </Tabs>
 
-***
+<br />
 
-## Integrate by Platform
+### Explore by Platform
 
 <Tabs>
   <Tab title="Website">
@@ -169,20 +157,77 @@ Explore PayU's payment collection options by channel.
 
 ***
 
-## Developer Resources
+## Getting Started
+
+Once you have chosen your integration, here is what you need to begin building.
+
+<Callout icon="📘" theme="info">
+  ### **Get Your Merchant Key and Salt**
+
+  Every PayU integration — however simple or complex — requires your **Merchant Key** and **Salt**. You cannot test or go live without them.
+
+  **Don't have an account yet?** [Set Up Your Account →](https://docs.payu.in/docs/set-up-your-account)
+
+  **Already have an account?** Find your credentials in the PayU Dashboard under **Developer → API Details**.
+</Callout>
+
+<br />
+
+### What to Do Next
+
+1. **Get your credentials** — Retrieve your Merchant Key and Salt from the PayU Dashboard
+2. **Build on the test environment** — All integrations support a test mode; always build and validate there first
+3. **Simulate transactions** — Use test cards, UPI IDs, and wallets to cover different payment scenarios
+4. **Review the production checklist** — Make sure your integration handles all edge cases before going live
+5. **Go live** — Switch to your production credentials and you're done
+
+<br />
 
 <Callout icon="🛠️" theme="default">
+  ### **Developer Resources**
+
   * **Merchant Key & Salt** → [Access Merchant Key and Salt](https://docs.payu.in/docs/generate-merchant-key-and-salt-copy)
   * **Test Credentials** (Card, UPI, Wallet, BNPL) → [Test Cards, UPI IDs and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets)
   * **API Reference** → [Explore PayU APIs](https://docs.payu.in/reference/introduction-api-reference)
   * **Postman Collection** → [PayU Integration Workspace](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/overview)
+  * **Production Checklist** → [Go-Live Checklist](https://docs.payu.in/docs/production-checklist)
 </Callout>
 
 ***
 
-## Enhance Your Integration
+## Frequently Asked Questions
 
-Once your core integration is live, explore these to improve checkout, expand reach, and streamline operations.
+<AccordionGroup>
+  <Accordion title="What payment modes does PayU support?">
+    PayU supports 100+ payment modes including UPI, credit and debit cards (Visa, Mastercard, RuPay, Amex), net banking (50+ banks), wallets (Paytm, PhonePe, Amazon Pay, and others), EMI (bank EMI, no-cost EMI, cardless EMI), BNPL (Buy Now Pay Later), and international cards. The available modes depend on your merchant account configuration.
+  </Accordion>
+
+  <Accordion title="Do I need PCI compliance to integrate PayU?">
+    It depends on your integration type. If you use **PayU Hosted Checkout**, **Payment Links**, or **Payment Buttons**, PayU handles all sensitive card data and you do not need PCI compliance. If you use **Merchant Hosted Checkout** or **Server-to-Server**, card data may pass through your servers and PCI DSS compliance is required. When in doubt, choose Hosted Checkout — it is the fastest and safest path.
+  </Accordion>
+
+  <Accordion title="What is the difference between PayU Hosted and Merchant Hosted Checkout?">
+    With **PayU Hosted Checkout**, customers are redirected to PayU's payment page — you do not handle any card data, and there is no PCI compliance burden on your side. With **Merchant Hosted Checkout**, the payment UI stays on your website (you control the design and experience), but PayU processes the transaction on the backend. Merchant Hosted gives you more control but requires you to handle PCI compliance.
+  </Accordion>
+
+  <Accordion title="How do I test my integration before going live?">
+    PayU provides a full test environment. Use the test Merchant Key and Salt (available in your PayU Dashboard under test mode), and use the [test cards, UPI IDs, and wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets) to simulate different payment scenarios including success, failure, and pending states. Never test with real payment details.
+  </Accordion>
+
+  <Accordion title="How long does it take to integrate PayU?">
+    It depends on the integration type. **Payment Links and Buttons** take minutes — no coding at all. **PayU Hosted Checkout** can typically be live within a few hours. **Merchant Hosted Checkout** or **Server-to-Server** integrations typically take a few days to a few weeks, depending on your team's capacity and the complexity of your checkout flow.
+  </Accordion>
+
+  <Accordion title="What do I need before I can start?">
+    You need three things: a **registered and activated PayU merchant account**, your **Merchant Key and Salt** (from the PayU Dashboard under Developer → API Details), and a **server to receive payment callbacks** (required for most integrations except Payment Links and Buttons). If you don't have an account yet, [set one up here](https://docs.payu.in/docs/set-up-your-account).
+  </Accordion>
+</AccordionGroup>
+
+***
+
+## Offerings & Other Products
+
+Once your core integration is live, explore these to enhance your checkout, expand your reach, and streamline operations.
 
 **Enhance Checkout**
 
@@ -202,14 +247,12 @@ Once your core integration is live, explore these to improve checkout, expand re
 * [Third-Party Verification (TPV)](https://docs.payu.in/docs/introduction-to-payu-tpv) — Verify that payments originate from a registered bank account
 * [Refunds](https://docs.payu.in/docs/introduction-refunds) — Full and partial refund APIs with status tracking
 
-***
+**Other Products**
 
-## Other Products
-
-* **MCP (Model Context Protocol)** → [PayU Remote MCP Server](https://docs.payu.in/docs/payu-remote-mcp-server-integration)
-* **Partner Integration** → [Partner Program Overview](https://docs.payu.in/docs/payu-partner-program-overview#/)
-* **Payouts** → [Introduction to Payouts](https://docs.payu.in/docs/introduction-to-payouts/)
-* **Bill Payments (BBPS)** → [Connect Agent API](https://docs.payu.in/docs/connect-agent-api-integration) · [Recharge API](https://docs.payu.in/docs/recharge-api-integration)
+* [MCP (Model Context Protocol)](https://docs.payu.in/docs/payu-remote-mcp-server-integration) — Communicate with PayU APIs using the Model Context Protocol
+* [Partner Integration](https://docs.payu.in/docs/payu-partner-program-overview#/) — Onboard and manage sub-merchants under your platform
+* [Payouts](https://docs.payu.in/docs/introduction-to-payouts/) — Disburse payments to customers, vendors, or employees
+* [Bill Payments (BBPS)](https://docs.payu.in/docs/connect-agent-api-integration) — Collect utility and recharge bill payments
 
 ***
 
