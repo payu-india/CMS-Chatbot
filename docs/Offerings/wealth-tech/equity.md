@@ -102,7 +102,7 @@ Equity recurring debits use the standard PayU standing instruction (SI) flow wit
 <Callout icon="📘" theme="info">
   ### Reference
 
-  See <Anchor target="_blank" href="doc:introduction-recurring-payments-integration">Recurring Payments Integration</Anchor> for the full SI flow — mandate registration, pre-debit notification, and the `si_transaction` call.
+  See <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-recurring-payments-integration">Recurring Payments Integration</Anchor> for the full SI flow — mandate registration, pre-debit notification, and the `si_transaction` call.
 </Callout>
 
 ***
@@ -148,7 +148,7 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 
 Before you confirm the order, verify the payment status with PayU using one of these methods:
 
-- **Webhooks:** PayU sends the payment status to your server in real time. See [Webhooks for Payments](doc:webhooks).
+- **Webhooks:** PayU sends the payment status to your server in real time. See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks for Payments</Anchor>.
 - **Verify Payment API:** Send a `POST` request with `command=verify_payment` and `var1=<txnid>`. Hash: `sha512(key|command|var1|SALT)`.
 
 | Environment | Verify Payment API endpoint                            |
