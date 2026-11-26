@@ -110,7 +110,6 @@ You can perform the following actions after a button is created:
         - **Required Fields**
         - **Success URL**
         - **Cancel URL**
-        - **Success URL**
         - **Failure URL**
 
         <Image src="https://files.readme.io/f2c11d29400ec27b30076b9ad8064147caf5cabaaf8bdff9416e5b31fe9a8864-Screenshot_2026-09-30_at_12.01.10_PM.png" align="center" caption="Button and Customer Details" border={true} />
