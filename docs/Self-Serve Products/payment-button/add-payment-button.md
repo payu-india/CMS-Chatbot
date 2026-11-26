@@ -261,16 +261,16 @@ After your customer clicks the button and completes a payment:
 
 ## What If My Customer Wants the Money Back?
 
-<Cards>
-  <Card title="Refunds" href="doc:introduction-refunds" icon="fad fa-arrow-rotate-left">
-    Return all or part of a payment to your customer — directly from the PayU Dashboard.
-  </Card>
+<Tabs>
+  <Tab title="Refunds">
+    Use <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-refunds">PayU refunds</Anchor> to initiate. Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API
+  </Tab>
 
-  <Card title="Settlements" href="doc:split-settlments" icon="fad fa-building-columns">
-    Find out when your money will reach your bank account and see your settlement history.
-  </Card>
+  <Tab title="Settlements">
+    You are waiting for the amount to reach your account. <Anchor target="_blank" href="https://docs.payu.in/docs/priority-settlements">PayU settlements</Anchor> can help you find out when the amount will be settled.
+  </Tab>
 
-  <Card title="Disputes and Chargebacks" href="doc:chargeback" icon="fad fa-shield-halved">
-    Handle cases where a customer has raised a complaint with their bank about a payment.
-  </Card>
-</Cards>
+  <Tab title="Disputes and Chargebacks">
+    Respond to customer [disputes and chargebacks](https://docs.payu.in/docs/chargeback) raised through their bank. Track status and submit evidence from the Dashboard.
+  </Tab>
+</Tabs>
