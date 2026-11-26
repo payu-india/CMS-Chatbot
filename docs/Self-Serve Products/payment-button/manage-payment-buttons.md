@@ -8,8 +8,9 @@ hidden: true
 metadata:
   title: Manage PayU Payment Buttons — Dashboard Guide | Developer
   description: >-
-    View payments, filter, export records, and manage your PayU Payment Buttons
-    from the Dashboard. No code needed.
+    Manage your PayU Payment Buttons from the Dashboard. View transactions, edit
+    button details, delete buttons, filter by date or type, and download CSV or
+    XLSX reports.
   keywords:
     - manage payment buttons payu
     - view payment button transactions
