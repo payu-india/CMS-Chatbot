@@ -87,7 +87,7 @@ Leave a field empty in the hash string if you do not send it. Keep the `|` separ
 
 ### `beneficiarydetail` Format
 
-Send up to 4 bank accounts. Separate multiple account numbers with `|` and send the IFSC codes in the same order.
+The beneficiarydetail parameter should be a JSON object with the following structure:
 
 ```json
 {
