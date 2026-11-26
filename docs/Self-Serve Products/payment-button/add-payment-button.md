@@ -45,13 +45,13 @@ Add a <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">pa
   <Card title="A PayU Merchant Account" icon="far fa-table-cells-column-unlock">
     <Columns layout="fixed">
       <Column>
-        <Anchor target="_blank" href="doc:set-up-your-account">Set up your account</Anchor> if you have not already done so.
+        <Anchor target="_blank" href="https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard">Set up your account</Anchor> if you have not already done so.
       </Column>
     </Columns>
   </Card>
 
   <Card title="A Website or Page Builder" icon="far fa-pager">
-    Any website where you can add content to your pages — WordPress, Wix, Squarespace, or any site with a page editor.
+    Any website where you can add content to your pages such as WordPress, Wix, Squarespace, or any site with a page editor.
   </Card>
 </Cards>
 
@@ -249,13 +249,13 @@ After your customer clicks the button and completes a payment:
 
 ## What Do I Do If Something Goes Wrong?
 
-| Problem                                              | Recommended Fix                                                                                                                                                         |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The button is not showing on my website              | Make sure the code was pasted into a code or HTML block and not as plain text. Clear your browser cache and reload the page.                                            |
-| Customer clicks the button but nothing happens       | The button code may not have loaded correctly. Remove it, paste it again in a fresh code block, and reload the page.                                                    |
-| I entered the wrong amount or button text            | Edit the Payment Button from the Dashboard to update the amount or button text.                                                                                         |
-| Customer paid but I cannot see it in my Dashboard    | Wait a few minutes and refresh. If it still does not appear, see <Anchor target="_blank" href="doc:payment-button-troubleshooting">Errors and Troubleshooting</Anchor>. |
-| Customer was not taken to my success or failure page | Check that you entered the correct page addresses under **Advanced Options**. Make sure each address starts with `https://`.                                            |
+| Problem                                              | Recommended Fix                                                                                                                                                                                      |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The button is not showing on my website              | Make sure the code was pasted into a code or HTML block and not as plain text. Clear your browser cache and reload the page.                                                                         |
+| Customer clicks the button but nothing happens       | The button code may not have loaded correctly. Remove it, paste it again in a fresh code block, and reload the page.                                                                                 |
+| I entered the wrong amount or button text            | Edit the Payment Button from the Dashboard to update the amount or button text.                                                                                                                      |
+| Customer paid but I cannot see it in my Dashboard    | Wait a few minutes and refresh. If it still does not appear, see <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button-errors-troubleshooting">Errors and Troubleshooting</Anchor>. |
+| Customer was not taken to my success or failure page | Check that you entered the correct page addresses under **Advanced Options**. Make sure each address starts with `https://`.                                                                         |
 
 ***
 
