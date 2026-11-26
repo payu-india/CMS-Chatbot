@@ -35,14 +35,12 @@ next:
       title: Errors and Troubleshooting
       type: basic
 ---
-{/* NEW CONTENT */}
-
 ## General
 
 1. #### What is a Payment Button and how does it work?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  A PayU <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> is a **Buy Now**, **Pay Now**, **Book Now**, or **Donate Now** button you add to your website or blog. You create and configure it in the PayU Dashboard. We give you a short piece of code to paste on your page. When a visitor clicks the button, PayU's payment page opens and they can complete their payment. Once done, they are sent back to your website. No developer or server setup is required. Refer to <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button">Add a Payment Button</Anchor> for steps top add a payment button
+  A PayU <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> is a **Buy Now**, **Pay Now**, **Book Now**, or **Donate Now** button you add to your website or blog. You create and configure it in the PayU Dashboard. We give you a short piece of code to paste on your page. When a visitor clicks the button, PayU's payment page opens and they can complete their payment. Once done, they are sent back to your website. No developer or server setup is required. Refer to <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button">Add a Payment Button</Anchor> for steps to add a payment button.
 </Accordion>
 
 ***
