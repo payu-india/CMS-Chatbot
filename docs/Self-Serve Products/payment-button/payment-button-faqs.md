@@ -298,15 +298,15 @@ next:
 ## Next Steps
 
 <Cards>
-  <Card title="Troubleshooting" href="doc:payment-button-troubleshooting" icon="far fa-wrench" target="_blank">
+  <Card title="Troubleshooting" href="https://docs.payu.in/docs/payment-button-errors-troubleshooting" icon="far fa-wrench" target="_blank">
     Fix common issues — button not showing, payment page not opening, or redirect not working.
   </Card>
 
-  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="far fa-list-check">
+  <Card title="Manage Payment Buttons" href="https://docs.payu.in/docs/manage-payment-buttons" icon="far fa-list-check" target="_blank">
     Edit details, view transactions, and download records from the Dashboard.
   </Card>
 
-  <Card title="Settlements" href="doc:split-settlements" icon="fad fa-building-columns">
+  <Card title="Settlements" href="doc:split-settlements" icon="fad fa-building-columns" target="_blank">
     See when and how PayU transfers your collected funds to your bank account.
   </Card>
 </Cards>
