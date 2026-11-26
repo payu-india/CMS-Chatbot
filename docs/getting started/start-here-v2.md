@@ -89,31 +89,41 @@ Once you have chosen your integration, here is what you need to begin building.
 
 ## Frequently Asked Questions
 
-<AccordionGroup>
-  <Accordion title="What payment modes does PayU support?">
-    PayU supports 100+ payment modes including UPI, credit and debit cards (Visa, Mastercard, RuPay, Amex), net banking (50+ banks), wallets (Paytm, PhonePe, Amazon Pay, and others), EMI (bank EMI, no-cost EMI, cardless EMI), BNPL (Buy Now Pay Later), and international cards. The available modes depend on your merchant account configuration.
-  </Accordion>
+1. #### What payment modes does PayU support?
 
-  <Accordion title="Do I need PCI compliance to integrate PayU?">
-    It depends on your integration type. If you use **PayU Hosted Checkout**, **Payment Links**, or **Payment Buttons**, PayU handles all sensitive card data and you do not need PCI compliance. If you use **Merchant Hosted Checkout** or **Server-to-Server**, card data may pass through your servers and PCI DSS compliance is required. When in doubt, choose Hosted Checkout — it is the fastest and safest path.
-  </Accordion>
+<Accordion title="Answer" icon="fab fa-adn">
+  PayU supports 100+ payment modes including UPI, credit and debit cards (Visa, Mastercard, RuPay, Amex), net banking (50+ banks), wallets (Paytm, PhonePe, Amazon Pay, and others), EMI (bank EMI, no-cost EMI, cardless EMI), BNPL (Buy Now Pay Later), and international cards. The available modes depend on your merchant account configuration.
+</Accordion>
 
-  <Accordion title="What is the difference between PayU Hosted and Merchant Hosted Checkout?">
-    With **PayU Hosted Checkout**, customers are redirected to PayU's payment page — you do not handle any card data, and there is no PCI compliance burden on your side. With **Merchant Hosted Checkout**, the payment UI stays on your website (you control the design and experience), but PayU processes the transaction on the backend. Merchant Hosted gives you more control but requires you to handle PCI compliance.
-  </Accordion>
+2. #### Do I need PCI compliance to integrate PayU?
 
-  <Accordion title="How do I test my integration before going live?">
-    PayU provides a full test environment. Use the test Merchant Key and Salt (available in your PayU Dashboard under test mode), and use the [test cards, UPI IDs, and wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets) to simulate different payment scenarios including success, failure, and pending states. Never test with real payment details.
-  </Accordion>
+<Accordion title="Answer" icon="fab fa-adn">
+  It depends on your integration type. If you use **PayU Hosted Checkout**, **Payment Links**, or **Payment Buttons**, PayU handles all sensitive card data and you do not need PCI compliance. If you use **Merchant Hosted Checkout** or **Server-to-Server**, card data may pass through your servers and PCI DSS compliance is required. When in doubt, choose Hosted Checkout — it is the fastest and safest path.
+</Accordion>
 
-  <Accordion title="How long does it take to integrate PayU?">
-    It depends on the integration type. **Payment Links and Buttons** take minutes — no coding at all. **PayU Hosted Checkout** can typically be live within a few hours. **Merchant Hosted Checkout** or **Server-to-Server** integrations typically take a few days to a few weeks, depending on your team's capacity and the complexity of your checkout flow.
-  </Accordion>
+3. #### What is the difference between PayU Hosted and Merchant Hosted Checkout?
 
-  <Accordion title="What do I need before I can start?">
-    You need three things: a **registered and activated PayU merchant account**, your **Merchant Key and Salt** (from the PayU Dashboard under Developer → API Details), and a **server to receive payment callbacks** (required for most integrations except Payment Links and Buttons). If you don't have an account yet, [set one up here](https://docs.payu.in/docs/set-up-your-account).
-  </Accordion>
-</AccordionGroup>
+<Accordion title="Answer" icon="fab fa-adn">
+  With **PayU Hosted Checkout**, customers are redirected to PayU's payment page — you do not handle any card data, and there is no PCI compliance burden on your side. With **Merchant Hosted Checkout**, the payment UI stays on your website (you control the design and experience), but PayU processes the transaction on the backend. Merchant Hosted gives you more control but requires you to handle PCI compliance.
+</Accordion>
+
+4. #### How do I test my integration before going live?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  PayU provides a full test environment. Use the test Merchant Key and Salt (available in your PayU Dashboard under test mode), and use the <Anchor target="_blank" href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets">test cards, UPI IDs, and wallets</Anchor> to simulate different payment scenarios including success, failure, and pending states. Never test with real payment details.
+</Accordion>
+
+5. #### How long does it take to integrate PayU?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  It depends on the integration type. **Payment Links and Buttons** take minutes — no coding at all. **PayU Hosted Checkout** can typically be live within a few hours. **Merchant Hosted Checkout** or **Server-to-Server** integrations typically take a few days to a few weeks, depending on your team's capacity and the complexity of your checkout flow.
+</Accordion>
+
+6. #### What do I need before I can start?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  You need three things: a **registered and activated PayU merchant account**, your **Merchant Key and Salt** (from the PayU Dashboard under Developer → API Details), and a **server to receive payment callbacks** (required for most integrations except Payment Links and Buttons). If you don't have an account yet, <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">set one up here</Anchor>.
+</Accordion>
 
 ***
 
