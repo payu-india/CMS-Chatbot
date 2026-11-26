@@ -12,13 +12,14 @@ metadata:
     code from the Dashboard and paste it onto your page without the help of a
     developer.
   keywords:
-    - payu payment button
-    - embed payment button website
-    - buy now button payu
-    - donate now button payu
-    - payu no-code payment button
-    - payment button dashboard payu
-    - payu payment button vs payment link
+    - payment button payu
+    - buy now button website
+    - donate button payu
+    - embed payment button
+    - no code payment button
+    - payu dashboard button
+    - payment button wordpress wix
+    - collect amount button
   robots: index
 next:
   description: Explore related information and resources.
