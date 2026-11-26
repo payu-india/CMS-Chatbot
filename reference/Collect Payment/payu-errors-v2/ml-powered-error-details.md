@@ -75,7 +75,7 @@ The following sample illustrates the `error_details` object for a failed domesti
     ### `newErrorCode` Object Parameters
 
     <Tabs>
-      <Tab title="Category (first digit)">
+      <Tab title="Category">
         | Digit | Category                 | Description                                                                                              | Recommended action                                                                          |
         | ----- | ------------------------ | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
         | 1     | Customer error           | The customer entered incorrect details, cancelled the payment, or did not complete it.                   | Request the customer to verify their details and retry.                                     |
@@ -87,7 +87,7 @@ The following sample illustrates the `error_details` object for a failed domesti
         | 0     | Unclassified             | The failure could not be categorised.                                                                    | Retry the transaction. If the issue persists, contact PayU support.                         |
       </Tab>
 
-      <Tab title="Source (second digit)">
+      <Tab title="Source">
         | Code Digit | Value               | What it means                                                         |
         | ---------- | ------------------- | --------------------------------------------------------------------- |
         | 1          | User Error          | The customer entered wrong details, cancelled, or didn't finish       |
