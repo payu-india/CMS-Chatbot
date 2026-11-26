@@ -113,7 +113,7 @@ curl -i 'https://test.payu.in/_payment' \
 --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
 --data-urlencode 'api_version=21' \
 --data-urlencode 'hash=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0' \
---data-urlencode 'product={"wtParams":[{"type":"bond","amount":"101.00","receipt":"1234556789012","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"nse_bonds","mf_investment_type":"L"}]}'
+--data-urlencode 'products={"wtParams":[{"type":"bond","amount":"101.00","receipt":"1234556789012","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"nse_bonds","mf_investment_type":"L"}]}'
 ```
 
 ***
@@ -186,7 +186,7 @@ Use this call to debit a registered mandate. Mandate registration and pre-debit 
 
 ***
 
-## Bond Product Object
+## Bond Products Object
 
 Send exactly one product object per payment request. PayU rejects a request with more than one object for bonds. All values are case-sensitive.
 
