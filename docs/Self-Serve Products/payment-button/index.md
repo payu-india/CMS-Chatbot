@@ -5,7 +5,7 @@ excerpt: >-
   code from the Dashboard and paste it onto your page without the help of a
   developer.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: PayU Payment Button — Overview | Developer Docs
   description: >-
