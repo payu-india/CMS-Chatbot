@@ -34,7 +34,7 @@ next:
     - slug: payment-button-workflow
       title: How Payment Button Works
       type: basic
-    - slug: invoices-errors-troubleshooting
+    - slug: payment-button-errors-troubleshooting
       title: Errors and Troubleshooting
       type: basic
 ---
