@@ -24,8 +24,6 @@ metadata:
 next:
   description: Explore related information and resources.
 ---
-{/* NEW CONTENT */}
-
 <Banner
   isInline={true}
   message="Integration effort: No code required"
