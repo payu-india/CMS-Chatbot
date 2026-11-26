@@ -37,7 +37,7 @@ next:
 ---
 {/* NEW CONTENT */}
 
-Something not working after adding your <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> to your website? Go through the most common issues such as button not showing on your page, the payment page not opening, payments not reflecting in your Dashboard, and ways to fix them.
+Something not working after adding your <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> to your website? Go through the most common issues such as button not showing on your page, the payment page not opening, payments not reflecting in your <Anchor target="_blank" href="https://onboarding.payu.in/">Dashboard</Anchor>, and ways to fix them.
 
 <Callout icon="📘" theme="info">
   ### **Payment Buttons**
@@ -54,13 +54,13 @@ Something not working after adding your <Anchor target="_blank" href="https://do
 
   1. **Make sure the code is in a code or HTML block and not a text block:** Page builders like WordPress, Wix, and Squarespace have separate Text blocks and HTML/Code blocks. The button code must go in an **HTML or Code block**. Pasting it into a text editor will display it as plain text, not a button.
 
-  2. **Copy the code again from the Dashboard:&#x20;**&#x47;o to **Payment Tools → Payment Buttons**, find your button, and copy the complete code. Even one missing character will stop it from working.
+  2. **Copy the code again from the Dashboard:** Go to **Payment Tools → Payment Buttons**, find your button, and copy the complete code. Even one missing character will stop it from working.
 
   3. **Check the published page, not the preview:** Some website builders only load the button on a live, published page. It may not appear in draft or preview mode.
 
-  4. **Clear your browser cache and reload the page:&#x20;**&#x4F;ld cached files sometimes prevent updates from showing.
+  4. **Clear your browser cache and reload the page:** Old cached files sometimes prevent updates from showing.
 
-  5. **Test in a different browser:&#x20;**&#x49;f the button shows in one browser but not another, a browser extension or setting may be blocking it. Try in a private/incognito window with extensions turned off.
+  5. **Test in a different browser:** If the button shows in one browser but not another, a browser extension or setting may be blocking it. Try in a private/incognito window with extensions turned off.
 
   <Callout icon="📘" theme="info">
     ### **Note:**
@@ -117,8 +117,8 @@ Something not working after adding your <Anchor target="_blank" href="https://do
 <Accordion title="Payment Looks Successful but I Cannot Find It" icon="far fa-clock">
   Follow these steps:
 
-  - **Wait 5–10 minutes and refresh:&#x20;**&#x54;he Dashboard updates in near-real-time but can occasionally take a few minutes.
-  - **Look in the Transactions tab**: Not the Payment Buttons tab, payments made through your buttons appear in the main **Transactions** section of your Dashboard.
+  - **Wait 5–10 minutes and refresh:** The Dashboard updates in near-real-time but can occasionally take a few minutes.
+  - **Look in the <Anchor target="_blank" href="doc:transactions">Transactions</Anchor> tab**: Not the Payment Buttons tab, payments made through your buttons appear in the main **Transactions** section of your Dashboard.
   - **Search by amount or date** to find the specific payment.
 
   <Columns layout="fixed">

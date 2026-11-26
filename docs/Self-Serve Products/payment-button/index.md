@@ -1,42 +1,41 @@
 ---
 title: Payment Button
 excerpt: >-
-  Add a PayU-powered payment button to any website or blog. Get a ready-to-use
-  button code from the Dashboard and paste it onto your page.
+  Add a PayU payment button to any website or blog. Get a ready-to-use button
+  code from the Dashboard and paste it onto your page.
 deprecated: false
 hidden: true
 metadata:
   title: PayU Payment Button — Overview | Developer Docs
   description: >-
-    Add a PayU payment button to your website or blog without writing code.
-    Generate an embed snippet in the Dashboard, customise the label, amount, and
-    colour, then paste it on your page.
+    Add a PayU payment button to any website or blog. Get a ready-to-use button
+    code from the Dashboard and paste it onto your page without the help of a
+    developer.
   keywords:
-    - payu payment button
-    - embed payment button website
-    - buy now button payu
-    - donate now button payu
-    - payu no-code payment button
-    - payment button dashboard payu
-    - payu payment button vs payment link
+    - payment button payu
+    - buy now button website
+    - donate button payu
+    - embed payment button
+    - no code payment button
+    - payu dashboard button
+    - payment button wordpress wix
+    - collect amount button
   robots: index
 next:
   description: Explore related information and resources.
 ---
-{/* NEW CONTENT */}
-
 <Banner
   isInline={true}
-  message="Integration effort: No code or website developer required"
+  message="Integration effort: No code required"
   color="#15C614"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
 />
 
-##
+PayU Payment Buttons let you collect payments on a site you already have, without a developer or a checkout integration. Use this page to see when a button fits, what you need before you start, and what your customer does when they pay.
 
-## How Does Payment Button Simplify My Business?
+## How Does a Payment Button Simplify My Business?
 
 <Accordion title="Go from zero to accepting payments with a copy-paste">
   Create a button in the PayU Dashboard, copy one line of code, and paste it anywhere on your website. No coding knowledge required, no developer to hire. If you can paste text into a website editor, you can add a payment button.
@@ -95,24 +94,25 @@ next:
 
 ***
 
-## Is a Payment Button Right for Me?
+## Is Payment Buttons Right for Me?
 
-| I want to…                                                  |                                            Works?                                            |
-| ----------------------------------------------------------- | :------------------------------------------------------------------------------------------: |
-| Accept payments on my website without writing code          |                                               ✅                                              |
-| Add a "Buy Now", "Pay Now", or "Donate" button to a webpage |                                               ✅                                              |
-| Let customers enter their own donation or payment amount    |                                    ✅ (Collect Amount mode)                                   |
-| Sell a single product or service directly from my page      |                                               ✅                                              |
-| Accept payments without a website                           |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-overview)           |
-| Share a payment request over WhatsApp or SMS                |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-overview)           |
-| Set up recurring auto-debit or subscriptions                |           ⚠️ Use [Recurring Payments](https://docs.payu.in/docs/recurring-payments)          |
-| Build a full online store with a shopping cart              |            ⚠️ Use [eCommerce Plugins](https://docs.payu.in/docs/ecommerce-plugins)           |
-| Full server-side control over the checkout flow             | ⚠️ Use [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) |
+| I want to…                                                  |                                                                  Works?                                                                 |
+| ----------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------: |
+| Accept payments on my website without writing code          |                                                                    ✅                                                                    |
+| Add a "Buy Now", "Pay Now", or "Donate" button to a webpage |                                                                    ✅                                                                    |
+| Let customers enter their own donation or payment amount    |                                                         ✅ (Collect Amount mode)                                                         |
+| Sell a single product or service directly from my page      |                                                                    ✅                                                                    |
+| Accept payments without a website                           |                   ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor>                  |
+| Set up recurring auto-debit or subscriptions                | ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-recurring-payments-integration">Recurring Payments</Anchor> |
+| Build a full online store with a shopping cart              |          ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/ecommerce-platform-plugins">eCommerce Plugins</Anchor>          |
+| Full server-side control over the checkout flow             |    ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/custom-checkout-merchant-hosted">Merchant Hosted Checkout</Anchor>    |
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
 
   Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.
+
+  <br />
 
   <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the right solution</Anchor> →
 </Callout>
@@ -145,27 +145,17 @@ next:
 
 ***
 
-## What All I Need to Get Started?
+## What Do I Need to Get Started?
 
-You do not need a developer or any coding experience to get started.<br />
+You do not need a developer or any coding experience to get started.
 
-You will need:<br />
+<br />
 
-- <Columns layout="fixed">
-    <Column>
-      **A PayU merchant account:** <Anchor target="_blank" href="doc:set-up-your-account">Sign up here</Anchor> if you do not have an account.
-    </Column>
-  </Columns>
-- <Columns layout="fixed">
-    <Column>
-      **A website, blog, or page builder:** Any site where you can add content to your pages. For example WordPress, Wix, Squarespace, or any website with a page editor.
-    </Column>
-  </Columns>
-- <Columns layout="fixed">
-    <Column>
-      **Access to the PayU Dashboard:** Where you will create and manage your payment buttons.
-    </Column>
-  </Columns>
+You will need:
+
+- **A PayU merchant account:** <Anchor target="_blank" href="doc:set-up-your-account">Sign up here</Anchor> if you do not have an account.
+- **A website, blog, or page builder:** Any site where you can add content to your pages. For example WordPress, Wix, Squarespace, or any website with a page editor.
+- **Access to the PayU Dashboard:** Where you will create and manage your payment buttons
 
 ***
 
@@ -173,16 +163,16 @@ You will need:<br />
 
 Here is how it works:
 
-<Accordion title="1. Create a Button in the Dashboard" icon="far fa-grid-2">
+<Accordion title="1. Create a Button in the Dashboard">
   1. Log in to your <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU Dashboard</Anchor> and go to **Payment Tools** → **Payment Buttons** from the menu on the left.
-  2. Click **Create Payment Button** and and enter the button details.
+  2. Click **Create Payment Button** and enter the button details.
 </Accordion>
 
-<Accordion title="2. Get Your Button Code" icon="far fa-code">
+<Accordion title="2. Get Your Button Code">
   Click **Generate Button**. PayU creates your button and gives you a short piece of text to add to your website. Click **Copy**. That is all you need.
 </Accordion>
 
-<Accordion title="3. Paste It on Your Website" icon="far fa-paste">
+<Accordion title="3. Paste It on Your Website">
   Go to your website editor and paste the code where you want the button to appear. The button shows up right away. No other set up is required.
 </Accordion>
 
@@ -214,59 +204,40 @@ One practical note: **the page where you embed the button should be served over 
 
 ***
 
-## How does My Customer Pay?
+## How Does My Customer Pay?
 
 When your customer visits your website:
 
-<Accordion title="1. Sees the Button" icon="far fa-eye">
+<Accordion title="1. Sees the Button">
   The button appears on your page exactly where you added it.
 </Accordion>
 
-<Accordion title="2. Clicks the Button" icon="far fa-computer-mouse">
+<Accordion title="2. Clicks the Button">
   PayU's payment page opens and the customer can complete their payment.
 </Accordion>
 
-<Accordion title="3. Answers Any Extra Questions You Have Added (optional)" icon="far fa-keyboard-down">
+<Accordion title="3. Answers Any Extra Questions You Have Added (optional)">
   If you have asked for extra details such as name, email, or a note, the customer fills those in.
 </Accordion>
 
-<Accordion title="4. Completes payment" icon="far fa-money-bills">
+<Accordion title="4. Completes payment">
   The customer chooses the payment method, enters their payment details and confirms. PayU handles the rest securely.
 </Accordion>
 
-<Accordion title="5. Brought Back to Your Site" icon="far fa-diagram-successor">
+<Accordion title="5. Brought Back to Your Site">
   Once the payment is done, the customer is taken to your website or an error page if something went wrong.
 </Accordion>
 
 ***
 
-## How do I Manage My Payment Buttons?
+## How Do I Manage My Payment Buttons?
 
-Once your button is live:<br />
+Once your button is live:
 
-<Columns layout="fixed">
-  <Column>
-    **You see all payments immediately** in your PayU Dashboard under **Payment Tools → Payment Buttons**
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **Every payment is recorded:** You can see the amount, date, customer details, and whether the payment went through.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **You can download your payment records:** <Anchor target="_blank" href="doc:customize-payment-button">Download a report</Anchor> of all payments received through your buttons.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **Buttons can be turned off:** You can stop a button from accepting payments at any time — useful when a product sells out or an event ends.
-  </Column>
-</Columns>
+- **You see all payments immediately** in your PayU Dashboard under **Payment Tools → Payment Buttons**
+- **Every payment is recorded:** You can see the amount, date, customer details, and whether the payment went through.
+- **You can download your payment records:** <Anchor target="_blank" href="doc:customize-payment-button">Download a report</Anchor> of all payments received through your buttons.
+- **Buttons can be turned off:** You can stop a button from accepting payments at any time. This is useful when a product sells out or an event ends.
 
 ***
 
@@ -277,7 +248,7 @@ Once your button is live:<br />
     **Create a Payment Button:** Simple steps to set up your button in the PayU Dashboard.
   </Card>
 
-  <Card title="Customize Your Button" href="doc:customize-payment-button" icon="fa-sliders">
+  <Card title="Customise Your Button" href="doc:customize-payment-button" icon="fa-sliders">
     **Change the button text, colour, amount, and what happens after a payment** to match your needs.
   </Card>
 

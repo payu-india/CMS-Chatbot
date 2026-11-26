@@ -41,7 +41,7 @@ next:
       title: FAQs (Frequently Asked Questions)
       type: basic
 ---
-Understand the complete end-to-end flow of how PayU Payment Buttons works — from creating your account to receiving funds in your bank account.
+PayU Payment Buttons let you collect payments from any website without a developer or integration. Here is a step-by-step look at how a button moves from creation to customer payment and <Anchor target="_blank" href="doc:settlements-dashboard">settlement</Anchor>.
 
 ***
 
@@ -50,7 +50,7 @@ Understand the complete end-to-end flow of how PayU Payment Buttons works — fr
 The steps below give a detailed view of the lifecycle of a PayU Payment Button.
 
 <Accordion title="Step 1: Create a PayU Merchant Account" icon="far fa-user">
-  Sign up for a PayU merchant account and complete KYC verification. Once your account is approved, you can start creating payment buttons immediately from the Dashboard — no technical setup needed.
+  Sign up for a PayU merchant account and complete <Anchor target="_blank" href="doc:set-up-your-account">KYC verification</Anchor>. Once your account is approved, you can start creating payment buttons immediately from the <Anchor target="_blank" href="https://onboarding.payu.in/">Dashboard</Anchor> — no technical setup needed.
 
   <Callout icon="💡" theme="info">
     ### **Handy Tip**
@@ -72,7 +72,7 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
 <Accordion title="Step 4: Customer Visits Your Page and Pays" icon="far fa-credit-card">
   When a customer visits your page and clicks the button, PayU's payment page opens automatically. They choose their preferred payment method such as cards, UPI, net banking, wallets, EMI, and more to complete the payment. Once done, they are sent to your success page, or your failure page if the payment did not go through.<br />
 
-  If you have webhooks configured, PayU sends a `payment.success` event to your server the moment the payment completes.
+  If you have webhooks configured, PayU sends a <Anchor target="_blank" href="https://docs.payu.in/docs/webhook-events-and-sample-payloads#payment-successful">`payment.success`</Anchor> event to your server the moment the payment completes.
 
   <Callout icon="💡" theme="info">
     ### **Handy Tip**
@@ -85,7 +85,7 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
 </Accordion>
 
 <Accordion title="Step 5: Track and Manage Your Payments" icon="far fa-chart-line">
-  Every payment made through your button appears in the **Transactions** tab of your PayU Dashboard right away. You can filter by date, search by amount, view individual transaction details, and download payment records as CSV or Excel. All your buttons and their statuses are listed under **Payment Tools → Payment Buttons**.
+  Every payment made through your button appears in the <Anchor target="_blank" href="doc:transactions">**Transactions** tab</Anchor> of your PayU Dashboard right away. You can filter by date, search by amount, view individual transaction details, and download payment records as CSV or Excel. All your buttons and their statuses are listed under **Payment Tools → Payment Buttons**.
 
   <Callout icon="💡" theme="info">
     ### **Handy Tip**
@@ -105,7 +105,7 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
     If a customer requests a refund or raises a dispute with their bank, PayU has a process for each.
 
     - [Refunds](doc:introduction-refunds)
-    - [Settlements](doc:split-settlments)
+    - [Settlements](doc:settlements-dashboard)
     - [Disputes and Chargebacks](doc:chargeback)
   </Callout>
 </Accordion>
