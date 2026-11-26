@@ -1,8 +1,8 @@
 ---
 title: Payment Button
 excerpt: >-
-  Add a PayU-powered payment button to any website or blog. Get a ready-to-use
-  button code from the Dashboard and paste it onto your page.
+  Add a PayU payment button to any website or blog. Get a ready-to-use button
+  code from the Dashboard and paste it onto your page.
 deprecated: false
 hidden: true
 metadata:
