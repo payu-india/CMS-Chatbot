@@ -237,7 +237,7 @@ After your customer clicks the button and completes a payment:
 1. PayU updates the payment status in your Dashboard right away.
 2. The payment appears in the **Transactions** tab in your PayU Dashboard.
 3. Your customer is taken to your success page or your failure page if the payment did not go through.
-4. The money is settled to your bank account on the standard settlement cycle.
+4. Your money is settled to your bank account on the standard settlement schedule.
 
 <Callout icon="📘" theme="info">
   ### **Webhooks for Notification**
