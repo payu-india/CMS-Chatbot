@@ -212,7 +212,7 @@ next:
 
 ***
 
-4. #### My success page shows an error after a customer pays. Why? <Badge type="success">New</Badge>
+4. #### My success page shows an error after a customer pays. Why?
 
 <Accordion title="Answer" icon="fab fa-adn">
   This is almost always a **POST vs GET** issue. PayU sends the customer to your success page using a **POST request**, not a GET request. The payment details (transaction ID, amount, status) are sent as POST parameters in the request body.<br />
@@ -263,7 +263,7 @@ next:
 
 ***
 
-3. #### Can I use Payment Buttons for subscription or recurring payments? <Badge type="success">New</Badge>
+3. #### Can I use Payment Buttons for subscription or recurring payments?
 
 <Accordion title="Answer" icon="fab fa-adn">
   No. Payment Buttons are for one-time payments only. Each time a customer clicks the button, it is a separate, individual payment.<br />
