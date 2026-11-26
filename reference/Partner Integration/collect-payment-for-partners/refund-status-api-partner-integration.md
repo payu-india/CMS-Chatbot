@@ -79,7 +79,7 @@ This API allows partners to check refund status for any refund transaction. All 
       </td>
 
       <td>
-        `String` This parameter must contain the WhatsApp’s reseller uuid.
+        `String` Partner reseller ID.
       </td>
 
       <td>

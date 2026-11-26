@@ -27,10 +27,12 @@ Authorization: Bearer <FINAL_ACCESS_TOKEN>
 
 ### Request Body
 
-| Parameter   | Description                                              | Example             |
-| :---------- | :------------------------------------------------------- | :------------------ |
-| merchant_id | The unique ID of the merchant.                           | 8739528             |
-| txnid       | The unique transaction ID of the payment to be verified. | HC_TPV_20240315_001 |
+| Parameter   | Description                                                        | Example                              |
+| :---------- | :----------------------------------------------------------------- | :----------------------------------- |
+| merchant_id | The unique ID of the merchant.                                     | 8739528                              |
+| txnid       | The unique transaction ID of the payment to be verified.           | HC_TPV_20240315_001                  |
+| reseller_id | The partner reseller ID.                                           | 11ed-933c-ece48d50-a41d-023f883eb17c |
+| hash        | SHA-512 hash of `merchant_id\|verify_payment\|txnid\|client_secret`. | YOUR_HASH                            |
 
 ## Sample Request
 
@@ -39,8 +41,10 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/verifyPay
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...' \
 --data-raw '{
-  "merchant_id": "8739528",
-  "txnid": "HC_TPV_20240315_001"
+  "merchant_id": 8739528,
+  "txnid": "HC_TPV_20240315_001",
+  "reseller_id": "11ed-933c-ece48d50-a41d-023f883eb17c",
+  "hash": "YOUR_HASH"
 }'
 ```
 ```python
@@ -54,8 +58,10 @@ headers = {
 }
 
 payload = {
-    "merchant_id": "8739528",
-    "txnid": "HC_TPV_20240315_001"
+    "merchant_id": 8739528,
+    "txnid": "HC_TPV_20240315_001",
+    "reseller_id": "11ed-933c-ece48d50-a41d-023f883eb17c",
+    "hash": "YOUR_HASH"
 }
 
 response = requests.post(url, headers=headers, json=payload)

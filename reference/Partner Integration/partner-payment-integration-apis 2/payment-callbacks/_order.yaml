@@ -1,0 +1,5 @@
+- partner-payment-success-api
+- partner-payment-failed-api
+- partner-payment-cancelled-api
+- partner-payment-callback-api
+- partner-refund-callback-api

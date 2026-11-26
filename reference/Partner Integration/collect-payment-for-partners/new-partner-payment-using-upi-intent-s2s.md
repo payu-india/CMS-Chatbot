@@ -160,8 +160,8 @@ Content-Type: application/json
 </tr>
 <tr>
 <td><code>udf5</code></td>
-<td>string — User-defined field 5 (often used for partner source channel)</td>
-<td>whatsapp</td>
+<td>string — User-defined field 5. Optional on this API.</td>
+<td>web</td>
 </tr>
 </tbody>
 </table>
@@ -238,7 +238,7 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments'
   "udf2": "1370625260",
   "udf3": "r-hway-LDnTRBuFK8STTTeTEc2SuD",
   "udf4": "",
-  "udf5": "whatsapp",
+  "udf5": "web",
   "txn_s2s_flow": "4",
   "s2s_client_ip": "157.240.22.9",
   "s2s_device_info": "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
@@ -254,7 +254,7 @@ def generate_upi_intent_payment():
     url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments"
     
     # Compute hash
-    hash_string = "8739528|28471834809170981|518.02|28471834809170981|||||||||||whatsapp||||||YOUR_CLIENT_SECRET"
+    hash_string = "8739528|28471834809170981|518.02|28471834809170981|||||||||||web||||||YOUR_CLIENT_SECRET"
     payment_hash = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
     
     headers = {
@@ -275,7 +275,7 @@ def generate_upi_intent_payment():
         "udf2": "1370625260",
         "udf3": "r-hway-LDnTRBuFK8STTTeTEc2SuD",
         "udf4": "",
-        "udf5": "whatsapp",
+        "udf5": "web",
         "txn_s2s_flow": "4",
         "s2s_client_ip": "157.240.22.9",
         "s2s_device_info": "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
@@ -353,16 +353,11 @@ The `intentURIData` field contains the UPI intent URL that you can use to invoke
 </a>
 ```
 
-### Method 2: WhatsApp Integration
+### Method 2: Share the intent link
 
 ```python
-# Send UPI intent link via WhatsApp
-def send_upi_link_whatsapp(phone, intent_data):
-    upi_link = f"upi://pay?{intent_data}"
-    message = f"Complete your payment: {upi_link}"
-    
-    # Send via WhatsApp Business API
-    send_whatsapp_message(phone, message)
+def upi_intent_link(intent_data):
+    return f"upi://pay?{intent_data}"
 ```
 
 ### Method 3: QR Code Generation

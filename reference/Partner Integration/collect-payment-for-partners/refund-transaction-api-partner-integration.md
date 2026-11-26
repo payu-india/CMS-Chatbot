@@ -26,9 +26,10 @@ The Refund Transaction for Partner integration can be used for the following pur
 | token<br />**mandatory**       | `String` The refund ID must be specified in this parameter.<br />`Char limit`: 23 characters                                                                                                                                                                                         | test_ref_0001                                |
 | payu_id<br />**mandatory**     | `String` Partner should pass the payu_id of the payment transaction for which the refund request is being raised.                                                                                                                                                                    | 403993715529606983                           |
 | amount<br />**mandatory**      | `String` This parameter must contain less than or equal to the actual amount for the payment transaction done.                                                                                                                                                                       |  500                                         |
-| reseller_id<br />**mandatory** | `String` This parameter must contain the WhatsApp’s reseller UUID                                                                                                                                                                                                                    | 1212312213                                   |
+| reseller_id<br />**mandatory** | `String` Partner reseller ID.                                                                                                                                                                                                                                                        | 1212312213                                   |
+| merchant_webhook_url<br />**optional** | `String` Webhook URL that receives refund status notifications.                                                                                                                                                                                                                  | https://merchant.example.com/refund-webhook |
 | merchant_id<br />**mandatory** | `String` This parameter must contain the MID of the merchant                                                                                                                                                                                                                         | 8238480                                      |
-| hash<br />**mandatory**        | `String` This parameter must contain the hash value to be calculated at your end. Following are the strings used for calculating the hash:<br />sha512(merchant_id\|refund_id\|amount\|client_secret)<br />For more information on sha512, refer to API Authentication and Security. | 2a04a44ed058ca724a 17b4e4d4639aa15254a 343e0 |
+| hash<br />**mandatory**        | `String` This parameter must contain the hash value to be calculated at your end. Following are the strings used for calculating the hash:<br />sha512(merchant_id\|token\|amount\|client_secret)<br />For more information on sha512, refer to API Authentication and Security. | 2a04a44ed058ca724a 17b4e4d4639aa15254a 343e0 |
 
 ## Sample request
 
@@ -41,6 +42,7 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/refunds' 
     "payu_id": 403993715529606983,
     "merchant_id": "8238480",
     "reseller_id": "1212312213",
+    "merchant_webhook_url": "https://merchant.example.com/refund-webhook",
     "hash": "8t7qweyuigadhsc8317",
     "amount": 23.124
 }'
