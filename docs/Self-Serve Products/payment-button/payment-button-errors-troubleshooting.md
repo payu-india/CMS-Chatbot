@@ -163,11 +163,11 @@ Contact PayU Support via the Dashboard **Help** section, or email `support@payu.
 ## Next Steps
 
 <Cards>
-  <Card title="Manage Payment Buttons" href="https://docs.payu.in/docs/manage-payment-buttons" icon="fa-list-check">
+  <Card title="Manage Payment Buttons" href="https://docs.payu.in/docs/manage-payment-buttons" icon="fa-list-check" target="_blank">
     View payments, filter your buttons, and download records.
   </Card>
 
-  <Card title="Payment Button FAQs" href="doc:payment-button-faqs" icon="fa-circle-question">
+  <Card title="Payment Button FAQs" href="https://docs.payu.in/docs/payment-button-faqs" icon="fa-circle-question" target="_blank">
     Common questions about Payment Buttons.
   </Card>
 </Cards>
