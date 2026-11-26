@@ -305,8 +305,4 @@ next:
   <Card title="Manage Payment Buttons" href="https://docs.payu.in/docs/manage-payment-buttons" icon="far fa-list-check" target="_blank">
     Edit details, view transactions, and download records from the Dashboard.
   </Card>
-
-  <Card title="Settlements" href="doc:split-settlements" icon="fad fa-building-columns" target="_blank">
-    See when and how PayU transfers your collected funds to your bank account.
-  </Card>
 </Cards>
