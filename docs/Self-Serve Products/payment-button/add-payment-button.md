@@ -76,7 +76,6 @@ To add a payment button:
 
      The **Create New Payment Button** page is displayed.
 
-
   <Image src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" align="center" caption="Create New Payment Button Page" border={true} />
 
 
@@ -102,7 +101,7 @@ To add a payment button:
            </td>
 
            <td>
-             The text displayed on the button . Choose any of these text from the drop-down:
+             The text displayed on the button . Choose one of these options from the drop-down:
 
              - **Buy Now**
              - **Pay Now**
@@ -127,7 +126,7 @@ To add a payment button:
            </td>
 
            <td>
-             Enter the amount you want to collect. You can leave blank to let your customer type in the amount
+             Enter the amount you want to collect. Leave this blank to let your customer enter the amount at checkout.
            </td>
          </tr>
 
@@ -157,7 +156,6 @@ To add a payment button:
        </tbody>
      </Table>
 
-
      <Image src="https://files.readme.io/da83ac123dfde2852f1aae8a044448c59baf4b4fb0b4fe10a0fedc2a4f786bd6-Screenshot_2026-09-29_at_4.14.23_PM.png" align="center" caption="Add Button Details" border={true} />
 
 </Accordion>
@@ -172,8 +170,7 @@ To add a payment button:
      - **Customer Email**
      - **Customer Mobile**
 
-
-     <Image src="https://files.readme.io/b1640075e80da6845b2db91376ddc70cf909ac9ebed3f6ed33230fcfe1387586-Screenshot_2026-09-29_at_4.12.16_PM.png" align="center" caption="Add Custom Detials" border={true} />
+     <Image src="https://files.readme.io/b1640075e80da6845b2db91376ddc70cf909ac9ebed3f6ed33230fcfe1387586-Screenshot_2026-09-29_at_4.12.16_PM.png" align="center" caption="Add Custom Details" border={true} />
 
 
   2. To add a field of your own, click **Add Fields** and fill in:
@@ -184,11 +181,10 @@ To add a payment button:
   | **Field Name**        | The question or label your customer will see              |
   | **Mark as mandatory** | Switch on if the customer must fill this in before paying |
 
-
   <Image src="https://files.readme.io/85ce648929644ea85ad3a4474b95e6b6ad10df34254b6e1e49beeb132be6321c-Screenshot_2026-09-29_at_4.16.51_PM.png" align="center" width="312px" caption="Add Your Own Field" border={true} />
 
 
-  4. Click **Add Field** to save each field.
+  3. Click **Add Field** to save each field.
 </Accordion>
 
 <Accordion title="5. Add Redirect Pages (Optional)" icon="far fa-arrow-right-from-bracket">
