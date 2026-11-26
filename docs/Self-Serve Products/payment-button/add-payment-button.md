@@ -274,3 +274,21 @@ After your customer clicks the button and completes a payment:
     Respond to customer [disputes and chargebacks](https://docs.payu.in/docs/chargeback) raised through their bank. Track status and submit evidence from the Dashboard.
   </Tab>
 </Tabs>
+
+***
+
+## Next Steps
+
+<Cards>
+  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="far fa-chart-bar">
+    View payments, filter by date, download reports, and turn off a button when you no longer need it.
+  </Card>
+
+  <Card title="Errors and Troubleshooting" href="doc:payment-button-troubleshooting" icon="far fa-wrench">
+    Fix common issues such as button not showing, payment not reflecting, or redirect not working.
+  </Card>
+
+  <Card title="FAQs" href="doc:payment-button-faqs" icon="far fa-circle-question">
+    Common questions about setup, embed, amounts, and tracking your payments.
+  </Card>
+</Cards>
