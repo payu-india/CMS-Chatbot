@@ -22,10 +22,6 @@ metadata:
 next:
   description: Explore related information and resources.
 ---
-{/* NEW CONTENT */}
-
-{/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
-
 <Banner
   isInline={true}
   message="Integration effort: No code or website developer required"
