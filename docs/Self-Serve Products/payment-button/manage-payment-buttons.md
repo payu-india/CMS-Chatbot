@@ -60,7 +60,6 @@ You can perform the following actions after a button is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
-
      <Image src="https://files.readme.io/b11382e235cabbde457cdb61efa569f6680bb561c03b067c79c540f425e7a4f4-image.png" align="center" caption="Access Payment Buttons" border={true} />
 
 
@@ -71,7 +70,7 @@ You can perform the following actions after a button is created:
   - **Button Text**
   - **Item Name**
   - **Amount**
-  - **Actions:&#x20;**&#x43;ontains buttons to perform varios actions.
+  - **Actions:&#x20;**&#x43;ontains buttons to perform various actions.
 
   2. Click the button you want to view.
 
@@ -87,7 +86,6 @@ You can perform the following actions after a button is created:
     - **Button Text:&#x20;**&#x54;he button text you have selected while creating the payment button.
 
     - **Action Buttons:&#x20;**&#x41;ction buttons to edit, duplicate and view the code of the payment button.
-
 
       <Image src="https://files.readme.io/c5ce7b7324ea3e725ccaefce214c591f5d59fcddbc1b3b6fd787e94a9249cfe8-Screenshot_2026-09-30_at_11.35.04_AM.png" align="center" caption="Payment Button Details" border={true} />
 
@@ -115,7 +113,6 @@ You can perform the following actions after a button is created:
         - **Success URL**
         - **Failure URL**
 
-
         <Image src="https://files.readme.io/f2c11d29400ec27b30076b9ad8064147caf5cabaaf8bdff9416e5b31fe9a8864-Screenshot_2026-09-30_at_12.01.10_PM.png" align="center" caption="Button and Customer Details" border={true} />
 
       </Tab>
@@ -130,7 +127,6 @@ You can perform the following actions after a button is created:
         - **PayU ID (Transaction ID):&#x20;**&#x54;he unique transaction ID of the payment.
         - **Settled Amount:&#x20;**&#x54;he amount settled.
         - **Customer Email**
-
 
         <Image src="https://files.readme.io/6b67d8ec0b69a96ee3c14a0ecd67bd57a9cf028a828dca1ac4f1d0d841238cc2-Screenshot_2026-09-30_at_12.23.37_PM.png" align="center" caption="Transaction Details" border={true} />
 
