@@ -187,7 +187,7 @@ To add a payment button:
   3. Click **Add Field** to save each field.
 </Accordion>
 
-<Accordion title="5. Add Redirect Pages (Optional)" icon="far fa-arrow-right-from-bracket">
+<Accordion title="4. Add Redirect Pages (Optional)" icon="far fa-arrow-right-from-bracket">
   Under **Advanced Options**, you can tell PayU where to send your customer after they pay:
 
   | Page            | When it is used                                                           |
@@ -195,7 +195,6 @@ To add a payment button:
   | **Success URL** | Your customer is taken here after a successful payment                    |
   | **Cancel URL**  | Your customer is taken here if they close the payment page without paying |
   | **Failure URL** | Your customer is taken here if the payment is unsuccessful                |
-
 
   <Image src="https://files.readme.io/414d861556b165c6f6065aa4eebc25ecbc543e74e4ba08a1d6ab5fc5d7ff4fbe-Screenshot_2025-06-02_at_7.22.41_PM.png" align="center" width="412px" caption="Add Redirect URLs" border={true} />
 
@@ -207,13 +206,12 @@ To add a payment button:
   </Callout>
 </Accordion>
 
-<Accordion title="6. Generate the Button and Add It To Your Website" icon="far fa-code">
+<Accordion title="5. Generate the Button and Add It To Your Website" icon="far fa-code">
   1. Click **Generate Button**.
 
   PayU creates your button and gives you a short piece of code to copy.
 
   2. Click **Copy Code** to copy the button code.
-
 
      <Image src="https://files.readme.io/0d5b65c380ca96a02549e4a8af8c31f9f890bc3b3cadd3d91a564328aee7b2e9-Screenshot_2026-09-29_at_4.26.21_PM.png" align="center" caption="Add the Code to Your Website" border={true} />
 
