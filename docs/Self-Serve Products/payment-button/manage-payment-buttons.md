@@ -29,7 +29,7 @@ next:
     - slug: payment-button-errors-troubleshooting
       title: Errors and Troubleshooting
       type: basic
-    - slug: payment-links-faqs
+    - slug: payment-button-faqs
       title: FAQs (Frequently Asked Questions)
       type: basic
 ---
