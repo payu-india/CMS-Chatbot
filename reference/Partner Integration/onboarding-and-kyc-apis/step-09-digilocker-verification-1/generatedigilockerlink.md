@@ -47,10 +47,15 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
 ### Success scenario
 
 <Accordion title="Success scenario" icon="fa-file-code">
-  ```json
+  ```json Success
   {
-    "url": "https://digilocker.example.com/auth/...",
-    "message": "Digilocker link generated successfully"
+    "status": "link_generated",
+    "capture_link": "https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=CW7660E3C7&redirect_uri=https%3A%2F%2Fapi-in.perfios.com%2Fkyc%2Fapi%2Fv1%2Fdigilocker%2Fget-token&state=<JWT token, truncated>"
+  }
+  ```
+  ```text Digilocker already complete
+  {
+    "message": "Digilocker KYC is already completed"
   }
   ```
 </Accordion>
@@ -66,13 +71,7 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
   }
   ```
 
-  - **200** — Already completed (idempotent)
-
-  ```json
-  {
-    "message": "Digilocker KYC is already completed"
-  }
-  ```
+  -
 </Accordion>
 
 ## Response parameters
