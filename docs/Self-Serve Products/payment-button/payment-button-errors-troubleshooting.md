@@ -1,9 +1,8 @@
 ---
 title: Errors and Troubleshooting
 excerpt: >-
-  Fix common Payment Button problems — button not showing on your page, payment
-  not completing, redirect not working, and transaction not reflecting in the
-  Dashboard.
+  Fix common Payment Button issues — button not showing, payment page not
+  opening, redirect failing, or transactions missing from the Dashboard.
 deprecated: false
 hidden: true
 link:
@@ -35,8 +34,6 @@ next:
       title: Manage Payment Buttons
       type: basic
 ---
-{/* NEW CONTENT */}
-
 Something not working after adding your <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> to your website? Go through the most common issues such as button not showing on your page, the payment page not opening, payments not reflecting in your Dashboard, and ways to fix them.
 
 <Callout icon="📘" theme="info">
