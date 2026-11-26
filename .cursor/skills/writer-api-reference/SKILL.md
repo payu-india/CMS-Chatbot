@@ -32,17 +32,18 @@ Produce a reference page whose tables match a spec file you opened. Reasoning st
 1. Context check. No spec path: stop and ask. Do not choose a similarly named spec on your own.
 2. Read the operation. Extract method, path, required and optional parameters, and documented errors. If the spec and an existing `docs/` page disagree, list the conflict in the annexure and do not pick a winner.
 3. Write `writer-os/work/<slug>/03-api-ANNEXURE.md` first (six rigor sections, coverage counts).
-4. Write or edit only the in-scope page. Preserve frontmatter unless asked. Use tables:
+4. Write or edit only the in-scope page as markdown like the neighboring reference pages, unless the user asks for an OpenAPI page. A new page is `hidden: true` and the title ends with ` [New]`. Preserve frontmatter on a page that already existed unless asked. Match that section's parameter-table columns. Use this table only when the section already uses it:
 
 | Name | In | Type | Required | Description | Source |
 |------|----|------|----------|-------------|--------|
 
 The Source column may live in the annexure instead of the published table if it clutters the page. The annexure must still map every row to a spec location.
 
-5. Errors: a table of code, message, and when it happens, limited to codes you found in the spec or in `payment-error-codes.json`. Link the JSON file. Do not paste the whole file.
-6. Hash: name payment versus general, link `custom_blocks/HashingSample.md`, and show the field order only from that block or from the spec. Missing salt-separator fields is a defect, not a style choice.
-7. Cross-link the page and the annexure. Do not put rigor sections in `docs/`. Do not commit.
-8. Score the pair. Ask the user to confirm the required-field list. Stop.
+5. If the page or the OpenAPI example already has a request or response sample, update that sample in the same edit as the table. The sample lists every field in the matching table, required and optional. A new table row copies the existing row format: same columns, and the same markup for type and for required or optional.
+6. Errors: a table of code, message, and when it happens, limited to codes you found in the spec or in `payment-error-codes.json`. Link the JSON file. Do not paste the whole file.
+7. Hash: name payment versus general, link `custom_blocks/HashingSample.md`, and show the field order only from that block or from the spec. Missing salt-separator fields is a defect, not a style choice.
+8. Cross-link the page and the annexure. Do not put rigor sections in `docs/`.
+9. Score the pair. Commit and push the `v1_{branch}` branch. Ask the user to confirm the required-field list. Stop. Do not merge.
 
 ## Quantitative method
 
@@ -54,7 +55,7 @@ All four lenses. Stale contract is mandatory: name the spec path and the page pa
 
 ## Tripwires and rollback
 
-A required spec field missing from the table. A table field absent from the spec. A hash string that does not match `custom_blocks/HashingSample.md`. An error code with no JSON or spec source.
+A required spec field missing from the table. A table field absent from the spec. A sample that omits a table field, required or optional, or that adds a field the table does not list. A new row whose type or required label does not match the markup of the other rows. A hash string that does not match `custom_blocks/HashingSample.md`. An error code with no JSON or spec source.
 
 **Rollback owner:** technical writer. Restore the previous page.
 
@@ -68,7 +69,9 @@ A required spec field missing from the table. A table field absent from the spec
 
 - Documenting from memory of PayU APIs.
 - Merging two operations onto one page when the canvas named one.
-- Example JSON that includes fields the table does not list.
+- Example JSON that includes a field the table does not list, or that omits a required or optional table field.
+- A new parameter row that uses a different type style than the rest of that table.
+- An OpenAPI file, or a six-column table, in a section whose pages are three-column markdown.
 
 ## Handoff
 
@@ -78,4 +81,4 @@ A required spec field missing from the table. A table field absent from the spec
 
 ## Frameworks applied
 
-WR-2, WR-3, WR-4, WR-5
+WR-2, WR-3, WR-4, WR-5, WR-7

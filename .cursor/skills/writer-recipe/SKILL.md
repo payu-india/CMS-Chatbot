@@ -15,7 +15,7 @@ Add samples under `recipes/` that a merchant can transpose without inventing a f
 
 ## Decision summary
 
-- **Decision being made:** Which fields the sample sends, and which it omits as optional.
+- **Decision being made:** That the sample sends every field on the confirmed table, required and optional.
 - **Decider:** Technical writer.
 - **Reversibility:** two-way medium. A sample merchants paste is a contract.
 - **Cost if wrong:** a copied sample that fails or moves money with the wrong payload.
@@ -32,10 +32,10 @@ Add samples under `recipes/` that a merchant can transpose without inventing a f
 2. Annexure first: `writer-os/work/<slug>/04-recipe-ANNEXURE.md`.
 3. Write one sample per language the canvas names. Default set, when the canvas says "the usual samples," is Java, PHP, Python, and cURL. Skip a language only if the canvas says so.
 4. Use placeholders `YOUR_KEY`, `YOUR_SALT`, `YOUR_TXNID`. No live credentials, card numbers, or VPAs that look real.
-5. Required fields from the table appear in every sample. Optional fields appear only when the canvas says to show them, and they are commented as optional where the language allows.
+5. Every sample sends every field from the request or response table, required and optional, using the row examples. If the table format marks type or required in bold or backticks, do not restyle those rows while touching the sample.
 6. Hash samples call the same field order as `custom_blocks/HashingSample.md` (payment or general). Do not re-derive the string.
 7. Link the samples from the in-scope page with a relative link. Do not paste the full sample into `docs/` as a second source.
-8. Cross-link annexure and recipe files. Score. Ask the user to confirm the required-field set in the sample. Stop. Do not commit.
+8. Cross-link annexure and recipe files. Score. Commit and push the `v1_{branch}` branch. Ask the user to confirm the field set in the sample. Stop. Do not merge.
 
 ## Quantitative method
 
@@ -50,7 +50,7 @@ For each language: required fields present, extra fields not in the table (must 
 
 ## Tripwires and rollback
 
-Field in sample absent from the table. Required field missing. Hash order differs from the custom block. A second full copy of the sample left in `docs/`.
+Field in sample absent from the table. Required or optional table field missing from the sample. Hash order differs from the custom block. A second full copy of the sample left in `docs/`.
 
 **Rollback owner:** technical writer. Delete the new recipe files or restore the old ones.
 
@@ -62,7 +62,7 @@ Each recipe file ends with `Decision record: writer-os/work/<slug>/04-recipe-ANN
 
 ## Anti-patterns
 
-- A cURL sample that "simplifies" by dropping a required field.
+- A cURL sample that "simplifies" by dropping a required or optional field.
 - Pseudocode instead of the four languages when the canvas asked for samples.
 - Real-looking card PANs even as examples.
 

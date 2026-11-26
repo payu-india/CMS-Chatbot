@@ -25,7 +25,7 @@ Read this skill when a documentation project starts, or when the user says "Writ
 2. First line, before any draft: `Reading this as writer-<skill> — say if that's wrong.`
 3. Open that skill and run its context check. Do not draft the page in this turn unless the picked skill is the one whose inputs are already confirmed.
 4. Write internal artefacts under `writer-os/work/<slug>/`. `<slug>` is kebab-case from the page or API name.
-5. Do not commit or push unless the user asks in this conversation. Exception: `writer-doc-update` and `writer-restructure` commit, push a `v1_{branch}` branch, and open a pull request into `v1`. They do not merge.
+5. When the user has asked for a documentation change, commit and push the `v1_{branch}` feature branch in the same run. Do not merge. Do not push `v1`. A question with no edit gets no commit. `writer-doc-update` and `writer-restructure` also open a pull request into `v1`.
 
 A named file and a typo, link, or wording fix, with no request for a branch or a pull request, is not a Writer OS stage. Say `Treating this as a scoped edit, not a Writer OS stage.` and edit only that file.
 
@@ -36,6 +36,10 @@ A JIRA key or a pasted change request is Motion D (`writer-doc-update`). An IA o
 Saved agent prompts live in `writer-os/prompts/`. One file per prompt. `_TEMPLATE.md` is the blank copy, not a prompt to run.
 
 When the user says `Run prompt <id>` or names a file in that folder, open `writer-os/prompts/<id>.md` and follow its `prompt` block and `skill`. Do not paraphrase the prompt. If a `{{placeholder}}` is still empty, ask for that value and stop. Ignore `_TEMPLATE.md`.
+
+## Review handoff
+
+When the user asks for a PM review, follow principle 16 and WR-7. The brief is a file the user can send. Do not commit it unless asked. If the user says to update Writer OS with review feedback, edit these rules and skills, then commit and push the Writer OS `v1_{branch}`. Do not merge.
 
 ## Roles
 
@@ -64,7 +68,7 @@ When the user says `Run prompt <id>` or names a file in that folder, open `write
 
 ## Also read
 
-- [frameworks.md](frameworks.md) — WR-1 through WR-6
+- [frameworks.md](frameworks.md) — WR-1 through WR-7
 - [quality-rubric.md](quality-rubric.md) — score before calling a stage done
 - `.cursor/rules/writer-os-principles.mdc`
 - `.cursor/rules/writer-os-stage-gate.mdc`

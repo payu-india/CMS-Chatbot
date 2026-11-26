@@ -37,7 +37,7 @@ This skill is one delivery. Branch, edit, commit, and open the PR in the same ru
 2. Open each named file. If a path does not exist, stop and say so. Do not create a replacement page on this skill. New trees belong to `writer-restructure`.
 3. If the change adds or alters a parameter, hash, error code, or endpoint, open the spec path, `payment-error-codes.json`, or `custom_blocks/HashingSample.md` before editing. If the ticket contradicts that file, stop and quote both. Do not pick a winner.
 4. Fetch `origin/v1`. Create `v1_<ISSUE-KEY>-<short-slug>` from `origin/v1`. That is the `v1_{branch}` name ReadMe syncs. The slug is a few lowercase words from the ticket title. Example: `v1_DOC-123-rename-payment-link`. Do not use `update/`. Do not commit on `v1`.
-5. Edit only the named change in the named files. Honor "do not change anything else." Leave other frontmatter fields alone unless the ticket asks for that field.
+5. Edit only the named change in the named files. Honor "do not change anything else." Leave other frontmatter fields alone unless the ticket asks for that field. If a request or response parameter table changes, update that sample in the same commit so it contains every field on the table, required and optional. Match the existing table's type and required markup on any new row.
 6. Do not edit `RECYCLE BIN/`. Do not stage `writer-os/work/`. Do not add Writer OS paths to `_order.yaml`.
 7. Write `writer-os/work/<issue-key>/doc-update.md` with the six rigor sections, and leave it unstaged.
 8. One commit, message `Update doc: <doc-name>`. The message body may cite the issue key.

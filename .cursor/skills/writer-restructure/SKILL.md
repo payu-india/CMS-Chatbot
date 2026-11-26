@@ -44,14 +44,16 @@ This skill is one delivery. Branch, create files, commit, and open the PR in the
 
 ```yaml
 ---
-title:
+title: Page title [New]
 excerpt:
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
 ```
+
+New pages are markdown like the neighboring pages. Set `hidden: true` and end the title with ` [New]`. A new category gets an `index.md` that overviews only the pages in that category, in the shape of `reference/Self-Serve Products/payment-links/index.md`. Put a page in an existing category when it belongs there.
 
 6. Update `_order.yaml` only in directories where this skill added or moved a page. Match the existing entry style. Do not reorder unrelated entries. Never add `writer-os/` or `.cursor/` to an order file.
 7. Do not edit `RECYCLE BIN/`. Do not delete an existing page unless the outline says to remove it. Do not set `deprecated: true` unless the outline says that page is deprecated.
@@ -86,7 +88,9 @@ A file that is not on the outline. An `_order.yaml` entry whose file does not ex
 
 ## Anti-patterns
 
-- Inventing a section because a similar product has one.
+- Inventing a section because a similar product has one. A new category is only for pages that do not fit an existing section, and its summary describes those pages.
+- A category folder with no `index.md`.
+- A new page left visible, or a title that does not end with ` [New]`.
 - Rewriting pages the outline said to leave in place.
 - Putting the rigor sections into a page under `docs/`.
 - Merging the pull request.
@@ -98,4 +102,4 @@ A file that is not on the outline. An `_order.yaml` entry whose file does not ex
 
 ## Frameworks applied
 
-WR-1, WR-3, WR-5
+WR-1, WR-3, WR-5, WR-7
