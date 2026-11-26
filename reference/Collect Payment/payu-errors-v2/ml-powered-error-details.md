@@ -55,8 +55,6 @@ The following sample illustrates the `error_details` object for a failed domesti
       }
     }
     ```
-
-
   </Tab>
 
   <Tab title="Parameter Description">
@@ -90,14 +88,36 @@ The following sample illustrates the `error_details` object for a failed domesti
       </Tab>
 
       <Tab title="Source (second digit)">
-        | Digit | Source      | Point of failure                    |
-        | ----- | ----------- | ----------------------------------- |
-        | 1     | Issuer      | The customer's bank                 |
-        | 2     | Network     | The card network or payment scheme  |
-        | 3     | Merchant    | The merchant account or integration |
-        | 4     | Customer    | The customer's action or input      |
-        | 5     | PayU        | PayU systems                        |
-        | 0     | Unspecified | The source could not be determined  |
+        | Code Digit | Value               | What it means                                                         |
+        | ---------- | ------------------- | --------------------------------------------------------------------- |
+        | 1          | User Error          | The customer entered wrong details, cancelled, or didn't finish       |
+        | 2          | Internal Tech Error | Technical problem in PayU systems                                     |
+        | 3          | External Tech Error | Technical problem at the bank, card network or another partner        |
+        | 4          | Config Error        | Your account or integration isn't set up for this payment             |
+        | 5          | Business Decline    | Declined for a business reason, such as insufficient funds or a limit |
+        | 6          | Risk Decline        | Declined by the bank or risk checks for security reasons              |
+        | 0          | (blank)             | Not classified                                                        |
+      </Tab>
+
+      <Tab title="Responsibility">
+        | Code Digit | Value         | Where the failure happened     |
+        | ---------- | ------------- | ------------------------------ |
+        | 1          | Issuer        | The customer's bank            |
+        | 2          | Network       | The card network or scheme     |
+        | 3          | Merchant      | Your account or integration    |
+        | 4          | User          | The customer's action or input |
+        | 5          | Internal      | PayU systems                   |
+        | 0          | Miscellaneous | Couldn't be determined         |
+      </Tab>
+
+      <Tab title="Step">
+        | Value                 | Stage                   | What it means                                                 |
+        | --------------------- | ----------------------- | ------------------------------------------------------------- |
+        | altidProvFailure      | Card AltID/tokenisation | Failed while creating the token or alternate ID for the card  |
+        | authenticationFailure | Authentication          | Failed during OTP verification of the customer                |
+        | authorisationFailure  | Authorisation           | Transaction failed after OTP verification                     |
+        | incorrectConfig       | Configuration           | Failed because of the merchant's account or integration setup |
+        | requestIncorrect      | Invalid request         | The payment request was missing data or had wrong values      |
       </Tab>
     </Tabs>
 
@@ -111,10 +131,6 @@ The following sample illustrates the `error_details` object for a failed domesti
     | EN6145 | Risk decline (6) by the customer's bank (1), message 45                 |
     | EN4312 | Configuration error (4) in the merchant's configuration (3), message 12 |
     | EN1408 | Customer error (1) arising from customer input (4), message 8           |
-  </Tab>
-
-  <Tab title="New Tab">
-    >
   </Tab>
 </Tabs>
 
