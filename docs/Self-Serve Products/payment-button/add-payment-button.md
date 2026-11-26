@@ -35,7 +35,7 @@ next:
   fontWeight="bold"
 />
 
-Add a payment button to your website or blog from the PayU Dashboard in just a few minutes without any code.
+Add a <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">payment button</Anchor> to your website or blog from the PayU Dashboard in just a few minutes without any code.
 
 ***
 
