@@ -98,17 +98,16 @@ PayU Payment Buttons let you collect payments on a site you already have, withou
 
 ## Is Payment Buttons Right for Me?
 
-| I want to…                                                  |                                            Works?                                            |
-| ----------------------------------------------------------- | :------------------------------------------------------------------------------------------: |
-| Accept payments on my website without writing code          |                                               ✅                                              |
-| Add a "Buy Now", "Pay Now", or "Donate" button to a webpage |                                               ✅                                              |
-| Let customers enter their own donation or payment amount    |                                    ✅ (Collect Amount mode)                                   |
-| Sell a single product or service directly from my page      |                                               ✅                                              |
-| Accept payments without a website                           |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-overview)           |
-| Share a payment request over WhatsApp or SMS                |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-overview)           |
-| Set up recurring auto-debit or subscriptions                |           ⚠️ Use [Recurring Payments](https://docs.payu.in/docs/recurring-payments)          |
-| Build a full online store with a shopping cart              |            ⚠️ Use [eCommerce Plugins](https://docs.payu.in/docs/ecommerce-plugins)           |
-| Full server-side control over the checkout flow             | ⚠️ Use [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) |
+| I want to…                                                  |                                                                  Works?                                                                 |
+| ----------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------: |
+| Accept payments on my website without writing code          |                                                                    ✅                                                                    |
+| Add a "Buy Now", "Pay Now", or "Donate" button to a webpage |                                                                    ✅                                                                    |
+| Let customers enter their own donation or payment amount    |                                                         ✅ (Collect Amount mode)                                                         |
+| Sell a single product or service directly from my page      |                                                                    ✅                                                                    |
+| Accept payments without a website                           |                   ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor>                  |
+| Set up recurring auto-debit or subscriptions                | ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-recurring-payments-integration">Recurring Payments</Anchor> |
+| Build a full online store with a shopping cart              |          ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/ecommerce-platform-plugins">eCommerce Plugins</Anchor>          |
+| Full server-side control over the checkout flow             |    ⚠️ Use <Anchor target="_blank" href="https://docs.payu.in/docs/custom-checkout-merchant-hosted">Merchant Hosted Checkout</Anchor>    |
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
