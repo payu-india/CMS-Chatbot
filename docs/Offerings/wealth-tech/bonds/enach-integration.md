@@ -39,7 +39,7 @@ HTTP Method: **POST**
   | free_trial<br />`optional`                      | This is mandatory only if the merchant wants to support free trial use cases. In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                       |
   | si_details<br />`mandatory`                     | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"\} |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                          | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                              |
-  | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to the Products section for fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                       |
+  | products<br />`mandatory for Bonds`             | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to the Products section for fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                       |
   | txn_s2s_flow <br />`mandatory`                  | `String` This parameter must be passed with the value as 4 for Decoupled flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 4                                                                                                                                                                     |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                                |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                       |
@@ -79,9 +79,254 @@ HTTP Method: **POST**
     | verificationMode         | The verification mode can be any of the following: <ul><li>**DEBIT_CARD** – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li><li>**AADHAAR** – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow. If no value is provided, then it will trigger Net Banking login password flow.</li></ul> |
   </Accordion>
 
-  #### Wealth Tech Object wtparams Fields Description
+  #### Products Object
 
-  <Mutual_Funds_Product_JSON />
+  <Accordion title="Sample JSON" icon="fad fa-code">
+    <br />
+
+    <br />
+
+    ```json
+    {
+       "wtParams":[
+          {
+             "type":"bond",
+             "amount":"1000.00",
+             "receipt":"77407",
+             "mf_member_id":"12345",
+             "mf_user_id":"77407",
+             "mf_partner":"nse_bonds",
+             "mf_investment_type":"L"
+          }
+       ]
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Parameter and Description" icon="fad fa-table">
+    | Parameter                                          | Required | Format                                    | Description                                    |
+    | -------------------------------------------------- | -------- | ----------------------------------------- | ---------------------------------------------- |
+    | `type`                                             | Yes      | String                                    | Must be `bond`.                                |
+    | `mf_partner`                                       | Yes      | String                                    | Must be `nse_bonds`.                           |
+    | `amount`                                           | Yes      | Numeric string — e.g. `5000` or `5000.50` | Must be equal to the order `amount`.           |
+    | `receipt`                                          | Yes      | Alphanumeric, max. 25 characters          | Your unique reference number for this payment. |
+    | `mf_member_id`                                     | Yes      | Max. 20 characters                        | Your member ID on the exchange.                |
+    | `mf_user_id`                                       | Yes      | Alphanumeric, max. 10 characters          | Unique client code (UCC) of the customer.      |
+    | `mf_investment_type`                               | Yes      | `L`                                       | Send `L` (lump sum).                           |
+    | `plan`, `option`, `scheme`, `folio`, `mf_amc_code` | No       | String                                    | Not used for bonds. You can omit these fields. |
+  </Accordion>
+
+  <Accordion title="Validation Rules" icon="fad fa-table">
+    <Table>
+      <thead>
+        <tr>
+          <th>
+            Field
+
+            Description
+
+            Example
+          </th>
+
+          <th>
+            Field
+          </th>
+
+          <th>
+            Description
+          </th>
+
+          <th>
+            Example
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            type
+          </td>
+
+          <td>
+            Must always be `"mutual_fund"`
+          </td>
+
+          <td>
+            `"mutual_fund"`
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            amount
+          </td>
+
+          <td>
+            Must match the overall order value
+          </td>
+
+          <td>
+            \-
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            receipt
+          </td>
+
+          <td>
+            Must be unique across transactions
+          </td>
+
+          <td>
+            \-
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            mf_member_id
+          </td>
+
+          <td>
+            Must be numeric with length between 5-20 characters
+          </td>
+
+          <td>
+            \-
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            mf_user_id
+          </td>
+
+          <td>
+            Maximum 10 characters allowed
+          </td>
+
+          <td>
+            \-
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            mf_partner
+          </td>
+
+          <td>
+            Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
+          </td>
+
+          <td>
+            `"cams"`
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            mf_investment_type
+          </td>
+
+          <td>
+            Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
+          </td>
+
+          <td>
+            `"L"`
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            **Optional Field Validations**
+          </td>
+
+          <td>
+
+          </td>
+
+          <td>
+
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            mf_amc_code
+          </td>
+
+          <td>
+            Maximum 5 characters
+          </td>
+
+          <td>
+            \-
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            receipt
+          </td>
+
+          <td>
+            Maximum 25 characters for SIP registration ID
+          </td>
+
+          <td>
+            \-
+          </td>
+
+          <td>
+
+          </td>
+        </tr>
+      </tbody>
+    </Table>
+
+
+  </Accordion>
 </Accordion>
 
 <Accordion title="Sample Request Examples" icon="fa-code">
@@ -112,7 +357,7 @@ HTTP Method: **POST**
   --data-urlencode 'si_details={"billingAmount":"50000.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2026-03-20","paymentEndDate":"2026-07-20"}' \
   --data-urlencode 'SI=1' \
   --data-urlencode 'api_version=21' \
-  --data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
+  --data-urlencode 'products={"wtParams":[{"type":"bond","amount":"101.00","receipt":"1234556789012","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"nse_bonds","mf_investment_type":"L"}]}'
   ```
 </Accordion>
 
@@ -247,14 +492,73 @@ All successful registration transactions are charged over the recurring interfac
 | Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/merchant/) |
 
 <Accordion title="Request parameters" icon="fa-key">
-  | Parameter                | Description                                                                                                                                                                                                                                           | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-  | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | key<br />`mandatory`     | `String` The merchant key provided by PayU                                                                                                                                                                                                            | JPM7Fg                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-  | command<br />`mandatory` | `String` Command to execute the recurring transaction API. Must be si_transaction                                                                                                                                                                     | si_transaction                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-  | var1<br />`mandatory`    | `JSON Object` JSON-format object containing transaction details and optional fields. For more information, refer to [var1 object field descriptions](https://docs.payu.in/docs/enach-mutual-fund-payments-integration#var1-object-field-descriptions) | \{"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"[chota.bheem@gmail.com](mailto:chota.bheem@gmail.com)","more_info":\[{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"1000.00","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}]\} |
-  | hash<br />`mandatory`    | `String` SHA512 hash generated by concatenating key\\\|command\\\|var1\\\|salt for request authentication                                                                                                                                             | jbUS07Og8BToVZ                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | Parameter                | Description                                                                                                                                                                                                                                           | Example                                                                                                                                                                                                                                                                                                                                                                                         |
+  | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | key<br />`mandatory`     | `String` The merchant key provided by PayU                                                                                                                                                                                                            | JPM7Fg                                                                                                                                                                                                                                                                                                                                                                                          |
+  | command<br />`mandatory` | `String` Command to execute the recurring transaction API. Must be si_transaction                                                                                                                                                                     | si_transaction                                                                                                                                                                                                                                                                                                                                                                                  |
+  | var1<br />`mandatory`    | `JSON Object` JSON-format object containing transaction details and optional fields. For more information, refer to [var1 object field descriptions](https://docs.payu.in/docs/enach-mutual-fund-payments-integration#var1-object-field-descriptions) | \{"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"[chota.bheem@gmail.com](mailto:chota.bheem@gmail.com)","more_info":\[{"type":"bond","amount":"101.00","receipt":"1234556789012","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"nse_bonds","mf_investment_type":"L"}]\} |
+  | hash<br />`mandatory`    | `String` SHA512 hash generated by concatenating key\\\|command\\\|var1\\\|salt for request authentication                                                                                                                                             | jbUS07Og8BToVZ                                                                                                                                                                                                                                                                                                                                                                                  |
 
-  <Mutual_Funds_Recurring_Payments_var1 />
+  <Accordion title="var1 Object" icon="fad fa-code">
+    <Accordion title="Sample JSON" icon="fad fa-code">
+      ```json
+      {
+         "authpayuid":"403993715537049175",
+         "invoiceDisplayNumber":"IN_403993715537049175",
+         "amount":"1",
+         "txnid":"tx_403993715537049175",
+         "phone":"9988776655",
+         "email":"chota.bheem@gmail.com",
+         "more_info":[
+            {
+               "wtParams":[
+                  {
+                     "type":"bond",
+                     "amount":"101.00",
+                     "receipt":"1234556789012",
+                     "mf_member_id":"12345",
+                     "mf_user_id":"77407",
+                     "mf_partner":"nse_bonds",
+                     "mf_investment_type":"L"
+                  }
+               ]
+            }
+         ]
+      }
+      ```
+    </Accordion>
+
+    <Accordion title="Parameter and Description" icon="fad fa-table">
+      <br />
+
+      <br />
+
+      <br />
+
+      | Parameter                        | Description                                                                                                                             | Example                                               |
+      | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+      | authpayuid `mandatory`           | `String` Authorization PayU ID (mihpayid from successful registration)                                                                  | 403993715537049175                                    |
+      | invoiceDisplayNumber `mandatory` | `String` Display invoice number for the recurring charge                                                                                | IN_403993715537049175                                 |
+      | amount `mandatory`               | `String` Transaction amount to be debited                                                                                               | 1                                                     |
+      | txnid `mandatory`                | `String` Unique transaction ID generated by the merchant                                                                                | tx_403993715537049175                                 |
+      | phone `mandatory`                | `String` Customer phone number                                                                                                          | 9988776655                                            |
+      | email `mandatory`                | `String` Customer email address                                                                                                         | [chota.bheem@gmail.com](mailto:chota.bheem@gmail.com) |
+      | more_info `mandatory`            | `JSON` Array containing the Products object (wtParams). Mandatory for Bonds. For wtParams field descriptions, refer to the table below. | See the above JSON                                    |
+    </Accordion>
+
+    <Accordion title="Products Object Parameters" icon="fad fa-table">
+      | Parameter                                          | Required | Format                                    | Description                                    |
+      | -------------------------------------------------- | -------- | ----------------------------------------- | ---------------------------------------------- |
+      | `type`                                             | Yes      | String                                    | Must be `bond`.                                |
+      | `mf_partner`                                       | Yes      | String                                    | Must be `nse_bonds`.                           |
+      | `amount`                                           | Yes      | Numeric string — e.g. `5000` or `5000.50` | Must be equal to the order `amount`.           |
+      | `receipt`                                          | Yes      | Alphanumeric, max. 25 characters          | Your unique reference number for this payment. |
+      | `mf_member_id`                                     | Yes      | Max. 20 characters                        | Your member ID on the exchange.                |
+      | `mf_user_id`                                       | Yes      | Alphanumeric, max. 10 characters          | Unique client code (UCC) of the customer.      |
+      | `mf_investment_type`                               | Yes      | `L`                                       | Send `L` (lump sum).                           |
+      | `plan`, `option`, `scheme`, `folio`, `mf_amc_code` | No       | String                                    | Not used for bonds. You can omit these fields. |
+    </Accordion>
+  </Accordion>
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
@@ -265,7 +569,7 @@ All successful registration transactions are charged over the recurring interfac
   --data-urlencode 'key=j6Bb3k' \
   --data-urlencode 'command=si_transaction' \
   --data-urlencode 'hash={{hash}}' \
-  --data-urlencode 'var1={"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"chota.bheem@gmail.com","more_info":[{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"1000.00","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}]}'
+  --data-urlencode 'var1={"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"chota.bheem@gmail.com","more_info":[{"wtParams":[{"type":"bond","amount":"101.00","receipt":"1234556789012","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"nse_bonds","mf_investment_type":"L"}]}]}'
   ```
 </Accordion>
 
