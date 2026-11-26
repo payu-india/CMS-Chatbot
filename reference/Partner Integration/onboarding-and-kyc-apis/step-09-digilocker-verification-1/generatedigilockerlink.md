@@ -58,6 +58,9 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
     "message": "Digilocker KYC is already completed"
   }
   ```
+  ```text Verification in progress
+  {"error_message": "Digilocker KYC is currently in progress, please try after some time"}
+  ```
 </Accordion>
 
 ### Failure scenario
