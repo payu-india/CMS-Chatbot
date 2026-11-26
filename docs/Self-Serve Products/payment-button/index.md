@@ -244,31 +244,12 @@ When your customer visits your website:
 
 ## How Do I Manage My Payment Buttons?
 
-Once your button is live:<br />
+Once your button is live:
 
-<Columns layout="fixed">
-  <Column>
-    **You see all payments immediately** in your PayU Dashboard under **Payment Tools → Payment Buttons**
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **Every payment is recorded:** You can see the amount, date, customer details, and whether the payment went through.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **You can download your payment records:** <Anchor target="_blank" href="doc:customize-payment-button">Download a report</Anchor> of all payments received through your buttons.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **Buttons can be turned off:** You can stop a button from accepting payments at any time — useful when a product sells out or an event ends.
-  </Column>
-</Columns>
+- **You see all payments immediately** in your PayU Dashboard under **Payment Tools → Payment Buttons**
+- **Every payment is recorded:** You can see the amount, date, customer details, and whether the payment went through.
+- **You can download your payment records:** <Anchor target="_blank" href="doc:customize-payment-button">Download a report</Anchor> of all payments received through your buttons.
+- **Buttons can be turned off:** You can stop a button from accepting payments at any time — useful when a product sells out or an event ends.
 
 ***
 
