@@ -191,36 +191,27 @@ Send exactly one product object per payment request. PayU rejects a request with
 
 ***
 
-## Payment Response
+## Check Response from PayU
 
-After the payment, PayU sends the result to your `surl` (success) or `furl` (failure) as form data. Bonds add no new fields to the standard PayU response.
-
-<Accordion title="Response Parameters" icon="far fa-table">
-  | Parameter                                                    | Description                                                                      |
-  | ------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-  | `mihpayid`                                                   | PayU transaction ID.                                                             |
-  | `txnid`                                                      | Your transaction ID from the request.                                            |
-  | `status`                                                     | `success`, `failure`, or `pending`. Treat only `success` as a confirmed payment. |
-  | `unmappedstatus`                                             | PayU internal status — for example `captured`, `auth`, `dropped`, or `pending`.  |
-  | `mode`                                                       | Payment mode used.                                                               |
-  | `bankcode`                                                   | Code of the payment option used.                                                 |
-  | `amount`                                                     | Amount from the request.                                                         |
-  | `net_amount_debit`                                           | Amount debited from the customer.                                                |
-  | `bank_ref_num`                                               | Bank reference number for a successful payment.                                  |
-  | `error`                                                      | Error code for a failed payment.                                                 |
-  | `error_Message`                                              | Error description.                                                               |
-  | `addedon`                                                    | Date and time of the transaction.                                                |
-  | `productinfo`, `firstname`, `email`, `phone`, `udf1`–`udf10` | Values from the request.                                                         |
-  | `hash`                                                       | Response hash. Verify before updating the order.                                 |
+<Accordion title="Success Response" icon="fa-exchange">
+  ```plaintext
+  mihpayid=403993715537000168&mode=UPI&status=success&key=j6Bb3k&txnid=txn_7798908nnm008&amount=50000.00&addedon=2026-03-17 14:48:25&productinfo=iphone&firstname=Sumit&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@gmail.com&phone=7715995865&udf1=&udf2=&udf3=&udf4=Executed Callback&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=9999999999@upi&field2=&field3=ps@paytm&field4=&field5=403993715537000168&field6=&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=Transaction Successful|Completed Using Callback&payment_source=sist&cardToken=&authenticaticationMethod=&PG_TYPE=NB-PG&error=E000&error_Message=No Error&net_amount_debit=50000&discount=0.00&offer_key=&offer_availed=&unmappedstatus=captured&hash=833ca55940bf5fa7ef6d334872848d4ad2ec775966aba23a8c3e82ecf5292ea7bd3e9573202ee093fdbc91dedd1cd6ff919411d84bce76c8cb676921cc997191&bank_ref_no=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bank_ref_num=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bankcode=INTENT&surl=https://test.payu.in/admin/test_response&curl=https://test.payu.in/admin/test_response&furl=https://test.payu.in/admin/test_response&IsStandingInstructionSet=1
+  ```
 </Accordion>
 
-### Verify the Response Hash
+<Accordion title="Hash Verification" icon="fa-key">
+  Verify response using reverse hash calculation:
 
-Calculate this hash with your salt and compare it with the `hash` value in the response. If they do not match, do not accept the payment.
+  ```
+  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+  ```
 
-```
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
+  <Callout icon="fad fa-toolbox" theme="okay">
+    ### **PayU Hash Verification Tool**
+
+    PayU recommends you to use the PayU Hash Verification Tool to validate the reverse hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
+  </Callout>
+</Accordion>
 
 <Callout icon="📘" theme="info">
   ### **Tips:**
@@ -230,15 +221,7 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 
 ### Verify the Payment
 
-Before you confirm the order, verify the payment status with PayU using one of these methods:
-
-- **Webhooks:** PayU sends the payment status to your server in real time. See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks for Payments</Anchor>.
-- **Verify Payment API:** Send a `POST` request with `command=verify_payment` and `var1=<txnid>`. Hash: `sha512(key|command|var1|SALT)`.
-
-| Environment | Verify Payment API endpoint                            |
-| ----------- | ------------------------------------------------------ |
-| Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
-| Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
+<Verify_Payment_Tabs />
 
 ***
 
