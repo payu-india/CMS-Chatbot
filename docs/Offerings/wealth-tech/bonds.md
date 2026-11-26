@@ -190,7 +190,7 @@ Use this call to debit a registered mandate. Mandate registration and pre-debit 
 
 Send exactly one product object per payment request. PayU rejects a request with more than one object for bonds. All values are case-sensitive.
 
-| Field                                              | Required | Format                                    | Rule                                           |
+| Parameter                                          | Required | Format                                    | Description                                    |
 | -------------------------------------------------- | -------- | ----------------------------------------- | ---------------------------------------------- |
 | `type`                                             | Yes      | String                                    | Must be `bond`.                                |
 | `mf_partner`                                       | Yes      | String                                    | Must be `nse_bonds`.                           |
@@ -200,6 +200,22 @@ Send exactly one product object per payment request. PayU rejects a request with
 | `mf_user_id`                                       | Yes      | Alphanumeric, max. 10 characters          | Unique client code (UCC) of the customer.      |
 | `mf_investment_type`                               | Yes      | `L`                                       | Send `L` (lump sum).                           |
 | `plan`, `option`, `scheme`, `folio`, `mf_amc_code` | No       | String                                    | Not used for bonds. You can omit these fields. |
+
+```json Products Object Sample
+{
+   "wtParams":[
+      {
+         "type":"bond",
+         "amount":"1000.00",
+         "receipt":"77407",
+         "mf_member_id":"12345",
+         "mf_user_id":"77407",
+         "mf_partner":"nse_bonds",
+         "mf_investment_type":"L"
+      }
+   ]
+}
+```
 
 ***
 
