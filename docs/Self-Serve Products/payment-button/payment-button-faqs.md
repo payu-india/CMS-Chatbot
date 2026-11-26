@@ -4,7 +4,7 @@ excerpt: >-
   Answers to common questions about PayU Payment Buttons — creation, embed,
   amount types, redirect pages, payments, and managing your buttons.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Payment Button FAQs | PayU Developer Docs
   description: >-

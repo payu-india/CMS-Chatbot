@@ -4,7 +4,7 @@ excerpt: >-
   Fix common Payment Button issues — button not showing, payment page not
   opening, redirect failing, or transactions missing from the Dashboard.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:

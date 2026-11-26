@@ -4,7 +4,7 @@ excerpt: >-
   View payment history, edit details, delete buttons, filter by date or type,
   and download records from the PayU Dashboard.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Manage PayU Payment Buttons — Dashboard Guide | Developer
   description: >-

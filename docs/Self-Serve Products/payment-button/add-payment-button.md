@@ -4,7 +4,7 @@ excerpt: >-
   Create a payment button in the PayU Dashboard, configure it, and embed the
   generated snippet on your website or blog.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Add a PayU Payment Button to Your Website | Developer Docs
   description: >-
