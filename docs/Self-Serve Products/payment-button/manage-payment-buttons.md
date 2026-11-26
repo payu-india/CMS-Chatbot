@@ -51,8 +51,7 @@ You can manage your <Anchor target="_blank" href="https://docs.payu.in/docs/paym
 
 ## How Do I Access My Payment Buttons?
 
-To open payment buttons: log in to [PayU Dashboard](https://onboarding.payu.in/) and click **Payment Buttons** under **Payment Tools**.
-
+To open payment buttons: log in to <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
 <Image src="https://files.readme.io/ac2a025ae66a2cd9b63d9fa8f3a9ac924b697623f07dc73137cd1b69d8215ce0-Screenshot_2026-09-30_at_10.33.20_AM.png" align="center" caption="Access Payment Buttons" border={true} />
 
@@ -287,11 +286,11 @@ You can filter the payment buttons list using the following options:
 ## Next Steps
 
 <Cards>
-  <Card title="Payment Button Errors and Troubleshooting" href="doc:payment-button-troubleshooting" icon="fa-wrench">
+  <Card title="Payment Button Errors and Troubleshooting" href="https://docs.payu.in/docs/payment-button-errors-troubleshooting" icon="fa-wrench" target="_blank">
     Fix issues with buttons not showing, payments not going through, or records not appearing.
   </Card>
 
-  <Card title="Payment Button FAQs" href="doc:payment-button-faqs" icon="fa-circle-question">
+  <Card title="Payment Button FAQs" href="https://docs.payu.in/docs/payment-button-faqs" icon="fa-circle-question" target="_blank">
     Common questions about Payment Buttons.
   </Card>
 </Cards>
