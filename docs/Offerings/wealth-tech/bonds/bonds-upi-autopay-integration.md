@@ -1,7 +1,7 @@
 ---
 title: UPI Autopay Integration - Bonds
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
