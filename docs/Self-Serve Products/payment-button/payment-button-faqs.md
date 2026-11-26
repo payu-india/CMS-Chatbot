@@ -31,7 +31,7 @@ next:
     - slug: manage-payment-buttons
       title: Manage Payment Buttons
       type: basic
-    - slug: payment-links-errors-and-troubleshooting
+    - slug: payment-button-errors-troubleshooting
       title: Errors and Troubleshooting
       type: basic
 ---
