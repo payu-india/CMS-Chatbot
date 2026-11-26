@@ -271,11 +271,15 @@ Merchants can set up automated subscription billing through various payment meth
   ```
 </Accordion>
 
-## Step 3: Verify the Payment
+***
+
+## Verify the Payment
 
 <Verify_Payment_Tabs />
 
-## Step 4: Pre-Debit Notification
+***
+
+## Pre-Debit Notification
 
 <GENERALAPIsEnvironment />
 
@@ -322,7 +326,9 @@ Merchants can set up automated subscription billing through various payment meth
   | Mandate Not Active       | `{"status":0,"action":"MANDATE_PRE_DEBIT","message":"Mandate is not active"}`                                                          |
 </Accordion>
 
-## Step 5: Initiate Recurring Payment
+***
+
+## Initiate Recurring Payment
 
 <GENERALAPIsEnvironment />
 
