@@ -84,7 +84,7 @@ next:
 
 ***
 
-5. #### Can I turn off a Payment Button and re-enable it later? <Badge type="success">New</Badge>
+5. #### Can I turn off a Payment Button and re-enable it later?
 
 <Accordion title="Answer" icon="fab fa-adn">
   You cannot turn off a payment button. However, you can [delete](https://docs.payu.in/docs/manage-payment-buttons#delete-a-payment-button) it to stop accepting payments permanently.
