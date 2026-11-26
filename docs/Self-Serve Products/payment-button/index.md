@@ -8,9 +8,9 @@ hidden: true
 metadata:
   title: PayU Payment Button — Overview | Developer Docs
   description: >-
-    Add a PayU payment button to your website or blog without writing code.
-    Generate an embed snippet in the Dashboard, customise the label, amount, and
-    colour, then paste it on your page.
+    Add a PayU payment button to any website or blog. Get a ready-to-use button
+    code from the Dashboard and paste it onto your page without the help of a
+    developer.
   keywords:
     - payu payment button
     - embed payment button website
