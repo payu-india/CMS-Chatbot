@@ -26,7 +26,7 @@ next:
     - slug: add-payment-button
       title: Add a Payment Button
       type: basic
-    - slug: invoices-errors-troubleshooting
+    - slug: payment-button-errors-troubleshooting
       title: Errors and Troubleshooting
       type: basic
 ---
