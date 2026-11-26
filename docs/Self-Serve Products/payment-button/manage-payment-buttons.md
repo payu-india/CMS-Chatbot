@@ -29,6 +29,9 @@ next:
     - slug: payment-button-errors-troubleshooting
       title: Errors and Troubleshooting
       type: basic
+    - slug: payment-links-faqs
+      title: FAQs (Frequently Asked Questions)
+      type: basic
 ---
 <Banner
   isInline={true}
