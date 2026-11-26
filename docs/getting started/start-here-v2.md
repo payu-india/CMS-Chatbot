@@ -50,6 +50,18 @@ This is a quick gist of the most common paths, not an exhaustive list. If you al
 | Split payments across multiple sellers   | <Anchor target="_blank" href="https://docs.payu.in/docs/split-settlments">Split Settlement</Anchor>                              | 🔵 Developer required   |
 | Accept payments on a mobile app          | <Anchor target="_blank" href="https://docs.payu.in/docs/mobile-sdks">Mobile SDKs</Anchor>                                        | 🔵 Developer required   |
 
+<Accordion title="Compare all integration options in detail">
+  | Integration Type                                 | Dev Effort    | PCI Compliance Needed                | Customization                           | Best For                                  |
+  | :----------------------------------------------- | :------------ | :----------------------------------- | :-------------------------------------- | :---------------------------------------- |
+  | **No Code / Low Code** (Payment Links & Buttons) | Very Low      | No                                   | Minimal (branding, logo, colors)        | Small merchants, instant setup            |
+  | **eCommerce Plugins**                            | Very Low      | No                                   | Minimal                                 | Shopify, WooCommerce, Magento merchants   |
+  | **PayU Hosted Checkout**                         | Low           | No                                   | Minimal (branding, logo, colors)        | SMBs, merchants looking for quick go-live |
+  | **Merchant Hosted Checkout**                     | Medium        | Yes (cards handled on merchant site) | High (full UI control)                  | Businesses with PCI DSS compliance        |
+  | **Server-to-Server**                             | High          | Yes                                  | Very High (own checkout flow + backend) | Large merchants, marketplaces             |
+  | **CommercePro / Checkout Plus**                  | Medium        | No (PayU handles sensitive data)     | Medium (optimised UI)                   | Businesses optimising for conversion      |
+  | **Mobile SDKs**                                  | Low to Medium | Dependent on checkout type           | Medium (native customisation)           | Native Android, iOS, and hybrid apps      |
+</Accordion>
+
 ***
 
 ## Getting Started
@@ -57,7 +69,7 @@ This is a quick gist of the most common paths, not an exhaustive list. If you al
 Once you have chosen your integration, here is what you need to begin building.
 
 1. **Get your credentials**: <Anchor target="_blank" href="https://docs.payu.in/docs/generate-merchant-key-and-salt-copy">Retrieve your Merchant Key and Salt</Anchor> from the PayU Dashboard
-2. **Build on the test environment**: All integrations support a test mode; always build and validate there first
+2. **Build on the test environment**: All integrations support a test mode. Always build and validate there first
 3. **Simulate transactions**: Use <Anchor target="_blank" href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets">test cards, UPI IDs, and wallets</Anchor> to cover different payment scenarios
 4. **Review the production checklist**: Make sure your integration handles all edge cases before going live
 5. **Go live**: Switch to your production credentials and you're done
@@ -101,7 +113,7 @@ Once you have chosen your integration, here is what you need to begin building.
   </Accordion>
 </AccordionGroup>
 
-### Explore by Product
+### Explore Other Products
 
 <Tabs>
   <Tab title="Online">
@@ -153,8 +165,6 @@ Once you have chosen your integration, here is what you need to begin building.
   </Tab>
 </Tabs>
 
-<br />
-
 ### Explore by Platform
 
 <Tabs>
@@ -183,51 +193,33 @@ Once you have chosen your integration, here is what you need to begin building.
   </Tab>
 </Tabs>
 
-<br />
-
-<Accordion title="Compare all integration options in detail">
-  | Integration Type                                 | Dev Effort    | PCI Compliance Needed                | Customization                           | Best For                                  |
-  | :----------------------------------------------- | :------------ | :----------------------------------- | :-------------------------------------- | :---------------------------------------- |
-  | **No Code / Low Code** (Payment Links & Buttons) | Very Low      | No                                   | Minimal (branding, logo, colors)        | Small merchants, instant setup            |
-  | **eCommerce Plugins**                            | Very Low      | No                                   | Minimal                                 | Shopify, WooCommerce, Magento merchants   |
-  | **PayU Hosted Checkout**                         | Low           | No                                   | Minimal (branding, logo, colors)        | SMBs, merchants looking for quick go-live |
-  | **Merchant Hosted Checkout**                     | Medium        | Yes (cards handled on merchant site) | High (full UI control)                  | Businesses with PCI DSS compliance        |
-  | **Server-to-Server**                             | High          | Yes                                  | Very High (own checkout flow + backend) | Large merchants, marketplaces             |
-  | **CommercePro / Checkout Plus**                  | Medium        | No (PayU handles sensitive data)     | Medium (optimised UI)                   | Businesses optimising for conversion      |
-  | **Mobile SDKs**                                  | Low to Medium | Dependent on checkout type           | Medium (native customisation)           | Native Android, iOS, and hybrid apps      |
-</Accordion>
-
 ***
 
-##
-
-***
-
-## Offerings & Other Products
+## Offerings For Your Products
 
 Once your core integration is live, explore these to enhance your checkout, expand your reach, and streamline operations.
 
 **Enhance Checkout**
 
-* [Affordability & Loyalty](https://docs.payu.in/docs/introduction-to-affordability) — EMI, offers, BNPL, loyalty rewards, affordability widget
-* [Tokenization / Save Cards](https://docs.payu.in/docs/introduction-save-cards) — Faster repeat purchases with saved card tokens
-* [Recommendation Engine](https://docs.payu.in/docs/recommendation-engine) — Smart payment mode suggestions to improve conversion
+* [Affordability & Loyalty:](https://docs.payu.in/docs/introduction-to-affordability) EMI, offers, BNPL, loyalty rewards, affordability widget
+* [Tokenization / Save Cards:](https://docs.payu.in/docs/introduction-save-cards) Faster repeat purchases with saved card tokens
+* [Recommendation Engine:](https://docs.payu.in/docs/recommendation-engine) Smart payment mode suggestions to improve conversion
 
 **Expand Reach**
 
-* [International Payments](https://docs.payu.in/docs/introduction-dynamic-currency-conversion) — Accept payments in multiple currencies
-* [Cross-Border Payments](https://docs.payu.in/docs/introduction-cross-border-payments-import) — Collect import payments from overseas
-* [Pre-Authorize Payments](https://docs.payu.in/docs/auth-and-capture-pre-authorize-card-payments) — Authorize now, capture later
+* [International Payments:](https://docs.payu.in/docs/introduction-dynamic-currency-conversion) Accept payments in multiple currencies
+* [Cross-Border Payments:](https://docs.payu.in/docs/introduction-cross-border-payments-import) Collect import payments from overseas
+* [Pre-Authorize Payments:](https://docs.payu.in/docs/auth-and-capture-pre-authorize-card-payments) Authorize now, capture later
 
 **Manage & Operate**
 
-* [Split Settlements](https://docs.payu.in/docs/split-settlments) — Automatically split payments across multiple sellers or accounts
-* [Third-Party Verification (TPV)](https://docs.payu.in/docs/introduction-to-payu-tpv) — Verify that payments originate from a registered bank account
+* [Split Settlements:](https://docs.payu.in/docs/split-settlments) Automatically split payments across multiple sellers or accounts
+* [Third-Party Verification (TPV):](https://docs.payu.in/docs/introduction-to-payu-tpv) Verify that payments originate from a registered bank account
 * [Refunds](https://docs.payu.in/docs/introduction-refunds) — Full and partial refund APIs with status tracking
 
 **Other Products**
 
-* [MCP (Model Context Protocol)](https://docs.payu.in/docs/payu-remote-mcp-server-integration) — Communicate with PayU APIs using the Model Context Protocol
+* [MCP (Model Context Protocol):](https://docs.payu.in/docs/payu-remote-mcp-server-integration)  Communicate with PayU APIs using the Model Context Protocol
 * [Partner Integration](https://docs.payu.in/docs/payu-partner-program-overview#/) — Onboard and manage sub-merchants under your platform
 * [Payouts](https://docs.payu.in/docs/introduction-to-payouts/) — Disburse payments to customers, vendors, or employees
 * [Bill Payments (BBPS)](https://docs.payu.in/docs/connect-agent-api-integration) — Collect utility and recharge bill payments
