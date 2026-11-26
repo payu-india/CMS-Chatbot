@@ -37,18 +37,20 @@ If you want to find the right fit, tell us about your business and technical cap
 
 This is a quick gist of the most common paths, not an exhaustive list. If you already know what you need, go directly to the right guide.
 
-| What you want to do                      | PayU solution                                                                                                                    | Effort                  |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| Share a payment link — no website needed | <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links-dashboard">Payment Links</Anchor>                          | 🟢 No coding required   |
-| Embed a buy button on any webpage        | [Payment Buttons](https://docs.payu.in/docs/payment-buttons)                                                                     | 🟢 No coding required   |
-| Add checkout to a Shopify store          | <Anchor target="_blank" href="https://docs.payu.in/docs/shopify">Shopify Plugin</Anchor>                                         | 🟡 Some technical setup |
-| Add checkout to a WooCommerce store      | <Anchor target="_blank" href="https://docs.payu.in/docs/woocommerce">WooCommerce Plugin</Anchor>                                 | 🟡 Some technical setup |
-| Add checkout to a Magento store          | <Anchor target="_blank" href="https://docs.payu.in/docs/magento">Magento Plugin</Anchor>                                         | 🟡 Some technical setup |
-| Add checkout to a custom-built website   | <Anchor target="_blank" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted">PayU Hosted Checkout</Anchor>             | 🟡 Some technical setup |
-| Build a fully custom payment page        | <Anchor target="_blank" href="https://docs.payu.in/docs/custom-checkout-merchant-hosted">Merchant Hosted Checkout</Anchor>       | 🔵 Developer required   |
-| Set up subscription or recurring billing | <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-recurring-payments-integration">Recurring Payments</Anchor> | 🔵 Developer required   |
-| Split payments across multiple sellers   | <Anchor target="_blank" href="https://docs.payu.in/docs/split-settlments">Split Settlement</Anchor>                              | 🔵 Developer required   |
-| Accept payments on a mobile app          | <Anchor target="_blank" href="https://docs.payu.in/docs/mobile-sdks">Mobile SDKs</Anchor>                                        | 🔵 Developer required   |
+| What you want to do                      | PayU solution                                                                               | Effort                  |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------- |
+| Share a payment link — no website needed | [Payment Links](https://docs.payu.in/docs/payment-links-dashboard)                          | 🟢 No coding required   |
+| Embed a buy button on any webpage        | [Payment Buttons](https://docs.payu.in/docs/payment-buttons)                                | 🟢 No coding required   |
+| Add checkout to a Shopify store          | [Shopify Plugin](https://docs.payu.in/docs/shopify)                                         | 🟡 Some technical setup |
+| Add checkout to a WooCommerce store      | [WooCommerce Plugin](https://docs.payu.in/docs/woocommerce)                                 | 🟡 Some technical setup |
+| Add checkout to a Magento store          | [Magento Plugin](https://docs.payu.in/docs/magento)                                         | 🟡 Some technical setup |
+| Add checkout to a custom-built website   | [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted)             | 🟡 Some technical setup |
+| Build a fully custom payment page        | [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted)       | 🔵 Developer required   |
+| Set up subscription or recurring billing | [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) | 🔵 Developer required   |
+| Split payments across multiple sellers   | [Split Settlement](https://docs.payu.in/docs/split-settlments)                              | 🔵 Developer required   |
+| Accept payments on a mobile app          | [Mobile SDKs](https://docs.payu.in/docs/mobile-sdks)                                        | 🔵 Developer required   |
+| Accept in-person payments via QR code    | [UPI QR Code](https://docs.payu.in/docs/integrate-upi-qr)                                   | 🔵 Developer required   |
+| Accept card payments at a physical store | [Android POS SDK](https://docs.payu.in/docs/android-pos-sdk)                                | 🔵 Developer required   |
 
 <Accordion title="Compare all integration options in detail">
   | Integration Type                                 | Dev Effort    | PCI Compliance Needed                | Customization                           | Best For                                  |
@@ -112,60 +114,6 @@ Once you have chosen your integration, here is what you need to begin building.
     You need three things: a **registered and activated PayU merchant account**, your **Merchant Key and Salt** (from the PayU Dashboard under Developer → API Details), and a **server to receive payment callbacks** (required for most integrations except Payment Links and Buttons). If you don't have an account yet, [set one up here](https://docs.payu.in/docs/set-up-your-account).
   </Accordion>
 </AccordionGroup>
-
-***
-
-### Explore Other Products
-
-<Tabs>
-  <Tab title="Online">
-    <Cards>
-      <Card title="Payment Links" href="https://docs.payu.in/docs/payment-links-dashboard" icon="far fa-link">
-        Generate and share a unique payment link via WhatsApp, SMS, or email — no website or coding required.
-      </Card>
-
-      <Card title="Payment Buttons" href="https://docs.payu.in/docs/payment-buttons" icon="far fa-hand-pointer">
-        Embed a pay button on any webpage with a simple copy-paste. PayU handles the rest.
-      </Card>
-
-      <Card title="PayU Hosted Checkout" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted" icon="far fa-window-maximize">
-        PayU serves the payment page — you send customers there and handle the callback. Fast to go live, zero PCI burden.
-      </Card>
-
-      <Card title="Merchant Hosted Checkout" href="https://docs.payu.in/docs/custom-checkout-merchant-hosted" icon="far fa-paintbrush">
-        Your design, your flow. Full UI control with PayU's payment engine powering the backend.
-      </Card>
-
-      <Card title="Server-to-Server (S2S)" href="https://docs.payu.in/docs/server-to-server-integration" icon="far fa-server">
-        Direct API integration for maximum flexibility. Build your own checkout flow end to end.
-      </Card>
-
-      <Card title="CommercePro / Checkout Plus" href="https://docs.payu.in/docs/checkout-express" icon="far fa-bolt">
-        High-conversion checkout with optimised UX, smart payment mode selection, and minimal integration effort.
-      </Card>
-    </Cards>
-  </Tab>
-
-  <Tab title="In-Person">
-    <Cards>
-      <Card title="UPI QR Code" href="https://docs.payu.in/docs/integrate-upi-qr" icon="far fa-qrcode">
-        Generate a UPI QR code for face-to-face or in-store payments — no hardware needed.
-      </Card>
-
-      <Card title="Android POS SDK" href="https://docs.payu.in/docs/android-pos-sdk" icon="far fa-tablet">
-        Accept card and UPI payments on Android devices at physical locations.
-      </Card>
-    </Cards>
-  </Tab>
-
-  <Tab title="Recurring">
-    <Cards>
-      <Card title="Subscriptions & Recurring Payments" href="https://docs.payu.in/docs/introduction-recurring-payments-integration" icon="far fa-repeat">
-        Charge customers on a schedule with automated retry, mandate management, and a subscription dashboard.
-      </Card>
-    </Cards>
-  </Tab>
-</Tabs>
 
 ***
 
