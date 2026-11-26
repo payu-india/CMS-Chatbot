@@ -1,5 +1,5 @@
 ---
-title: UPI Autopay Integration
+title: UPI Autopay Integration - Bonds
 deprecated: false
 hidden: true
 metadata:
