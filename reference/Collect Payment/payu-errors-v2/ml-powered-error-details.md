@@ -28,12 +28,6 @@ On PayU Hosted Checkout, PayU displays `userMessage` on the failure screen autom
 | EMI                 | Under development |
 | BNPL                | Under development |
 
-<Callout icon="📘" theme="info">
-  ### **Note:**
-
-  The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another.
-</Callout>
-
 ***
 
 ## Cards
