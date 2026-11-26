@@ -1,8 +1,8 @@
 ---
 title: How Payment Button Works
 excerpt: >-
-  Understand the complete end-to-end lifecycle of a PayU Payment Button — from  
-  creating your account to receiving funds in your bank account.
+  Understand the end-to-end lifecycle of a PayU Payment Button — from creating
+  your account to receiving funds in your bank account.
 deprecated: false
 hidden: true
 metadata:
@@ -41,10 +41,6 @@ next:
       title: FAQs (Frequently Asked Questions)
       type: basic
 ---
-Understand the complete end-to-end flow of how PayU Payment Buttons works — from creating your account to receiving funds in your bank account.
-
-***
-
 ## Workflow
 
 The steps below give a detailed view of the lifecycle of a PayU Payment Button.
