@@ -108,21 +108,6 @@ Merchants can set up automated subscription billing through various payment meth
     | `plan`, `option`, `scheme`, `folio`, `mf_amc_code` | No       | String                                    | Not used for bonds. You can omit these fields. |
   </Accordion>
 
-  <Accordion title="Validation Rules" icon="fad fa-code">
-    | Field                          | Description                                          | Example         |
-    | ------------------------------ | ---------------------------------------------------- | --------------- |
-    | type                           | Must always be `"mutual_fund"`                       | `"mutual_fund"` |
-    | amount                         | Must match the overall order value                   | \-              |
-    | receipt                        | Must be unique across transactions                   | \-              |
-    | mf_member_id                   | Must be numeric with length between 5-20 characters  | \-              |
-    | mf_user_id                     | Maximum 10 characters allowed                        | \-              |
-    | mf_partner                     | Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"` | `"cams"`        |
-    | mf_investment_type             | Only `"L"` (Lump Sum) or `"S"` (SIP) allowed         | `"L"`           |
-    | **Optional Field Validations** |                                                      |                 |
-    | mf_amc_code                    | Maximum 5 characters                                 | \-              |
-    | receipt                        | Maximum 25 characters for SIP registration ID        | \-              |
-  </Accordion>
-
   <Accordion title="Hash Calculation" icon="fa-key">
     Concatenate fields in this exact sequence, then <Glossary>SHA</Glossary>-512:
 
