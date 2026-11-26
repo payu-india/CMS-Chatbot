@@ -32,6 +32,9 @@ next:
     - slug: payment-button-faqs
       title: FAQs (Frequently Asked Questions)
       type: basic
+    - slug: payment-button-workflow
+      title: How Payment Button Works
+      type: basic
 ---
 <Banner
   isInline={true}
