@@ -121,69 +121,10 @@ curl -i 'https://test.payu.in/_payment' \
 
 ## Recurring Debit (UPI Autopay or eNACH)
 
-Use this call to debit a registered mandate. Mandate registration and pre-debit notification follow the standard PayU SI flow — no changes are needed for bonds.
+Merchants can set up automated subscription billing through various payment methods including Net Banking (e-NACH) and UPI Autopay for Bonds Payments. Refer to the corresponding links for setting it up:
 
-**Environments**
-
-| Environment | Endpoint                                               |
-| ----------- | ------------------------------------------------------ |
-| Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
-| Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
-
-<Accordion title="Request Parameters" icon="far fa-table">
-  | Parameter | Required | Description                                                                           |
-  | --------- | -------- | ------------------------------------------------------------------------------------- |
-  | `key`     | Yes      | Your merchant key.                                                                    |
-  | `command` | Yes      | Set to `si_transaction`.                                                              |
-  | `var1`    | Yes      | JSON with the debit details. Place the product object inside `more_info[0].wtParams`. |
-  | `hash`    | Yes      | `sha512(key\|command\|var1\|SALT)`                                                    |
-</Accordion>
-
-### `var1` Sample
-
-```json
-{
-  "authpayuid": "999990000005920",
-  "amount": "101.00",
-  "txnid": "a79d6318-afcb-4a87-820c-681b53215866",
-  "invoiceDisplayNumber": "f53edcd3-7c08-49d6-9a2f-e67e4dc4eea7",
-  "more_info": [
-    {
-      "wtParams": [
-        {
-          "type": "bond",
-          "amount": "101.00",
-          "receipt": "1234556789012",
-          "mf_member_id": "12345",
-          "mf_user_id": "77407",
-          "mf_partner": "nse_bonds",
-          "mf_investment_type": "L"
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Sample Response
-
-```json
-{
-  "status": 1,
-  "message": "Transaction Processed successfully",
-  "details": {
-    "a79d6318-afcb-4a87-820c-681b53215866": {
-      "authpayuid": "999990000005920",
-      "transactionid": "a79d6318-afcb-4a87-820c-681b53215866",
-      "amount": "101.00",
-      "payuid": "999990000006473",
-      "status": "captured",
-      "field9": "Transaction is Successful",
-      "addedon": "2025-09-03 10:40:19"
-    }
-  }
-}
-```
+- ENACH Integration for Bonds
+- UPI Autopay Integration for Bonds
 
 ***
 
