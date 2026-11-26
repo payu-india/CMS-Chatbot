@@ -82,10 +82,6 @@ HTTP Method: **POST**
   #### Products Object
 
   <Accordion title="Sample JSON" icon="fad fa-code">
-    <br />
-
-    <br />
-
     ```json
     {
        "wtParams":[
