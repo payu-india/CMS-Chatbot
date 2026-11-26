@@ -45,7 +45,7 @@ next:
   fontWeight="bold"
 />
 
-You can manage your payment buttons from the PayU Dashboard after they are created and live on your website.
+You can manage your <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">payment buttons</Anchor> from the PayU Dashboard after they are created and live on your website.
 
 ***
 
