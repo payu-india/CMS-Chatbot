@@ -26,10 +26,6 @@ next:
       title: Payment Button
       type: basic
 ---
-{/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
-
-{/* NEW CONTENT */}
-
 <Banner
   isInline={true}
   message="Integration effort: No code or website developer required"
@@ -43,7 +39,7 @@ Add a payment button to your website or blog from the PayU Dashboard in just a f
 
 ***
 
-## What All I Need?
+## What Do I Need?
 
 <Cards>
   <Card title="A PayU Merchant Account" icon="far fa-table-cells-column-unlock">
@@ -67,10 +63,9 @@ To add a payment button:
 
 <Accordion title="1. Open Payment Buttons on the Dashboard" icon="far fa-grid-2">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
-  2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
+  2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Buttons&#x20;**&#x64;isplayed in the left navigation.
 
   All your existing buttons are listed here.
-
 
   <Image src="https://files.readme.io/e1baadd4cfb07131a0a41849f9b4f824cda27ee5d1f9129d458a44ecf4cfcc12-Screenshot_2026-09-29_at_3.41.17_PM.png" align="center" caption="Access Payment Buttons" border={true} />
 
