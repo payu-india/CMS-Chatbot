@@ -1,0 +1,72 @@
+---
+title: Production Checklist
+excerpt: ''
+deprecated: true
+hidden: true
+metadata:
+  title: ''
+  description: ''
+  robots: noindex
+next:
+  description: ''
+---
+---
+title: Production Checklist for Merchant Hosted Checkout integration
+excerpt: ''
+deprecated: true
+hidden: true
+metadata:
+  title: ''
+  description: >-
+    Production checklist for PayU merchant-hosted checkout: go-live steps, security, webhooks, hash validation, and pre-launch verification for web.
+  keywords:
+    - payu merchant hosted checkout production go live checklist
+    - payment gateway go live checklist custom checkout payu web
+    - merchant hosted integration checklist payu india production
+    - payu custom checkout production checklist website integration
+    - go live payment integration merchant hosted payu guide
+    - payu collect payments production checklist merchant hosted web
+    - website payment gateway go live steps payu custom checkout
+    - payment integration checklist before production payu merchant hosted
+    - payu merchant hosted checkout launch checklist developer guide
+    - production payment integration checklist payu web india
+    - payu custom checkout security webhook go live checklist
+    - merchant hosted payment integration production readiness payu
+  robots: noindex
+
+next:
+  description: ''
+---
+<Callout icon="🔀" theme="warn">
+  **This page has moved.** The updated guide is at [Go-Live Checklist](./integration-guide/go-live-checklist).
+</Callout>
+
+## 1. Update Production Key and Salt
+
+Update your Production Key and Salt in your integration code to replace the Test Key and Salt. To generate the live merchant key and salt:
+
+1. Log in to the PayU Dashboard and switch to Live Mode on the menu.
+2. Navigate to **Payment Gateway → Web Integration → Key Salt Details**.
+3. Copy the key and salt using the copy button.
+4. Replace the Test key and Test salt with the Production Key and Live salt in the payment integration code and start accepting actual payments.
+
+## 2. Final Checkout Verification
+
+Use the following checklist to ensure your Web Checkout integration is complete:
+
+1. Completed all the required checkout details have been collected correctly on your website and validated.
+
+> 📘 Reference:
+>
+> For more information on collecting and submitting the request parameter, refer to:
+>
+> * [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website)
+>
+> * [Working with Response after a Customer Checkout](doc:working-with-response-after-a-customer-checkout)
+
+2. Verified the Response from PayU. For more information on responses, refer to [Collect Merchant API - Merchant Hosted Checkout](ref:_payment_merchant_hosted)
+3. Completed the callback response (reverse hashing) is not tampered with. For more information, refer to [Hashing Request and Response](doc:generate-hash-merchant-hosted).
+4. Confirmed the transaction status on the Server-side, if the callback fail. Use Webhooks for hearing callbacks. For more information, refer to [Verify Payment API](ref:verify_payment_api) and [Webhooks](doc:webhooks).
+5. Completed the integration on Production. The endpoint for the  Production environment is:
+
+   [https://secure.payu.in/](https://secure.payu.in/)
