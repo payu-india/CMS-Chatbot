@@ -58,17 +58,17 @@ The following sample illustrates the `error_details` object for a failed domesti
   </Tab>
 
   <Tab title="Parameter Description">
-    | Field                      | Description                                                                                                                | Audience         |
-    | -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-    | `userMessage`              | Curated message for the end customer. PayU Hosted Checkout displays this message on the failure screen.                    | **End customer** |
-    | `merchantMessage`          | Detailed technical explanation of the failure, with a recommended action, for analysis and support purposes.               | Merchant         |
-    | `newErrorCode`             | Standard PayU error code (EN…). Set to `NA` where the error could not be classified.                                       | Merchant         |
-    | `source`                   | Failure category, for example, Risk decline or Business decline. Set to `Unknown` where the error could not be classified. | Merchant         |
-    | `responsibility`           | Party at which the failure occurred, for example, Issuer.                                                                  | Merchant         |
-    | `step`                     | Payment stage at which the failure occurred.                                                                               | Merchant         |
-    | `optional.pgError`         | Raw response code and description returned by the gateway or acquirer.                                                     | Merchant         |
-    | `optional.issuerErrorCode` | Error code returned by the issuer, where available.                                                                        | Merchant         |
-    | `optional.apiLayer`        | Layer at which the failure was raised. Set to `Unknown` where the error could not be classified.                           | Merchant         |
+    | Field                      | Description                                                                                                  | Audience     |
+    | -------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ |
+    | `userMessage`              | Curated message for the end customer. PayU Hosted Checkout displays this message on the failure screen.      | End customer |
+    | `merchantMessage`          | Detailed technical explanation of the failure, with a recommended action, for analysis and support purposes. | Merchant     |
+    | `newErrorCode`             | Standard PayU error code (EN…).                                                                              | Merchant     |
+    | `source`                   | Failure category, for example, Risk decline or Business decline.                                             | Merchant     |
+    | `responsibility`           | Party at which the failure occurred, for example, Issuer.                                                    | Merchant     |
+    | `step`                     | Payment stage at which the failure occurred.                                                                 | Merchant     |
+    | `optional.pgError`         | Raw response code and description returned by the gateway or acquirer.                                       | Merchant     |
+    | `optional.issuerErrorCode` | Error code returned by the issuer, where available.                                                          | Merchant     |
+    | `optional.apiLayer`        | Layer at which the failure was raised.                                                                       | Merchant     |
 
     > **Important:** Only `userMessage` is intended for end customers. All other fields are intended for merchant use only and must not be displayed to customers.
 
@@ -118,10 +118,6 @@ The following sample illustrates the `error_details` object for a failed domesti
         | authorisationFailure  | Authorisation           | Transaction failed after OTP verification                     |
         | incorrectConfig       | Configuration           | Failed because of the merchant's account or integration setup |
         | requestIncorrect      | Invalid request         | The payment request was missing data or had wrong values      |
-      </Tab>
-
-      <Tab title="New Tab">
-
       </Tab>
     </Tabs>
   </Tab>
