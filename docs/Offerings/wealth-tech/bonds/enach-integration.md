@@ -451,7 +451,7 @@ HTTP Method: **POST**
 
 ***
 
-## Step 2: Verify the payment
+## Verify the payment
 
 The payment verification step ensures the transaction has been processed successfully before proceeding to subsequent recurring payments.
 
@@ -459,7 +459,7 @@ The payment verification step ensures the transaction has been processed success
 
 ***
 
-## Step 3: Recurring Payment Transaction
+## Recurring Payment Transaction
 
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
@@ -478,10 +478,10 @@ All successful registration transactions are charged over the recurring interfac
 
 **Environment**
 
-|                        |                                                                  |
-| :--------------------- | :--------------------------------------------------------------- |
-| Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
-| Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/merchant/) |
+| Environment            | URL                              |
+| :--------------------- | :------------------------------- |
+| Production Environment | `https://info.payu.in/merchant/` |
+| Test Environment       | `https://test.payu.in/merchant/` |
 
 <Accordion title="Request parameters" icon="fa-key">
   | Parameter                | Description                                                                                                                                        | Example                                                                                                                                                                                                                                                                                                                                                                                         |
