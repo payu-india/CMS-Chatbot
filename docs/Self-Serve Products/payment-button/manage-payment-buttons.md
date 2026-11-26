@@ -250,7 +250,6 @@ You can filter the payment buttons list using the following options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
-
      <Image src="https://files.readme.io/2b1a7e6bd269426003ad449cd615f00366105e1cb897607ecc9e60de9c7ab735-image.png" align="center" caption="Access Payment Button" border={true} />
 
 
@@ -263,8 +262,7 @@ You can filter the payment buttons list using the following options:
   | **Txns - csv**  | Transaction-level detail per button in the CSV format  |
   | **Txns - xlsx** | Transaction-level detail per button in the XLSX format |
 
-
-  <Image src="https://files.readme.io/400c188d7def54848393bc47a2eacd74bdd999efe241727fb3a27e9433fe58e7-Screenshot_2026-09-30_at_2.18.32_PM.png" align="center" caption="Downlaod reports" border={true} />
+  <Image src="https://files.readme.io/400c188d7def54848393bc47a2eacd74bdd999efe241727fb3a27e9433fe58e7-Screenshot_2026-09-30_at_2.18.32_PM.png" align="center" caption="Download reports" border={true} />
 
 
   3. Click **Downloaded Reports** on the **Generating Report&#x20;**&#x70;op-up when your report is ready.
@@ -275,14 +273,6 @@ You can filter the payment buttons list using the following options:
 ## Next Steps
 
 <Cards>
-  <Card title="Add a Payment Button" href="doc:add-a-payment-button" icon="far fa-plus">
-    Create a new payment button and add it to your website.
-  </Card>
-
-  <Card title="Customize Your Button" href="doc:customize-payment-button" icon="fa-sliders">
-    Set the button text, colour, amount, and redirect pages before you create it.
-  </Card>
-
   <Card title="Payment Button Errors and Troubleshooting" href="doc:payment-button-troubleshooting" icon="fa-wrench">
     Fix issues with buttons not showing, payments not going through, or records not appearing.
   </Card>
