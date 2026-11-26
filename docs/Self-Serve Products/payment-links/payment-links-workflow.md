@@ -1,5 +1,5 @@
 ---
-title: How Payment Links Works
+title: How Payment Links Work
 excerpt: >-
   Understand the complete end-to-end lifecycle of a PayU Payment Link, from
   creating an account to receiving funds in your bank account.
