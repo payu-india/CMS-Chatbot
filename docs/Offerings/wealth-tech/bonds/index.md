@@ -4,7 +4,7 @@ excerpt: >-
   Collect bond payments as an Online Bond Platform Provider (OBPP) through PayU.
   Send bond details in a product object. PayU settles to NSE Clearing.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
