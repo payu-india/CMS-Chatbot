@@ -175,16 +175,16 @@ You will need:<br />
 
 Here is how it works:
 
-<Accordion title="1. Create a Button in the Dashboard" icon="far fa-grid-2">
+<Accordion title="1. Create a Button in the Dashboard">
   1. Log in to your <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU Dashboard</Anchor> and go to **Payment Tools** → **Payment Buttons** from the menu on the left.
   2. Click **Create Payment Button** and enter the button details.
 </Accordion>
 
-<Accordion title="2. Get Your Button Code" icon="far fa-code">
+<Accordion title="2. Get Your Button Code">
   Click **Generate Button**. PayU creates your button and gives you a short piece of text to add to your website. Click **Copy**. That is all you need.
 </Accordion>
 
-<Accordion title="3. Paste It on Your Website" icon="far fa-paste">
+<Accordion title="3. Paste It on Your Website">
   Go to your website editor and paste the code where you want the button to appear. The button shows up right away. No other set up is required.
 </Accordion>
 
@@ -216,27 +216,27 @@ One practical note: **the page where you embed the button should be served over 
 
 ***
 
-## How does My Customer Pay?
+## How Does My Customer Pay?
 
 When your customer visits your website:
 
-<Accordion title="1. Sees the Button" icon="far fa-eye">
+<Accordion title="1. Sees the Button">
   The button appears on your page exactly where you added it.
 </Accordion>
 
-<Accordion title="2. Clicks the Button" icon="far fa-computer-mouse">
+<Accordion title="2. Clicks the Button">
   PayU's payment page opens and the customer can complete their payment.
 </Accordion>
 
-<Accordion title="3. Answers Any Extra Questions You Have Added (optional)" icon="far fa-keyboard-down">
+<Accordion title="3. Answers Any Extra Questions You Have Added (optional)">
   If you have asked for extra details such as name, email, or a note, the customer fills those in.
 </Accordion>
 
-<Accordion title="4. Completes payment" icon="far fa-money-bills">
+<Accordion title="4. Completes payment">
   The customer chooses the payment method, enters their payment details and confirms. PayU handles the rest securely.
 </Accordion>
 
-<Accordion title="5. Brought Back to Your Site" icon="far fa-diagram-successor">
+<Accordion title="5. Brought Back to Your Site">
   Once the payment is done, the customer is taken to your website or an error page if something went wrong.
 </Accordion>
 
@@ -249,7 +249,7 @@ Once your button is live:
 - **You see all payments immediately** in your PayU Dashboard under **Payment Tools → Payment Buttons**
 - **Every payment is recorded:** You can see the amount, date, customer details, and whether the payment went through.
 - **You can download your payment records:** <Anchor target="_blank" href="doc:customize-payment-button">Download a report</Anchor> of all payments received through your buttons.
-- **Buttons can be turned off:** You can stop a button from accepting payments at any time — useful when a product sells out or an event ends.
+- **Buttons can be turned off:** You can stop a button from accepting payments at any time. This is useful when a product sells out or an event ends.
 
 ***
 
