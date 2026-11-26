@@ -124,7 +124,7 @@ curl -i 'https://test.payu.in/_payment' \
 Merchants can set up automated subscription billing through various payment methods including Net Banking (e-NACH) and UPI Autopay for Bonds Payments. Refer to the corresponding links for setting it up:
 
 - <Anchor target="_blank" href="https://docs.payu.in/docs/bonds-enach-integration">ENACH Integration for Bonds</Anchor>
-- UPI Autopay Integration for Bonds
+- <Anchor target="_blank" href="https://docs.payu.in/docs/bonds-upi-autopay-integration">UPI Autopay Integration for Bonds</Anchor>
 
 ***
 
