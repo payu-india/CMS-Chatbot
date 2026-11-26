@@ -127,7 +127,7 @@ next:
 
 ***
 
-3. #### Should I enter the amount in rupees or paise? <Badge type="success">New</Badge>
+3. #### Should I enter the amount in rupees or paise?
 
 <Accordion title="Answer" icon="fab fa-adn">
   When creating a Payment Button from the **PayU Dashboard**, enter the amount in **rupees (INR)**. For example, enter `500` for ₹500.
@@ -229,7 +229,7 @@ next:
 
 ***
 
-5. #### The payment page opens on its own without my customer clicking the button. Why? <Badge type="success">New</Badge>
+5. #### The payment page opens on its own without my customer clicking the button. Why?
 
 <Accordion title="Answer" icon="fab fa-adn">
   This can happen for one of these reasons:
@@ -292,3 +292,21 @@ next:
 
   You can view the settlement status, track each UTR, and download reports from the **Settlements** section of your PayU Dashboard.
 </Accordion>
+
+***
+
+## Next Steps
+
+<Cards>
+  <Card title="Troubleshooting" href="doc:payment-button-troubleshooting" icon="far fa-wrench" target="_blank">
+    Fix common issues — button not showing, payment page not opening, or redirect not working.
+  </Card>
+
+  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="far fa-list-check">
+    Edit details, view transactions, and download records from the Dashboard.
+  </Card>
+
+  <Card title="Settlements" href="doc:split-settlements" icon="fad fa-building-columns">
+    See when and how PayU transfers your collected funds to your bank account.
+  </Card>
+</Cards>
