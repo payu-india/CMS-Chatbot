@@ -37,20 +37,20 @@ If you want to find the right fit, tell us about your business and technical cap
 
 This is a quick gist of the most common paths, not an exhaustive list. If you already know what you need, go directly to the right guide.
 
-| What you want to do                      | PayU solution                                                                               | Effort                  |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------- |
-| Share a payment link — no website needed | [Payment Links](https://docs.payu.in/docs/payment-links-dashboard)                          | 🟢 No coding required   |
-| Embed a buy button on any webpage        | [Payment Buttons](https://docs.payu.in/docs/payment-buttons)                                | 🟢 No coding required   |
-| Add checkout to a Shopify store          | [Shopify Plugin](https://docs.payu.in/docs/shopify)                                         | 🟡 Some technical setup |
-| Add checkout to a WooCommerce store      | [WooCommerce Plugin](https://docs.payu.in/docs/woocommerce)                                 | 🟡 Some technical setup |
-| Add checkout to a Magento store          | [Magento Plugin](https://docs.payu.in/docs/magento)                                         | 🟡 Some technical setup |
-| Add checkout to a custom-built website   | [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted)             | 🟡 Some technical setup |
-| Build a fully custom payment page        | [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted)       | 🔵 Developer required   |
-| Set up subscription or recurring billing | [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) | 🔵 Developer required   |
-| Split payments across multiple sellers   | [Split Settlement](https://docs.payu.in/docs/split-settlments)                              | 🔵 Developer required   |
-| Accept payments on a mobile app          | [Mobile SDKs](https://docs.payu.in/docs/mobile-sdks)                                        | 🔵 Developer required   |
-| Accept in-person payments via QR code    | [UPI QR Code](https://docs.payu.in/docs/integrate-upi-qr)                                   | 🔵 Developer required   |
-| Accept card payments at a physical store | [Android POS SDK](https://docs.payu.in/docs/android-pos-sdk)                                | 🔵 Developer required   |
+| What you want to do                                   | PayU solution                                                                               | Effort                  |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------- |
+| Get paid without a website                            | [Payment Links](https://docs.payu.in/docs/payment-links-dashboard)                          | 🟢 No coding required   |
+| Add a Pay Now button to any webpage                   | [Payment Buttons](https://docs.payu.in/docs/payment-buttons)                                | 🟢 No coding required   |
+| I sell on Shopify                                     | [Shopify Plugin](https://docs.payu.in/docs/shopify)                                         | 🟡 Some technical setup |
+| I sell on WooCommerce                                 | [WooCommerce Plugin](https://docs.payu.in/docs/woocommerce)                                 | 🟡 Some technical setup |
+| I sell on Magento                                     | [Magento Plugin](https://docs.payu.in/docs/magento)                                         | 🟡 Some technical setup |
+| Add payments to my website, quick and easy            | [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted)             | 🟡 Some technical setup |
+| Build a completely custom checkout on my site         | [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted)       | 🔵 Developer required   |
+| Set up automatic recurring charges or subscriptions   | [Recurring Payments](https://docs.payu.in/docs/introduction-recurring-payments-integration) | 🔵 Developer required   |
+| Split a payment across multiple sellers automatically | [Split Settlement](https://docs.payu.in/docs/split-settlments)                              | 🔵 Developer required   |
+| Accept payments inside my Android or iOS app          | [Mobile SDKs](https://docs.payu.in/docs/mobile-sdks)                                        | 🔵 Developer required   |
+| Let customers scan a QR code and pay instantly        | [UPI QR Code](https://docs.payu.in/docs/integrate-upi-qr)                                   | 🔵 Developer required   |
+| Accept card and UPI payments at my physical store     | [Android POS SDK](https://docs.payu.in/docs/android-pos-sdk)                                | 🔵 Developer required   |
 
 <Accordion title="Compare all integration options in detail">
   | Integration Type                                 | Dev Effort    | PCI Compliance Needed                | Customization                           | Best For                                  |
@@ -84,36 +84,6 @@ Once you have chosen your integration, here is what you need to begin building.
   * [Explore PayU APIs](https://docs.payu.in/reference/introduction-api-reference)
   * [Callbacks & Webhook](https://docs.payu.in/docs/callbacks-webhook-reference)
 </Callout>
-
-***
-
-### Explore by Platform
-
-<Tabs>
-  <Tab title="Website">
-    * [No Code Solutions](https://docs.payu.in/docs/introduction-no-code-payments-integration)
-    * [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted)
-    * [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted)
-    * [Server-to-Server](https://docs.payu.in/docs/server-to-server-integration)
-    * [CommercePro Checkout](https://docs.payu.in/docs/checkout-express)
-    * [Checkout Plus](https://docs.payu.in/docs/checkout-plus-integration)
-  </Tab>
-
-  <Tab title="Mobile SDKs">
-    * [Android](https://docs.payu.in/docs/explore-android-sdks)
-    * [iOS](https://docs.payu.in/docs/explore-ios-sdks)
-    * [React Native](https://docs.payu.in/docs/explore-reactnative-sdks)
-    * [Flutter](https://docs.payu.in/docs/flutter-sdk-introduction)
-    * [Cordova](https://docs.payu.in/docs/cordova-sdk-introduction)
-  </Tab>
-
-  <Tab title="eCommerce Plugins">
-    * [Shopify](https://docs.payu.in/docs/shopify)
-    * [WooCommerce](https://docs.payu.in/docs/woocommerce)
-    * [Magento](https://docs.payu.in/docs/magento)
-    * [All Plugins →](https://docs.payu.in/docs/ecommerce-platform-plugins/)
-  </Tab>
-</Tabs>
 
 ***
 
