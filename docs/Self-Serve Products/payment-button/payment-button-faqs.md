@@ -150,7 +150,7 @@ next:
 5. #### Can I edit a Payment Button after creating it?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. You can <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons#edit-payment-button-details">edit a Payment Button</Anchor> settings cannot be changed after it is created. Afer you save the new btton configuration, a new code will be generated. You should copy and paste the new code in your website.
+  Yes. You can edit a Payment Button after creating it. After you save the new configuration, a new code is generated, copy and paste the new code onto your website.
 </Accordion>
 
 ***
@@ -163,7 +163,7 @@ next:
 
 ***
 
-7. #### Can I add the custom redirect URL where customers are sent after they payment? <Badge type="success">New</Badge>
+7. #### Can I add the custom redirect URL where customers are sent after their payment?
 
 <Accordion title="Answer" icon="fab fa-adn">
   Yes. Under **Advanced Options** when creating the button, you can enter:
