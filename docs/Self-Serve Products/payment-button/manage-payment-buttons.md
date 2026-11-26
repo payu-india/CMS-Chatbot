@@ -22,6 +22,13 @@ metadata:
   robots: index
 next:
   description: Explore related information and resources.
+  pages:
+    - slug: add-payment-button
+      title: Add a Payment Button
+      type: basic
+    - slug: invoices-errors-troubleshooting
+      title: Errors and Troubleshooting
+      type: basic
 ---
 <Banner
   isInline={true}
