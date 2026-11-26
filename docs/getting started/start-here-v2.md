@@ -119,7 +119,11 @@ Once your core integration is live, explore these to enhance your checkout, expa
 
 ## MCP (Model Context Protocol)
 
-Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-remote-mcp-server-integration">PayU's MCP</Anchor> to communicate with PayU APIs using.
+Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-remote-mcp-server-integration">PayU's MCP</Anchor> to communicate with PayU APIs using. See how to configure PayU's MCP — watch the walkthrough.
+
+<Embed title="" typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=4n1QK4z_H-s" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252F4n1QK4z_H-s%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D4n1QK4z_H-s%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252F4n1QK4z_H-s%252Fhqdefault.jpg%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22640%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
+
+<br />
 
 ***
 
