@@ -24,6 +24,22 @@ metadata:
   robots: index
 next:
   description: Explore related information and resources.
+  pages:
+    - slug: add-payment-button
+      title: Add a Payment Button
+      type: basic
+    - slug: manage-payment-buttons
+      title: Manage Payment Buttons
+      type: basic
+    - slug: invoices-errors-troubleshooting
+      title: Errors and Troubleshooting
+      type: basic
+    - slug: payment-button-faqs
+      title: FAQs (Frequently Asked Questions)
+      type: basic
+    - slug: payment-button-workflow
+      title: How Payment Button Works
+      type: basic
 ---
 <Banner
   isInline={true}
