@@ -56,31 +56,19 @@ This is a quick gist of the most common paths, not an exhaustive list. If you al
 
 Once you have chosen your integration, here is what you need to begin building.
 
-<Callout icon="📘" theme="info">
-  ### **Get Your Merchant Key and Salt**
-
-  - Every PayU integration requires your **Merchant Key** and **Salt**. You cannot test or go live without them.
-
-  **Don't have an account yet?** [Set Up Your Account →](https://docs.payu.in/docs/set-up-your-account)
-
-  <br />
-
-  **Already have an account?** Find your credentials in the PayU Dashboard under **Developer → API Details**.
-</Callout>
-
-### What to Do Next
-
 1. **Get your credentials**: <Anchor target="_blank" href="https://docs.payu.in/docs/generate-merchant-key-and-salt-copy">Retrieve your Merchant Key and Salt</Anchor> from the PayU Dashboard
 2. **Build on the test environment**: All integrations support a test mode; always build and validate there first
 3. **Simulate transactions**: Use <Anchor target="_blank" href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets">test cards, UPI IDs, and wallets</Anchor> to cover different payment scenarios
 4. **Review the production checklist**: Make sure your integration handles all edge cases before going live
 5. **Go live**: Switch to your production credentials and you're done
 
+**Don't have an account yet?** [Set Up Your Account →](https://docs.payu.in/docs/set-up-your-account)
+
 <Callout icon="🛠️" theme="default">
   ### **Developer Resources**
 
-  * **API Reference** → [Explore PayU APIs](https://docs.payu.in/reference/introduction-api-reference)
-  * **Webhooks&#x20;**→ Go through webhooks
+  * [Explore PayU APIs](https://docs.payu.in/reference/introduction-api-reference)
+  * [Callbacks & Webhook](https://docs.payu.in/docs/callbacks-webhook-reference)
 </Callout>
 
 ***
