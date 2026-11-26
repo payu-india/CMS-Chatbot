@@ -1,5 +1,5 @@
 ---
-title: How Payment Button Works
+title: How Payment Buttons Work
 excerpt: >-
   Understand the end-to-end lifecycle of a PayU Payment Button — from creating
   your account to receiving funds in your bank account.
