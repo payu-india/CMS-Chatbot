@@ -36,7 +36,7 @@ next:
 
 PayU Payment Buttons let you collect payments on a site you already have, without a developer or a checkout integration. Use this page to see when a button fits, what you need before you start, and what your customer does when they pay.
 
-## How Does Payment Button Simplify My Business?
+## How Does a Payment Button Simplify My Business?
 
 <Accordion title="Go from zero to accepting payments with a copy-paste">
   Create a button in the PayU Dashboard, copy one line of code, and paste it anywhere on your website. No coding knowledge required, no developer to hire. If you can paste text into a website editor, you can add a payment button.
@@ -242,7 +242,7 @@ When your customer visits your website:
 
 ***
 
-## How do I Manage My Payment Buttons?
+## How Do I Manage My Payment Buttons?
 
 Once your button is live:<br />
 
