@@ -37,7 +37,7 @@ next:
 Something not working after adding your <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> to your website? Go through the most common issues such as button not showing on your page, the payment page not opening, payments not reflecting in your Dashboard, and ways to fix them.
 
 <Callout icon="📘" theme="info">
-  ### **Payment Buttons**
+  ### **New here?**
 
   Haven't added a payment button yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button">Add a Payment Button</Anchor>
 </Callout>
@@ -103,7 +103,7 @@ Something not working after adding your <Anchor target="_blank" href="https://do
   Check the following:
 
   - **Were redirect pages set when the button was created?**: Redirect pages are set at the time you create the payment button. If you did not set them, your customer will land on PayU's default confirmation page and not on your website. <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons#edit-payment-button-details">Edit the payment button</Anchor> to add URLs under **Advanced Options**.
-  - **Check for typos in the page addresses.** A single character error such as missing `https://`, wrong domain name such as causes the redirect to fail. Make sure each address starts with `https://` and points to a real, live page on your website.
+  - **Check for typos in the page addresses.** A single character error — a missing https\://, a wrong domain name, or a misspelled path — will cause the redirect to fail.
   - **Make sure the pages are live and publicly accessible.** The redirect pages must be reachable by anyone on the internet. Pages that are behind a login or still in draft will not work.
 </Accordion>
 
@@ -163,10 +163,6 @@ Contact PayU Support via the Dashboard **Help** section, or email `support@payu.
 ## Next Steps
 
 <Cards>
-  <Card title="Add a Payment Button" href="https://docs.payu.in/docs/add-payment-button" icon="far fa-plus" target="_blank">
-    Create a new payment button and add it to your website.
-  </Card>
-
   <Card title="Manage Payment Buttons" href="https://docs.payu.in/docs/manage-payment-buttons" icon="fa-list-check">
     View payments, filter your buttons, and download records.
   </Card>
