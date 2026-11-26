@@ -186,7 +186,7 @@ Use this call to debit a registered mandate. Mandate registration and pre-debit 
 
 ***
 
-## Bond Products Object
+## Bond Product Object
 
 Send exactly one product object per payment request. PayU rejects a request with more than one object for bonds. All values are case-sensitive.
 
