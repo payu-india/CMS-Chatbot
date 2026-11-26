@@ -1,5 +1,5 @@
 ---
-title: ML-Powered Error Details
+title: Error details V2
 deprecated: false
 hidden: true
 metadata:
