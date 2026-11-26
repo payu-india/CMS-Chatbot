@@ -47,7 +47,7 @@ To open payment buttons: log in to [PayU Dashboard](https://onboarding.payu.in/)
 
 ## What Can I Do With a Payment Button After It Is Created?
 
-You can perform the following actions after a button is created:<br />
+You can perform the following actions after a button is created:
 
 - View Payment Button Details
 - Edit Payment Button Details
