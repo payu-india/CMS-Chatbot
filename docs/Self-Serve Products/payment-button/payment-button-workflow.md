@@ -100,9 +100,8 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
 
     If a customer requests a refund or raises a dispute with their bank, PayU has a process for each.
 
-    - [Refunds](doc:introduction-refunds)
-    - [Settlements](doc:split-settlments)
-    - [Disputes and Chargebacks](doc:chargeback)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-refunds">Refunds</Anchor>
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/chargeback">Disputes and Chargebacks</Anchor>
   </Callout>
 </Accordion>
 
@@ -111,11 +110,11 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
 ## Next Steps
 
 <Cards>
-  <Card title="Add a Payment Button" href="doc:add-a-payment-button" icon="far fa-plus">
+  <Card title="Add a Payment Button" href="https://docs.payu.in/docs/add-payment-button" icon="far fa-plus" target="_blank">
     Create your first button and get the embed code from the Dashboard in minutes.
   </Card>
 
-  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="far fa-list-check">
+  <Card title="Manage Payment Buttons" href="https://docs.payu.in/docs/manage-payment-buttons" icon="far fa-list-check" target="_blank">
     View payments, edit details, and download records from the Dashboard.
   </Card>
 </Cards>
