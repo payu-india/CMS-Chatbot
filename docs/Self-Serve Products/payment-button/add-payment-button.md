@@ -242,7 +242,7 @@ After your customer clicks the button and completes a payment:
 <Callout icon="📘" theme="info">
   ### **Webhooks for Notification**
 
-  Webhooks are optional. Your Dashboard always reflects the current payment status without any webhook setup.
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks</Anchor> are optional. Your Dashboard always reflects the current payment status without any webhook setup.
 </Callout>
 
 ***
