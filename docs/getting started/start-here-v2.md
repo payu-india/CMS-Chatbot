@@ -113,6 +113,8 @@ Once you have chosen your integration, here is what you need to begin building.
   </Accordion>
 </AccordionGroup>
 
+***
+
 ### Explore Other Products
 
 <Tabs>
@@ -165,6 +167,8 @@ Once you have chosen your integration, here is what you need to begin building.
   </Tab>
 </Tabs>
 
+***
+
 ### Explore by Platform
 
 <Tabs>
@@ -211,23 +215,28 @@ Once your core integration is live, explore these to enhance your checkout, expa
 * [Cross-Border Payments:](https://docs.payu.in/docs/introduction-cross-border-payments-import) Collect import payments from overseas
 * [Pre-Authorize Payments:](https://docs.payu.in/docs/auth-and-capture-pre-authorize-card-payments) Authorize now, capture later
 
-**Manage & Operate**
+**Manage and Operate**
 
 * [Split Settlements:](https://docs.payu.in/docs/split-settlments) Automatically split payments across multiple sellers or accounts
 * [Third-Party Verification (TPV):](https://docs.payu.in/docs/introduction-to-payu-tpv) Verify that payments originate from a registered bank account
-* [Refunds](https://docs.payu.in/docs/introduction-refunds) — Full and partial refund APIs with status tracking
+* [Refunds:](https://docs.payu.in/docs/introduction-refunds) Full and partial refund APIs with status tracking
 
 **Other Products**
 
-* [MCP (Model Context Protocol):](https://docs.payu.in/docs/payu-remote-mcp-server-integration)  Communicate with PayU APIs using the Model Context Protocol
-* [Partner Integration](https://docs.payu.in/docs/payu-partner-program-overview#/) — Onboard and manage sub-merchants under your platform
-* [Payouts](https://docs.payu.in/docs/introduction-to-payouts/) — Disburse payments to customers, vendors, or employees
-* [Bill Payments (BBPS)](https://docs.payu.in/docs/connect-agent-api-integration) — Collect utility and recharge bill payments
+* [Partner Integration:](https://docs.payu.in/docs/payu-partner-program-overview#/) Onboard and manage sub-merchants under your platform
+* [Payouts:](https://docs.payu.in/docs/introduction-to-payouts/) Disburse payments to customers, vendors, or employees
+* [Bill Payments (BBPS):](https://docs.payu.in/docs/connect-agent-api-integration) Collect utility and recharge bill payments
 
 ***
 
-## Contact PayU
+## MCP (Model Context Protocol)
+
+Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-remote-mcp-server-integration">PayU's MCP</Anchor> to communicate with PayU APIs using.
+
+***
 
 <Callout icon="📞" theme="default">
+  ### **Contact PayU**
+
   Facing issues during integration or want to enable a PayU offering? Reach out to [PayU Support](mailto:integration@payu.in). Include your logs, error messages, and steps to reproduce — it speeds up the resolution.
 </Callout>
