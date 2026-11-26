@@ -105,3 +105,17 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
     - [Disputes and Chargebacks](doc:chargeback)
   </Callout>
 </Accordion>
+
+***
+
+## Next Steps
+
+<Cards>
+  <Card title="Add a Payment Button" href="doc:add-a-payment-button" icon="far fa-plus">
+    Create your first button and get the embed code from the Dashboard in minutes.
+  </Card>
+
+  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="far fa-list-check">
+    View payments, edit details, and download records from the Dashboard.
+  </Card>
+</Cards>
