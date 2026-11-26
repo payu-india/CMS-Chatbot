@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-Issuing banks, card networks and payment gateways report transaction failures in widely varying formats, and a single failure reason may be returned as many different raw messages. PayU applies a machine learning model to each raw failure response and maps it to a single standard error code, accompanied by a message for the end customer and a detailed explanation for the merchant.
+Banks, card networks and gateways return the same failure in many different formats. PayU maps each failure to one standard error code, with a message using ML & GenAI which you can show your customer and an explanation for your team.
 
 When a transaction fails, PayU includes an `error_details` object in the transaction response. This object contains:
 
@@ -119,18 +119,11 @@ The following sample illustrates the `error_details` object for a failed domesti
         | incorrectConfig       | Configuration           | Failed because of the merchant's account or integration setup |
         | requestIncorrect      | Invalid request         | The payment request was missing data or had wrong values      |
       </Tab>
+
+      <Tab title="New Tab">
+
+      </Tab>
     </Tabs>
-
-    **Format:** `EN` + Category (first digit) + Source (second digit) + Message number (variable length).<br />For example: `EN311`, `EN3126`, `EN30505`.
-
-    #### Examples
-
-    | Code   | Interpretation                                                          |
-    | ------ | ----------------------------------------------------------------------- |
-    | EN3126 | External technical error (3) at the customer's bank (1), message 26     |
-    | EN6145 | Risk decline (6) by the customer's bank (1), message 45                 |
-    | EN4312 | Configuration error (4) in the merchant's configuration (3), message 12 |
-    | EN1408 | Customer error (1) arising from customer input (4), message 8           |
   </Tab>
 </Tabs>
 
