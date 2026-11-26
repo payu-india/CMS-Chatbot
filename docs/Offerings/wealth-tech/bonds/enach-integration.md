@@ -1,5 +1,5 @@
 ---
-title: ENACH Integration
+title: ENACH Integration - Bonds
 deprecated: false
 hidden: true
 metadata:
