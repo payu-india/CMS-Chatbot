@@ -87,21 +87,21 @@ Send up to 4 bank accounts. Separate multiple account numbers with `|` and send 
 ### Sample Request
 
 ```curl
-curl -X POST 'https://test.payu.in/_payment' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=<merchant_key>' \
-  --data-urlencode 'txnid=bond_txn_0001' \
-  --data-urlencode 'amount=101.00' \
-  --data-urlencode 'productinfo=Bond purchase' \
-  --data-urlencode 'firstname=Ravi' \
-  --data-urlencode 'email=test@example.com' \
-  --data-urlencode 'phone=9999999999' \
-  --data-urlencode 'surl=https://merchant.example.com/success' \
-  --data-urlencode 'furl=https://merchant.example.com/failure' \
-  --data-urlencode 'api_version=21' \
-  --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"1579105002472","ifscCode":"HDFC0001579"}' \
-  --data-urlencode 'products=[{"type":"bond","amount":"101.00","receipt":"1234556789012","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"nse_bonds","mf_investment_type":"L"}]' \
-  --data-urlencode 'hash=<sha512_hash>'
+curl -i 'https://test.payu.in/_payment' \
+-H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+-H 'content-type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=KOEfPI' \
+--data-urlencode 'txnid=7f41f520f71b' \
+--data-urlencode 'amount=50000' \
+--data-urlencode 'productinfo=Mutual Fund' \
+--data-urlencode 'firstname=John' \
+--data-urlencode 'email=john@example.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'api_version=21' \
+--data-urlencode 'hash=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0' \
+--data-urlencode 'product={"wtParams":[{"type":"bond","amount":"101.00","receipt":"1234556789012","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"nse_bonds","mf_investment_type":"L"}]}'
 ```
 
 ***
