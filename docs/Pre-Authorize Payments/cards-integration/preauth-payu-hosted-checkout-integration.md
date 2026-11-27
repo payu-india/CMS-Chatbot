@@ -152,7 +152,7 @@ _(Where&#x20;_`var1`_&#x20;is the&#x20;_`mihpayid`_)._
 ### Sample Capture Request
 
 ```bash
-curl -X POST "<redacted URL>" \
+curl -X POST "https://test.payu.in/merchant/postservice.php?form=2" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JPM7Fg" \
   -d "command=capture_transaction" \
