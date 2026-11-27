@@ -31,7 +31,7 @@ After you complete PayU Hosted Checkout integration, you will be able to see the
 You can customize the following in the Checkout page:
 
 * [Enforce Pay Method or Remove Category](#enforce-pay-method-or-remove-category)
-* [Change the Language](#changing-the-language)
+* [Change the Language](#change-the-language)
 * [Configure Payment Method and Checkout Settings](#configure-payment-method-and-checkout-settings)
 
 ## Enforce Pay Method or Remove Category
