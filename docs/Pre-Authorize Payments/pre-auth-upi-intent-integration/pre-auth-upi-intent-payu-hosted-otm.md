@@ -48,7 +48,7 @@ With **UPI Intent One-Time Mandates (OTM)** on PayU Hosted Checkout, customers s
 ### Sample Request
 
 ```bash
-curl -X POST "<redacted URL>" \
+curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JPM7Fg" \
   -d "txnid=UPI_INT_001" \
