@@ -119,10 +119,6 @@ Use this endpoint to check the mandate status of the following payment methods:
     | `mandateStartDate` | The mandate start date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
     | `mandateEndDate`   | The mandate end date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
   </Tab>
-
-  <Tab title="New Tab">
-    ##
-  </Tab>
 </Tabs>
 
 ***
