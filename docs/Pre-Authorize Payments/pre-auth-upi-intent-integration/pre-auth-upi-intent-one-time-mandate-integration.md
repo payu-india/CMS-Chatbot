@@ -1,5 +1,5 @@
 ---
-title: Pre-Auth UPI Intent One-Time Mandate Integration
+title: Pre-Auth PayU Hosted UPI Intent OTM
 deprecated: false
 hidden: true
 metadata:
