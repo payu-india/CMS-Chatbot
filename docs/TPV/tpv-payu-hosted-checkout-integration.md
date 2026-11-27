@@ -1,5 +1,5 @@
 ---
-title: TPV PayU Hosted Checkout Integration
+title: PreAuth PayU Hosted Checkout Integration
 deprecated: false
 hidden: true
 metadata:
