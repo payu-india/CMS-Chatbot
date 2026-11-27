@@ -110,7 +110,14 @@ Use this endpoint to check the mandate status of the following payment methods:
   </Tab>
 
   <Tab title="Parameters and Description">
-
+    | **Parameter**      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+    | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `status`           | The mandate status. Possible values: <ul><li>**For Cards**: <code>active</code>, <code>cancelled</code>, <code>discarded, deleted</code>, <code>failed</code>, <code>expired</code>, and <code>paused</code></li> <li>**For NetBanking**: <code>INITIATED</code>, <code>SUCCESS</code>, <code>FAILED</code>, <code>CANCEL_INITIATED</code>, <code>CANCEL_PENDING</code>, <code>CANCEL_SUCCESS</code>, <code>CANCEL_FAILED</code>, and <code>CANCEL_INITIATION_FAILED</code></li> <li>**For UPI**: <code>active</code>, <code>cancelled</code>, <code>discarded, deleted</code>, <code>failed</code>, <code>expired</code>, and <code>paused</code></li></ul> |
+    | `action`           | The type of action. Possible values: <ul><li>**For Cards:** <code>MANDATE_STATUS</code></li> <li>**For NetBanking**: <code>NB_mandate_status</code></li> <li>**For UPI** <code>MANDATE_STATUS</code></li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+    | `authpayuid`       | The value of registration transaction ID sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+    | `amount`           | The billing amount as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+    | `mandateStartDate` | The mandate start date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+    | `mandateEndDate`   | The mandate end date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
   </Tab>
 
   <Tab title="New Tab">
@@ -118,16 +125,7 @@ Use this endpoint to check the mandate status of the following payment methods:
   </Tab>
 </Tabs>
 
-## Response Parameters
-
-| **Parameter**      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `status`           | The mandate status. Possible values: <ul><li>**For Cards**: <code>active</code>, <code>cancelled</code>, <code>discarded, deleted</code>, <code>failed</code>, <code>expired</code>, and <code>paused</code></li> <li>**For NetBanking**: <code>INITIATED</code>, <code>SUCCESS</code>, <code>FAILED</code>, <code>CANCEL_INITIATED</code>, <code>CANCEL_PENDING</code>, <code>CANCEL_SUCCESS</code>, <code>CANCEL_FAILED</code>, and <code>CANCEL_INITIATION_FAILED</code></li> <li>**For UPI**: <code>active</code>, <code>cancelled</code>, <code>discarded, deleted</code>, <code>failed</code>, <code>expired</code>, and <code>paused</code></li></ul> |
-| `action`           | The type of action. Possible values: <ul><li>**For Cards:** <code>MANDATE_STATUS</code></li> <li>**For NetBanking**: <code>NB_mandate_status</code></li> <li>**For UPI** <code>MANDATE_STATUS</code></li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `authpayuid`       | The value of registration transaction ID sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `amount`           | The billing amount as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `mandateStartDate` | The mandate start date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `mandateEndDate`   | The mandate end date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+***
 
 ## Errors
 
@@ -150,166 +148,6 @@ Below are the errors associated to cards.
   ```
 
   **Reason:** This error occurs when you try to check the status of a cancelled mandate.
-</Accordion>
 
-<Accordion title="SI is not Valid" icon="fa-calendar-times">
-  ```json Error Response
-  {
-    "status": 422,
-    "errorCode": "ER0816",
-    "errorMessage": "SI is not valid",
-    "action": "check_mandate_status"
-  }
-  ```
-
-  **Reason:** This error occurs when the SI instructions of a mandate is invalid.
-</Accordion>
-
-<Accordion title="Mandate is Discarded" icon="fa-trash-alt">
-  ```json Error Response
-  {
-    "status": "discarded",
-    "action": "check_mandate_status",
-    "authpayuid": "16696314880",
-    "amount": 599,
-    "mandateStartDate": "2024-01-30",
-    "mandateEndDate": "2029-01-30"
-  }
-  ```
-
-  **Reason:** This error occurs when you try to check the status of a discarded mandate.
-</Accordion>
-
-<Accordion title="Consent is not Mandated" icon="fa-user-slash">
-  ```json Error Response
-  {
-    "status": 0,
-    "message": "Consent is Not Mandated",
-    "action": "check_mandate_status"
-  }
-  ```
-
-  **Reason:** This error occurs when the consent is not mandated.
-</Accordion>
-
-<Accordion title="Mandate has Failed" icon="fa-exclamation-circle">
-  ```json Error Response
-  {
-    "status": "failed",
-    "action": "check_mandate_status",
-    "authpayuid": "15598035386",
-    "amount": 149,
-    "mandateStartDate": "2022-08-30",
-    "mandateEndDate": "2027-08-30"
-  }
-  ```
-
-  **Reason:** This error occurs when you try to access the details of a failed mandate.
-</Accordion>
-
-<Accordion title="Deleted Mandate" icon="fa-trash">
-  ```json Error Response
-  {
-    "status": "deleted",
-    "action": "check_mandate_status",
-    "authpayuid": "21830274499",
-    "amount": 23888,
-    "mandateStartDate": "2025-02-07",
-    "mandateEndDate": "2026-01-07",
-    "deletedon": "2025-01-26T01:00:33+05:30"
-  }
-  ```
-
-  **Reason:** This error occurs when you try to access the details of a deleted mandate.
-</Accordion>
-
-<Accordion title="Expired Mandate" icon="fa-hourglass-end">
-  ```json Error Response
-  {
-    "status": "expired",
-    "action": "check_mandate_status",
-    "authpayuid": "20962358568",
-    "amount": 63000,
-    "mandateStartDate": "2024-11-07",
-    "mandateEndDate": "2025-01-07"
-  }
-  ```
-
-  **Reason:** This error occurs when you try to access the details of a expired mandate.
-</Accordion>
-
-<Accordion title="authPayuId is Missing" icon="fa-key">
-  ```json Error Response
-  {
-    "status": 0,
-    "message": "authPayuId is mandatory",
-    "action": "check_mandate_status"
-  }
-  ```
-
-  **Reason:** This error occurs when you do not pass the `authPayuId` parameter.
-
-  **Solution:** Make sure to pass the `authPayuId` parameter as it is a mandatory parameter.
-</Accordion>
-
-<Accordion title="Internal Error" icon="fa-server">
-  ```json Error Response
-  {
-    "status": 422,
-    "errorCode": "ER1002",
-    "errorMessage": "INTERNAL_ERROR",
-    "action": "check_mandate_status"
-  }
-  ```
-
-  **Reason:** This error occurs when there is an internal error while polling the API .
-
-  **Solution:** Retry after sometime.
-</Accordion>
-
-<Accordion title="Mandate is Paused" icon="fa-pause-circle">
-  ```json Error Response
-  {
-    "status": "paused",
-    "action": "check_mandate_status",
-    "authpayuid": 21652087097,
-    "amount": "5",
-    "mandateStartDate": "2024-11-24",
-    "mandateEndDate": "2025-12-07"
-  }
-  ```
-
-  **Reason:** This error occurs when you try to access the details of a paused mandate.
-</Accordion>
-
-### NetBanking
-
-Below are the errors associated to NetBanking.
-
-<Accordion title="ENACH Mandate Entry not Found" icon="fa-search-minus">
-  ```json Error Response
-  {
-      "status": 0,
-      "message": "ENACH Mandate entry not found",
-      "action": "NB_mandate_status"
-  }
-  ```
-
-  **Reason:** This error occurs when you try to access the details of a unregistered ENACH mandate.
-</Accordion>
-
-### UPI
-
-Below are the errors associated to UPI.
-
-<Accordion title="Mandate Entry not Found" icon="fa-file-excel">
-  ```json Error Response
-  {
-      "status": 0,
-      "message": "Mandate entry not found",
-      "action": "MANDATE_STATUS"
-  }
-  ```
-
-  **Reason:** This error occurs when you try to access the details of a unregistered mandate.
+  **Recommended Fix:** You cannot check the status of a cancelled mandate using this API.
 </Accordion>
