@@ -49,7 +49,7 @@ In Merchant Hosted UPI Intent integration, PayU returns a mandate URI (`intentUR
 ### Sample Request
 
 ```bash
-curl -X POST "<redacted URL>" \
+curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JPM7Fg" \
   -d "pg=UPI" \
