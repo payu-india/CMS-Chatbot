@@ -179,4 +179,4 @@ curl -X POST "https://test.payu.in/merchant/postservice.php?form=2" \
 
 * **Verify Payment (**`verify_payment`**)**: Query transaction status anytime. Active pre-auth holds return `unmappedstatus: auth`. Captured transactions return `unmappedstatus: captured`.
 * **Check Action Status (**`check_action_status`**)**: Check the progress of queued captures using `request_id`.
-* **Cancel Hold (**`cancel_transaction`**)**: If order is cancelled, refer to [Cancel a Pre-Authorized Payment](11-cancel-a-pre-authorized-payment.md).
+* **Cancel Hold (**`cancel_transaction`**)**: If order is cancelled, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
