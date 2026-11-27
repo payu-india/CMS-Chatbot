@@ -1,5 +1,5 @@
 ---
-title: PreAuth PayU Hosted Checkout Integration
+title: Pre-Auth PayU Hosted Checkout Integration
 deprecated: false
 hidden: true
 metadata:
