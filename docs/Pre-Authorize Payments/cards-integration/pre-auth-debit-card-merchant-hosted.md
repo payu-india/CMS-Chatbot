@@ -21,10 +21,10 @@ Debit Card Pre-Authorization enables temporary holds on customer bank account fu
 
 ### Endpoints
 
-| Environment    | URL              |
-| :------------- | :--------------- |
-| **Test**       | `<redacted URL>` |
-| **Production** | `<redacted URL>` |
+| Environment    | URL                                                                                             |
+| :------------- | :---------------------------------------------------------------------------------------------- |
+| **Test**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment "https://test.payu.in/_payment") |
+| **Production** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)                             |
 
 ### Request Parameters
 
@@ -66,7 +66,7 @@ Debit Card Pre-Authorization enables temporary holds on customer bank account fu
 ### Sample Request
 
 ```bash
-curl -X POST "<redacted URL>" \
+curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JPM7Fg" \
   -d "pg=DC" \
