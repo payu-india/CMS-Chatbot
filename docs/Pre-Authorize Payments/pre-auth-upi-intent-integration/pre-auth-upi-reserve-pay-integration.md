@@ -80,7 +80,7 @@ Customer approves the block mandate in their UPI app with their UPI PIN. PayU po
 To debit from the reserved amount, invoke `capture_transaction` with the specific debit amount in `var3`. You can repeat this call for subsequent debits until the cumulative total reaches the original reserved amount.
 
 ```bash
-curl -X POST "<reda"cted URL> \
+curl -X POST "https://test.payu.in/merchant/postservice.php?form=2" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JPM7Fg" \
   -d "command=capture_transaction" \
