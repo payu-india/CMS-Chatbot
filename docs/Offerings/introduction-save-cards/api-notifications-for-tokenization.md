@@ -2,7 +2,7 @@
 title: API Notifications for Tokenization
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
