@@ -4001,7 +4001,7 @@ print $response->content;
 
 **Hide BNPL (**`BNPL`**)**
 
-````curl
+```curl
 curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
@@ -5356,7 +5356,7 @@ You are redirected to the PayPal page similar to the following screenshot.
 **Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
 </Callout>
 </Accordion>
-### Configure Checkout Settings
+<Accordion title="Configure Checkout Settings" icon="fa-table">
 
 The **Checkout Customisation** page on PayU Dashboard lets you tailor your checkout page to match your brand identity and prioritise the payment methods that are most relevant to your customers.
 
@@ -5504,5 +5504,6 @@ The  **Features for Website platform** tab is displayed.<br />
 4. Select **Apply Changes** to save your settings.<br />
 
 > **Note:** To switch back to a custom order, turn off the **PayU Recommended Order** toggle, and then follow the steps in [Set a Custom Payment Method Order](#set-a-custom-payment-method-order).
+</Accordion>
 </Accordion>
 </Accordion>
