@@ -11,12 +11,12 @@ In the Server-to-Server (S2S) Decoupled Pre-Authorization flow, your backend int
 
 ## Step 1: Post S2S Pre-Auth Request to `_payment`
 
-### Endpoints
+### Environment
 
-| Environment    | URL              |
-| :------------- | :--------------- |
-| **Test**       | `<redacted URL>` |
-| **Production** | `<redacted URL>` |
+| Environment        | URL                                                                                                   |
+| :----------------- | :---------------------------------------------------------------------------------------------------- |
+| **Test (Sandbox)** | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                       |
+| **Production**     | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment "https://secure.payu.in/_payment") |
 
 ### Request Parameters
 
