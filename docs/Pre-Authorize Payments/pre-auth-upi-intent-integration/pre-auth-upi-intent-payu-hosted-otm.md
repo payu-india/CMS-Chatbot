@@ -18,55 +18,49 @@ With **UPI Intent One-Time Mandates (OTM)** on PayU Hosted Checkout, customers s
 | **Test (Sandbox)** | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                       |
 | **Production**     | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment "https://secure.payu.in/_payment") |
 
-### Request Parameters
+<Tabs>
+  <Tab title="Request Parameters">
+    **Mandatory Parameters**
 
-#### Mandatory Parameters
+    | Parameter                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Example                                                            |
+    | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+    | <Glossary>key</Glossary><br /><code>mandatory</code>                                      | <code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Your Test Key                                                      |
+    | <Glossary>txnid</Glossary><br /><code>mandatory</code>                                    | <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. <code>Character limit</code>: 25<br />**Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.' | fd3e847h2                                                          |
+    | amount<br /><code>mandatory</code>                                                        | <code>float</code> This parameter should contain the payment amount of the particular transaction. **Note**: Type-cast the amount to float type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 1000                                                               |
+    | <Glossary>productinfo</Glossary><br /><code>mandatory</code>                              | <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product. <code>Character limit</code>: 100.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Time Magazine Subscription                                         |
+    | firstname<br /><code>mandatory</code>                                                     | <code>varchar</code> Must contain the first name of the customer. <code>Character limit</code>: 60.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Ashish                                                             |
+    | email<br /><code>mandatory</code>                                                         | <code>varchar</code> Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50.                                                                                                                                                                                                                                                                                           | [Ashish@test.com](mailto:Ashish@test.com)                          |
+    | phone<br /><code>mandatory</code>                                                         | <code>varchar</code> Must contain the phone number of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50.                                                                                                                                                                                                                                                                                  | 9843176540                                                         |
+    | <Glossary>surl</Glossary><br /><code>mandatory</code>                                     | surl is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                    |
+    | <Glossary>furl</Glossary><br /><code>mandatory</code>                                     | furl is the acronym for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                    |
+    | <Glossary>pg</Glossary><br /><code>mandatory</code>                                       | It defines the payment category for which you wish to perform UPI One-Time Mandate. For UPI, **pg= UPI**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | UPI                                                                |
+    | <Glossary>bankcode</Glossary><br /><code>mandatory</code>                                 | It defines the bank with which you wish to perform UPI using the bank code. Use **UPI** or **INTENT** according to the use case.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | **UPI**: Used for UPI Collect<br />**INTENT**: Used for UPI Intent |
+    | <Glossary>vpa</Glossary><br /><code>mandatory for <Glossary>UPI</Glossary> Collect</code> | This parameter contains the customer's VPA handle. For the list of UPI handles supported, refer to UPI Handles. The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to Validate VPA API.                                                                                                                                                                                                                                                                                                                                   | abc\@payu                                                          |
+    | pre_authorize<br /><code>mandatory for Pre-Auth</code>                                    | This parameter is set to **1** to pre-authorize payment.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                    |
+    | <Glossary>hash</Glossary><br /><code>mandatory</code>                                     | Hash is a crucial parameter used to ensure that any data is not tampered while redirecting the customer from the merchant website to PayU's payment interface during registration transactions. It is a SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt. The formula used to calculate this hash is: <code>SHA512(sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|SALT))</code>                                                                                                                                                    | txnid                                                              |
+  </Tab>
 
-| Parameter       | Type           | Description                                                                                                              | Example              |
-| :-------------- | :------------- | :----------------------------------------------------------------------------------------------------------------------- | :------------------- |
-| `key`           | String         | Merchant Key provided by PayU.                                                                                           | `JPM7Fg`             |
-| `txnid`         | String         | Unique merchant order ID (Max 25 characters).                                                                            | `UPI_INT_001`        |
-| `amount`        | Float / String | Amount to block (2 decimal places).                                                                                      | `1000.00`            |
-| `productinfo`   | String         | Product description (Max 100 characters).                                                                                | `Pre_Order_Phone`    |
-| `firstname`     | String         | Customer first name.                                                                                                     | `Ashish`             |
-| `email`         | String         | Customer email address.                                                                                                  | `ashish@example.com` |
-| `phone`         | String         | Customer mobile number.                                                                                                  | `9876543210`         |
-| `surl`          | String         | Success callback URL.                                                                                                    | `<redacted URL>`     |
-| `furl`          | String         | Failure callback URL.                                                                                                    | `<redacted URL>`     |
-| `pg`            | String         | Must be set to `UPI`.                                                                                                    | `UPI`                |
-| `bankcode`      | String         | Set to `INTENT` for UPI Intent.                                                                                          | `INTENT`             |
-| `pre_authorize` | String         | Must be set to `1`.                                                                                                      | `1`                  |
-| `hash`          | String         | SHA-512 hash: `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)`. | `8e8de8...`          |
-
-#### Optional Parameters
-
-| Parameter       | Type          | Description                                                                                | Example                                                           |
-| :-------------- | :------------ | :----------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
-| `siDetails`     | String (JSON) | Mandate validity range: `{"paymentStartDate":"YYYY-MM-DD","paymentEndDate":"YYYY-MM-DD"}`. | `{"paymentStartDate":"2026-11-20","paymentEndDate":"2026-12-20"}` |
-| `udf1` - `udf5` | String        | Custom metadata fields.                                                                    | `Batch_1`                                                         |
-
-### Sample Request
-
-```bash
-curl -X POST "https://test.payu.in/_payment" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JPM7Fg" \
-  -d "txnid=UPI_INT_001" \
-  -d "amount=1000.00" \
-  -d "productinfo=Pre_Order_Phone" \
-  -d "firstname=Ashish" \
-  -d "email=ashish@example.com" \
-  -d "phone=9876543210" \
-  -d "pg=UPI" \
-  -d "bankcode=INTENT" \
-  -d "pre_authorize=1" \
-  -d "siDetails={\"paymentStartDate\":\"2026-11-20\",\"paymentEndDate\":\"2026-12-20\"}" \
-  -d "surl=<redacted URL>" \
-  -d "furl=<redacted URL>" \
-  -d "hash=CALCULATED_REQUEST_HASH"
-```
-
-***
+  <Tab title="Sample Request">
+    ```bash
+    curl --request POST   
+    --url https://test.payu.in/_payment   
+    --header 'accept: text/plain'   
+    --header 'content-type: application/x-www-form-urlencoded'   
+    --data key=JPM7Fg   
+    --data txnid=aso6787   
+    --data siDetails='{"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}'   
+    --data pre_authorize=1   
+    --data amount=100.00   
+    --data productinfo=iPhone   
+    --data firstname=Ashish   
+    --data email=ashish@abc.com   
+    --data phone=9876543210   
+    --data surl=https://apiplayground-response.herokuapp.com/   
+    --data furl=https://apiplayground-response.herokuapp.com/   
+    --data hash=8e8de8a3cf2ba999e16c0ffdb63a645074af4ad1aa0a8d66d81555a119c004e1791173fe6199084f256623664b250d3aeb50fc2c4cfc155e729d8811a157c98b
+    ```
+  </Tab>
+</Tabs>
 
 ## Step 2: Handle Response & Verification
 
