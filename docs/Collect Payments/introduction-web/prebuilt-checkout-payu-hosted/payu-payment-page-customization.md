@@ -5356,7 +5356,7 @@ You are redirected to the PayPal page similar to the following screenshot.
 **Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
 </Callout>
 </Accordion>
-
+</Accordion>
 ## Configure Checkout Settings
 
 The **Checkout Customisation** page on PayU Dashboard lets you tailor your checkout page to match your brand identity and prioritise the payment methods that are most relevant to your customers.
