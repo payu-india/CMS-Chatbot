@@ -32,12 +32,12 @@ metadata:
 
 UPI Reserve Pay uses the standard UPI One-Time Mandate request parameters with an extended `siDetails` validity window (up to 90 days).
 
-### Endpoints
+### Environment
 
-| Environment    | URL              |
-| :------------- | :--------------- |
-| **Test**       | `<redacted URL>` |
-| **Production** | `<redacted URL>` |
+| Environment        | URL                                                                                                   |
+| :----------------- | :---------------------------------------------------------------------------------------------------- |
+| **Test (Sandbox)** | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                       |
+| **Production**     | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment "https://secure.payu.in/_payment") |
 
 ### Request Parameters
 
