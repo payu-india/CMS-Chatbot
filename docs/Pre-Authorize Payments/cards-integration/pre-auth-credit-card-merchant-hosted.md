@@ -13,12 +13,12 @@ Merchant Hosted Checkout allows merchants with PCI-DSS compliance to collect cre
 
 Submit the payment request directly from your application or backend server.
 
-### Endpoints
+### Environment
 
-| Environment    | URL              |
-| :------------- | :--------------- |
-| **Test**       | `<redacted URL>` |
-| **Production** | `<redacted URL>` |
+| Environment        | URL                                                                                                   |
+| :----------------- | :---------------------------------------------------------------------------------------------------- |
+| **Test (Sandbox)** | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                       |
+| **Production**     | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment "https://secure.payu.in/_payment") |
 
 ### Request Parameters
 
