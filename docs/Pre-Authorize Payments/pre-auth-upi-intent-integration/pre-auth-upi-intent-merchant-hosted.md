@@ -11,12 +11,12 @@ In Merchant Hosted UPI Intent integration, PayU returns a mandate URI (`intentUR
 
 ## Step 1: Post UPI Intent Pre-Auth Request
 
-### Endpoints
+### Environment
 
-| Environment    | URL              |
-| :------------- | :--------------- |
-| **Test**       | `<redacted URL>` |
-| **Production** | `<redacted URL>` |
+| Environment        | URL                                                                                                   |
+| :----------------- | :---------------------------------------------------------------------------------------------------- |
+| **Test (Sandbox)** | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                       |
+| **Production**     | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment "https://secure.payu.in/_payment") |
 
 ### Request Parameters
 
