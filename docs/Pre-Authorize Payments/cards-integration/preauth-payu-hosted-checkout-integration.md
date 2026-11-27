@@ -24,12 +24,12 @@ In PayU Hosted Checkout, PayU collects payment details, processes 3DS authentica
 
 Submit the transaction details as an HTML form post or HTTP POST to PayU's `_payment` endpoint.
 
-### Endpoints
+### Environment
 
-| Environment        | URL              |
-| :----------------- | :--------------- |
-| **Test (Sandbox)** | `<redacted URL>` |
-| **Production**     | `<redacted URL>` |
+| Environment        | URL                                                                                                   |
+| :----------------- | :---------------------------------------------------------------------------------------------------- |
+| **Test (Sandbox)** | [https://test.payu.in/\_payment](https://test.payu.in/_payment)                                       |
+| **Production**     | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment "https://secure.payu.in/_payment") |
 
 ### Hash Calculation Formula
 
