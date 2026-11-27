@@ -32,7 +32,7 @@ You can customize the following in the Checkout page:
 
 * [Enforce Pay Method or Remove Category](#enforce-pay-method-or-remove-category)
 * [Change the Language](#changing-the-language)
-* [Configure Payment Method and Checkout Settings](#configure-checkout-payment-methods-and-settings)
+* [Configure Payment Method and Checkout Settings](#configure-payment-method-and-checkout-settings)
 
 ## Enforce Pay Method or Remove Category
 
@@ -5268,7 +5268,7 @@ The PayU payment page is displayed with the display language as "Hindi" similar 
 
 ![](https://files.readme.io/3aae0ef-hindipage.png)
 
-## Configure Checkout Payment Methods and Settings
+## Configure Payment Method and Checkout Settings
 
 By default, the following payment methods are enabled for merchants on PayU Payment page (with PayU Hosted Checkout integration):
 
@@ -5356,8 +5356,7 @@ You are redirected to the PayPal page similar to the following screenshot.
 **Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
 </Callout>
 </Accordion>
-</Accordion>
-## Configure Checkout Settings
+### Configure Checkout Settings
 
 The **Checkout Customisation** page on PayU Dashboard lets you tailor your checkout page to match your brand identity and prioritise the payment methods that are most relevant to your customers.
 
@@ -5506,198 +5505,4 @@ The  **Features for Website platform** tab is displayed.<br />
 
 > **Note:** To switch back to a custom order, turn off the **PayU Recommended Order** toggle, and then follow the steps in [Set a Custom Payment Method Order](#set-a-custom-payment-method-order).
 </Accordion>
-</Accordion>
-````
-## Change the Language
-
-To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
-
-<Embed url="https://www.youtube.com/watch?v=7UCT0jFbB90" href="https://www.youtube.com/watch?v=7UCT0jFbB90" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252F7UCT0jFbB90%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D7UCT0jFbB90%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252F7UCT0jFbB90%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
-
-The `display_lang` parameter should be set to one of the following values (same as corresponding language spelling):
-
-* English
-* Hindi
-* Tamil
-* Telugu
-* Kannada
-* Gujarati
-* Marathi
-
-Here is an example payment request API call with the `display_lang` parameter set to Hindi:
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
-```
-
-The PayU payment page is displayed with the display language as "Hindi" similar to the following screenshot:
-
-<Image border={false} src="https://files.readme.io/3aae0ef-hindipage.png" />
-
-## Configure Checkout Payment Methods and Settings
-
-By default, the following payment methods are enabled for merchants on PayU Payment page (with PayU Hosted Checkout integration):
-
-* NetBanking
-* Debit Card
-* Credit Card
-* UPI
-* Wallet
-
-You can enable the following modes if you are eligible using Dashboard:
-
-* BNPL
-* EMI
-* International Payments
-
-<Callout icon="📘" theme="info">
-  **Note**: You can enable or activate any of the above payment modes only if your are eligible or you have signed an agreement with PayU. If you are unable to raise request using Dashboard, contact your PayU Key Account Manager.
-</Callout>
-
-The following procedures describes how to enable payment mode or a feature.
-
-<Accordion title="Enable a payment method" icon="fa-table">
-  To configure the Dashboard to enable payment method:
-
-  1. Navigate to **Dashboard > Settings > Payment Methods.**
-
-     The *Manage Payment Methods* page is displayed with **Debit Card** tab selected by default.
-
-  <Image align="center" border={true} src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" width="722px" />
-
-  2. Select any of the payment method tab that you wish to configure.
-
-     If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab.
-
-  <Image align="center" border={true} src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" width="722px" />
-
-  3. Click **Activate Now**.
-
-     A pop-up dialog box is displayed similar to the following screenshot and this will vary according to the payment method:
-
-  <Image align="center" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" width="622px" />
-
-  4. Click **Proceed** to activate.
-
-     A confirmation message is displayed.
-</Accordion>
-
-<Accordion title="Activate PayPal wallet" icon="fa-table">
-  To activate PayPal wallet and start collecting payments with PayPal:
-
-  1. Follow the steps as in [Enable a payment method](#enable-a-payment-method).
-  2. Click **Link PayPal account**.
-
-  You are redirected to the PayPal page similar to the following screenshot.
-
-  <Image align="center" border={true} src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" width="320px" />
-
-  3. Enter your email address that you want to use in future with PayPal.
-
-  <Image align="center" border={true} src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" width="320px" />
-
-  4. Select your country as **India**.
-  5. Click **Next**.
-  6. Enter the password to create the account.
-
-  <Image align="center" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" width="320px" />
-
-  7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
-
-  <Image align="center" border={true} src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" width="320px" />
-
-  8. Enter your name, date of birth and contact details.
-
-  <Image align="center" border={true} src="https://files.readme.io/e137009-paypal_name_dob.png" width="320px" />
-
-  9. Scroll down and enter the business contact phone number and primary
-
-  <Image align="center" border={true} src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" width="320px" />
-
-  10. Click **Next**.
-
-  <Image align="center" border={true} src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" width="320px" />
-
-  <Callout icon="📘" theme="info">
-    **Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
-  </Callout>
-</Accordion>
-
-<Accordion title="Configure Checkout Settings" icon="fa-table">
-  You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
-
-  To update your brand settings:
-
-  1. Navigate to **Dashboard > Settings > Checkout Settings.**
-
-     The *Set up your brand* page is displayed.
-
-  <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
-
-  2. Select or enter the details as described in the following table:
-
-  <Table align={["left","left"]}>
-    <thead>
-      <tr>
-        <th>
-          Field
-        </th>
-
-        <th>
-          Description
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          Brand Logo
-        </td>
-
-        <td>
-          Enter the location or URL of the brand logo.
-
-          **Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          Secondary Color
-        </td>
-
-        <td>
-          Click the color chooser to choose the color theme for the checkout page.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          Language
-        </td>
-
-        <td>
-          Select the language from the **Language** drop-down list that has to be displayed on the Checkout page.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          Owner Signature
-        </td>
-
-        <td>
-          Click **Select the file from your library** to select the signature file and click **Upload** to complete the action.
-        </td>
-      </tr>
-    </tbody>
-  </Table>
-
-  <Callout icon="📘" theme="info">
-    **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
-  </Callout>
 </Accordion>
