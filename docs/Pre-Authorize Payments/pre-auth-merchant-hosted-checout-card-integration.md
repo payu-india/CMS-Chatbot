@@ -1,5 +1,5 @@
 ---
-title: Pre-Auth Merchant Hosted Checout - Card Integration
+title: Pre-Auth  Credit Card - Merchant Hosted Checkout
 deprecated: false
 hidden: true
 metadata:
