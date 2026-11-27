@@ -64,7 +64,7 @@ In the Server-to-Server (S2S) Decoupled Pre-Authorization flow, your backend int
 ### Sample S2S Request
 
 ```bash
-curl -X POST "<redacted URL>" \
+curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JPM7Fg" \
   -d "txnid=S2S_ORD_1001" \
